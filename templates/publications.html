@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}: Publications{% endblock %}
+
+{% block heading %}<a href="/">Andrew Davison</a><span class="site-section">: Publications {{year}}</span>{% endblock %}
+
+{% block body %}
+<div id="content">
+
+<h2>Journal articles and book chapters</h2>
+
+<ul>
+{% for article in pub_list %}
+<li class="publication" id="{{article.anchor}}">
+  <strong>{{article.author}} ({{article.year}}) {{article.title}}.</strong>
+  {% if article.type == "article" %}
+    <span class="publication">{{article.journal}}</span> {{article.volume}}: {{article.pages}}
+  {% else %}{% if article.type == "incollection" %}
+    In: <span class="publication">{{article.booktitle}}</span>, edited by {{article.editors}}, {{article.publisher}}{% if article.publisher_address %}: {{article.publisher_address}}{% endif %}{% if article.first_page %}, pp. {{article.pages}}{% endif %}.
+  {% else %}
+    Ph.D. thesis, {{article.publisher}}.
+  {% endif %}{% endif %}
+  {% if article.doi %}<a href="http://dx.doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
+  <span class="note">{% if article.abstract %}[<a href="/publications/{{article.year}}/{{article.id}}/">Abstract</a>] {% endif %}
+        [<a href="/publications/{{article.year}}/{{article.slug}}/?format=bibtex">BibTeX</a>]
+        {% if article.full_text %}[<a href="{{article.full_text}}">Full text</a>]{% endif %}
+        {% if article.preprint %}[<a href="{{article.preprint}}">Preprint</a>]{% endif %}</span>
+</li>
+{% endfor %}
+</ul>
+
+<h2>Conference presentations</h2>
+<ul>
+{% for conf in conf_list %}
+<li class="publication" id="{{conf.anchor}}">
+  <strong>{{conf.authors}} ({% if conf.proceedings_date %}{{conf.proceedings_date.year}}{% else %}{{conf.date.year}}{% endif %}) {{conf.title}}.</strong>
+    {% if conf.proceedings %}
+    <span class="publication">{{conf.proceedings}}</span> {{conf.volume}}: {{conf.first_page}}{% if conf.last_page %}-{{conf.last_page}}{% endif %}.
+    {% endif %}
+    <br>
+    <span class="publication">{{conf.conference}}</span>, {{conf.location}}, {{conf.strftime("F Y")}}.
+    <span class="note">{% if conf.abstract %}[<a href="/publications/{{conf.date.year}}/{{conf.anchor}}/">Abstract</a>] {% endif %}
+        {% for link in conf.links.all %}[{{link|safe}}] {% endfor %}</span>
+</li>
+{% endfor %}
+</ul>
+
+<h2>Technical reports</h2>
+<ul>
+{% for report in tech_report_list %}
+{% if report.links.all %}
+<li class="publication" id="{{report.anchor}}">
+  <strong>{{report.authors}} ({{report.date.year}}) {{report.title}}.</strong>
+    <span class="publication">{{report.journal}}</span> {{report.volume}}.
+  <span class="note">{% if report.abstract %}[<a href="/publications/{{report.date.year}}/{{report.slug}}/">Abstract</a>] {% endif %}
+        {% for link in report.links.all %}[{{link|safe}}] {% endfor %}</span>
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+</div>
+
+{% endblock %}
+
+
