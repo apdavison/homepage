@@ -1,0 +1,316 @@
+/* reset from Meyerweb.com v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Styles start here... */
+
+body {
+  font-family: Trebuchet MS, sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  background-color: #f0f0f0;
+  color: #333333;
+}
+
+  
+h1, h2, h3 {
+  font-family: Georgia, serif;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 36px;
+  border-bottom: 3px solid #999999;
+  margin-bottom: 15px;
+}
+
+p {
+  margin-bottom: 18px;  
+}
+
+h2 {
+  font-size: 16px;
+  line-height: 36px;
+  border-bottom: 1px solid #999999;
+  margin-bottom: 17px;
+}
+
+h3 {
+  font-size: 14px;
+  line-height: 36px;
+}
+
+a:link     { color:#2F5F9F; text-decoration:none; }
+a:visited  { color:#2F5F9F; text-decoration:none; }
+a:hover    { color:#2F5F9F; text-decoration:underline; }
+a:active   { color:#2F5F9F; text-decoration:underline; }
+
+h1 a:link    { color:#444444; text-decoration:none; }
+h1 a:visited { color:#444444; text-decoration:none; }
+h1 a:hover   { color:#444444; text-decoration:underline; }
+
+li {
+  margin-left: 2em;
+  margin-bottom: 9px;
+}
+
+li.publication {
+  margin-left: 2em;
+  text-indent: -2em;
+  margin-bottom: 18px;
+}
+
+span.publication {
+  font-style: italic  
+}
+
+.site-section {
+  color: #999999;
+}
+
+.floatright {
+  float: right;
+  padding-left: 12px;
+  padding-bottom: 12px;
+}
+
+li.nav {
+  display: inline;
+  margin-left: 2em;
+}
+
+li.nav a:link { color:#333333; text-decoration:none; }
+li.nav a:visited { color:#333333; text-decoration:none; }
+li.nav a:hover   { color:#996633; text-decoration:underline; }
+
+dt {
+  font-weight: bold;
+  display: inline;
+}
+
+dt a:link { color:#333333; text-decoration:none; }
+dt a:visited { color:#333333; text-decoration:none; }
+dt a:hover   { color:#996633; text-decoration:underline; }
+
+dd {
+  margin-left: 1em;
+  margin-bottom: 18px;
+}
+
+th,td {
+	padding: 0 0.5em;
+	text-align: center;
+}
+
+table {
+  margin-bottom: 18px;    
+}
+
+thead {
+  border-bottom: thin solid;
+}
+
+pre.literal-block {
+  background: #dddddd;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding: 9px;
+  margin-bottom: 18px;
+}
+
+a.image-reference img{
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 18px;
+}
+
+.date {
+  font-style: italic  
+}
+
+table.docutils {
+    margin-left: 2em;
+    margin-right: 2em;
+    background-color: #eeeeee;
+}
+
+ul.simple {
+    list-style-type: circle;
+}
+
+ol.simple {
+    list-style-type: decimal;
+}
+
+#container {
+  width: 900px;
+  margin-left: 50px;
+}
+
+#header {
+  margin-top: 18px;
+}
+
+#main-navigation {
+  float: right;
+  margin-top: 18px;
+}
+
+#top-panel {
+  margin-top: 15px;
+  border-bottom: 2px solid #999999;
+  margin-bottom: 16px;
+}
+
+#left-column {
+  width: 290px;
+  margin-left: 0px;
+  margin-right: 15px;
+  float: left;
+  padding-bottom: 18px;
+}
+
+#centre-column {
+  width: 290px;
+  margin-left: 0px;
+  margin-right: 15px;
+  float: left;
+  padding-bottom: 18px;
+}
+
+#right-column {
+  width: 290px;
+  margin-left: 610px;
+  padding-bottom: 18px;
+}
+
+#footer {
+  clear:both;
+  border-top: 2px solid #999999;
+  margin-top: 16px;
+  margin-bottom: 18px;
+  padding-top: 18px;
+  text-align: center;
+}
+
+
+#publications {
+  padding: 0px;
+  
+}
+
+#publications p {
+  margin-left: 1em;
+  text-indent: -1em;
+}
+
+#projects {
+  padding: 0px;
+}
+
+#projects p {
+  margin-left: 2em;  
+}
+
+#notes {
+  padding: 0px;
+}
+
+#notes p {
+  margin-left: 1em;
+  text-indent: -1em;
+}
+
+#icons {
+    margin-bottom: 16px;
+}
+
+.cv_section li {
+  margin-bottom: 0px;
+  list-style: circle;
+  text-indent: 0em;
+}
+
+.cv_section dd {
+  margin-bottom: 0px;
+  margin-left: 7em;
+}
+
+.cv_section dt {
+  float: left;
+  font-weight: normal;
+  margin-left: 1em;
+}
+
+#friendfeed.widget,#friendfeed.widget div,#friendfeed.widget span,#friendfeed.widget a,#friendfeed.widget img,#friendfeed.widget table,#friendfeed.widget tr,#friendfeed.widget td{
+  position:relative;
+  background-color:transparent !important;
+  color:#333333 !important;
+  padding:0;margin:0;border:0;text-align:left;
+  line-height:18px !important;
+  width:auto;float:none;font-weight:normal;
+  font-size:12px important;
+}
+
+#friendfeed.widget{
+  font-family: Trebuchet MS,sans-serif !important;
+  border:0px  !important;
+  font-size: 9px !important;
+}
+
+#friendfeed.widget .entry{ font-size:9px !important }
+
+#friendfeed.widget a:link     { color:#996633 !important;
+ }
+#friendfeed.widget a:visited  { color:#996633; text-decoration:none; }
+#friendfeed.widget a:hover    { color:#996633; text-decoration:underline; }
+#friendfeed.widget a:active   { color:#996633; text-decoration:underline; }

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}: {{title}}{% endblock %}
+
+{% block heading %}<a href="/">Andrew Davison</a><span class="site-section">: {{title}}</span>{% endblock %}
+
+{% block body %}
+<div id="content">
+{{fragment}}
+</div>
+
+{% endblock %}

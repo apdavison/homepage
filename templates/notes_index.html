@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}: Notes{% endblock %}
+
+{% block heading %}<a href="/">Andrew Davison</a><span class="site-section">: Notes</span>{% endblock %}
+
+{% block body %}
+<div id="content">
+
+<p>This is a list of notes and short articles.</p>
+
+{% if notes %}
+    {% for note in notes %}
+    <h3><a href="{{base_path}}/notes/{{note.slug}}/">{{note.title}}</a></h3>
+    <p class="date">{{note.date}}</p>
+    {% endfor %}
+{% endif %}
+    
+</div>
+{% endblock %}
+
+

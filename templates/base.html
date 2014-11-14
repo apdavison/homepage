@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
+  <meta name="Author" content="Andrew Davison, Ph.D.">
+  <title>Andrew Davison{% block title %}{% endblock %}</title>
+  <link type="text/css" rel="stylesheet" href="{{base_path}}/css/new.css">
+</head>
+<body>
+
+<div id="container">
+
+<div id="header">
+    <div class="floatright">
+    </div>
+<div class="clear"/>
+    <div id="main-navigation">{% block navigation %}
+         <ul class="nav">
+            <li class="nav">{% if section != "Publications" %}<a href="{{base_path}}/publications/">Publications</a>{% else %}Publications{% endif %}</li>
+            <li class="nav">{% if section != "Notes" %}<a href="{{base_path}}/notes/">Notes</a>{% else %}Notes{% endif %}</li>
+            <li class="nav">{% if section != "CV" %}<a href="{{base_path}}/cv/">CV</a>{% else %}CV{% endif %}</li>
+            <li class="nav"><a href="{{base_path}}/contact/">Contact</a></li>
+            
+         </ul>
+        {% endblock %}</div>
+    <h1>{% block heading %}{% endblock %}</h1>
+</div>
+
+
+{% block body %}
+
+
+{% endblock %}
+
+
+<div id="footer">
+<p><a href="http://www.webfaction.com/?affiliate=davison"><img src="{{base_path}}/images/webfaction80x15.png" alt="Hosted by Webfaction"></a> &copy; {{ this_year }} Andrew P. Davison</p>
+{% block footer %}
+{% endblock %}
+</div>
+
+
+</div> <!-- /container -->
+
+</body>
+</html>
