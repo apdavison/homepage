@@ -25,6 +25,18 @@ networks. My work at the moment has several strands:
 - development of models of the early visual system, from retina to primary visual cortex, in close collaboration
   with experimentalists.
 
+
+Mailing address
+---------------
+
+| Unité de Neurosciences Intégratives et Computationnelles (UNIC)
+| Institut de Neurobiologie Alfred Fessard, Bât. 32/33
+| Centre Nationale de la Recherche Scientifique
+| 1 Avenue de la Terrasse
+| 91198 Gif sur Yvette Cedex
+| France
+
+
 .. _UNIC: http://www.unic.cnrs-gif.fr/
 .. _CNRS: http://www.cnrs.fr
 .. _`Neuroinformatics group`: http://www.unic.cnrs-gif.fr/teams/Research%20group%20of%20Andrew%20Davison

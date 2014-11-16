@@ -1,7 +1,7 @@
 Accessing hoc from Python
 =========================
 
-:date: 2009-01-22 10:20
+:date: 2009-01-22
 :tags: Python, NEURON
 :category: Notes
 :slug: accessing-hoc-python

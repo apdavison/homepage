@@ -1,7 +1,7 @@
 Modelling simple neurons with PyMOOSE
 =====================================
 
-:date: 2011-01-07 10:20
+:date: 2011-01-07
 :tags: Python, MOOSE
 :category: Notes
 :slug: modelling-simple-neurons-pymoose

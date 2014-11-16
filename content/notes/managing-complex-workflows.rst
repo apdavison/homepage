@@ -1,7 +1,7 @@
 Managing complex workflows in neural simulation/data analysis
 =============================================================
 
-:date: 2013-07-29 10:20
+:date: 2013-07-29
 :tags: reproducible research
 :category: Notes
 :slug: managing-complex-workflows

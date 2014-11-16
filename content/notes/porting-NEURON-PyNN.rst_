@@ -2,7 +2,7 @@
 Porting a model from NEURON to PyNN: a case study
 =================================================
 
-:date: 2013-01-17 10:20
+:date: 2013-01-17
 :tags: reproducible research, Python, NEURON
 :category: Notes
 :slug: porting-NEURON-PyNN

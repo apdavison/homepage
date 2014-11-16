@@ -1,7 +1,7 @@
 Modelling single cells in NEURON with the Python interpreter
 ============================================================
 
-:date: 2008-03-23 10:20
+:date: 2008-03-23
 :tags: Python, NEURON
 :category: Notes
 :slug: modelling-single-cells-neuron-python

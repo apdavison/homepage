@@ -10,15 +10,15 @@
 <h2>Journal articles and book chapters</h2>
 
 <ul>
-{% for article in pub_list %}
+{% for article in publications %}
 <li class="publication" id="{{article.anchor}}">
   <strong>{{article.author}} ({{article.year}}) {{article.title}}.</strong>
   {% if article.type == "article" %}
     <span class="publication">{{article.journal}}</span> {{article.volume}}: {{article.pages}}
   {% else %}{% if article.type == "incollection" %}
-    In: <span class="publication">{{article.booktitle}}</span>, edited by {{article.editors}}, {{article.publisher}}{% if article.publisher_address %}: {{article.publisher_address}}{% endif %}{% if article.first_page %}, pp. {{article.pages}}{% endif %}.
+    In: <span class="publication">{{article.booktitle}}</span>, edited by {{article.editor}}, {{article.publisher}}{% if article.publisher_address %}: {{article.publisher_address}}{% endif %}{% if article.first_page %}, pp. {{article.pages}}{% endif %}.
   {% else %}
-    Ph.D. thesis, {{article.publisher}}.
+    Ph.D. thesis, {{article.school}}.
   {% endif %}{% endif %}
   {% if article.doi %}<a href="http://dx.doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
   <span class="note">{% if article.abstract %}[<a href="/publications/{{article.year}}/{{article.id}}/">Abstract</a>] {% endif %}
@@ -31,31 +31,32 @@
 
 <h2>Conference presentations</h2>
 <ul>
-{% for conf in conf_list %}
+{% for conf in presentations %}
 <li class="publication" id="{{conf.anchor}}">
-  <strong>{{conf.authors}} ({% if conf.proceedings_date %}{{conf.proceedings_date.year}}{% else %}{{conf.date.year}}{% endif %}) {{conf.title}}.</strong>
-    {% if conf.proceedings %}
-    <span class="publication">{{conf.proceedings}}</span> {{conf.volume}}: {{conf.first_page}}{% if conf.last_page %}-{{conf.last_page}}{% endif %}.
+  <strong>{{conf.author}} ({{conf.year}}) {{conf.title}}.</strong>
+    {% if conf.booktitle %}
+    <span class="publication">{{conf.booktitle}}</span>{% if conf.volume %} {{conf.volume}}: {{conf.pages}}.{% endif %}
     {% endif %}
+    {% if conf.doi %}<a href="http://dx.doi.org/{{conf.doi}}">doi:{{conf.doi}}</a> {% endif %}
     <br>
-    <span class="publication">{{conf.conference}}</span>, {{conf.location}}, {{conf.strftime("F Y")}}.
-    <span class="note">{% if conf.abstract %}[<a href="/publications/{{conf.date.year}}/{{conf.anchor}}/">Abstract</a>] {% endif %}
-        {% for link in conf.links.all %}[{{link|safe}}] {% endfor %}</span>
+    <span class="publication">{{conf.organization}}</span>, {{conf.address}}, {{conf.month}}.
+    <span class="note">{% if conf.abstract %}[<a href="/publications/{{conf.year}}/{{conf.anchor}}/">Abstract</a>] {% endif %}
+        {% if conf.full_text %}[<a href="{{conf.full_text}}">Full text</a>]{% endif %}
+        {% if conf.slides %}[<a href="{{conf.slides}}">Slides</a>]{% endif %}
+        {% if conf.proceedings %}[<a href="{{conf.proceedings}}">Proceedings</a>]{% endif %}</span>
 </li>
 {% endfor %}
 </ul>
 
 <h2>Technical reports</h2>
 <ul>
-{% for report in tech_report_list %}
-{% if report.links.all %}
+{% for report in tech_reports %}
 <li class="publication" id="{{report.anchor}}">
-  <strong>{{report.authors}} ({{report.date.year}}) {{report.title}}.</strong>
-    <span class="publication">{{report.journal}}</span> {{report.volume}}.
-  <span class="note">{% if report.abstract %}[<a href="/publications/{{report.date.year}}/{{report.slug}}/">Abstract</a>] {% endif %}
-        {% for link in report.links.all %}[{{link|safe}}] {% endfor %}</span>
+  <strong>{{report.author}} ({{report.year}}) {{report.title}}.</strong>
+    <span class="publication">{{report.booktitle}}</span>.
+  <span class="note">{% if report.abstract %}[<a href="/publications/{{report.year}}/{{report.anchor}}/">Abstract</a>] {% endif %}
+  {% if report.pdf %}[<a href="{{report.pdf}}">PDF</a>]{% endif %}</span>
 </li>
-{% endif %}
 {% endfor %}
 </ul>
 

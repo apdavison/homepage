@@ -11,7 +11,7 @@
 
 {% if notes %}
     {% for note in notes %}
-    <h3><a href="{{base_path}}/notes/{{note.slug}}/">{{note.title}}</a></h3>
+    <h3><a href="{{base_path}}/notes/{{note.page}}/">{{note.title}}</a></h3>
     <p class="date">{{note.date}}</p>
     {% endfor %}
 {% endif %}
