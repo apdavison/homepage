@@ -1,7 +1,7 @@
 Installation of NEURON with Python
 ==================================
 
-:date: 2008-03-19 10:20
+:date: 2008-03-19
 :tags: Python, NEURON
 :category: Notes
 :slug: installation-neuron-python

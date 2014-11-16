@@ -1,7 +1,7 @@
 From Hoc to Python: a case study
 ================================
 
-:date: 2010-11-10 10:20
+:date: 2010-11-10
 :tags: Python, NEURON
 :category: Notes
 :slug: hoc-to-python-bulbnet

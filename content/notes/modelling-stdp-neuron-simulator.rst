@@ -1,7 +1,7 @@
 Modelling STDP in the NEURON simulator
 ======================================
 
-:date: 2007-02-11 10:20
+:date: 2007-02-11
 :tags: NEURON
 :category: Notes
 :slug: modelling-stdp-neuron-simulator

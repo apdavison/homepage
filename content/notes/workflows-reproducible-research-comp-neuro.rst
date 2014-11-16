@@ -1,7 +1,7 @@
 Workflows for reproducible research in comp. neurosci.
 ======================================================
 
-:date: 2012-07-23 10:20
+:date: 2012-07-23
 :tags: reproducible research
 :category: Notes
 :slug: workflows-reproducible-research-comp-neuro
