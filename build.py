@@ -1,5 +1,7 @@
 """
-Script to build my homepage
+Script to build my homepage.
+
+Python 3
 """
 
 '''
@@ -34,10 +36,11 @@ import shutil
 from datetime import datetime
 from jinja2 import FileSystemLoader, Environment
 import bibtexparser
-from docutils.core import publish_programmatically, publish_parts
+from docutils.core import publish_programmatically
 from docutils import io, nodes
 
 builddir = "build"
+as_directory_index = True
 env = Environment(loader=FileSystemLoader("templates"))
 publisher_defaults = dict(source=None, source_class=io.FileInput,
                           destination_path=None,
@@ -51,10 +54,42 @@ publisher_defaults = dict(source=None, source_class=io.FileInput,
 months = ("January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December")
 
-def render_to_file(template_filename, output_filename, context):
+def render_to_file(template_filename, output_path, context):
     template = env.get_template(template_filename)
+    if as_directory_index:
+        os.makedirs(os.path.join(builddir, output_path), exist_ok=True)
+        output_filename = os.path.join(output_path, "index.html")
+    else:
+        output_filename = "%s.html" % output_path
     with open(os.path.join(builddir, output_filename), "w") as fp:
         fp.write(template.render(**context))
+
+
+def date_format(date):
+    def suffix(day):
+        "English ordinal suffix for the day of the month, 2 characters; i.e. 'st', 'nd', 'rd' or 'th'"
+        if day in (11, 12, 13):  # Special case
+            return 'th'
+        last = day % 10
+        return {1: 'st', 2: 'nd', 3: 'rd'}.get(last, 'th')
+    date_str = date.strftime("%d_ %B %Y").replace("_", suffix(date.day))
+    if date_str[0] == "0":
+        date_str = date_str[1:]
+    return date_str
+
+
+def docinfo_as_dict(docinfo):
+    D = {}
+    for child in docinfo.children:
+        if isinstance(child, nodes.date):
+            D['date'] = child.children[0].rawsource
+        elif isinstance(child, nodes.author):
+            pass  # todo
+        elif isinstance(child, nodes.field):
+            D[child.children[0].rawsource] = child.children[1].rawsource
+        else:
+            raise NotImplementedError(str(type(child)))
+    return D
 
 
 # -- Remove any existing build directory, and create a new one
@@ -77,12 +112,12 @@ with open('content/presentations.bib') as bibtex_file:
 publications = list(reversed(sorted(article_database.entries, key=lambda entry: (entry["year"], months.index(entry["month"])))))
 presentations = list(reversed(sorted((entry for entry in presentations_database.entries if entry["type"] != "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
 tech_reports = list(reversed(sorted((entry for entry in presentations_database.entries if entry["type"] == "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
-render_to_file("publications.html", "publications.html",
+render_to_file("publications.html", "publications",
                {"this_year": datetime.now().year,
                 "publications": publications,
                 "presentations": presentations,
                 "tech_reports": tech_reports,
-                "base_path": ".",
+                "base_path": as_directory_index and ".." or ".",
                 "section": "publications"})
 
 # -- Build simple pages
@@ -90,9 +125,9 @@ for page in ("about", "cv"):
     output, pub = publish_programmatically(source_path="content/%s.rst" % page,
                                            **publisher_defaults)
     context = pub.writer.parts
-    context["base_path"] = "."
+    context["base_path"] = as_directory_index and ".." or "."
     context["section"] = page
-    render_to_file("general.html", "%s.html" % page, context)
+    render_to_file("general.html", page, context)
 
 # -- Build notes/blog posts
 os.makedirs(os.path.join(builddir, "notes"))
@@ -103,27 +138,31 @@ for path in os.listdir("content/notes"):
         output, pub = publish_programmatically(
                                 source_path=os.path.join("content/notes", path),
                                 **publisher_defaults)
-        docinfo = pub.document.children[pub.document.first_child_matching_class(nodes.docinfo)]
-        date = docinfo.children[docinfo.first_child_matching_class(nodes.date)].children[0].rawsource
-        # tags = ...
+        docinfo = docinfo_as_dict(pub.document.children[pub.document.first_child_matching_class(nodes.docinfo)])
+        date = datetime.strptime(docinfo["date"], "%Y-%m-%d").date()
+        tags = docinfo["tags"]
+        #assert docinfo["slug"] == path, "%s != %s" % (docinfo["slug"], page)
         context = pub.writer.parts
         context["page"] = page
         context["date"] = date
-        context["base_path"] = ".."
-        context["section"] = "notes"
+        context["date_str"] = date_format(date)
+        context["tags"] = tags
+        context["base_path"] = as_directory_index and "../.." or ".."
         notes.append(context)
 
 notes.sort(key=lambda c: c["date"], reverse=True)
 for context in notes:
-        render_to_file("general.html", "notes/%s.html" % context["page"], context)
+        render_to_file("note.html", "notes/%s" % context["page"], context)
 
 # -- Build index of notes/blog posts
-render_to_file("notes_index.html", "notes/index.html", {"notes": notes, "base_path": ".."})
+render_to_file("notes_index.html", "notes", {"notes": notes,
+                                             "base_path": as_directory_index and ".." or "."})
 
 # -- Build front page
-render_to_file("index.html", "index.html", {"base_path": ".",
-                                            "notes": notes[:],
-                                            "publications": publications[:5]})
+render_to_file("index.html", "", {"base_path": ".",
+                                  "notes": notes[:],
+                                  "publications": publications[:7],
+                                  "presentations": presentations[:4],})
 
 
 

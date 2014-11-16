@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}: {{title}}{% endblock %}
+
+{% block heading %}<a href="/">Andrew Davison</a><span class="site-section">: Notes</span>{% endblock %}
+
+{% block body %}
+<div id="content">
+<h2>{{title}}</h2>
+<span class="floatright"><strong>Tags:</strong> <em>{{tags}}</em></span>
+<p class="note">{{date_str}}</p>
+
+{{fragment}}
+</div>
+
+{% endblock %}
+
+{% block footer %}
+<p></p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a> These notes are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike License</a>. Please feel free to copy or modify them, provided you link to this web page.</p>
+{% endblock %}
