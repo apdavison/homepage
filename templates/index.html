@@ -16,7 +16,7 @@
     <p>My main research interests are in large-scale, data-constrained, biologically-detailed modelling of neuronal
     networks. My work at the moment has several strands:</p>
     
-    <ul>
+    <ul class="simple">
         <li>development of tools to facilitate collaborative modelling, model sharing, and the use of novel hardware (GPU,
         neuromorphic) for neuronal simulations, notably <a href="http://neuralensemble.org/PyNN">PyNN</a>,
         <a href="http://software.incf.org/software/nineml/home/">NineML</a> and
@@ -75,7 +75,7 @@
 <ul>
 {% for article in publications %}
 <li class="publication" id="{{article.anchor}}">
-  <strong>{{article.author}} ({{article.year}}) {{article.title}}.</strong>
+  {{article.author}} ({{article.year}}) {{article.title}}.
   {% if article.type == "article" %}
     <span class="publication">{{article.journal}}</span> {{article.volume}}: {{article.pages}}
   {% else %}{% if article.type == "incollection" %}
@@ -104,13 +104,26 @@
     {% endfor %}
 
 
-<h2>News</h2>
-    <dl>
+<h2>Presentations</h2>
+<ul>
+{% for conf in presentations %}
+<li class="publication" id="{{conf.anchor}}">
+    {{conf.author}} ({{conf.year}}) {{conf.title}}.
+    {% if conf.booktitle %}
+    <span class="publication">{{conf.booktitle}}</span>{% if conf.volume %} {{conf.volume}}: {{conf.pages}}.{% endif %}
+    {% endif %}
+    {% if conf.doi %}<a href="http://dx.doi.org/{{conf.doi}}">doi:{{conf.doi}}</a> {% endif %}
+    <br>
+    <span class="publication">{{conf.organization}}</span>, {{conf.address}}, {{conf.month}}.
+    <span class="note">{% if conf.abstract %}[<a href="/publications/{{conf.year}}/{{conf.anchor}}/">Abstract</a>] {% endif %}
+        {% if conf.full_text %}[<a href="{{conf.full_text}}">Full text</a>]{% endif %}
+        {% if conf.slides %}[<a href="{{conf.slides}}">Slides</a>]{% endif %}
+        {% if conf.proceedings %}[<a href="{{conf.proceedings}}">Proceedings</a>]{% endif %}</span>
+</li>
+{% endfor %}
+</ul>
 
-        <dt><a href="http://neuralensemble.blogspot.com/2014/04/sumatra-06-released.html">Sumatra 0.6 released</a></dt>
-        <dd>18/4/2014 <a href="http://neuralensemble.blogspot.com/2014/04/sumatra-06-released.html">more ...</a></dd>
-
-    </dl>
+<p><a href="/publications/">more ...</a></p>
 
 </div>
 </div>
