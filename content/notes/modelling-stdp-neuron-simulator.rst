@@ -15,21 +15,21 @@ The demo consists of a presynaptic NetStim object which generates spikes, a post
 
 On running the demo, you should see something like this:
 
-.. image:: {filename}/figures/demo_stdwa1.png
+.. image:: /figures/demo_stdwa1.png
    :align: center
    :width: 750px
    :alt: Screenshot of STDwa demo, top graph
 
 The top panel shows the internal variables `P` and `M` of the weight-adjuster process `wa`, which control the amount of potentiation and depression. For demonstration purposes, `wa.p` and `wa.m` show the values that `wa.P` and `wa.M` would have in between spikes, although these are not normally calculated during simulations.
 
-.. image:: {filename}/figures/demo_stdwa2.png
+.. image:: /figures/demo_stdwa2.png
    :align: center
    :width: 750px
    :alt: Screenshot of STDwa demo, middle graph
 
 The middle panel shows the weight of the `pre2post` NetCon object, and the internal variable `wsyn` of the weight-adjuster process, which is a pointer to `pre2post.weight` (this is why you can only see the green line: it exactly overlays the orange one).
 
-.. image:: {filename}/figures/demo_stdwa3.png
+.. image:: /figures/demo_stdwa3.png
    :align: center
    :width: 750px
    :alt: Screenshot of STDwa demo, bottom graph
@@ -39,5 +39,5 @@ The bottom panel shows the weight change.
 *To be continued.* Check back in a few days, I plan to explain in more detail what is happening and how to use the mechanism in your own code.
 
 .. _`NEURON simulator`: http://www.neuron.yale.edu/neuron/
-.. _`auto launch`: {filename}/files/demo_stdwa.nrnzip
-.. _`demo_stdwa.zip`: {filename}/files/demo_stdwa.zip
+.. _`auto launch`: /files/demo_stdwa.nrnzip
+.. _`demo_stdwa.zip`: /files/demo_stdwa.zip
