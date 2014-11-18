@@ -1,7 +1,7 @@
 About
 =====
 
-.. image:: images/andrewdavison20120901_small.jpg
+.. image:: /images/andrewdavison20120901_small.jpg
    :align: right
    :height: 200
    :width: 183
