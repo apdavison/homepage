@@ -21,10 +21,13 @@
     Ph.D. thesis, {{article.school}}.
   {% endif %}{% endif %}
   {% if article.doi %}<a href="http://dx.doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
-  <span class="note">{% if article.abstract %}[<a href="/publications/{{article.year}}/{{article.id}}/">Abstract</a>] {% endif %}
-        [<a href="/publications/{{article.year}}/{{article.slug}}/?format=bibtex">BibTeX</a>]
+  <span class="note">
+        [<a href="/publications/{{article.year}}/{{article.id}}.bib">BibTeX</a>]
         {% if article.full_text %}[<a href="{{article.full_text}}">Full text</a>]{% endif %}
-        {% if article.preprint %}[<a href="{{article.preprint}}">Preprint</a>]{% endif %}</span>
+        {% if article.preprint %}[<a href="{{article.preprint}}">Preprint</a>]{% endif %}
+        {% if article.model_link %}[<a href="{{article.model_link}}">Get the model from ModelDB</a>]{% endif %}
+        {% if article.book_link %}[<a href="{{article.book_link}}">Book</a>]{% endif %}
+  </span>
 </li>
 {% endfor %}
 </ul>
@@ -40,9 +43,12 @@
     {% if conf.doi %}<a href="http://dx.doi.org/{{conf.doi}}">doi:{{conf.doi}}</a> {% endif %}
     <br>
     <span class="publication">{{conf.organization}}</span>, {{conf.address}}, {{conf.month}}.
-    <span class="note">{% if conf.abstract %}[<a href="/publications/{{conf.year}}/{{conf.anchor}}/">Abstract</a>] {% endif %}
+    <span class="note">
         {% if conf.full_text %}[<a href="{{conf.full_text}}">Full text</a>]{% endif %}
         {% if conf.slides %}[<a href="{{conf.slides}}">Slides</a>]{% endif %}
+        {% if conf.poster %}[<a href="{{conf.poster}}">Poster</a>]{% endif %}
+        {% if conf.video %}[<a href="{{conf.video}}">Video</a>]{% endif %}
+        {% if conf.video %}[<a href="{{conf.workshop_website}}">Workshop website</a>]{% endif %}
         {% if conf.proceedings %}[<a href="{{conf.proceedings}}">Proceedings</a>]{% endif %}</span>
 </li>
 {% endfor %}
