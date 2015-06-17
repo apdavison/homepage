@@ -1,13 +1,14 @@
 """
 Script to build my homepage.
 
-Usage: build.py [-h] command
+Usage: build.py [-h] [--url URL] command
 
 positional arguments:
   command     either 'build' or 'upload'
 
 optional arguments:
   -h, --help  show this help message and exit
+  --url URL   url for upload
 
 """
 
@@ -147,7 +148,10 @@ def build():
         tmp_db = bibtexparser.bibdatabase.BibDatabase()
         tmp_db.entries = [article]
         # todo: make all relative urls absolute
-        with open(os.path.join(builddir, "publications", "%s.bib" % article["id"]), "w") as fp:
+        directory = os.path.join(builddir, "publications", article["year"])
+        if not os.path.exists(directory):
+            os.mkdir(directory)
+        with open(os.path.join(directory, "%s.bib" % article["id"]), "w") as fp:
             bibtexparser.dump(tmp_db, fp)
 
     # -- Build simple pages

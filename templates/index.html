@@ -11,7 +11,7 @@
     <a href="http://www.unic.cnrs-gif.fr/">UNIC</a> lab (Unit&eacute; de Neuroscience, Information et Complexit&eacute;)
     of the <a href="http://www.cnrs.fr">CNRS</a>, where I lead the Neuroinformatics group. You might also be interested
     in my <a href="http://www.unic.cnrs-gif.fr/people/Andrew_Davison/">lab homepage</a> or my
-    <a href="twitter/">Twitter feed</a>. My ORCID identifier is <a href="http://orcid.org/0000-0002-4793-7541">0000-0002-4793-7541</a>.</p>
+    <a href="https://twitter.com/apdavison">Twitter feed</a>. My ORCID identifier is <a href="http://orcid.org/0000-0002-4793-7541">0000-0002-4793-7541</a>.</p>
 
     <p>My main research interests are in large-scale, data-constrained, biologically-detailed modelling of neuronal
     networks. My work at the moment has several strands:</p>
@@ -84,8 +84,8 @@
     Ph.D. thesis, {{article.publisher}}.
   {% endif %}{% endif %}
   {% if article.doi %}<a href="http://dx.doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
-  <span class="note">{% if article.abstract %}[<a href="/publications/{{article.year}}/{{article.id}}/">Abstract</a>] {% endif %}
-        [<a href="/publications/{{article.year}}/{{article.slug}}/?format=bibtex">BibTeX</a>]
+  <span class="note">
+        [<a href="/publications/{{article.year}}/{{article.id}}.bib">BibTeX</a>]
         {% if article.full_text %}[<a href="{{article.full_text}}">Full text</a>]{% endif %}
         {% if article.preprint %}[<a href="{{article.preprint}}">Preprint</a>]{% endif %}</span>
 </li>
