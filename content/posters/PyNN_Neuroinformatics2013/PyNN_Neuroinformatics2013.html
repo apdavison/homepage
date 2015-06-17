@@ -1,0 +1,319 @@
+<html>
+
+<head>
+    <link href="poster.css" rel="stylesheet" />
+</head>    
+
+<body>
+<header>
+<div id="title">
+<h1>An integration layer for neural simulation:<br>PyNN in the software forest</h1>
+    <div id="authors">Andrew P. Davison<sup>1</sup>, Mikael Djurfeldt<sup>2,3</sup>, Jochen M. Eppler<sup>4</sup>, Padraig Gleeson<sup>5</sup>, Michael Hull<sup>6</sup>, Eilif B. Muller<sup>7</sup></div>
+    <div id="affiliations">
+        <address><sup>1</sup>Unité de Neurosciences, Information et Complexité, Centre Nationale de la Recherche Scientifique  (CNRS), Gif sur Yvette, France</address>
+        <address><sup>2</sup>PDC Center for High Performance Computing, School of Computer Science and Communication, KTH, Stockholm, Sweden</address>
+        <address><sup>3</sup>INCF Secretariat, Stockholm, Sweden</address>
+        <address><sup>4</sup>Institute of Neuroscience and Medicine (INM-6) and Institute for Advanced Simulation (IAS-6), Forschungszentrum Jülich and JARA, Jülich, Germany</address>
+        <address><sup>5</sup>Department of Neuroscience, Physiology and Pharmacology, University College London, London, UK</address>
+        <address><sup>6</sup>Institute for Adaptive and Neural Computation, University of Edinburgh, Edinburgh, UK</address>
+        <address><sup>7</sup>Blue Brain Project, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne (EPFL), Lausanne, Switzerland</address>
+    </div>
+</div>
+
+<div id="logos">
+    <img src="logos/cnrs_logo_140.png" alt="CNRS logo">
+    <img src="logos/unic_logo_160.png" alt="UNIC logo">
+    <img src="logos/uni_edinburgh_140.png" alt="The University of Edinburgh logo">
+    <img src="logos/bbp_logo_200.png" alt="Blue Brain Project logo">
+    <img src="logos/epfl_logo_200.png" alt="EPFL logo">
+    <img src="logos/FZJ_Logo_200.png" alt="Forschungszentrum Jülich logo">
+    <img src="logos/UCL_logo_200.jpg" alt="UCL logo">
+    <img src="logos/INCF-short-logo-200.png" alt="INCF logo">
+    <img src="logos/brainscales_logo.png" alt="BrainScaleS logo">
+</div>
+</header>
+
+<div id="leftcolumn">
+
+<div id="about">
+<img src="logos/pynn_tree_200.png" alt="PyNN logo" class="floatright">    
+<h2>About PyNN</h2>
+
+<figure>
+    <img src="figures/architecture_of_PyNN_v0_8.png" alt="PyNN architecture">
+</figure>
+
+<p>PyNN (pronounced <i>'pine'</i>) is a simulator-independent language for building spiking neuronal network models. A PyNN script runs without modification on any simulator or neuromorphic hardware platform that PyNN supports (currently NEURON, NEST, PCSIM, MOOSE, Brian, the BrainScaleS platform and the SpiNNaker platform).</p>
+
+<p>PyNN provides a library of standard neuron, synapse and synaptic plasticity models, which have been verified to work the same on the different supported simulators. PyNN also provides a set of commonly-used connectivity algorithms (e.g. all-to-all, random, distance-dependent, small-world) but makes it easy to provide your own connectivity in a simulator-independent way.</p>
+
+<p>Even if you don't wish to run simulations on multiple simulators, you may benefit from writing your simulation code using PyNN's powerful, high-level interface. In this case, you can use any neuron or synapse model supported by your simulator, and are not restricted to the standard models.</p>
+
+<p>PyNN is open-source software (CeCILL licence). For downloads and full documentation see <a href="http://neuralensemble.org/PyNN/">http://neuralensemble.org/PyNN/</a>. For more information, see <a href="#ref:Davison2009">Davison et al. (2009)</a></p>
+
+<p><b>In this poster, we showcase five recent developments that extend PyNN's capabilities. In each case, the extension involves integrating PyNN with existing, stand-alone software. Taken as a whole, these new features are a good illustration both of the merits of Python in general and PyNN in particular as a federation platform/integration tool for neuronal simulation (<i>cf</i> <a href="#ref:Cornelis2012">Cornelis et al. 2012</a>), and of the benefits of a modular approach to neuroscience software development.</b></p>
+</div>
+
+<div id="neuroml">
+<img src="logos/neuroml_300.png" alt="NeuroML logo" class="floatright">
+<h2>PyNN and NeuroML</h2>
+
+<p>NeuroML (<a href="#ref:Gleeson2010">Gleeson et al., 2010</a>) is an XML-based, declarative language for describing neuronal network models, in particular models with detailed dendritic morphologies. Exporting PyNN models to NeuroML is very straightforward:</p>
+
+<pre class="prettyprint">
+<code class="display">import pyNN.nineml as sim
+sim.setup(file="my_model.nml")
+# the rest of your script as usual.
+</code></pre>
+
+<p>Only the model description is exported. The description of what to record, how long to simulate for, etc. is not exported. We are looking into using the SED-ML language to export this information. Importing NeuroML descriptions into PyNN is planned for the near future.</p>
+
+</div>
+
+<div id="nineml">
+<img src="logos/nineML_logo.png" alt="NineML logo" class="floatright">
+<h2>PyNN and NineML</h2>
+
+<p>NineML (<a href="#ref:Raikov2011">Raikov et al., 2011</a>) is another XML-based, declarative language for describing neuronal network models. It was developed to support explicit specification of the mathematics of neuronal and synaptic models, in contrast to the implicit specification in NeuroML v1 (note however, that NeuroML v2 will also support such explicit mathematical specifications).
+For example, here is an integrate-and-fire neuron described using the Python interface to NineML:</p>
+
+<pre class="prettyprint">
+<code class="display">import nineml.abstraction_layer as al
+iaf = al.ComponentClass(name="iaf_tau",
+                        regimes=[al.Regime(name="subthreshold_regime",
+                                           time_derivatives=["dv/dt = (v_rest - v)/tau_m + (i_offset + i_syn)/cm",],
+                                           transitions=al.On("v > v_thresh",
+                                                             do=["t_spike = t", "v = v_reset",
+                                                                 al.OutputEvent('spike_output')],
+                                                             to="refractory_regime"),),  
+                                 al.Regime(name="refractory_regime",
+                                           time_derivatives=["dv/dt = 0"],
+                                           transitions=[al.On("t >= t_spike + tau_refrac", to="subthreshold_regime")])],
+                        state_variables=[al.StateVariable('v'), al.StateVariable('t_spike')],
+                        analog_ports=[al.SendPort("v"), al.ReducePort("i_syn", reduce_op="+")],
+                        event_ports=[al.SendEventPort('spike_output')])
+</code></pre>
+
+Where the backend supports it (currently NEURON, with NEST &amp; Brian support under development), you can directly use such NineML descriptions in PyNN:
+
+<pre class="prettyprint">
+<code class="display">import pyNN.neuron as sim
+celltype_cls = sim.nineml.nineml_celltype_from_model(name="iaf", nineml_model=iaf)
+cells = sim.Population(1000, celltype_cls)
+</code></pre>
+
+<p>As for NeuroML, we are currently working on exporting and importing entire PyNN scripts as NineML.</p>
+
+</div>
+
+<div id="music">
+<img src="logos/MUSIC_logo.png" alt="MUSIC logo" class="floatright">
+<h2>PyNN and MUSIC</h2>
+
+<figure class="floatright">
+    <img src="figures/pyNN_music_1.png" width="653" height="211" alt="alt goes here">
+    <figcaption>Using MUSIC without PyNN: a separate script, and separate data handling is needed for each simulator.</figcaption>
+    <img src="figures/pyNN_music_2.png" width="665" height="184" alt="alt goes here">
+    <figcaption>Using MUSIC with PyNN: the entire model can be represented in a single script, and data handling is unified.</figcaption>
+</figure>
+
+<p>The MUSIC library <a href="#ref:Djurfeldt2010">Djurfeldt et al., 2010</a>) enables
+independent, parallel neural simulators to exchange data, such as spike times, and as such greatly facilitates multi-scale modelling.</p>
+
+<p>There remain several barriers to routine use of such multi-simulations.
+In particular, each part of the model must be programmed using the
+particular language used by the simulator on which
+it will be simulated, which can make coordination difficult.
+Similarly, each simulator will export data in its own particular
+format, and manipulation of such heterogeneous datasets to enable a coherent
+analysis can be equally challenging.</p>
+
+<p>By combining PyNN and MUSIC, we gain the ability
+to specify a multi-simulator model and experimental protocol in a single script
+using a single programming language. In other words, MUSIC adds to PyNN the
+ability to distribute a model over multiple simulators, while PyNN adds to MUSIC
+the possibility of describing a multi-simulator model in a single script, and
+a unified representation of output data.</p>
+
+
+<pre class="prettyprint">
+<code class="language-python display">from pyNN import music
+
+sim1, sim2 = music.setup(music.Config("nest", 1), music.Config("neuron", 1))
+sim1.setup(timestep=0.1, min_delay=0.5)
+sim2.setup(timestep=0.05, min_delay=0.5)
+
+output_cell_type = sim2.IF_curr_alpha(tau_refrac=2.0, v_thresh=-50.0, tau_syn_E=2.0, tau_syn_I=2.0)
+output_population = sim2.Population(2, output_cell_type, label="output")
+input_population  = sim1.Population(1, sim1.SpikeSourcePoisson(rate=100.0), label="input")
+
+projection = music.Projection(input_population, output_population, sim2.AllToAllConnector(),
+sim2.StaticSynapse(weight=1.0, delay=0.5))
+
+input_population.record('spikes')
+output_population.record(['spikes', 'v'])
+
+music.run(1000.0)
+
+input_population.write_data("Results/simpleNetwork_input_%s.pkl" % sim1.name)
+output_population.write_data("Results/simpleNetwork_output_%s.pkl" % sim2.name)
+music.end()
+</code></pre>
+    
+</div>
+
+
+
+
+</div> <!-- leftcolumn -->
+
+<div id="rightcolumn">
+
+<div id="neo">
+<img src="logos/neologomid_small.gif" alt="Neo logo" class="floatright">
+<h2>PyNN and Neo</h2>
+
+<p>Neo is a package for representing electrophysiology data in Python, together with support for reading a wide range of neurophysiology file formats, including Spike2, NeuroExplorer, AlphaOmega, Axon, Blackrock, Plexon, Tdt, and support for writing to a subset of these formats plus other formats including Matlab and HDF5.</p>
+
+<figure class="floatright">
+    <img src="figures/base_schematic.png" alt="Neo 0.3 architecture">
+    <figcaption>Neo 0.3 architecture</figcaption>
+</figure>
+
+<p>The goal of Neo is to improve interoperability between Python tools for analyzing, visualizing and generating electrophysiology data by providing a common, shared object model. Neo implements a hierarchical data model well adapted to intracellular and extracellular electrophysiology and EEG data with support for multi-electrodes. Neo objects behave just like normal NumPy arrays, but with additional metadata, checks for dimensional consistency and automatic unit conversion.</p>
+
+<p>Using Neo provides several advantages:</p>
+<ul>
+    <li>data objects contain essential metadata, such as units, sampling interval, etc.;</li>
+    <li>data can be saved to any of the file formats supported by Neo, including HDF5 and Matlab files;</li>
+    <li>it is easier to handle data when running multiple simulations with the same network (calling <code>reset()</code> between each one);</li>
+    <li>it is possible to save multiple signals to a single file;</li>
+    <li>better interoperability with other Python packages using Neo (for data analysis, etc.).</li>
+</ul>
+
+<p>Here is a very simple example:</p>
+
+<figure class="floatright">
+    <img src="http://neuralensemble.org/docs/PyNN/_images/reset_example.png" alt="">
+</figure>
+
+<pre class="prettyprint">
+<code class="display">import pyNN.neuron as sim
+import matplotlib.pyplot as plt
+from quantities import nA
+
+sim.setup()
+cell = sim.Population(1, sim.HH_cond_exp())
+step_current = sim.DCSource(start=20.0, stop=80.0)
+step_current.inject_into(cell)
+cell.record('v')
+for amp in (-0.2, -0.1, 0.0, 0.1, 0.2):
+    step_current.amplitude = amp
+    sim.run(100.0)
+    sim.reset(annotations={"amplitude": amp*nA})
+data = cell.get_data()
+sim.end()
+
+for segment in data.segments:
+    vm = segment.analogsignalarrays[0]
+    plt.plot(vm.times, vm,
+             label=str(segment.annotations["amplitude"]))
+plt.legend(loc="upper left")
+plt.xlabel("Time (%s)" % vm.times.units._dimensionality)
+plt.ylabel("Membrane potential (%s)" % vm.units._dimensionality)
+plt.show()
+</code></pre>
+
+    
+</div>
+
+<div id="csa">
+<img src="logos/CSA_logo.png" alt="CSA logo" class="floatright">    
+<h2>PyNN and CSA</h2>
+
+<figure class="floatright">
+    <img src="figures/pyNN_csa.png" alt="Where the backend supports it, the ConnectionSet object is passed to the backend, where the connection loop can take place in C++. Otherwise, the connection loop takes place within PyNN.">
+</figure>
+
+<p>The connection-set algebra (CSA; <a href="#ref:Djurfeldt2012">Djurfeldt, 2012</a>)
+is a general formalism for specifying the
+  connectivity of neuronal network models. CSA provides operators to
+  form more complex sets of connections from simpler ones. The
+  CSA is expressive enough to describe a wide range of connectivities
+  and can serve as a concise notation for network structure in
+  scientific writing as well as in model description code for neural
+  simulations.</p>
+
+<p>For example, random connectivity is represented by \(\overline{\rho}\), while one-to-one connections are represented by \(\overline{\delta}\). To connect a population randomly to itself with 50% connectivity, but without autapses, you would use \(\overline{\rho}(0.5) - \overline{\delta}\). Much more complex connectivity, including dependencies on spatial geometry, can also easily be expressed.</p>
+
+<p>PyNN provides the <code>CSAConnector</code> class, which accepts a ConnectionSet object from the Python <code>csa</code> library, and connects a PyNN network accordingly:</p>
+
+<pre class="prettyprint">
+<code class="display">import csa
+import pyNN.nest as sim
+from csa import cset, random, oneToOne
+...
+connection_set = cset(random(0.5) - oneToOne, weight, delay)
+projection = sim.Projection(pre, post,
+                            sim.CSAConnector(connection_set))
+...
+</code></pre>
+
+<p>Where the backend simulator supports the ConnectionGenerator interface, PyNN passes the ConnectionSet object to the backend, where the connection loop can take place in C++, for much improved performance. Otherwise, the connection loop takes place within PyNN. </p>
+
+
+    
+</div>
+
+
+<div id="future"><h2>Future plans</h2>
+    <ul>
+        <li>The final release of PyNN 0.8.0 is expected in November 2013, but the beta versions are stable enough to use now.</li>
+        <li>In addition to the features shown here, PyNN 0.8 will add support for the MOOSE simulator.</li>
+        <li>For PyNN 0.9, it is planned to add cross-simulator support for multi-compartmental models (it is already possible to use multi-compartmental NEURON models with PyNN, but this is not simulator-independent), and support for GENESIS 3.</li>
+    </ul>
+</div>
+
+
+<div id="thanks"><h3>Acknowledgments</h3>
+This work was supported by European Union projects FP7-269921 (BrainScaleS) and FP6-015879 (FACETS).
+
+JME was partially supported by the
+Helmholtz Association: HASB and portfolio theme SMHB; the Jülich Aachen
+Research Alliance (JARA); the VSR computation time grant JINB33 on the
+JUQUEEN supercomputer in Jülich; the Next-Generation Supercomputer
+Project of MEXT; and EU Grant FP7-269921 (BrainScaleS).
+
+PG is funded by the Wellcome Trust (G086699).
+
+NineML, CSA and MUSIC development were supported by the International Neuroinformatics Coordinating Facility (INCF).
+</div>
+
+<div id="references"><h3>References</h3>
+    <ol>
+        <li id="ref:Cornelis2012">Cornelis H, Coop AD, Bower JM (2012) A Federated Design for a Neurobiological Simulation Engine: The CBI    Federated Software Architecture. PLoS ONE 7(1): e28956. doi:10.1371/journal.pone.0028956</li>
+        <li id="ref:Djurfeldt2012"><a href="http://dx.doi.org/10.1007/s12021-012-9146-1">Djurfeldt M (2012) The connection-set algebra--a novel formalism for the representation of connectivity structure in neuronal network models. Neuroinformatics. 10(3):287-304. doi:10.1007/s12021-012-9146-1</a></li>
+        <li id="ref:Raikov2011">Raikov I, Cannon R, Clewley R, Cornelis H, Davison AP, De Schutter E, Djurfeldt M, Gleeson P, Gorchetchnikov A, Plesser HE, Hill S, Hines ML, Kriener B, Le Franc Y, Lo C-C, Morrison A, Muller E, Ray S, Schwabe L, Szatmary B (2011) NineML: the network interchange for neuroscience modeling language. BMC Neurosci. 12(Suppl 1): P330. doi: 10.1186/1471-2202-12-S1-P330</li>
+        <li id="ref:Gleeson2010">Gleeson P, Crook S, Cannon RC, Hines ML, Billings GO, et al. (2010) NeuroML: A Language for Describing Data Driven Models of Neurons and Networks with a High Degree of Biological Detail. PLoS Comput Biol 6(6): e1000815. doi:10.1371/journal.pcbi.1000815</li>
+        <li>Davison AP, Brizzi T, Estebanez L, Jaillet F, Mahnoun Y, Rautenberg P, Sobolev A, Wachtler T, Yger P, Garcia S (2011) Neo: representing and manipulating electrophysiology data in Python. Proceedings of EuroSciPy 2011.   http://pythonneuro.sciencesconf.org/903 </li>
+        <li>Gewaltig M-O & Diesmann M (2007) NEST (Neural Simulation Tool) Scholarpedia 2(4):1430.</li>
+        <li>Carnevale, N.T. and Hines, M.L. (2006) The NEURON Book. Cambridge, UK: Cambridge University Press.</li>
+        <li id="ref:Djurfeldt2010">Djurfeldt M, Hjorth J, Eppler JM, Dudani N, Helias M, Potjans TC, Bhalla US, Diesmann M, Kotaleski JH, Ekeberg O. (2010) Run-time interoperability between neuronal network simulators based on the MUSIC framework. Neuroinformatics 8(1):43-60. doi:10.1007/s12021-010-9064-z</li>
+        <li id="ref:Davison2009">Davison AP, Brüderle D, Eppler JM, Kremkow J, Muller E, Pecevski DA, Perrinet L and Yger P (2009) PyNN: a common interface for neuronal network simulators. Front. Neuroinform. 2:11 doi:10.3389/neuro.11.011.2008</li>
+        <li>Eppler JM, Djurfeldt M, Muller, E, Diesmann M, Davison AP (2012) Combining simulator independent network descriptions with run-time interoperability based on PyNN and MUSIC. Proceedings of Neuroinformatics 2012.</li>
+    </ol>
+</div>
+
+
+</div> <!-- rightcolumn -->
+
+<footer>The background image is <a href="http://www.flickr.com/photos/dbaron/3715149966/" title="Pine trees by dbaron, on Flickr"> "Pine trees" by dbaron, on Flickr (CC-BY-SA licence).</a> &copy; 2013 Andrew P. Davison. <a href="http://creativecommons.org/licenses/by-sa/2.0/">Some rights reserved</a>. Contact me at davison@unic.cnrs-gif.fr or as @apdavison on Twitter.</footer>
+
+</body>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</html>
