@@ -105,7 +105,7 @@ and plot the results:
     >>> pylab.xlabel("Time (ms)")
     >>> pylab.ylabel("Membrane potential (mV)")
 
-.. image:: {filename}/figures/passive_membrane.png
+.. image:: /figures/passive_membrane.png
    :align: center
    :height: 400px
    :alt: Membrane potential of a passive compartment with current injection 0.1 nA
@@ -149,7 +149,7 @@ Running and plotting again:
     >>> pylab.xlabel("Time (ms)")
     >>> pylab.ylabel("Membrane potential (mV)")
 
-.. image:: {filename}/figures/active_membrane.png
+.. image:: /figures/active_membrane.png
    :align: center
    :height: 400px
    :alt: Membrane potential of an active compartment with current injection 0.1 nA
@@ -214,7 +214,7 @@ Running the simulation:
     >>> pylab.xlabel("Time (ms)")
     >>> pylab.ylabel("Membrane potential (mV)")
     
-.. image:: {filename}/figures/synaptic_input.png
+.. image:: /figures/synaptic_input.png
    :align: center
    :height: 400px
    :alt: Membrane potential of an active compartment with noisy synaptic input
