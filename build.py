@@ -1,14 +1,14 @@
 """
 Script to build my homepage.
 
-Usage: build.py [-h] [--url URL] command
+Usage: build.py [-h] [--server SERVER] command
 
 positional arguments:
   command     either 'build' or 'upload'
 
 optional arguments:
-  -h, --help  show this help message and exit
-  --url URL   url for upload
+  -h, --help       show this help message and exit
+  --server SERVER  host name for upload (e.g. username@example.com)
 
 """
 
@@ -133,6 +133,7 @@ def build():
         presentations_database = bibtexparser.load(bibtex_file)
 
     # -- Build publications page
+    print("Building publications page")
     publications = list(reversed(sorted(article_database.entries, key=lambda entry: (entry["year"], months.index(entry["month"])))))
     presentations = list(reversed(sorted((entry for entry in presentations_database.entries if entry["type"] != "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
     tech_reports = list(reversed(sorted((entry for entry in presentations_database.entries if entry["type"] == "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
@@ -156,6 +157,7 @@ def build():
             bibtexparser.dump(tmp_db, fp)
 
     # -- Build simple pages
+    print("Building About and CV")
     for page in ("about", "cv"):
         output, pub = publish_programmatically(source_path="content/%s.rst" % page,
                                                **publisher_defaults)
@@ -165,25 +167,31 @@ def build():
         render_to_file("general.html", page, context)
 
     # -- Build notes/blog posts
+    print("Building blog posts")
     os.makedirs(os.path.join(builddir, "notes"))
     notes = []
     for path in os.listdir("content/notes"):
         page, ext = os.path.splitext(path)
+        print("  ", page)
         if ext == ".rst":
             output, pub = publish_programmatically(
                                     source_path=os.path.join("content/notes", path),
                                     **publisher_defaults)
-            docinfo = docinfo_as_dict(pub.document.children[pub.document.first_child_matching_class(nodes.docinfo)])
-            date = datetime.strptime(docinfo["date"], "%Y-%m-%d").date()
-            tags = docinfo["tags"]
-            #assert docinfo["slug"] == path, "%s != %s" % (docinfo["slug"], page)
-            context = pub.writer.parts
-            context["page"] = page
-            context["date"] = date
-            context["date_str"] = date_format(date)
-            context["tags"] = tags
-            context["base_path"] = get_base_path(level=2)
-            notes.append(context)
+            try:
+                docinfo = docinfo_as_dict(pub.document.children[pub.document.first_child_matching_class(nodes.docinfo)])
+            except TypeError:
+                print("Error")
+            else:
+                date = datetime.strptime(docinfo["date"], "%Y-%m-%d").date()
+                tags = docinfo["tags"]
+                #assert docinfo["slug"] == path, "%s != %s" % (docinfo["slug"], page)
+                context = pub.writer.parts
+                context["page"] = page
+                context["date"] = date
+                context["date_str"] = date_format(date)
+                context["tags"] = tags
+                context["base_path"] = get_base_path(level=2)
+                notes.append(context)
 
     notes.sort(key=lambda c: c["date"], reverse=True)
     for context in notes:
@@ -194,6 +202,7 @@ def build():
                                                  "base_path": get_base_path(level=1)})
 
     # -- Build front page
+    print("Building index.html")
     render_to_file("index.html", "", {"base_path": get_base_path(level=0),
                                       "notes": notes[:],
                                       "publications": publications[:7],
@@ -242,7 +251,7 @@ def upload(url, username, target_dir="webapps/homepage", backup_dir="backups"):
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('command', help="either 'build' or 'upload'")
-    parser.add_argument('--url', help="url for upload")
+    parser.add_argument('--server', help="host name for upload (e.g. username@example.com)")
     args = parser.parse_args()
     if args.command == "build":
         build()
