@@ -42,6 +42,7 @@ files, posters, presentations?
 import os
 import sys
 import shutil
+from getpass import getpass
 from datetime import datetime
 from argparse import ArgumentParser
 from jinja2 import FileSystemLoader, Environment
@@ -215,7 +216,7 @@ def upload(url, username, target_dir="webapps/homepage", backup_dir="backups"):
 
     ssh = paramiko.SSHClient()
     ssh.load_system_host_keys()
-    password = input("password: ")
+    password = getpass("password: ")
     ssh.connect(url, username=username, password=password)
 
     print("Uploading zipfile")
