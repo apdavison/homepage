@@ -43,12 +43,14 @@ import os
 import sys
 import shutil
 from getpass import getpass
-from datetime import datetime
+from datetime import datetime, time
 from argparse import ArgumentParser
 from jinja2 import FileSystemLoader, Environment
 import bibtexparser
 from docutils.core import publish_programmatically
 from docutils import io, nodes
+from feedgen.feed import FeedGenerator
+from pytz import timezone
 
 
 builddir = "build"
@@ -113,6 +115,36 @@ def get_base_path(level):
             raise NotImplementedError
     else:
         return ""
+
+
+def generate_feed(notes):
+    nineam = time(9, 0, 0, tzinfo=timezone("Europe/Paris"))
+    fg = FeedGenerator()
+    fg.id('http://andrewdavison.info/')
+    fg.title('Some models are useful')
+    fg.link(href='http://andrewdavison.info', rel='alternate')
+    fg.subtitle("Andrew Davison's Blog")
+    fg.link(href='http://andrewdavison.info/atom.xml', rel='self')
+    fg.language('en')
+    fg.rights('This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info')
+    fg.updated(datetime.now(tz=timezone("Europe/Paris")))
+
+    for note in notes:
+        link = "http://andrewdavison.info{base_path}/notes/{page}/".format(**note)
+        template = env.get_template("note_feed.xml")
+        content = template.render(**note)
+        entry = fg.add_entry()
+        entry.id(link)
+        entry.title(note["title"])
+        entry.link(href=link, rel="alternate", type="text/html")
+        entry.author(name='Andrew Davison',
+                     email='andrew.davison@unic.cnrs-gif.fr')
+        entry.content(content, type="xhtml")
+        entry.published(datetime.combine(note["date"], nineam))
+
+    fg.atom_file(os.path.join(builddir, 'atom.xml'))
+    fg.rss_file(os.path.join(builddir, 'rss.xml'))
+    # note: have a Python-specific feed for PlanetSciPy?
 
 
 def build():
@@ -191,15 +223,17 @@ def build():
                 context["date_str"] = date_format(date)
                 context["tags"] = tags
                 context["base_path"] = get_base_path(level=2)
+                context["section"] = "blog"
                 notes.append(context)
 
     notes.sort(key=lambda c: c["date"], reverse=True)
     for context in notes:
-            render_to_file("note.html", "notes/%s" % context["page"], context)
+        render_to_file("note.html", "notes/%s" % context["page"], context)
 
     # -- Build index of notes/blog posts
     render_to_file("notes_index.html", "notes", {"notes": notes,
-                                                 "base_path": get_base_path(level=1)})
+                                                 "base_path": get_base_path(level=1),
+                                                 "section": "blog"})
 
     # -- Build front page
     print("Building index.html")
@@ -207,6 +241,10 @@ def build():
                                       "notes": notes[:],
                                       "publications": publications[:7],
                                       "presentations": presentations[:4],})
+
+    # -- Generate RSS/Atom feeds
+    print("Generating RSS and Atom feeds")
+    generate_feed(notes)
 
 
 def remote_command(ssh_client, command):
