@@ -72,7 +72,7 @@ def render_to_file(template_filename, output_path, context):
     template = env.get_template(template_filename)
     os.makedirs(os.path.join(builddir, output_path), exist_ok=True)
     output_filename = os.path.join(output_path, "index.html")
-    with open(os.path.join(builddir, output_filename), "w") as fp:
+    with open(os.path.join(builddir, output_filename), "w", encoding='utf-8') as fp:
         fp.write(template.render(**context))
 
 
@@ -159,16 +159,16 @@ def build():
         shutil.copytree("content/%s" % subdir, os.path.join(builddir, subdir))
 
     # -- Load BibTeX database
-    with open('content/publications.bib') as bibtex_file:
+    with open('content/publications.bib', encoding='utf-8') as bibtex_file:
         article_database = bibtexparser.load(bibtex_file)
-    with open('content/presentations.bib') as bibtex_file:
+    with open('content/presentations.bib', encoding='utf-8') as bibtex_file:
         presentations_database = bibtexparser.load(bibtex_file)
 
     # -- Build publications page
     print("Building publications page")
     publications = list(reversed(sorted(article_database.entries, key=lambda entry: (entry["year"], months.index(entry["month"])))))
-    presentations = list(reversed(sorted((entry for entry in presentations_database.entries if entry["type"] != "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
-    tech_reports = list(reversed(sorted((entry for entry in presentations_database.entries if entry["type"] == "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
+    presentations = list(reversed(sorted((entry for entry in presentations_database.entries if entry["ENTRYTYPE"] != "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
+    tech_reports = list(reversed(sorted((entry for entry in presentations_database.entries if entry["ENTRYTYPE"] == "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
     render_to_file("publications.html", "publications",
                    {"this_year": datetime.now().year,
                     "publications": publications,
@@ -185,7 +185,7 @@ def build():
         directory = os.path.join(builddir, "publications", article["year"])
         if not os.path.exists(directory):
             os.mkdir(directory)
-        with open(os.path.join(directory, "%s.bib" % article["id"]), "w") as fp:
+        with open(os.path.join(directory, "%s.bib" % article["ID"]), "w", encoding="utf-8") as fp:
             bibtexparser.dump(tmp_db, fp)
 
     # -- Build simple pages
