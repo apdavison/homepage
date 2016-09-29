@@ -6,7 +6,7 @@
 
 {% block body %}
 
-<div id="top-panel">
+<div id="top-panel" class="container">
     <p>Hi, welcome to my personal homepage. I am a senior research scientist in the
     <a href="http://www.unic.cnrs-gif.fr/">UNIC</a> lab (Unit&eacute; de Neuroscience, Information et Complexit&eacute;)
     of the <a href="http://www.cnrs.fr">CNRS</a>, where I lead the Neuroinformatics group. You might also be interested
@@ -37,148 +37,133 @@
     <p>For more information, see the links under &ldquo;Projects&rdquo; below. The following icons link to stuff about or by me elsewhere on the web:</p>
     
     <div id="icons">
-    <ul class="nav">
+    <ul class="nav nav-pills">
     
-        <li class="nav"><a href="https://bitbucket.org/apdavison/"><img src="{{base_path}}/images/icons/bitbucket.png" alt="BitBucket" width=32 height=32></a></li>
+        <li class="nav-item"><a href="https://bitbucket.org/apdavison/"><img src="{{base_path}}/images/icons/bitbucket.png" alt="BitBucket" width=32 height=32></a></li>
+
+        <li class="nav-item"><a href="http://www.flickr.com/photos/31675630@N00/"><img src="{{base_path}}/images/icons/flickr.png" alt="Flickr" width=32 height=32></a></li>
+
+        <li class="nav-item"><a href="http://www.frontiersin.org/people/andrewdavison/937/profile"><img src="{{base_path}}/images/icons/frontiers.png" alt="Frontiers" width=32 height=32></a></li>
     
-        <li class="nav"><a href="http://delicious.com/apdavison"><img src="{{base_path}}/images/icons/delicious.png" alt="Delicious" width=32 height=32></a></li>
+        <li class="nav-item"><a href="https://github.com/apdavison"><img src="{{base_path}}/images/icons/github.png" alt="GitHub" width=32 height=32></a></li>
     
-        <li class="nav"><a href="http://www.flickr.com/photos/31675630@N00/"><img src="{{base_path}}/images/icons/flickr.png" alt="Flickr" width=32 height=32></a></li>
+        <li class="nav-item"><a href="https://plus.google.com/u/0/111766535800518906672/posts"><img src="{{base_path}}/images/icons/google-plus.png" alt="Google-Plus" width=32 height=32></a></li>
     
-        <li class="nav"><a href="http://friendfeed.com/apdavison"><img src="{{base_path}}/images/icons/friendfeed.png" alt="FriendFeed" width=32 height=32></a></li>
+        <li class="nav-item"><a href="http://scholar.google.com/citations?user=a_sFeLwAAAAJ"><img src="{{base_path}}/images/icons/google-scholar.png" alt="Google-Scholar" width=32 height=32></a></li>
     
-        <li class="nav"><a href="http://www.frontiersin.org/people/andrewdavison/937/profile"><img src="{{base_path}}/images/icons/frontiers.png" alt="Frontiers" width=32 height=32></a></li>
+        <li class="nav-item"><a href="http://www.incf.org/community/people/andrewdavison/person_view"><img src="{{base_path}}/images/icons/incf.png" alt="INCF" width=32 height=32></a></li>
     
-        <li class="nav"><a href="https://github.com/apdavison"><img src="{{base_path}}/images/icons/github.png" alt="GitHub" width=32 height=32></a></li>
+        <li class="nav-item"><a href="http://fr.linkedin.com/pub/andrew-davison/22/656/a50"><img src="{{base_path}}/images/icons/linkedin.png" alt="LinkedIn" width=32 height=32></a></li>
     
-        <li class="nav"><a href="https://plus.google.com/u/0/111766535800518906672/posts"><img src="{{base_path}}/images/icons/google-plus.png" alt="Google-Plus" width=32 height=32></a></li>
+        <li class="nav-item"><a href="http://orcid.org/0000-0002-4793-7541"><img src="{{base_path}}/images/icons/orcid.png" alt="ORCID" width=32 height=32></a></li>
     
-        <li class="nav"><a href="http://scholar.google.com/citations?user=a_sFeLwAAAAJ"><img src="{{base_path}}/images/icons/google-scholar.png" alt="Google-Scholar" width=32 height=32></a></li>
-    
-        <li class="nav"><a href="http://www.incf.org/community/people/andrewdavison/person_view"><img src="{{base_path}}/images/icons/incf.png" alt="INCF" width=32 height=32></a></li>
-    
-        <li class="nav"><a href="http://fr.linkedin.com/pub/andrew-davison/22/656/a50"><img src="{{base_path}}/images/icons/linkedin.png" alt="LinkedIn" width=32 height=32></a></li>
-    
-        <li class="nav"><a href="http://orcid.org/0000-0002-4793-7541"><img src="{{base_path}}/images/icons/orcid.png" alt="ORCID" width=32 height=32></a></li>
-    
-        <li class="nav"><a href="http://twitter.com/apdavison"><img src="{{base_path}}/images/icons/twitter.png" alt="Twitter" width=32 height=32></a></li>
+        <li class="nav-item"><a href="http://twitter.com/apdavison"><img src="{{base_path}}/images/icons/twitter.png" alt="Twitter" width=32 height=32></a></li>
     
     </ul>
     </div>
 </div>
 
 
-<div id="left-column">
-<div id="publications">
-<h2>Publications</h2>
-        
-<ul>
-{% for article in publications %}
-<li class="publication" id="{{article.anchor}}">
-  {{article.author}} ({{article.year}}) {{article.title}}.
-  {% if article.ENTRYTYPE == "article" %}
-    <span class="publication">{{article.journal}}</span> {{article.volume}}: {{article.pages}}
-  {% else %}{% if article.ENTRYTYPE == "incollection" %}
-    In: <span class="publication">{{article.booktitle}}</span>, edited by {{article.editors}}, {{article.publisher}}{% if article.publisher_address %}: {{article.publisher_address}}{% endif %}{% if article.first_page %}, pp. {{article.pages}}{% endif %}.
-  {% else %}
-    Ph.D. thesis, {{article.publisher}}.
-  {% endif %}{% endif %}
-  {% if article.doi %}<a href="http://dx.doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
-  <span class="note">
-        [<a href="/publications/{{article.year}}/{{article.id}}.bib">BibTeX</a>]
-        {% if article.full_text %}[<a href="{{article.full_text}}">Full text</a>]{% endif %}
-        {% if article.preprint %}[<a href="{{article.preprint}}">Preprint</a>]{% endif %}</span>
-</li>
-{% endfor %}
-</ul>
+<div class="container">
+  <div class="row">
+    <div id="publications" class="col-sm-6">
+        <h2>Publications</h2>
+        <ul class="publications">
+        {% for article in publications %}
+        <li class="publication" id="{{article.anchor}}">
+          {{article.author}} ({{article.year}}) <strong>{{article.title}}</strong>.
+          {% if article.ENTRYTYPE == "article" %}
+            <span class="publication">{{article.journal}}</span> {{article.volume}}: {{article.pages}}
+          {% else %}{% if article.ENTRYTYPE == "incollection" %}
+            In: <span class="publication">{{article.booktitle}}</span>, edited by {{article.editors}}, {{article.publisher}}{% if article.publisher_address %}: {{article.publisher_address}}{% endif %}{% if article.first_page %}, pp. {{article.pages}}{% endif %}.
+          {% else %}
+            Ph.D. thesis, {{article.publisher}}.
+          {% endif %}{% endif %}
+          {% if article.doi %}<a href="http://dx.doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
+          <span class="note">
+                [<a href="/publications/{{article.year}}/{{article.id}}.bib">BibTeX</a>]
+                {% if article.full_text %}[<a href="{{article.full_text}}">Full text</a>]{% endif %}
+                {% if article.preprint %}[<a href="{{article.preprint}}">Preprint</a>]{% endif %}</span>
+        </li>
+        {% endfor %}
+        </ul>
 
-<p><a href="/publications/">more ...</a></p>
-</div>
-</div>
+        <p><a href="/publications/">more ...</a></p>
 
-<div id="centre-column">
-<div id="notes">
-<h2>Blog</h2>
-    {% for note in notes %}
-    <p><a href="{{base_path}}/notes/{{note.page}}/">{{note.title}}</a></p>
-    {% endfor %}
+        <h2>Projects</h2>
+        <dl>
+        <dt><a href="http://neuralensemble.org/">NeuralEnsemble</a></dt>
+        <dd>An initiative to foster collaborative software development and good software development practices
+        in neuroscience, with an emphasis on use of the <a href="http://www.python.org/">Python</a> programming language.
+        Includes hosting for open-source neuroscience software, the
+        <a href="http://groups.google.com/group/neuralensemble">NeuralEnsemble Google Group</a>, and the
+        <a href="http://neuralensemble.org/meetings/">CodeJam</a> meetings.
+        <a href="http://neuralensemble.org/">more ...</a></dd>
 
+        <dt><a href="http://neuralensemble.org/PyNN/">PyNN</a></dt>
+        <dd>a Python package for simulator-independent specification of spiking neuronal network models. In other words, you
+        can write the code for a model once, using the PyNN API, and then run it without modification on any simulator that
+        PyNN supports. <a href="http://neuralensemble.org/PyNN/">more ...</a></dd>
 
-<h2>Presentations</h2>
-<ul>
-{% for conf in presentations %}
-<li class="publication" id="{{conf.anchor}}">
-    {{conf.author}} ({{conf.year}}) {{conf.title}}.
-    {% if conf.booktitle %}
-    <span class="publication">{{conf.booktitle}}</span>{% if conf.volume %} {{conf.volume}}: {{conf.pages}}.{% endif %}
-    {% endif %}
-    {% if conf.doi %}<a href="http://dx.doi.org/{{conf.doi}}">doi:{{conf.doi}}</a> {% endif %}
-    <br>
-    <span class="publication">{{conf.organization}}</span>, {{conf.address}}, {{conf.month}}.
-    <span class="note">{% if conf.abstract %}[<a href="/publications/{{conf.year}}/{{conf.anchor}}/">Abstract</a>] {% endif %}
-        {% if conf.full_text %}[<a href="{{conf.full_text}}">Full text</a>]{% endif %}
-        {% if conf.slides %}[<a href="{{conf.slides}}">Slides</a>]{% endif %}
-        {% if conf.proceedings %}[<a href="{{conf.proceedings}}">Proceedings</a>]{% endif %}</span>
-</li>
-{% endfor %}
-</ul>
+        <dt><a href="http://neuralensemble.org/sumatra/">Sumatra</a></dt>
+        <dd>Automated tracking of numerical experiments, for reproducible research.
+        <a href="http://neuralensemble.org/sumatra/">more ...</a></dd>
+        </dl>
 
-<p><a href="/publications/">more ...</a></p>
+        <dt><a href="http://neuralensemble.org/neo/">Neo</a></dt>
+        <dd>The goal of Neo is to improve interoperability between Python tools for working with
+        electrophysiology data, by providing a common, shared object model and support for reading a wide range of
+        neurophysiology file formats. <a href="http://neuralensemble.org/neo/">more ...</a></dd>
+        </dl>
 
-</div>
-</div>
+        <dt><a href="http://www.neuroml.org/">NeuroML</a> and <a href="http://nineml.incf.org">NineML</a></dt>
+        <dd>NeuroML and NineML are XML-based languages for describing neuronal network models. I am currently involved in
+        developing associated Python libraries: see
+        <a href="https://github.com/NeuralEnsemble/libNeuroML">libNeuroML</a> and the
+        <a href="http://pypi.python.org/pypi/9ML">NineML Python API</a>.</dd>
+        </dl>
 
-<div id="right-column">
-<div id="projects">
-<h2>Projects</h2>
-    <dl>
-    <dt><a href="http://neuralensemble.org/">NeuralEnsemble</a></dt>
-    <dd>An initiative to foster collaborative software development and good software development practices
-    in neuroscience, with an emphasis on use of the <a href="http://www.python.org/">Python</a> programming language.
-    Includes hosting for open-source neuroscience software, the
-    <a href="http://groups.google.com/group/neuralensemble">NeuralEnsemble Google Group</a>, and the
-    <a href="http://neuralensemble.org/meetings/">CodeJam</a> meetings.
-    <a href="http://neuralensemble.org/">more ...</a></dd>    
-        
-    <dt><a href="http://neuralensemble.org/PyNN/">PyNN</a></dt>
-    <dd>a Python package for simulator-independent specification of spiking neuronal network models. In other words, you
-    can write the code for a model once, using the PyNN API, and then run it without modification on any simulator that
-    PyNN supports. <a href="http://neuralensemble.org/PyNN/">more ...</a></dd>
+        <dt><a href="http://neuralensemble.org/NeuroTools/">NeuroTools</a></dt>
+        <dd>Python tools to simplify the life of a computational neuroscientist, including simulation setup and
+        instrumentation, data storage, analysis and visualisation.
+        <a href="http://neuralensemble.org/NeuroTools/">more ...</a></dd>
 
-    <dt><a href="http://neuralensemble.org/sumatra/">Sumatra</a></dt>
-    <dd>Automated tracking of numerical experiments, for reproducible research.
-    <a href="http://neuralensemble.org/sumatra/">more ...</a></dd>
-    </dl>
+        <dt><a href="https://www.dbunic.cnrs-gif.fr/documentation/helmholtz/">Helmholtz</a></dt>
+        <dd>A framework to make it easier for neuroscientists to build a customised database for their experimental data.
+        <a href="https://www.dbunic.cnrs-gif.fr/documentation/helmholtz/">more ...</a></dd>
+        </dl>
+    </div>
 
-    <dt><a href="http://neuralensemble.org/neo/">Neo</a></dt>
-    <dd>The goal of Neo is to improve interoperability between Python tools for working with
-    electrophysiology data, by providing a common, shared object model and support for reading a wide range of
-    neurophysiology file formats. <a href="http://neuralensemble.org/neo/">more ...</a></dd>
-    </dl>
-    
-    <dt><a href="http://www.neuroml.org/">NeuroML</a> and <a href="http://nineml.incf.org">NineML</a></dt>
-    <dd>NeuroML and NineML are XML-based languages for describing neuronal network models. I am currently involved in
-    developing associated Python libraries: see
-    <a href="https://github.com/NeuralEnsemble/libNeuroML">libNeuroML</a> and the
-    <a href="http://pypi.python.org/pypi/9ML">NineML Python API</a>.</dd>
-    </dl>
-    
-    <dt><a href="http://neuralensemble.org/NeuroTools/">NeuroTools</a></dt>
-    <dd>Python tools to simplify the life of a computational neuroscientist, including simulation setup and
-    instrumentation, data storage, analysis and visualisation.
-    <a href="http://neuralensemble.org/NeuroTools/">more ...</a></dd>
-
-    <dt><a href="https://www.dbunic.cnrs-gif.fr/documentation/helmholtz/">Helmholtz</a></dt>
-    <dd>A framework to make it easier for neuroscientists to build a customised database for their experimental data.
-    <a href="https://www.dbunic.cnrs-gif.fr/documentation/helmholtz/">more ...</a></dd>
-    </dl>
-
-<!-- Odds and ends - NEURON stuff (e.g. parameter fitting)
-
-NModLib (once it is back online) Django version: 1.3.1 -->
+    <div  id="notes" class="col-sm-6">
+      <h2>Blog</h2>
+      {% for note in notes %}
+      <p><a href="{{base_path}}/notes/{{note.page}}/">{{note.title}}</a></p>
+      {% endfor %}
 
 
-</div>
+      <h2>Presentations</h2>
+        <ul class="publications">
+        {% for conf in presentations %}
+        <li class="publication" id="{{conf.anchor}}">
+            {{conf.author}} ({{conf.year}}) <strong>{{conf.title}}</strong>.
+            {% if conf.booktitle %}
+            <span class="publication">{{conf.booktitle}}</span>{% if conf.volume %} {{conf.volume}}: {{conf.pages}}.{% endif %}
+            {% endif %}
+            {% if conf.doi %}<a href="http://dx.doi.org/{{conf.doi}}">doi:{{conf.doi}}</a> {% endif %}
+            <br>
+            <span class="publication">{{conf.organization}}</span>, {{conf.address}}, {{conf.month}}.
+            <span class="note">{% if conf.abstract %}[<a href="/publications/{{conf.year}}/{{conf.anchor}}/">Abstract</a>] {% endif %}
+                {% if conf.full_text %}[<a href="{{conf.full_text}}">Full text</a>]{% endif %}
+                {% if conf.slides %}[<a href="{{conf.slides}}">Slides</a>]{% endif %}
+                {% if conf.proceedings %}[<a href="{{conf.proceedings}}">Proceedings</a>]{% endif %}</span>
+        </li>
+        {% endfor %}
+        </ul>
+
+        <p><a href="/publications/">more ...</a></p>
+
+    </div>
+  </div>
 </div>
 
 {% endblock %}

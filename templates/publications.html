@@ -9,10 +9,10 @@
 
 <h2>Journal articles and book chapters</h2>
 
-<ul>
+<ul class="publications">
 {% for article in publications %}
 <li class="publication" id="{{article.anchor}}">
-  <strong>{{article.author}} ({{article.year}}) {{article.title}}.</strong>
+  {{article.author}} ({{article.year}}) <strong>{{article.title}}</strong>.
   {% if article.ENTRYTYPE == "article" %}
     <span class="publication">{{article.journal}}</span> {{article.volume}}: {{article.pages}}
   {% else %}{% if article.ENTRYTYPE == "incollection" %}
@@ -33,10 +33,10 @@
 </ul>
 
 <h2>Conference presentations</h2>
-<ul>
+<ul class="publications">
 {% for conf in presentations %}
 <li class="publication" id="{{conf.anchor}}">
-  <strong>{{conf.author}} ({{conf.year}}) {{conf.title}}.</strong>
+  {{conf.author}} ({{conf.year}}) <strong>{{conf.title}}.</strong>
     {% if conf.booktitle %}
     <span class="publication">{{conf.booktitle}}</span>{% if conf.volume %} {{conf.volume}}: {{conf.pages}}.{% endif %}
     {% endif %}
@@ -55,10 +55,10 @@
 </ul>
 
 <h2>Technical reports</h2>
-<ul>
+<ul class="publications">
 {% for report in tech_reports %}
 <li class="publication" id="{{report.anchor}}">
-  <strong>{{report.author}} ({{report.year}}) {{report.title}}.</strong>
+  {{report.author}} ({{report.year}}) <strong>{{report.title}}.</strong>
     <span class="publication">{{report.booktitle}}</span>.
   <span class="note">{% if report.abstract %}[<a href="/publications/{{report.year}}/{{report.anchor}}/">Abstract</a>] {% endif %}
   {% if report.pdf %}[<a href="{{report.pdf}}">PDF</a>]{% endif %}</span>

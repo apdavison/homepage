@@ -294,7 +294,7 @@ if __name__ == "__main__":
     if args.command == "build":
         build()
     elif args.command == "upload":
-        username, url = args.url.split("@")
+        username, url = args.server.split("@")
         upload(url, username)
     else:
         print("No such command")

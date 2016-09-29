@@ -1,47 +1,63 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
-  <meta name="Author" content="Andrew Davison, Ph.D.">
-  <title>Andrew Davison{% block title %}{% endblock %}</title>
-  <link type="text/css" rel="stylesheet" href="{{base_path}}/css/new.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="Author" content="Andrew Davison, Ph.D.">
+    <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
+
+    <title>Andrew Davison{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{base_path}}/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{base_path}}/css/blog.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{base_path}}/js/ie10-viewport-bug-workaround.js"></script>
+
 </head>
+
 <body>
 
-<div id="container">
-
-<div id="header">
-    <div class="floatright">
-    </div>
-<div class="clear"/>
-    <div id="main-navigation">{% block navigation %}
-         <ul class="nav">
-            <li class="nav">{% if section != "publications" %}<a href="{{base_path}}/publications/">Publications</a>{% else %}Publications{% endif %}</li>
-            <li class="nav">{% if section != "notes" %}<a href="{{base_path}}/notes/">Blog</a>{% else %}Blog{% endif %}</li>
-            <li class="nav">{% if section != "cv" %}<a href="{{base_path}}/cv/">CV</a>{% else %}CV{% endif %}</li>
-            <li class="nav">{% if section != "about" %}<a href="{{base_path}}/about/">About</a>{% else %}About{% endif %}</li>
-            
-         </ul>
-        {% endblock %}</div>
-    <h1>{% block heading %}{% endblock %}</h1>
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="nav blog-nav">{% block navigation %}
+      <a class="nav-link{% if section == "home" %} active{% endif %}" href="/"><strong>Some models are useful...</strong></a>
+      <a class="nav-link">|</a>
+      <a class="nav-link{% if section == "publications" %} active{% endif %}" href="{{base_path}}/publications/">Publications</a>
+      <a class="nav-link{% if section == "blog" %} active{% endif %}" href="{{base_path}}/notes/">Blog</a>
+      <a class="nav-link{% if section == "cv" %} active{% endif %}" href="{{base_path}}/cv/">CV</a>
+      <a class="nav-link{% if section == "about" %} active{% endif %}" href="{{base_path}}/about/">About</a>
+    {% endblock %}</nav>
+  </div>
 </div>
 
+<div class="container">
 
-{% block body %}
+    <div class="blog-main">
+{% block body %}{% endblock %}
+    </div><!-- /.blog-main -->
+
+</div><!-- /.container -->
+
+<footer class="blog-footer">
+  <p><a href="http://www.webfaction.com/?affiliate=davison"><img src="{{base_path}}/images/webfaction80x15.png" alt="Hosted by Webfaction"></a> &copy; {{ this_year }} Andrew P. Davison</p>
+{% block footer %}{% endblock %}
+  <p><a href="#">Back to top</a></p>
+</footer>
 
 
-{% endblock %}
-
-
-<div id="footer">
-<p><a href="http://www.webfaction.com/?affiliate=davison"><img src="{{base_path}}/images/webfaction80x15.png" alt="Hosted by Webfaction"></a> &copy; {{ this_year }} Andrew P. Davison</p>
-{% block footer %}
-{% endblock %}
-</div>
-
-
-</div> <!-- /container -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{{base_path}}/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="{{base_path}}/js/ie10-viewport-bug-workaround.js"></script>
 
 </body>
 </html>

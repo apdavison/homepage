@@ -5,7 +5,8 @@ About
    :align: right
    :height: 200
    :width: 183
-   :alt: Andrew Davison 
+   :alt: Andrew Davison
+   :class: img-rounded pull-right
 
 Hi, welcome to my personal homepage. I am a senior research scientist in the UNIC_ lab (Unité de Neurosciences,
 Information et Complexité) of the CNRS_, where I lead the `Neuroinformatics group`_. You might also be interested
