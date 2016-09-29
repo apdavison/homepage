@@ -7,13 +7,17 @@
 {% block body %}
 <div id="content">
 
+<h2>Archive</h2>
+
 <p>I also blog at <a href="http://neuralensemble.blogspot.fr">Neural Ensemble News</a>.</p>
 
 {% if notes %}
+<dl>
     {% for note in notes %}
-    <h3><a href="{{base_path}}/notes/{{note.page}}/">{{note.title}}</a></h3>
-    <p class="date">{{note.date_str}}</p>
+    <dt class="date">{{note.date_str}}</span></dt>
+    <dd><a href="{{base_path}}/notes/{{note.page}}/">{{note.title}}</a></dd>
     {% endfor %}
+</dl>
 {% endif %}
     
 </div>
