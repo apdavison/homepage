@@ -74,7 +74,7 @@
         
 <ul>
 {% for article in publications %}
-<li class="publication" id="{{article.anchor}}">
+<li class="publication" id="{{article.ID}}">
   {{article.author}} ({{article.year}}) {{article.title}}.
   {% if article.ENTRYTYPE == "article" %}
     <span class="publication">{{article.journal}}</span> {{article.volume}}: {{article.pages}}
@@ -85,7 +85,7 @@
   {% endif %}{% endif %}
   {% if article.doi %}<a href="http://dx.doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
   <span class="note">
-        [<a href="/publications/{{article.year}}/{{article.id}}.bib">BibTeX</a>]
+        [<a href="/publications/{{article.year}}/{{article.ID}}.bib">BibTeX</a>]
         {% if article.full_text %}[<a href="{{article.full_text}}">Full text</a>]{% endif %}
         {% if article.preprint %}[<a href="{{article.preprint}}">Preprint</a>]{% endif %}</span>
 </li>
@@ -107,7 +107,7 @@
 <h2>Presentations</h2>
 <ul>
 {% for conf in presentations %}
-<li class="publication" id="{{conf.anchor}}">
+<li class="publication" id="{{conf.ID}}">
     {{conf.author}} ({{conf.year}}) {{conf.title}}.
     {% if conf.booktitle %}
     <span class="publication">{{conf.booktitle}}</span>{% if conf.volume %} {{conf.volume}}: {{conf.pages}}.{% endif %}
@@ -115,7 +115,7 @@
     {% if conf.doi %}<a href="http://dx.doi.org/{{conf.doi}}">doi:{{conf.doi}}</a> {% endif %}
     <br>
     <span class="publication">{{conf.organization}}</span>, {{conf.address}}, {{conf.month}}.
-    <span class="note">{% if conf.abstract %}[<a href="/publications/{{conf.year}}/{{conf.anchor}}/">Abstract</a>] {% endif %}
+    <span class="note">
         {% if conf.full_text %}[<a href="{{conf.full_text}}">Full text</a>]{% endif %}
         {% if conf.slides %}[<a href="{{conf.slides}}">Slides</a>]{% endif %}
         {% if conf.proceedings %}[<a href="{{conf.proceedings}}">Proceedings</a>]{% endif %}</span>
