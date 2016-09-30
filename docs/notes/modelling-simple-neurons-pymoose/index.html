@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
+  <meta name="Author" content="Andrew Davison, Ph.D.">
+  <title>Andrew Davison: Modelling simple neurons with PyMOOSE</title>
+  <link type="text/css" rel="stylesheet" href="/css/new.css">
+</head>
+<body>
+
+<div id="container">
+
+<div id="header">
+    <div class="floatright">
+    </div>
+<div class="clear"/>
+    <div id="main-navigation">
+         <ul class="nav">
+            <li class="nav"><a href="/publications/">Publications</a></li>
+            <li class="nav"><a href="/notes/">Blog</a></li>
+            <li class="nav"><a href="/cv/">CV</a></li>
+            <li class="nav"><a href="/about/">About</a></li>
+            
+         </ul>
+        </div>
+    <h1><a href="/">Andrew Davison</a><span class="site-section">: Blog</span></h1>
+</div>
+
+
+
+<div id="content">
+<h2>Modelling simple neurons with PyMOOSE</h2>
+<span class="floatright"><strong>Tags:</strong> <em>Python, MOOSE</em></span>
+<p class="note">7th January 2011</p>
+
+<p><a class="reference external" href="http://moose.ncbs.res.in/">MOOSE</a> (Multiscale Object-oriented Simulation Environment) is a modelling
+framework for biological and neuronal networks, developed in <a class="reference external" href="http://www.frontiersin.org/people/upinderbhalla/368">Upinder Bhalla</a>'s
+<a class="reference external" href="http://ncbs.res.in/bhalla">lab</a> at the <a class="reference external" href="http://ncbs.res.in/">NCBS</a> in Bangalore. In terms of concepts and goals,
+it is a descendant of the <a class="reference external" href="http://genesis-sim.org/">GENESIS</a> 2 simulator (another descendant being GENESIS 3).</p>
+<p>What I find interesting about MOOSE is the wide range of biological scales that
+can be modelled, from biochemical signalling pathways up to large-scale neuronal
+networks, and the possibility of combining these in a single, multiscale model.</p>
+<p>MOOSE comes with a graphical interface, but what I find most interesting is its
+Python interface, developed by Subhasis Ray. PyMOOSE is described in an
+<a class="reference external" href="http://www.frontiersin.org/neuroinformatics/10.3389/neuro.11.006.2008/">article in Frontiers in Neuroinformatics</a>, which gives a good ideas of the
+capabilities of MOOSE, but does not explain how to use it. The <a class="reference external" href="http://moose.ncbs.res.in/content/view/5/6/">documentation</a>
+for PyMOOSE has improved rapidly of late, but is still far from comprehensive.</p>
+<p>This post will give a brief introduction to using PyMOOSE for modelling
+small networks of integrate-and-fire neurons, for people who have no previous
+experience of using GENESIS. I made these notes for my own benefit, but they
+may be useful to others.</p>
+<p>MOOSE can be downloaded from <a class="reference external" href="http://sourceforge.net/projects/moose/files/moose/">http://sourceforge.net/projects/moose/files/moose/</a>
+in various formats. I used the Debian package moose-beta-1.3.0-python26.i386.deb,
+which installed without problems.</p>
+<p>Let's start by creating a single-compartment neuron:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword namespace">import</span> <span class="name namespace">moose</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span> <span class="operator">=</span> <span class="name">moose</span><span class="operator">.</span><span class="name">Compartment</span><span class="punctuation">(</span><span class="literal string">&quot;soma&quot;</span><span class="punctuation">)</span>
+</pre>
+<p>MOOSE uses plain SI units, so to make my life easier I'll define some scale
+factors:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">mV</span> <span class="operator">=</span> <span class="literal number float">1e-3</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">nF</span> <span class="operator">=</span> <span class="literal number float">1e-9</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">uS</span> <span class="operator">=</span> <span class="literal number float">1e-6</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ms</span> <span class="operator">=</span> <span class="literal number float">1e-3</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">initVm</span> <span class="operator">=</span> <span class="operator">-</span><span class="literal number integer">65</span><span class="operator">*</span><span class="name">mV</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">Rm</span> <span class="operator">=</span> <span class="literal number integer">1</span><span class="operator">/</span><span class="punctuation">(</span><span class="literal number float">0.01</span><span class="operator">*</span><span class="name">uS</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">Cm</span> <span class="operator">=</span> <span class="literal number float">0.2</span><span class="operator">*</span><span class="name">nF</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">Em</span> <span class="operator">=</span> <span class="operator">-</span><span class="literal number integer">65</span><span class="operator">*</span><span class="name">mV</span>
+</pre>
+<p>MOOSE uses different clocks to control the simulation. We will use clock 0 for
+integration of the differential equations and clock 1 to control initialization:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span> <span class="operator">=</span> <span class="name">moose</span><span class="operator">.</span><span class="name">PyMooseBase</span><span class="operator">.</span><span class="name">getContext</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span><span class="operator">.</span><span class="name">setClock</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">,</span> <span class="literal number float">0.025</span><span class="operator">*</span><span class="name">ms</span><span class="punctuation">,</span> <span class="literal number integer">0</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span><span class="operator">.</span><span class="name">setClock</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">,</span> <span class="literal number float">0.025</span><span class="operator">*</span><span class="name">ms</span><span class="punctuation">,</span> <span class="literal number integer">1</span><span class="punctuation">)</span>
+
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">useClock</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">useClock</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">,</span> <span class="literal string">&quot;init&quot;</span><span class="punctuation">)</span>
+</pre>
+<p>Now we have a passive compartment with no ion channels. Let's inject some current
+and record the membrane potential to be sure everything is working as we expect.
+For recording, we use a <tt class="docutils literal">Table</tt> object:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">vm_table</span> <span class="operator">=</span> <span class="name">moose</span><span class="operator">.</span><span class="name">Table</span><span class="punctuation">(</span><span class="literal string">&quot;Vm&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">vm_table</span><span class="operator">.</span><span class="name">stepMode</span> <span class="operator">=</span> <span class="literal number integer">3</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">vm_table</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="literal string">&quot;inputRequest&quot;</span><span class="punctuation">,</span> <span class="name">soma</span><span class="punctuation">,</span> <span class="literal string">&quot;Vm&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span><span class="operator">.</span><span class="name">setClock</span><span class="punctuation">(</span><span class="literal number integer">2</span><span class="punctuation">,</span> <span class="literal number float">0.1</span><span class="operator">*</span><span class="name">ms</span><span class="punctuation">,</span> <span class="literal number integer">0</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">vm_table</span><span class="operator">.</span><span class="name">useClock</span><span class="punctuation">(</span><span class="literal number integer">2</span><span class="punctuation">)</span>
+</pre>
+<p>Note that we are recording with a larger time step than that used for integration.</p>
+<p>Our membrane leak conductance is 0.01 µS, so an injected current of 0.1 nA should
+give us a depolarization of 10 mV:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">nA</span> <span class="operator">=</span> <span class="literal number float">1e-9</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">inject</span> <span class="operator">=</span> <span class="literal number float">0.1</span><span class="operator">*</span><span class="name">nA</span>
+</pre>
+<p>Now we run the simulation:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span><span class="operator">.</span><span class="name">reset</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span><span class="operator">.</span><span class="name">step</span><span class="punctuation">(</span><span class="literal number integer">200</span><span class="operator">*</span><span class="name">ms</span><span class="punctuation">)</span>
+</pre>
+<p>and plot the results:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword namespace">import</span> <span class="name namespace">numpy</span><span class="operator">,</span> <span class="name namespace">pylab</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">v</span> <span class="operator">=</span> <span class="name">numpy</span><span class="operator">.</span><span class="name">array</span><span class="punctuation">(</span><span class="name">vm_table</span><span class="punctuation">)</span><span class="operator">/</span><span class="name">mV</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">t</span> <span class="operator">=</span> <span class="literal number float">0.1</span><span class="operator">*</span><span class="name">numpy</span><span class="operator">.</span><span class="name">arange</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">,</span> <span class="name">v</span><span class="operator">.</span><span class="name">size</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">plot</span><span class="punctuation">(</span><span class="name">t</span><span class="punctuation">,</span> <span class="name">v</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">xlabel</span><span class="punctuation">(</span><span class="literal string">&quot;Time (ms)&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">ylabel</span><span class="punctuation">(</span><span class="literal string">&quot;Membrane potential (mV)&quot;</span><span class="punctuation">)</span>
+</pre>
+<img alt="Membrane potential of a passive compartment with current injection 0.1 nA" class="align-center" src="/figures/passive_membrane.png" style="height: 400px;" />
+<p>Next, we will create some ion channels:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">na</span> <span class="operator">=</span> <span class="name">moose</span><span class="operator">.</span><span class="name">HHChannel</span><span class="punctuation">(</span><span class="literal string">&quot;na&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">na</span><span class="operator">.</span><span class="name">Ek</span> <span class="operator">=</span> <span class="literal number integer">40</span><span class="operator">*</span><span class="name">mV</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">na</span><span class="operator">.</span><span class="name">Gbar</span> <span class="operator">=</span> <span class="literal number integer">20</span><span class="operator">*</span><span class="name">uS</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">na</span><span class="operator">.</span><span class="name">Xpower</span> <span class="operator">=</span> <span class="literal number integer">3</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">na</span><span class="operator">.</span><span class="name">Ypower</span> <span class="operator">=</span> <span class="literal number integer">1</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">na</span><span class="operator">.</span><span class="name">setupAlpha</span><span class="punctuation">(</span><span class="literal string">&quot;X&quot;</span><span class="punctuation">,</span> <span class="literal number float">3.2e5</span> <span class="operator">*</span> <span class="operator">-</span><span class="literal number integer">50</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span> <span class="operator">-</span><span class="literal number float">3.2e5</span><span class="punctuation">,</span> <span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">,</span> <span class="literal number integer">50</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span> <span class="operator">-</span><span class="literal number integer">4</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span> <span class="comment"># alpha</span>
+                      <span class="operator">-</span><span class="literal number float">2.8e5</span> <span class="operator">*</span> <span class="operator">-</span><span class="literal number integer">23</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span>  <span class="literal number float">2.8e5</span><span class="punctuation">,</span> <span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">,</span> <span class="literal number integer">23</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span>  <span class="literal number integer">5</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">)</span> <span class="comment"># beta</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">na</span><span class="operator">.</span><span class="name">setupAlpha</span><span class="punctuation">(</span><span class="literal string">&quot;Y&quot;</span><span class="punctuation">,</span> <span class="literal number integer">128</span><span class="punctuation">,</span>                 <span class="literal number integer">0</span><span class="punctuation">,</span>  <span class="literal number integer">0</span><span class="punctuation">,</span> <span class="literal number integer">46</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span> <span class="literal number integer">18</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span> <span class="comment"># alpha</span>
+                       <span class="literal number float">4.0e3</span><span class="punctuation">,</span>               <span class="literal number integer">0</span><span class="punctuation">,</span>  <span class="literal number integer">1</span><span class="punctuation">,</span> <span class="literal number integer">23</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span> <span class="operator">-</span><span class="literal number integer">5</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">)</span> <span class="comment"># beta</span>
+
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">k</span> <span class="operator">=</span> <span class="name">moose</span><span class="operator">.</span><span class="name">HHChannel</span><span class="punctuation">(</span><span class="literal string">&quot;k&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">k</span><span class="operator">.</span><span class="name">Ek</span> <span class="operator">=</span> <span class="operator">-</span><span class="literal number integer">90</span><span class="operator">*</span><span class="name">mV</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">k</span><span class="operator">.</span><span class="name">Gbar</span> <span class="operator">=</span> <span class="literal number integer">6</span><span class="operator">*</span><span class="name">uS</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">k</span><span class="operator">.</span><span class="name">Xpower</span> <span class="operator">=</span> <span class="literal number integer">4</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">k</span><span class="operator">.</span><span class="name">setupAlpha</span><span class="punctuation">(</span><span class="literal string">&quot;X&quot;</span><span class="punctuation">,</span> <span class="literal number float">3.2e4</span> <span class="operator">*</span> <span class="operator">-</span><span class="literal number integer">48</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span> <span class="operator">-</span><span class="literal number float">3.2e4</span><span class="punctuation">,</span> <span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">,</span> <span class="literal number integer">48</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span> <span class="operator">-</span><span class="literal number integer">5</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span>
+                      <span class="literal number integer">500</span><span class="punctuation">,</span>                 <span class="literal number integer">0</span><span class="punctuation">,</span>  <span class="literal number integer">0</span><span class="punctuation">,</span> <span class="literal number integer">53</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">,</span>  <span class="literal number integer">40</span><span class="operator">*</span><span class="name">mV</span><span class="punctuation">)</span>
+</pre>
+<p>And connect them to the soma:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="literal string">&quot;channel&quot;</span><span class="punctuation">,</span> <span class="name">na</span><span class="punctuation">,</span> <span class="literal string">&quot;channel&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="literal string">&quot;channel&quot;</span><span class="punctuation">,</span> <span class="name">k</span> <span class="punctuation">,</span> <span class="literal string">&quot;channel&quot;</span><span class="punctuation">)</span>
+</pre>
+<p>Running and plotting again:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span><span class="operator">.</span><span class="name">reset</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span><span class="operator">.</span><span class="name">step</span><span class="punctuation">(</span><span class="literal number integer">200</span><span class="operator">*</span><span class="name">ms</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">figure</span><span class="punctuation">(</span><span class="literal number integer">2</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">plot</span><span class="punctuation">(</span><span class="name">t</span><span class="punctuation">,</span> <span class="name">numpy</span><span class="operator">.</span><span class="name">array</span><span class="punctuation">(</span><span class="name">vm_table</span><span class="punctuation">)</span><span class="operator">/</span><span class="name">mV</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">xlabel</span><span class="punctuation">(</span><span class="literal string">&quot;Time (ms)&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">ylabel</span><span class="punctuation">(</span><span class="literal string">&quot;Membrane potential (mV)&quot;</span><span class="punctuation">)</span>
+</pre>
+<img alt="Membrane potential of an active compartment with current injection 0.1 nA" class="align-center" src="/figures/active_membrane.png" style="height: 400px;" />
+<p>Finally, let's replace the current injection by synaptic input:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">inject</span> <span class="operator">=</span> <span class="literal number integer">0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">synapse</span> <span class="operator">=</span> <span class="name">moose</span><span class="operator">.</span><span class="name">SynChan</span><span class="punctuation">(</span><span class="literal string">&quot;excitatory&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">synapse</span><span class="operator">.</span><span class="name">Ek</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="operator">*</span><span class="name">mV</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">synapse</span><span class="operator">.</span><span class="name">tau1</span> <span class="operator">=</span> <span class="literal number float">0.001</span><span class="operator">*</span><span class="name">ms</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">synapse</span><span class="operator">.</span><span class="name">tau2</span> <span class="operator">=</span> <span class="literal number integer">2</span><span class="operator">*</span><span class="name">ms</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">synapse</span><span class="operator">.</span><span class="name">Gbar</span> <span class="operator">=</span> <span class="literal number float">0.01</span><span class="operator">*</span><span class="name">uS</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="literal string">&quot;channel&quot;</span><span class="punctuation">,</span> <span class="name">synapse</span><span class="punctuation">,</span> <span class="literal string">&quot;channel&quot;</span><span class="punctuation">)</span>
+</pre>
+<p>To test the synapse we'll use a Poisson spike source:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">spike_source</span> <span class="operator">=</span> <span class="name">moose</span><span class="operator">.</span><span class="name">RandomSpike</span><span class="punctuation">(</span><span class="literal string">&quot;input&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">spike_source</span><span class="operator">.</span><span class="name">minAmp</span> <span class="operator">=</span> <span class="literal number float">1.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">spike_source</span><span class="operator">.</span><span class="name">maxAmp</span> <span class="operator">=</span> <span class="literal number float">1.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">s</span> <span class="operator">=</span> <span class="literal number float">1.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">spike_source</span><span class="operator">.</span><span class="name">rate</span> <span class="operator">=</span> <span class="literal number integer">100</span><span class="operator">/</span><span class="name">s</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">spike_source</span><span class="operator">.</span><span class="name">reset</span> <span class="operator">=</span> <span class="name builtin pseudo">True</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">spike_source</span><span class="operator">.</span><span class="name">resetValue</span> <span class="operator">=</span> <span class="literal number float">0.0</span>
+</pre>
+<p>and create a synaptic connection:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">spike_source</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="literal string">'event'</span><span class="punctuation">,</span> <span class="name">synapse</span><span class="punctuation">,</span> <span class="literal string">'synapse'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">synapse</span><span class="operator">.</span><span class="name">setWeight</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">,</span> <span class="literal number float">1.0</span><span class="punctuation">)</span>
+</pre>
+<p>As well as recording the membrane potential, we'd like to record the spike times.
+Again we use a <tt class="docutils literal">Table</tt>, but this time using <tt class="docutils literal">stepMode = 4</tt>, which detects
+the spikes based on threshold crossing:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">spike_tables</span> <span class="operator">=</span> <span class="punctuation">{}</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword">for</span> <span class="name">label</span> <span class="operator word">in</span> <span class="literal string">&quot;input&quot;</span><span class="punctuation">,</span> <span class="literal string">&quot;output&quot;</span><span class="punctuation">:</span>
+<span class="operator">...</span>     <span class="name">table</span> <span class="operator">=</span> <span class="name">moose</span><span class="operator">.</span><span class="name">Table</span><span class="punctuation">(</span><span class="literal string">&quot;</span><span class="literal string interpol">%s</span><span class="literal string">_spikes&quot;</span> <span class="operator">%</span> <span class="name">label</span><span class="punctuation">)</span>
+<span class="operator">...</span>     <span class="name">table</span><span class="operator">.</span><span class="name">stepMode</span> <span class="operator">=</span> <span class="literal number integer">4</span>
+<span class="operator">...</span>     <span class="name">table</span><span class="operator">.</span><span class="name">stepSize</span> <span class="operator">=</span> <span class="literal number float">1.0</span><span class="operator">*</span><span class="name">mV</span>  <span class="comment"># threshold</span>
+<span class="operator">...</span>     <span class="name">table</span><span class="operator">.</span><span class="name">useClock</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">)</span>
+<span class="operator">...</span>     <span class="name">spike_tables</span><span class="punctuation">[</span><span class="name">label</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">table</span>
+
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="literal string">'Vm'</span><span class="punctuation">,</span> <span class="name">spike_tables</span><span class="punctuation">[</span><span class="literal string">'output'</span><span class="punctuation">],</span> <span class="literal string">'inputRequest'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">spike_source</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="literal string">'state'</span><span class="punctuation">,</span> <span class="name">spike_tables</span><span class="punctuation">[</span><span class="literal string">'input'</span><span class="punctuation">],</span> <span class="literal string">'inputRequest'</span><span class="punctuation">)</span>
+</pre>
+<p>Running the simulation:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span><span class="operator">.</span><span class="name">reset</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">ctx</span><span class="operator">.</span><span class="name">step</span><span class="punctuation">(</span><span class="literal number integer">200</span><span class="operator">*</span><span class="name">ms</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">figure</span><span class="punctuation">(</span><span class="literal number integer">3</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">plot</span><span class="punctuation">(</span><span class="name">t</span><span class="punctuation">,</span> <span class="name">numpy</span><span class="operator">.</span><span class="name">array</span><span class="punctuation">(</span><span class="name">vm_table</span><span class="punctuation">)</span><span class="operator">/</span><span class="name">mV</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">xlabel</span><span class="punctuation">(</span><span class="literal string">&quot;Time (ms)&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">ylabel</span><span class="punctuation">(</span><span class="literal string">&quot;Membrane potential (mV)&quot;</span><span class="punctuation">)</span>
+</pre>
+<img alt="Membrane potential of an active compartment with noisy synaptic input" class="align-center" src="/figures/synaptic_input.png" style="height: 400px;" />
+<p>We can now print the spike times:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword">for</span> <span class="name">label</span> <span class="operator word">in</span> <span class="literal string">&quot;input&quot;</span><span class="punctuation">,</span> <span class="literal string">&quot;output&quot;</span><span class="punctuation">:</span>
+<span class="operator">...</span>     <span class="keyword">print</span> <span class="name">label</span><span class="punctuation">,</span> <span class="name">numpy</span><span class="operator">.</span><span class="name">array</span><span class="punctuation">(</span><span class="name">spike_tables</span><span class="punctuation">[</span><span class="name">label</span><span class="punctuation">])</span><span class="operator">/</span><span class="name">ms</span>
+<span class="name builtin">input</span> <span class="punctuation">[</span>  <span class="literal number float">13.6</span>     <span class="literal number float">22.575</span>   <span class="literal number float">30.425</span>   <span class="literal number float">39.35</span>    <span class="literal number float">72.55</span>    <span class="literal number float">75.825</span>   <span class="literal number float">79.075</span>   <span class="literal number float">91.775</span>
+   <span class="literal number float">98.675</span>   <span class="literal number float">99.2</span>    <span class="literal number float">102.15</span>   <span class="literal number float">118.425</span>  <span class="literal number float">125.625</span>  <span class="literal number float">142.</span>     <span class="literal number float">143.675</span>  <span class="literal number float">144.45</span>
+  <span class="literal number float">156.475</span>  <span class="literal number float">165.65</span>   <span class="literal number float">178.</span>     <span class="literal number float">178.925</span>  <span class="literal number float">179.75</span>   <span class="literal number float">189.5</span>    <span class="literal number float">192.925</span>    <span class="literal number float">0.</span>   <span class="punctuation">]</span>
+<span class="name">output</span> <span class="punctuation">[</span>  <span class="literal number float">25.375</span>   <span class="literal number float">78.45</span>   <span class="literal number float">102.625</span>  <span class="literal number float">144.2</span>    <span class="literal number float">171.2</span>    <span class="literal number float">192.05</span>     <span class="literal number float">0.</span>   <span class="punctuation">]</span>
+</pre>
+<p>I'm not sure why there is an extraneous &quot;0.&quot; at the end, but this can easily
+be discarded.</p>
+<p>This post has only scratched the surface of MOOSE. I will post more notes as I
+explore further.</p>
+
+</div>
+
+
+
+
+<div id="footer">
+<p><a href="http://www.webfaction.com/?affiliate=davison"><img src="/images/webfaction80x15.png" alt="Hosted by Webfaction"></a> &copy;  Andrew P. Davison</p>
+
+<p></p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a> This blog post is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>. Please feel free to copy or modify them, provided you link to this web page.</p>
+
+</div>
+
+
+</div> <!-- /container -->
+
+</body>
+</html>

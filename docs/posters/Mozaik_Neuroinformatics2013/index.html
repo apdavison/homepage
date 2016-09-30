@@ -1,0 +1,308 @@
+<html>
+
+<head>
+    <link href="mozaik.css" rel="stylesheet" />
+</head>    
+
+<body>
+.
+<header>
+
+<div id="mainlogo">
+<img src="logos/mozaik_logo_small.svg" alt="mozaik logo">
+</div>
+
+<div id="title">
+<h1>ozaik: a framework for model construction, simulation, data analysis and visualization for large-scale spiking neural models</h1>
+    <div id="authors">J&aacute;n Antol&iacute;k,Andrew P. Davison</div>
+    <div id="affiliations">
+        <address>Unit&eacute; de Neurosciences, Information et Complexit&eacute;(UNIC), Centre Nationale de la Recherche Scientifique (CNRS), Gif sur Yvette, France</address>
+    </div>
+</div>
+
+<div id="logos">
+    <img src="logos/cnrs_logo_140.png" alt="CNRS logo">
+    <img src="logos/unic_logo_160.png" alt="UNIC logo">
+    <img src="logos/brainscales_logo.png" alt="BrainScaleS logo">
+</div>
+
+</header>
+
+
+<div id="column">
+
+
+<div class="box">
+  <h2>Motivation</h2>
+
+<figure class="floatright">
+    <img src="figures/mode-development-flow.png" width="700">
+    <figcaption>A typical neural simulation workflow.</figcaption>
+</figure>
+
+
+<p>
+The increasing amount of computational resources becoming available is causing a shift towards increasingly heterogeneous models of neural circuits and brain regions, and employment of increasingly complex stimulation and experimental protocols in an effort to bridge the gap between simulations and biological experiments. This poses a challenge for the existing tool-chains, as the set of tools that are involved in the typical modeler's workflow is expanding, with a growing amount and complexity of meta-data, describing the experimental context, flowing between them. A plethora of tools is currently available covering different parts of the workflow; however, numerous areas lack dedicated tools, while integration and interoperability of existing tools is limited. This forces modelers to either handle the workflow manually, leading to errors, or to write substantial amounts of code to automate parts of the workflow, in both cases hindering their productivity.
+</p>
+
+<p>
+<b>To address these issues, we have developed <i>mozaik</i>&#58; an integrated workflow system for spiking neuronal network simulations written in Python. <i>mozaik</i> integrates the model, experiment and stimulation specification, simulation execution, data storage, data analysis and visualization into a single automated workflow, ensuring that all relevant meta-data are available to each of the workflow components. It is based on several widely used Python tools, including PyNN <a href="#ref:Davison2009">Davison et al. (2009)</a>, Neo <a href="#ref:Davison2011">Davison et al. (2011)</a> and Matplotlib <a href="#ref:Hunter2007">Hunter et al. (2007)</a>.</b> 
+</p>
+
+  </ol>
+</div>
+
+<div class="box">
+  <h2>Architecture</h2>
+  
+
+<figure class="floatright">
+    <img src="figures/mozaik_control_flow.png" width="700">
+    <figcaption>The flow of control between main mozaik components during the workflow</figcaption>
+</figure>
+
+<b>mozaik</b> is a high level object-oriented python library. It is organized in a number of sub-packages that match the steps of a workflow:
+
+  <ul>
+      <li><b>mozaik</b> - the core mozaik API</li>
+      <li><b>sheets</b> - a population of neurons distributed in space - basic building block of mozaik models</li>
+      <li><b>connectors</b> - a projection between two sheets of neurons - basic building block of mozaik models</li>
+      <li><b>models</b> - an API encapsulating a mozaik model</li>
+      <li><b>experiments`</b> - an API for defining a experimental paradigm</li>
+      <li><b>storage</b> - the data storage and manipulation API</li>
+      <li><b>analysis</b> - an API for analysis of recorded data</li>
+      <li><b>visualization</b> - an API for visualization of recorded data and analysis results</li>
+      <li><b>meta-workflow</b> - an API for workflows involving multiple simulation instances such as parameter searches</li>
+      <li><b>tools</b> - various utility functions</li>
+  </ul>
+  It is our hope that some of these sub-packages will be in future either replaced with dedicated third party tools, or will be
+  forked out of mozaik into fully autonomous packages. 
+</div>
+
+
+<div class="box">
+<h2>Model specification</h2>
+
+<p>Here we will show a minimalist example, demonstrating the most important steps in setting up a simple
+randomly connected network of excitatory and inhibitory neurons.
+
+The model can be specified via a configuration file(s). The top level file specifies references to 
+files containing configuration of individual layers, and several high-level parameters, such as what input space
+and layer will be used by the model (in our case none) or where to store results.<p/>
+<pre class="prettyprint"><code class="display">{ 'exc_layer': url("param/exc_layer"),
+    'inh_layer': url("param/inh_layer"),
+    'results_dir': '',
+    'name' : 'Vogels&Abbott',
+    'reset' : False,
+    'null_stimulus_period' : 0.0,
+    'input_space' : None,
+    'input_space_type' : 'None', }
+</code></pre>
+
+<p>The configuration file containing  information  about  the  excitatory  layer  and  the connections  that  it  sends  out  is as follows:<p/>
+<pre class="prettyprint"><code class="display">#CorticalUniformSheet parameters
+    'component': 'mozaik.sheets.vision.VisualCorticalUniformSheet',
+    'params':{  'name':'Exc_Layer',
+                'sx':1000.0,
+                'sy':1000.0,
+                'density': 3200.0,
+                'mpi_safe' : False,    
+                'magnification_factor': 1.0,
+                'cell': {  'model': 'IF_cond_exp',
+			    'params': {
+				'v_thresh':-50.0,
+				'v_rest': -60.0,
+				'v_reset': -60.0,
+				'tau_refrac': 5.0,
+				'tau_m': 20.0,
+				'cm': 0.2,
+				'e_rev_E': 0.0,
+				'e_rev_I': -80.0,
+				'tau_syn_E': 5.0,
+				'tau_syn_I': 10.0, },
+			     'initial_values': { 
+				 'v':  PyNNDistribution(name='uniform',params=(-60,-50)),
+			     },
+		        },
+                'artificial_stimulators' : {},
+                'recorders' : url("param/exc_rec"),
+    },
+    'ExcExcConnection': {
+                'target_synapses' : 'excitatory',             
+                'short_term_plasticity': None, 
+                'connection_probability': 0.02,  
+                'weights': 0.004,  # microS, the synapse strength
+                'delay': 0.2,    # ms delay of the connections    
+    },
+    'ExcInhConnection': ref('exc_layer.ExcExcConnection'),
+</code></pre>
+
+<p>The <it>records</it> parameter allows us to specify what will be recorded. The referenced configuration file can, for example, contain this:</p>
+<pre class="prettyprint"><code class="display">
+    "2" : {
+      'component' :  'mozaik.sheets.population_selector.RCRandomN',
+      'variables' : ("spikes","v","gsyn_exc" , "gsyn_inh"),
+      'params' :  {'num_of_cells' : 21}
+    }
+</code></pre>
+This tells <b>mozaik</b> to record from 21 randomly picked neurons in the <i>Exc_Layer</i> the spikes, membrane potential and conductances.
+</div>
+
+<div class="box">
+<h2>References</h2>
+
+    <ol>
+        <li id="ref:Davison2011">Davison AP, Brizzi T, Estebanez L, Jaillet F, Mahnoun Y, Rautenberg P, Sobolev A, Wachtler T, Yger P, Garcia S (2011) Neo: representing and manipulating electrophysiology data in Python. Proceedings of EuroSciPy 2011.   http://pythonneuro.sciencesconf.org/903 </li>
+        <li id="ref:Davison2009">Davison AP, Br&uuml;derle D, Eppler JM, Kremkow J, Muller E, Pecevski DA, Perrinet L and Yger P (2009) PyNN: a common interface for neuronal network simulators. Front. Neuroinform. 2:11</li>
+	<li id="ref:Hunter2007">Hunter JD (2007) Matplotlib: A 2D graphics environment. Computing In Science &amp; Engineering 9:3</li>
+
+    </ol>
+
+</div>
+
+</div> <!-- leftcolumn -->
+
+<!-- rightcolumn -->
+<div id="column">
+
+<div class="box">
+<h2>Stimulation protocol and data storage</h2>
+
+<h3>Experiments and execution</h3>
+
+<p> The  list  of  experiments  is  declared  in  a  separate  method  as  follows.  In  our  case all  we  do  is  initially  give  external  input  to  the network,  and  then  let  the  network  run  while  recording  its  activity.</p>
+
+<pre class="prettyprint"><code class="display">return  
+[  PoissonNetworkKick( 
+	     model,duration=210,
+             sheet_list=["V1_Exc_L4","V1_Inh_L4"],
+             recording_configuration={'component' : 'population_selector.RCRandomPercentage', 'params' : {'percentage' : 20.0}},
+             lambda_list=[100.0,100.0],
+	     weight_list=[0.1,0.1] ),
+   NoStimulation( model, duration=1400)]
+</code></pre>
+
+<p>Once configured the whole workflow is executed with a single command, to which the model class and a method returning a list of experiments is passed.<p/>
+<pre class="prettyprint"><code class="display">data_store,model = run_workflow('VogelsAbbott2005',VogelsAbbott,create_experiments)
+</code></pre>
+
+
+<p>During execution the recorded data are stored in the central data-store, which is saved for future access by the analysis and visualization components.</p>
+
+<h3>Data handling</h3>
+
+<p>An important concept in mozaik is a data-store view (DSV) - a proxy instance of a datastore that 
+allows expressing any subset of the data-store without copying data in memory. Together with the 
+accompanying query module, this allows for powerful manipulation of data in the data-store.</p>
+
+
+<p>Following query returns a DSV with data (recordings or analysis data structures)
+associated only with sheet <it>V1_Exc_L4</it>:</p>
+
+<pre class="prettyprint"><code class="display">param_filter_query(data_store,sheet_name=['V1_Exc_L4'])</code></pre>   
+
+<p>while the following one filters data structures that declare parameter named <i>value_name</i>
+with value <i>AfferentOrientation</i> belonging to any of the listed sheets:</p>
+
+<pre class="prettyprint"><code class="display">param_filter_query(data_store,
+                   sheet_name=['V1_Exc_L4','V1_Inh_L4','V1_Exc_L2/3','V1_Inh_L2/3'],
+		   value_name='AfferentOrientation')</code></pre>   
+
+<p>Finally the following query filters all recordings or analysis data structures assoicated with stimulus <i>FullfieldSinusoidalGrating</i>
+of horizontal (0) <it>orientation</it>:</p>
+
+<pre class="prettyprint"><code class="display">param_filter_query(data_store,st_name='FullfieldSinusoidalGrating',st_orientation=0)</code></pre>   
+
+<p><b>mozaik</b> offers a number of other query methods providing more complex data manipulation such as collation of data with respect to selected parameters.</p>
+</div>
+
+<div class="box">
+<h2>Analysis and visualization</h2>
+
+<p>Unlike in most other libraries, in <b>mozaik</b>, analysis and plotting methods do not accept as input the specific 
+data-structures to be processed but instead a DSV. It is the responsibility of the 
+analysis or visualization class to apply itself to as wide range of data in the 	DSV as possible. 
+In conjunction with the query system, this provides a powerful unified and flexible way to alter the 
+analysis and visualization process, and increases the degree of automation.
+</p>
+
+<h3>Visualization example</h3>
+
+<p>
+Let us now assume a model with visual input space, which was presented with various stimuli to measure typical visual cortex properties. 
+Following code visualizes the raw data recorded during presentation of stimulus <i>FullfieldSinusoidalGrating</i> at horizontal and vertical orientation and 100% contrast:
+</p>
+                   
+<pre class="prettyprint"><code class="display">dsv = param_filter_query(data_store,
+                   st_orientation=[0,numpy.pi/2],
+                   st_name=['FullfieldDriftingSinusoidalGrating'],
+                   st_contrast=100)
+OverviewPlot(dsv,ParameterSet({'sheet_name' : 'V1_Exc_L4', 'neuron' : l4_exc, 'sheet_activity' : {}}))</code></pre>
+
+<p>while this code will do the same but it will display the data for any orientation of the grating stimulus that was presented and recorded:</p>
+
+<pre class="prettyprint"><code class="display">dsv = param_filter_query(data_store,
+                   st_name=['FullfieldDriftingSinusoidalGrating'],
+                   st_contrast=100)
+OverviewPlot(dsv,ParameterSet({'sheet_name' : 'V1_Exc_L4', 'neuron' : l4_exc, 'sheet	_activity' : {}}))</code></pre>
+
+<center>
+<figure>
+    <img src="figures/overviews.png" width="1400">
+    <figcaption>The figures produced by the above two commands (A) the first command (B) the second command.</figcaption>
+</figure>
+</center>
+
+<h3>Analysis example</h3>
+
+<p>The same system works for analysis. This is how a user expresses his wish to compute trial-averaged firing rates to all the presented stimuli:</p> 
+
+<pre class="prettyprint"><code class="display">TrialAveragedFiringRate(data_store,ParameterSet({'stimulus_type':"DriftingSinusoidalGratingCenterSurroundStimulus"})).analyse()</code></pre>
+
+<p>Behind the scenes, this code creates a number of analysis data structures holding the average firing rates, and adds them back into the data store. 
+These analysis data structures are annotated with mete-data allowing for their identification using the query system. 
+Thus the following single command fits the tuning curves implied by the average firing rates across some parameter of the stimuli (here orientation) that has been varied during the experiment:</p>
+
+<pre class="prettyprint"><code class="display">dsv = param_filter_query(data_store,st_name=['FullfieldDriftingSinusoidalGrating'])
+GaussianTuningCurveFit(dsv,ParameterSet({'parameter_name' : 'orientation'})).analyse()</code></pre>
+
+<p>Similarly we can plot the same 'raw' tuning curves that we have just fitted with Gaussian curves like this:</p>
+
+<pre class="prettyprint"><code class="display">dsv = param_filter_query(data_store,st_name='DriftingSinusoidalGratingDisk',analysis_algorithm=['TrialAveragedFiringRate'])    
+PlotTuningCurve(dsv,ParameterSet({'parameter_name' : 'orientation',
+			          'neurons': list_of_4_neurons, 
+	                          'sheet_name' : 'V1_Exc_L4'})).plot()</code></pre>
+
+
+<center>
+<figure>
+    <img src="figures/OR.png" width="700">
+    <figcaption>Orientation tuning curves plotted by the above command. Multiple curves correspond to different contrasts at which the gratings were presented.</figcaption>
+</figure>
+</center>
+
+</div>
+
+<div class="box"><h3>Download</h3>
+Mozaik is available from <a href="https://github.com/antolikjan/mozaik">https://github.com/antolikjan/mozaik</a>.
+</div>
+
+<div class="box thanks"><h3>Acknowledgments</h3>
+This work was supported by European Union projects FP7-269921 (BrainScaleS) and FP6-015879 (FACETS).
+</div>
+
+
+</div> <!-- rightcolumn -->
+
+
+<footer>Contact us at antolikjan@gmail.com</footer>
+
+
+</body>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</html>

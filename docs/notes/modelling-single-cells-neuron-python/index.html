@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
+  <meta name="Author" content="Andrew Davison, Ph.D.">
+  <title>Andrew Davison: Modelling single cells in NEURON with the Python interpreter</title>
+  <link type="text/css" rel="stylesheet" href="/css/new.css">
+</head>
+<body>
+
+<div id="container">
+
+<div id="header">
+    <div class="floatright">
+    </div>
+<div class="clear"/>
+    <div id="main-navigation">
+         <ul class="nav">
+            <li class="nav"><a href="/publications/">Publications</a></li>
+            <li class="nav"><a href="/notes/">Blog</a></li>
+            <li class="nav"><a href="/cv/">CV</a></li>
+            <li class="nav"><a href="/about/">About</a></li>
+            
+         </ul>
+        </div>
+    <h1><a href="/">Andrew Davison</a><span class="site-section">: Blog</span></h1>
+</div>
+
+
+
+<div id="content">
+<h2>Modelling single cells in NEURON with the Python interpreter</h2>
+<span class="floatright"><strong>Tags:</strong> <em>Python, NEURON</em></span>
+<p class="note">23rd March 2008</p>
+
+<p><em>(updated for NEURON 7.0 on 2009-01-25)</em></p>
+<p>This is an introduction to using the Python interpreter to build simple single
+cell models with the NEURON simulator. I assume some familiarity with Python and
+with the standard NEURON interpreter, hoc.</p>
+<p>Also see notes on <a class="reference external" href="/notes/installation-neuron-python/">building/installing NEURON with Python</a> and on <a class="reference external" href="/notes/installation-neuron-python/">accessing hoc from Python</a>.
+For more information, see the <a class="reference external" href="http://www.neuron.yale.edu/neuron/static/docs/help/neuron/neuron/classes/python.html">NEURON documentation</a>.</p>
+<p>To get started, either run NEURON with the <tt class="docutils literal"><span class="pre">-python</span></tt> option:</p>
+<pre class="literal-block">
+$ nrniv -python
+</pre>
+<p>or use another python interpreter, such as <tt class="docutils literal">python</tt> or <tt class="docutils literal">ipython</tt>:</p>
+<pre class="literal-block">
+$ python
+</pre>
+<p>Then import the <tt class="docutils literal">neuron</tt> and <tt class="docutils literal">nrn</tt> modules:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword namespace">from</span> <span class="name namespace">neuron</span> <span class="keyword namespace">import</span> <span class="operator">*</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword namespace">from</span> <span class="name namespace">nrn</span> <span class="keyword namespace">import</span> <span class="operator">*</span>
+</pre>
+<p>The order is important if using an ordinary Python interpreter: <tt class="docutils literal">nrn</tt> is not
+available until after <tt class="docutils literal">neuron</tt> has been imported.</p>
+<div class="section" id="creating-a-membrane-section-and-manipulating-its-attributes">
+<h3>Creating a membrane section and manipulating its attributes</h3>
+<p>Membrane sections are represented by <tt class="docutils literal">Section</tt> objects. They are
+instantiated with no arguments (although in the future it would be nice to be
+able to set section properties in the constructor):</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span> <span class="operator">=</span> <span class="name">Section</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">soma</span><span class="punctuation">)</span>
+<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string">'nrn.Section'</span><span class="operator">&gt;</span>
+</pre>
+<p>As in hoc, a section's length, axial resistance and number of segments may be
+accessed and changed using dot notation:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">L</span>
+<span class="literal number float">100.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">nseg</span>
+<span class="literal number integer">1</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">Ra</span>
+<span class="literal number float">35.399999999999999</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">nseg</span> <span class="operator">=</span> <span class="literal number integer">3</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">nseg</span>
+<span class="literal number integer">3</span>
+</pre>
+<p>Each segment of the section may be accessed in turn by iterating over the
+section:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword">for</span> <span class="name">seg</span> <span class="operator word">in</span> <span class="name">soma</span><span class="punctuation">:</span>
+<span class="operator">...</span>   <span class="keyword">print</span> <span class="name">seg</span><span class="operator">.</span><span class="name">x</span><span class="punctuation">,</span> <span class="name">seg</span><span class="operator">.</span><span class="name">diam</span>
+<span class="operator">...</span>
+<span class="literal number float">0.166666666667</span> <span class="literal number float">500.0</span>
+<span class="literal number float">0.5</span> <span class="literal number float">500.0</span>
+<span class="literal number float">0.833333333333</span> <span class="literal number float">500.0</span>
+</pre>
+<p>or an individual segment may be accessed by calling the <tt class="docutils literal">Section</tt> object with
+the x-location (0-1) as an argument:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">central_seg</span> <span class="operator">=</span> <span class="name">soma</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">central_seg</span><span class="punctuation">)</span>
+<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string">'nrn.Segment'</span><span class="operator">&gt;</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">central_seg</span><span class="operator">.</span><span class="name">diam</span>
+<span class="literal number float">500.0</span>
+</pre>
+<p>Note the difference in syntax with respect to hoc:</p>
+<pre class="code python literal-block">
+<span class="name">oc</span><span class="operator">&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">v</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span>
+    <span class="operator">-</span><span class="literal number integer">65</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">v</span>
+<span class="operator">-</span><span class="literal number float">65.0</span>
+</pre>
+</div>
+<div class="section" id="the-currently-accessed-section">
+<h3>The currently-accessed section</h3>
+<p>The concept of the currently-accessed section is less important in Python than
+in hoc, but it exists nonetheless. When we created the <tt class="docutils literal">soma</tt> section above,
+it became the currently accessed section by default. The function <tt class="docutils literal">cas()</tt> in
+the <tt class="docutils literal">nrn</tt> module returns the currently accessed section as a <tt class="docutils literal">Section</tt>
+object:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">()</span>
+<span class="literal string">'PySec_402d1040'</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">cas</span><span class="punctuation">()</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">()</span>
+<span class="literal string">'PySec_402d1040'</span>
+</pre>
+<p>If we now create a new section, <tt class="docutils literal">soma</tt> is still the currently-accessed
+section:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span> <span class="operator">=</span> <span class="name">Section</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span> <span class="operator">==</span> <span class="name">cas</span><span class="punctuation">()</span>
+<span class="name builtin pseudo">True</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span> <span class="operator">==</span> <span class="name">cas</span><span class="punctuation">()</span>
+<span class="name builtin pseudo">False</span>
+</pre>
+<p>To make <tt class="docutils literal">dend</tt> the currently-accessed section, use its <tt class="docutils literal">push()</tt> method:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">push</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span> <span class="operator">==</span> <span class="name">cas</span><span class="punctuation">()</span>
+<span class="name builtin pseudo">True</span>
+</pre>
+<p>We can now perform operations on dend using hoc calls, e.g.:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">L</span>
+<span class="literal number float">100.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'L = 200'</span><span class="punctuation">)</span>
+<span class="literal number integer">1</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">L</span>
+<span class="literal number float">200.0</span>
+</pre>
+<p>(The '<tt class="docutils literal">h</tt>' <tt class="docutils literal">HocObject</tt> comes from the <tt class="docutils literal">neuron</tt> module. For more information
+on <tt class="docutils literal">HocObject</tt>s, see <a class="reference external" href="/notes/installation-neuron-python/">accessing hoc from Python</a>).</p>
+<p>To return to the previously-access section, use the hoc <tt class="docutils literal">pop_section()</tt>
+function:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">pop_section</span><span class="punctuation">()</span>
+<span class="literal number float">1.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span> <span class="operator">==</span> <span class="name">cas</span><span class="punctuation">()</span>
+<span class="name builtin pseudo">True</span>
+</pre>
+</div>
+<div class="section" id="connecting-sections-together">
+<h3>Connecting sections together</h3>
+<p>To connect two sections, call the <tt class="docutils literal">connect()</tt> method of the child <tt class="docutils literal">Section</tt>
+object with the parent section as the argument:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="name">soma</span><span class="punctuation">)</span>
+</pre>
+<p>By default, the '<tt class="docutils literal">0</tt>' end of the child is connected to the '<tt class="docutils literal">1</tt>' end of the
+parent. Which point on the parent to connect to and which end of the child to
+connect can be controlled with additional, optional arguments:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">axon</span> <span class="operator">=</span> <span class="name">Section</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">axon</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="name">soma</span><span class="punctuation">,</span> <span class="literal number float">0.1</span><span class="punctuation">,</span> <span class="literal number integer">1</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword">for</span> <span class="name">sec</span> <span class="operator word">in</span> <span class="name">dend</span><span class="punctuation">,</span> <span class="name">axon</span><span class="punctuation">:</span>
+<span class="operator">...</span>   <span class="name">sec</span><span class="operator">.</span><span class="name">push</span><span class="punctuation">()</span>
+<span class="operator">...</span>   <span class="name">h</span><span class="operator">.</span><span class="name">psection</span><span class="punctuation">()</span>
+<span class="operator">...</span>   <span class="name">h</span><span class="operator">.</span><span class="name">pop_section</span><span class="punctuation">()</span>
+<span class="operator">...</span>
+<span class="operator">&lt;</span><span class="name">nrn</span><span class="operator">.</span><span class="name">Section</span> <span class="name builtin">object</span> <span class="name">at</span> <span class="literal number hex">0x402d1050</span><span class="operator">&gt;</span>
+<span class="name">PySec_402d1050</span> <span class="punctuation">{</span> <span class="name">nseg</span><span class="operator">=</span><span class="literal number integer">1</span>  <span class="name">L</span><span class="operator">=</span><span class="literal number integer">200</span>  <span class="name">Ra</span><span class="operator">=</span><span class="literal number float">35.4</span>
+        <span class="name">PySec_402d1040</span> <span class="name">connect</span> <span class="name">PySec_402d1050</span> <span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">),</span> <span class="literal number integer">1</span>
+        <span class="operator">/*</span> <span class="name">First</span> <span class="name">segment</span> <span class="name">only</span> <span class="operator">*/</span>
+        <span class="name">insert</span> <span class="name">morphology</span> <span class="punctuation">{</span> <span class="name">diam</span><span class="operator">=</span><span class="literal number integer">500</span><span class="punctuation">}</span>
+        <span class="name">insert</span> <span class="name">capacitance</span> <span class="punctuation">{</span> <span class="name">cm</span><span class="operator">=</span><span class="literal number integer">1</span><span class="punctuation">}</span>
+<span class="punctuation">}</span>
+<span class="operator">&lt;</span><span class="name">nrn</span><span class="operator">.</span><span class="name">Section</span> <span class="name builtin">object</span> <span class="name">at</span> <span class="literal number hex">0x402d1060</span><span class="operator">&gt;</span>
+<span class="name">PySec_402d1060</span> <span class="punctuation">{</span> <span class="name">nseg</span><span class="operator">=</span><span class="literal number integer">1</span>  <span class="name">L</span><span class="operator">=</span><span class="literal number integer">100</span>  <span class="name">Ra</span><span class="operator">=</span><span class="literal number float">35.4</span>
+        <span class="name">PySec_402d1040</span> <span class="name">connect</span> <span class="name">PySec_402d1060</span> <span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">),</span> <span class="literal number float">0.1</span>
+        <span class="operator">/*</span> <span class="name">First</span> <span class="name">segment</span> <span class="name">only</span> <span class="operator">*/</span>
+        <span class="name">insert</span> <span class="name">morphology</span> <span class="punctuation">{</span> <span class="name">diam</span><span class="operator">=</span><span class="literal number integer">500</span><span class="punctuation">}</span>
+        <span class="name">insert</span> <span class="name">capacitance</span> <span class="punctuation">{</span> <span class="name">cm</span><span class="operator">=</span><span class="literal number integer">1</span><span class="punctuation">}</span>
+<span class="punctuation">}</span>
+</pre>
+<p>It is often not necessary to explicitly push the section onto the stack, as most functions take an optional <tt class="docutils literal">sec</tt> keyword argument:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">psection</span><span class="punctuation">(</span><span class="name">sec</span><span class="operator">=</span><span class="name">soma</span><span class="punctuation">)</span>
+<span class="name">PySec_402d1040</span> <span class="punctuation">{</span> <span class="name">nseg</span><span class="operator">=</span><span class="literal number integer">3</span>  <span class="name">L</span><span class="operator">=</span><span class="literal number integer">100</span>  <span class="name">Ra</span><span class="operator">=</span><span class="literal number float">35.4</span>
+    <span class="operator">/*</span><span class="name">location</span> <span class="literal number integer">0</span> <span class="name">attached</span> <span class="name">to</span> <span class="name">cell</span> <span class="literal number integer">0</span><span class="operator">*/</span>
+    <span class="operator">/*</span> <span class="name">First</span> <span class="name">segment</span> <span class="name">only</span> <span class="operator">*/</span>
+    <span class="name">insert</span> <span class="name">capacitance</span> <span class="punctuation">{</span> <span class="name">cm</span><span class="operator">=</span><span class="literal number integer">1</span><span class="punctuation">}</span>
+    <span class="name">insert</span> <span class="name">morphology</span> <span class="punctuation">{</span> <span class="name">diam</span><span class="operator">=</span><span class="literal number integer">500</span><span class="punctuation">}</span>
+<span class="punctuation">}</span>
+</pre>
+</div>
+<div class="section" id="inserting-membrane-mechanisms">
+<h3>Inserting membrane mechanisms</h3>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">insert</span><span class="punctuation">(</span><span class="literal string">'pas'</span><span class="punctuation">)</span>
+</pre>
+<p>Accessing range variables can be done in two ways: using a more object-oriented notation:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">pas</span><span class="operator">.</span><span class="name">g</span>
+<span class="literal number float">0.001</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">pas</span><span class="operator">.</span><span class="name">e</span>
+<span class="operator">-</span><span class="literal number float">70.0</span>
+</pre>
+<p>or with a more hoc-compatible syntax using underscores:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">g_pas</span>
+<span class="literal number float">0.001</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">e_pas</span>
+<span class="operator">-</span><span class="literal number float">70.0</span>
+</pre>
+<p>Contrast with the hoc syntax:</p>
+<pre class="code python literal-block">
+<span class="name">oc</span><span class="operator">&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">g_pas</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span>
+         <span class="literal number float">0.001</span>
+<span class="name">oc</span><span class="operator">&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">e_pas</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span>
+         <span class="operator">-</span><span class="literal number integer">70</span>
+</pre>
+<p>To set values for all the segments in a section, iterate over them:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword">for</span> <span class="name">seg</span> <span class="operator word">in</span> <span class="name">soma</span><span class="punctuation">:</span>
+<span class="operator">...</span>     <span class="name">seg</span><span class="operator">.</span><span class="name">pas</span><span class="operator">.</span><span class="name">g</span> <span class="operator">=</span> <span class="literal number float">0.01</span><span class="operator">*</span><span class="name">seg</span><span class="operator">.</span><span class="name">x</span>
+</pre>
+<p>Or, to set the same value for all segments:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">e_pas</span> <span class="operator">=</span> <span class="operator">-</span><span class="literal number float">64.0</span>
+</pre>
+<p>For the most fine-scale control, the mechanisms can be addressed as Python objects:</p>
+<pre class="code python literal-block">
+<span class="keyword">for</span> <span class="name">seg</span> <span class="operator word">in</span> <span class="name">soma</span><span class="punctuation">:</span>
+<span class="operator">...</span>   <span class="keyword">for</span> <span class="name">mech</span> <span class="operator word">in</span> <span class="name">seg</span><span class="punctuation">:</span>
+<span class="operator">...</span>     <span class="keyword">if</span> <span class="name">mech</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">()</span> <span class="operator">==</span> <span class="literal string">'pas'</span><span class="punctuation">:</span>
+<span class="operator">...</span>       <span class="keyword">print</span> <span class="name">seg</span><span class="operator">.</span><span class="name">x</span><span class="punctuation">,</span> <span class="name">mech</span><span class="operator">.</span><span class="name">g</span><span class="punctuation">,</span> <span class="name">mech</span><span class="operator">.</span><span class="name">e</span>
+<span class="operator">...</span>
+<span class="literal number float">0.166666666667</span> <span class="literal number float">0.00166666666667</span> <span class="operator">-</span><span class="literal number float">64.0</span>
+<span class="literal number float">0.5</span> <span class="literal number float">0.005</span> <span class="operator">-</span><span class="literal number float">64.0</span>
+<span class="literal number float">0.833333333333</span> <span class="literal number float">0.00833333333333</span> <span class="operator">-</span><span class="literal number float">64.0</span>
+</pre>
+</div>
+<div class="section" id="creating-and-inserting-point-processes">
+<h3>Creating and inserting point processes</h3>
+<p>All hoc classes are accessible in Python through the <tt class="docutils literal">h</tt> object. Of these,
+point processes such as <tt class="docutils literal">IClamp</tt>s must be associated with a membrane section,
+so we must either push the section onto the stack using, e.g. <tt class="docutils literal">soma.push()</tt>, or,
+which is more convenient, pass the section as the <tt class="docutils literal">sec</tt> keyword argument:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span> <span class="operator">=</span> <span class="name">h</span><span class="operator">.</span><span class="name">IClamp</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">,</span> <span class="name">sec</span><span class="operator">=</span><span class="name">soma</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">stim</span><span class="punctuation">)</span>
+<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string">'hoc.HocObject'</span><span class="operator">&gt;</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span><span class="operator">.</span><span class="name">amp</span>
+<span class="literal number float">0.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span><span class="operator">.</span><span class="name">dur</span>
+<span class="literal number float">0.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span><span class="operator">.</span><span class="keyword">del</span>
+  <span class="name">File</span> <span class="literal string">&quot;&lt;stdin&gt;&quot;</span><span class="punctuation">,</span> <span class="name">line</span> <span class="literal number integer">1</span>
+    <span class="name">stim</span><span class="operator">.</span><span class="keyword">del</span>
+           <span class="operator">^</span>
+<span class="name exception">SyntaxError</span><span class="punctuation">:</span> <span class="name">invalid</span> <span class="name">syntax</span>
+</pre>
+<p>What happened there? <tt class="docutils literal">del</tt> is a reserved word in Python, which sometimes
+conflicts with names in hoc. For this reason, the <tt class="docutils literal">IClamp</tt> delay attribute, which is
+called <tt class="docutils literal">del</tt> in hoc, has been renamed to <tt class="docutils literal">delay</tt> in Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; stim.delay = 50.0
+</pre>
+<p>Note, however, that the original name can still be accessed using the Python
+<tt class="docutils literal">getattr()</tt> and <tt class="docutils literal">setattr()</tt> functions:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">getattr</span><span class="punctuation">(</span><span class="name">stim</span><span class="punctuation">,</span> <span class="literal string">'del'</span><span class="punctuation">)</span>
+<span class="literal number float">50.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">setattr</span><span class="punctuation">(</span><span class="name">stim</span><span class="punctuation">,</span> <span class="literal string">'del'</span><span class="punctuation">,</span> <span class="literal number float">100.0</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span><span class="operator">.</span><span class="name">delay</span>
+<span class="literal number float">100.0</span>
+</pre>
+</div>
+
+</div>
+
+
+
+
+<div id="footer">
+<p><a href="http://www.webfaction.com/?affiliate=davison"><img src="/images/webfaction80x15.png" alt="Hosted by Webfaction"></a> &copy;  Andrew P. Davison</p>
+
+<p></p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a> This blog post is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>. Please feel free to copy or modify them, provided you link to this web page.</p>
+
+</div>
+
+
+</div> <!-- /container -->
+
+</body>
+</html>

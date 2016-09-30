@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
+  <meta name="Author" content="Andrew Davison, Ph.D.">
+  <title>Andrew Davison: Installation of NEURON with Python</title>
+  <link type="text/css" rel="stylesheet" href="/css/new.css">
+</head>
+<body>
+
+<div id="container">
+
+<div id="header">
+    <div class="floatright">
+    </div>
+<div class="clear"/>
+    <div id="main-navigation">
+         <ul class="nav">
+            <li class="nav"><a href="/publications/">Publications</a></li>
+            <li class="nav"><a href="/notes/">Blog</a></li>
+            <li class="nav"><a href="/cv/">CV</a></li>
+            <li class="nav"><a href="/about/">About</a></li>
+            
+         </ul>
+        </div>
+    <h1><a href="/">Andrew Davison</a><span class="site-section">: Blog</span></h1>
+</div>
+
+
+
+<div id="content">
+<h2>Installation of NEURON with Python</h2>
+<span class="floatright"><strong>Tags:</strong> <em>Python, NEURON</em></span>
+<p class="note">19th March 2008</p>
+
+<p><em>Updated 2009-01-22 for NEURON v7.0</em></p>
+<p>These instructions are for <a class="reference external" href="http://www.neuron.yale.edu/neuron/">NEURON</a> v7.0. They may remain valid for future
+versions, and should also work for v6.1 or newer. These instructions are for Linux  or Mac OS X, using the bash shell. They may well work in Cygwin, but
+I haven't tested them.</p>
+<p>Binary versions of NEURON 7.0 come with <a class="reference external" href="http://www.python.org/">Python</a> support, and allow you to
+run <tt class="docutils literal">nrniv <span class="pre">-python</span></tt> (embedded Python), but they don't allow you to run Python (or <a class="reference external" href="http://ipython.scipy.org/">IPython</a>) and then do <tt class="docutils literal">import neuron</tt> (NEURON as a Python module): for this you need to compile from <a class="reference external" href="http://www.neuron.yale.edu/neuron/download/getstd">source</a>.</p>
+<p>First build and install Interviews, if you don't already have it:</p>
+<pre class="literal-block">
+$ N=`pwd`
+$ tar xzf iv-17.tar.gz
+$ cd iv-17
+$ ./configure --prefix=`pwd`
+$ make
+$ make install
+</pre>
+<p>Now build and install NEURON:</p>
+<pre class="literal-block">
+$ cd ..
+$ tar xzf nrn-7.0.tar.gz
+$ cd nrn-7.0
+$ ./configure --prefix=`pwd` --with-iv=$N/iv-17 --with-nrnpython
+$ make
+$ make install
+</pre>
+<p>If you want to run parallel NEURON, add <tt class="docutils literal"><span class="pre">--with-paranrn</span></tt> to the <tt class="docutils literal">configure</tt>
+options. On Mac OS X, I have found I need to add <tt class="docutils literal"><span class="pre">PYLIB=-lpython</span> <span class="pre">PYLIBLINK=-lpython</span></tt> to the <tt class="docutils literal">configure</tt> line.</p>
+<p>Now add the NEURON <tt class="docutils literal">bin</tt> directory to your <tt class="docutils literal">PATH</tt>:</p>
+<pre class="literal-block">
+$ export PATH=$N/nrn-7.0/i686/bin:$PATH
+</pre>
+<p>(Replace <tt class="docutils literal">i686</tt> with your own CPU architecture if necessary).</p>
+<p>Now build the NEURON shared library for Python:</p>
+<pre class="literal-block">
+$ cd src/nrnpython
+# python setup.py install
+</pre>
+<p>This command (which will probably have to be run as root or using <tt class="docutils literal">sudo</tt>) will
+install the <tt class="docutils literal">neuron</tt> package to your <tt class="docutils literal"><span class="pre">site-packages</span></tt> directory. An
+alternative, especially if you don't have root privileges, is:</p>
+<pre class="literal-block">
+$ python setup.py install --prefix=~
+</pre>
+<p>which will install the <tt class="docutils literal">neuron</tt> package to <tt class="docutils literal"><span class="pre">~/lib/python/site-packages</span></tt>.
+You will then have to add this directory to the <tt class="docutils literal">PYTHONPATH</tt> environment
+variable:</p>
+<pre class="literal-block">
+$ export PYTHONPATH=$PYTHONPATH:~/lib/python/site-packages
+</pre>
+<div class="section" id="starting-neuron">
+<h3>Starting NEURON</h3>
+<p>For those who are not familiar with NEURON, it may be started without the
+graphical interface using <tt class="docutils literal">nrniv</tt> or with the graphical interface using
+<tt class="docutils literal">nrngui</tt>. To use Python, rather than hoc, as the interpreter, use the
+<tt class="docutils literal"><span class="pre">-python</span></tt> option:</p>
+<pre class="literal-block">
+$ nrniv -python
+NEURON -- Release 7.0 (281:80827e3cd201) 2009-01-16
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+&gt;&gt;&gt; import neuron
+&gt;&gt;&gt;
+</pre>
+<p>If there are any NEURON extension (NMODL) mechanisms in the working directory,
+and they have been compiled with <tt class="docutils literal">nrnivmodl</tt>, they will be loaded
+automatically.</p>
+<p>Alternatively, you may wish to use the normal Python interpreter, or an
+alternative such as IPython. In this case, NEURON is started (and any
+NMODL mechanisms loaded) when you <tt class="docutils literal">import neuron</tt>:</p>
+<pre class="literal-block">
+$ ipython
+Python 2.4.1 (#1, May 25 2007, 17:56:29)
+Type &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+
+IPython 0.6.15 -- An enhanced Interactive Python.
+?       -&gt; Introduction to IPython's features.
+%magic  -&gt; Information about IPython's 'magic' % functions.
+help    -&gt; Python's own help system.
+object? -&gt; Details about 'object'. ?object also works, ?? prints more.
+
+In [1]: import neuron
+NEURON -- Release 7.0 (281:80827e3cd201) 2009-01-16
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+In [2]:
+</pre>
+</div>
+
+</div>
+
+
+
+
+<div id="footer">
+<p><a href="http://www.webfaction.com/?affiliate=davison"><img src="/images/webfaction80x15.png" alt="Hosted by Webfaction"></a> &copy;  Andrew P. Davison</p>
+
+<p></p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a> This blog post is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>. Please feel free to copy or modify them, provided you link to this web page.</p>
+
+</div>
+
+
+</div> <!-- /container -->
+
+</body>
+</html>

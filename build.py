@@ -53,7 +53,7 @@ from feedgen.feed import FeedGenerator
 from pytz import timezone
 
 
-builddir = "build"
+builddir = "docs"
 relative_paths = False
 env = Environment(loader=FileSystemLoader("templates"))
 publisher_defaults = dict(source=None, source_class=io.FileInput,
