@@ -68,6 +68,7 @@ publisher_defaults = dict(source=None, source_class=io.FileInput,
 months = ("January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December")
 
+
 def render_to_file(template_filename, output_path, context):
     template = env.get_template(template_filename)
     os.makedirs(os.path.join(builddir, output_path), exist_ok=True)
@@ -117,6 +118,14 @@ def get_base_path(level):
         return ""
 
 
+def format_authors(records):
+    for record in records:
+        authors = record['author'].split(' and ')
+        if len(authors) > 1:
+            record['author'] = ", ".join(authors[:-1]) + ' and ' + authors[-1]
+    return records
+
+
 def generate_feed(notes):
     nineam = time(9, 0, 0, tzinfo=timezone("Europe/Paris"))
     fg = FeedGenerator()
@@ -164,20 +173,8 @@ def build():
     with open('content/presentations.bib', encoding='utf-8') as bibtex_file:
         presentations_database = bibtexparser.load(bibtex_file)
 
-    # -- Build publications page
-    print("Building publications page")
-    publications = list(reversed(sorted(article_database.entries, key=lambda entry: (entry["year"], months.index(entry["month"])))))
-    presentations = list(reversed(sorted((entry for entry in presentations_database.entries if entry["ENTRYTYPE"] != "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
-    tech_reports = list(reversed(sorted((entry for entry in presentations_database.entries if entry["ENTRYTYPE"] == "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
-    render_to_file("publications.html", "publications",
-                   {"this_year": datetime.now().year,
-                    "publications": publications,
-                    "presentations": presentations,
-                    "tech_reports": tech_reports,
-                    "base_path": get_base_path(level=1),
-                    "section": "publications"})
-
     # -- Create individual BibTeX files
+    os.makedirs(os.path.join(builddir, 'publications'), exist_ok=True)
     for article in article_database.entries:
         tmp_db = bibtexparser.bibdatabase.BibDatabase()
         tmp_db.entries = [article]
@@ -187,6 +184,19 @@ def build():
             os.mkdir(directory)
         with open(os.path.join(directory, "%s.bib" % article["ID"]), "w", encoding="utf-8") as fp:
             bibtexparser.dump(tmp_db, fp)
+
+    # -- Build publications page
+    print("Building publications page")
+    publications = list(reversed(sorted(format_authors(article_database.entries), key=lambda entry: (entry["year"], months.index(entry["month"])))))
+    presentations = list(reversed(sorted((entry for entry in presentations_database.entries if entry["ENTRYTYPE"] != "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
+    tech_reports = list(reversed(sorted((entry for entry in presentations_database.entries if entry["ENTRYTYPE"] == "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
+    render_to_file("publications.html", "publications",
+                   {"this_year": datetime.now().year,
+                    "publications": publications,
+                    "presentations": presentations,
+                    "tech_reports": tech_reports,
+                    "base_path": get_base_path(level=1),
+                    "section": "publications"})
 
     # -- Build simple pages
     print("Building About and CV")
@@ -294,41 +304,8 @@ if __name__ == "__main__":
     if args.command == "build":
         build()
     elif args.command == "upload":
-        username, url = args.url.split("@")
+        username, url = args.server.split("@")
         upload(url, username)
     else:
         print("No such command")
         sys.exit(1)
-
-
-'''
-Notes on customizing BibTeX import
-----------------------------------
-
-from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import *
-
-# Let's define a function to customize our entries.
-# It takes a record and return this record.
-def customizations(record):
-    """Use some functions delivered by the library
-
-    :param record: a record
-    :returns: -- customized record
-    """
-    record = type(record)
-    record = author(record)
-    record = editor(record)
-    record = journal(record)
-    record = keyword(record)
-    record = link(record)
-    record = page_double_hyphen(record)
-    record = doi(record)
-    return record
-
-with open('bibtex.bib') as bibtex_file:
-    parser = BibTexParser()
-    parser.customization = customizations
-    bib_database = bibtexparser.load(bibtex_file, parser=parser)
-    print(bib_database.entries)
-'''
