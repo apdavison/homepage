@@ -6,7 +6,7 @@ To build:
 
 To view the generated pages on the local host:
 
-    cd build
+    cd docs
     python -m http.server 8000 --bind 127.0.0.1
 
 To upload:

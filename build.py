@@ -208,6 +208,16 @@ def build():
         context["section"] = page
         render_to_file("general.html", page, context)
 
+    # -- Build stand-alone pages
+    print("Building standalone pages")
+    for page in ("jobs", "emploi"):
+        output, pub = publish_programmatically(source_path="content/%s.rst" % page,
+                                               **publisher_defaults)
+        context = pub.writer.parts
+        context["base_path"] = get_base_path(level=1)
+        context["section"] = page
+        render_to_file("standalone.html", page, context)
+
     # -- Build notes/blog posts
     print("Building blog posts")
     os.makedirs(os.path.join(builddir, "notes"))
