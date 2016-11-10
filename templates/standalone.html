@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
+  <meta name="Author" content="Andrew Davison, Ph.D.">
+  <title>{% block title %}{{title}}{% endblock %}</title>
+  <link type="text/css" rel="stylesheet" href="{{base_path}}/css/new.css">
+</head>
+<body>
+
+<div id="container">
+
+<div id="header">
+    <div class="floatright">
+    </div>
+<div class="clear"/>
+    <div id="main-navigation"></div>
+    <h1>{% block heading %}<span class="site-section">{{title}}</span>{% endblock %}</h1>
+</div>
+
+{% block body %}
+<div id="content">
+{{fragment}}
+</div>
+{% endblock %}
+
+<div id="footer">
+<p>&copy; {{ this_year }} Andrew P. Davison</p>
+{% block footer %}
+{% endblock %}
+</div>
+
+
+</div> <!-- /container -->
+
+</body>
+</html>

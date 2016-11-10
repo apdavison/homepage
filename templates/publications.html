@@ -11,7 +11,7 @@
 
 <ul class="publications">
 {% for article in publications %}
-<li class="publication" id="{{article.anchor}}">
+<li class="publication" id="{{article.ID}}">
   {{article.author}} ({{article.year}}) <strong>{{article.title}}</strong>.
   {% if article.ENTRYTYPE == "article" %}
     <span class="publication">{{article.journal}}</span> {{article.volume}}: {{article.pages}}
@@ -22,7 +22,7 @@
   {% endif %}{% endif %}
   {% if article.doi %}<a href="http://dx.doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
   <span class="note">
-        [<a href="/publications/{{article.year}}/{{article.id}}.bib">BibTeX</a>]
+        [<a href="/publications/{{article.year}}/{{article.ID}}.bib">BibTeX</a>]
         {% if article.full_text %}[<a href="{{article.full_text}}">Full text</a>]{% endif %}
         {% if article.preprint %}[<a href="{{article.preprint}}">Preprint</a>]{% endif %}
         {% if article.model_link %}[<a href="{{article.model_link}}">Get the model from ModelDB</a>]{% endif %}
@@ -35,7 +35,7 @@
 <h2>Conference presentations</h2>
 <ul class="publications">
 {% for conf in presentations %}
-<li class="publication" id="{{conf.anchor}}">
+<li class="publication" id="{{conf.ID}}">
   {{conf.author}} ({{conf.year}}) <strong>{{conf.title}}.</strong>
     {% if conf.booktitle %}
     <span class="publication">{{conf.booktitle}}</span>{% if conf.volume %} {{conf.volume}}: {{conf.pages}}.{% endif %}
@@ -60,7 +60,7 @@
 <li class="publication" id="{{report.anchor}}">
   {{report.author}} ({{report.year}}) <strong>{{report.title}}.</strong>
     <span class="publication">{{report.booktitle}}</span>.
-  <span class="note">{% if report.abstract %}[<a href="/publications/{{report.year}}/{{report.anchor}}/">Abstract</a>] {% endif %}
+  <span class="note">
   {% if report.pdf %}[<a href="{{report.pdf}}">PDF</a>]{% endif %}</span>
 </li>
 {% endfor %}

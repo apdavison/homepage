@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
+  <meta name="Author" content="Andrew Davison, Ph.D.">
+  <title>Andrew Davison: From Hoc to Python: a case study</title>
+  <link type="text/css" rel="stylesheet" href="/css/new.css">
+</head>
+<body>
+
+<div id="container">
+
+<div id="header">
+    <div class="floatright">
+    </div>
+<div class="clear"/>
+    <div id="main-navigation">
+         <ul class="nav">
+            <li class="nav"><a href="/publications/">Publications</a></li>
+            <li class="nav"><a href="/notes/">Blog</a></li>
+            <li class="nav"><a href="/cv/">CV</a></li>
+            <li class="nav"><a href="/about/">About</a></li>
+            
+         </ul>
+        </div>
+    <h1><a href="/">Andrew Davison</a><span class="site-section">: Blog</span></h1>
+</div>
+
+
+
+<div id="content">
+<h2>From Hoc to Python: a case study</h2>
+<span class="floatright"><strong>Tags:</strong> <em>Python, NEURON</em></span>
+<p class="note">10th November 2010</p>
+
+<p>Although I was involved in the process of adding <a class="reference external" href="http://www.python.org/">Python</a> support to the <a class="reference external" href="http://www.neuron.yale.edu/neuron/">NEURON</a>
+simulator, and in writing a <a class="reference external" href="http://www.frontiersin.org/neuroinformatics/10.3389/neuro.11/001.2009/abstract">paper about this</a>, I've never converted a complete,
+published model from Hoc to Python.</p>
+<p>There is in fact no strong reason for doing so, since an existing Hoc file can be
+executed from Python using:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword namespace">from</span> <span class="name namespace">neuron</span> <span class="keyword namespace">import</span> <span class="name">h</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="name">filename</span><span class="punctuation">)</span>
+</pre>
+<p>after which any variables or object references declared in <em>filename</em> will be
+available through the <tt class="docutils literal">h</tt> object.</p>
+<p>Nevertheless, if you want to modify and build upon an existing model, converting
+it to Python may give you a more flexible and powerful base upon which to build.</p>
+<p>The model I chose to convert is one I developed during my PhD thesis, of the
+mammalian olfactory bulb (<a class="reference external" href="http://intl-jn.physiology.org/cgi/content/abstract/90/3/1921">Davison, Feng and Brown (2003) J. Neurophysiol. 90:1921-1935</a>).
+The original code for the model is available on <a class="reference external" href="http://senselab.med.yale.edu/modeldb/ShowModel.asp?model=2730">ModelDB with accession number 2730</a>,
+but since I would be extending it, I copied it to a <a class="reference external" href="http://mercurial.selenic.com/">Mercurial</a> repository on
+<a class="reference external" href="http://bitbucket.org/">BitBucket</a>. To checkout a copy:</p>
+<pre class="literal-block">
+$ hg clone http://bitbucket.org/apdavison/bulbnet
+</pre>
+<div class="section" id="ion-channels">
+<h3>Ion channels</h3>
+<p>Several of the ion channel models use tabulated data, rather than equations,
+to define their rate functions. This means that in the <a class="reference external" href="http://www.neuron.yale.edu/neuron/static/papers/nc2000/nmodl.htm">NMODL</a> definition there
+are a number of <tt class="docutils literal">FUNCTION_TABLE</tt> statements, e.g., in <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/kfasttab.mod">kfasttab.mod</a>:</p>
+<pre class="literal-block">
+FUNCTION_TABLE tabntau(v(mV)) (ms)
+</pre>
+<p>When this mechanism is loaded into NEURON, a <tt class="docutils literal">table_tabntau_kfasttab()</tt> procedure
+appears in Hoc. This procedure must be called in order to populate the table. In
+Hoc:</p>
+<pre class="literal-block">
+oc&gt; table_tabntau_kfasttab(&amp;datavec.x[0], vvec.size, &amp;vvec.x[0])
+</pre>
+<p>where <tt class="docutils literal">datavec</tt> is a <tt class="docutils literal">Vector</tt> containing the values of <tt class="docutils literal">tau</tt> and <tt class="docutils literal">vvec</tt>
+contains the values of the membrane potential. In Python, this becomes:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">table_tabntau_kfasttab</span><span class="punctuation">(</span><span class="name">datavec</span><span class="operator">.</span><span class="name">_ref_x</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">],</span> <span class="name">vvec</span><span class="operator">.</span><span class="name">size</span><span class="punctuation">(),</span> <span class="name">vvec</span><span class="operator">.</span><span class="name">_ref_x</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">])</span>
+</pre>
+<p>The original Hoc file that populated the rate tables is <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/tabchannels.hoc">tabchannels.hoc</a>, the
+Python version is in <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/tabchannels.py">tabchannels.py</a>. Again, there was no real reason to do this,
+as the same thing could be achieved using:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="literal string">&quot;tabchannels.hoc&quot;</span><span class="punctuation">)</span>
+</pre>
+</div>
+<div class="section" id="cell-models">
+<h3>Cell models</h3>
+<p>The mitral and granule cell models are defined in Hoc templates. These become
+classes in Python, e.g.:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="literal string">&quot;mitral.tem&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="literal string">&quot;granule.tem&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">mitral_cell</span> <span class="operator">=</span> <span class="name">h</span><span class="operator">.</span><span class="name">Mit</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">granule_cell</span> <span class="operator">=</span> <span class="name">h</span><span class="operator">.</span><span class="name">Gran</span><span class="punctuation">()</span>
+</pre>
+<p>and can even be subclassed, to add new functionality:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; class Mit2(hclass(h.Mit)):
+...    pass
+&gt;&gt;&gt; another_mitral_cell = Mit2()
+</pre>
+<p>However, again I decided to redefine the <tt class="docutils literal">Mit</tt> and <tt class="docutils literal">Gran</tt> models from scratch
+as pure Python classes.</p>
+<p>One of the potential benefits of using Python with NEURON is less verbose code -
+hiding book-keeping details within classes makes the structure of the model
+shorter and easier to understand. For example, to insert an ion channel into a
+section and set its parameters we can do:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; soma = h.Section()
+&gt;&gt;&gt; soma.insert('hh')
+&gt;&gt;&gt; for segment in soma:
+...     segment.hh.gnabar = 0.11
+...     segment.hh.gkbar = 0.03
+...     segment.hh.gl = 0.0004
+...     segment.hh.el = -55
+</pre>
+<p>This is not so bad, but if there are many ion channels with many parameters, we
+end up with a lot of lines of code. If we define, in a separate file, a
+<tt class="docutils literal">Mechanism</tt> class as follows:</p>
+<pre class="code python literal-block">
+<span class="keyword">class</span> <span class="name class">Mechanism</span><span class="punctuation">(</span><span class="name builtin">object</span><span class="punctuation">):</span>
+    <span class="keyword">def</span> <span class="name function">__init__</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">name</span><span class="punctuation">,</span> <span class="operator">**</span><span class="name">parameters</span><span class="punctuation">):</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">name</span> <span class="operator">=</span> <span class="name">name</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">parameters</span> <span class="operator">=</span> <span class="name">parameters</span>
+
+    <span class="keyword">def</span> <span class="name function">insert_into</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">section</span><span class="punctuation">):</span>
+        <span class="name">section</span><span class="operator">.</span><span class="name">insert</span><span class="punctuation">(</span><span class="name">mechanism</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">)</span>
+        <span class="keyword">for</span> <span class="name">name</span><span class="punctuation">,</span> <span class="name">value</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">parameters</span><span class="operator">.</span><span class="name">items</span><span class="punctuation">():</span>
+            <span class="keyword">for</span> <span class="name">segment</span> <span class="operator word">in</span> <span class="name">section</span><span class="punctuation">:</span>
+                <span class="name">mech</span> <span class="operator">=</span> <span class="name builtin">getattr</span><span class="punctuation">(</span><span class="name">segment</span><span class="punctuation">,</span> <span class="name">mechanism</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">)</span>
+                <span class="name builtin">setattr</span><span class="punctuation">(</span><span class="name">mech</span><span class="punctuation">,</span> <span class="name">name</span><span class="punctuation">,</span> <span class="name">value</span><span class="punctuation">)</span>
+</pre>
+<p>then the code to insert an ion channel into the soma reduces from six lines to
+two:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">hh</span> <span class="operator">=</span> <span class="name">Mechanism</span><span class="punctuation">(</span><span class="literal string">'hh'</span><span class="punctuation">,</span> <span class="name">gnabar</span><span class="operator">=</span><span class="literal number float">0.11</span><span class="punctuation">,</span> <span class="name">gkbar</span><span class="operator">=</span><span class="literal number float">0.03</span><span class="punctuation">,</span> <span class="name">gl</span><span class="operator">=</span><span class="literal number float">0.0004</span><span class="punctuation">,</span> <span class="name">el</span><span class="operator">=-</span><span class="literal number integer">55</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">hh</span><span class="operator">.</span><span class="name">insert_into</span><span class="punctuation">(</span><span class="name">soma</span><span class="punctuation">)</span>
+</pre>
+<p>Similarly, I defined a new <tt class="docutils literal">Section</tt> class, which subclasses <tt class="docutils literal">h.Section</tt> but
+allows the length, diameter, axial resistivity, ion channel mechanisms and
+connections to other sections all to be specified in the constructor, i.e.,
+we can reduce:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span> <span class="operator">=</span> <span class="name">h</span><span class="operator">.</span><span class="name">Section</span><span class="punctuation">()</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">L</span> <span class="operator">=</span> <span class="literal number integer">50</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">diam</span> <span class="operator">=</span> <span class="literal number float">2.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">Ra</span> <span class="operator">=</span> <span class="literal number float">100.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">insert</span><span class="punctuation">(</span><span class="literal string">'hh'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword">for</span> <span class="name">segment</span> <span class="operator word">in</span> <span class="name">dend</span><span class="punctuation">:</span>
+<span class="operator">...</span>     <span class="name">segment</span><span class="operator">.</span><span class="name">hh</span><span class="operator">.</span><span class="name">gnabar</span> <span class="operator">=</span> <span class="literal number float">0.11</span>
+<span class="operator">...</span>     <span class="name">segment</span><span class="operator">.</span><span class="name">hh</span><span class="operator">.</span><span class="name">gkbar</span> <span class="operator">=</span> <span class="literal number float">0.03</span>
+<span class="operator">...</span>     <span class="name">segment</span><span class="operator">.</span><span class="name">hh</span><span class="operator">.</span><span class="name">gl</span> <span class="operator">=</span> <span class="literal number float">0.0004</span>
+<span class="operator">...</span>     <span class="name">segment</span><span class="operator">.</span><span class="name">hh</span><span class="operator">.</span><span class="name">el</span> <span class="operator">=</span> <span class="operator">-</span><span class="literal number integer">55</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">connect</span><span class="punctuation">(</span><span class="name">soma</span><span class="punctuation">,</span> <span class="literal number integer">1</span><span class="punctuation">,</span> <span class="literal number integer">0</span><span class="punctuation">)</span>
+</pre>
+<p>to a single line:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">Section</span><span class="punctuation">(</span><span class="name">L</span><span class="operator">=</span><span class="literal number integer">50</span><span class="punctuation">,</span> <span class="name">diam</span><span class="operator">=</span><span class="literal number float">2.0</span><span class="punctuation">,</span> <span class="name">Ra</span><span class="operator">=</span><span class="literal number float">100.0</span><span class="punctuation">,</span> <span class="name">mechanisms</span><span class="operator">=</span><span class="punctuation">[</span><span class="name">hh</span><span class="punctuation">],</span> <span class="name">parent</span><span class="operator">=</span><span class="name">soma</span><span class="punctuation">,</span> <span class="name">connect_to</span><span class="operator">=</span><span class="literal number integer">1</span><span class="punctuation">)</span>
+</pre>
+<p>Similarly, inserting a synapse goes from:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend_AMPAr</span> <span class="operator">=</span> <span class="name">ExpSyn</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">,</span> <span class="name">sec</span><span class="operator">=</span><span class="name">dend</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend_AMPAr</span><span class="operator">.</span><span class="name">e</span> <span class="operator">=</span> <span class="literal number float">0.0</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend_AMPAr</span><span class="operator">.</span><span class="name">tau</span> <span class="operator">=</span> <span class="literal number float">2.0</span>
+</pre>
+<p>to:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">add_synapse</span><span class="punctuation">(</span><span class="literal string">&quot;AMPAr&quot;</span><span class="punctuation">,</span> <span class="literal string">&quot;ExpSyn&quot;</span><span class="punctuation">,</span> <span class="name">e</span><span class="operator">=</span><span class="literal number float">0.0</span><span class="punctuation">,</span> <span class="name">tau</span><span class="operator">=</span><span class="literal number float">2.0</span><span class="punctuation">)</span>
+</pre>
+<p>with the added advantage that the synapse object is now available as <tt class="docutils literal">dend.AMPAr</tt>,
+i.e. it is contained within the dend object, so we don't have to keep track of
+clumsy names like <tt class="docutils literal">dend_AMPAr</tt>.</p>
+<p>The <tt class="docutils literal">Mechanism</tt> and <tt class="docutils literal">Section</tt> classes have the potential to be useful in
+many projects, so I have put them into a separate package, <em>nrnutils</em>, available
+from <a class="reference external" href="http://pypi.python.org/pypi/nrnutils/">http://pypi.python.org/pypi/nrnutils/</a>. To use it in your own code, install
+using:</p>
+<pre class="literal-block">
+$ easy_install nrnutils
+</pre>
+<p>(this requires <a class="reference external" href="http://pypi.python.org/pypi/setuptools">setuptools</a>. If you don't have this, full installation instructions
+are on the nrnutils PyPI page) then in Python:</p>
+<pre class="code python literal-block">
+<span class="operator">&gt;&gt;&gt;</span> <span class="keyword namespace">from</span> <span class="name namespace">nrnutils</span> <span class="keyword namespace">import</span> <span class="name">Mechanism</span><span class="punctuation">,</span> <span class="name">Section</span>
+</pre>
+<p>If you have your own useful Python classes or functions for NEURON, I would be
+happy to add them into <em>nrnutils</em>, or why not release your own Python package.
+The development repository for <em>nrnutils</em> is at <a class="reference external" href="http://bitbucket.org/apdavison/nrnutils">http://bitbucket.org/apdavison/nrnutils</a>.</p>
+<p>The original cell templates are at <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/mitral.tem">mitral.tem</a> and <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/granule.tem">granule.tem</a>, the Python
+versions are at <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/mitral.py">mitral.py</a> and <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/granule.py">granule.py</a>.</p>
+</div>
+
+</div>
+
+
+
+
+<div id="footer">
+<p>&copy;  Andrew P. Davison</p>
+
+<p></p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a> This blog post is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>. Please feel free to copy or modify them, provided you link to this web page.</p>
+
+</div>
+
+
+</div> <!-- /container -->
+
+</body>
+</html>
