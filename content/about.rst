@@ -8,7 +8,7 @@ About
    :alt: Andrew Davison
    :class: img-rounded pull-right
 
-Hi, welcome to my personal homepage. I am a senior research scientist in the UNIC_ lab (Unité de Neurosciences,
+This is the personal website of Andrew Davison. I am a senior research scientist in the UNIC_ lab (Unité de Neurosciences,
 Information et Complexité) of the CNRS_, where I lead the `Neuroinformatics group`_. You might also be interested
 in my `lab homepage`_ or my `Twitter feed`_. My ORCID identifier is `0000-0002-4793-7541`_.
 
@@ -45,7 +45,7 @@ Mailing address
 .. _`Twitter feed`: https://twitter.com/apdavison
 .. _`0000-0002-4793-7541`: http://orcid.org/0000-0002-4793-7541
 .. _PyNN: http://neuralensemble.org/PyNN
-.. _NineML: http://software.incf.org/software/nineml/home/
+.. _NineML: http://nineml.net/
 .. _NeuroML: http://www.neuroml.org
 .. _Sumatra: http://neuralensemble.org/sumatra
 .. _`international standardisation efforts`: http://www.incf.org/programs/datasharing/electrophysiology-task-force

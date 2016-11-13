@@ -45,6 +45,7 @@ import shutil
 from getpass import getpass
 from datetime import datetime, time
 from argparse import ArgumentParser
+from html.parser import HTMLParser
 from jinja2 import FileSystemLoader, Environment
 import bibtexparser
 from docutils.core import publish_programmatically
@@ -162,8 +163,9 @@ def build():
     shutil.rmtree(builddir)
     os.makedirs(builddir)
 
-    # -- Copy css and image files to build directory
+    # -- Copy css, js and image files to build directory
     shutil.copytree("css", os.path.join(builddir, "css"))
+    shutil.copytree("js", os.path.join(builddir, "js"))
     for subdir in ("images", "figures", "files", "posters"):
         shutil.copytree("content/%s" % subdir, os.path.join(builddir, subdir))
 
@@ -265,6 +267,7 @@ def build():
     # -- Generate RSS/Atom feeds
     print("Generating RSS and Atom feeds")
     generate_feed(notes)
+    check_links(internal=True, external=False)
 
 
 def remote_command(ssh_client, command):
@@ -306,9 +309,66 @@ def upload(url, username, target_dir="webapps/homepage", backup_dir="backups"):
     remote_command(ssh, "rm -f homepage.zip")
 
 
+
+
+class LinkParser(HTMLParser):
+
+    def __init__(self):
+        HTMLParser.__init__(self)
+        self.internal_links = set()
+        self.external_links = set()
+
+    def handle_starttag(self, tag, attrs):
+        # Only parse the 'anchor' tag.
+        if tag == "a":
+            # Check the list of defined attributes.
+            for name, value in attrs:
+                # If href is defined, print it.
+                if name == "href":
+                    if value.startswith("http"):
+                        self.external_links.add(value)
+                    elif value.startswith("mailto"):
+                        pass
+                    else:
+                        self.internal_links.add(value)
+
+
+def check_links(internal=True, external=True):
+    import requests
+    parser = LinkParser()
+    for (dirpath, dirnames, filenames) in os.walk(builddir):
+        #print(dirpath, dirnames, filenames)
+        for filename in filenames:
+            base, ext = os.path.splitext(filename)
+            if ext == ".html":
+                with open(os.path.join(dirpath, filename)) as fp:
+                    parser.feed(fp.read())
+    if internal:
+        for url in parser.internal_links:
+            if url[0] == "#":  # internal reference
+                continue
+            elif url[-1] == "/":  # directory
+                filename = os.path.join(builddir, url[1:], "index.html")
+            else:
+                filename = os.path.join(builddir, url[1:])
+            if not os.path.exists(filename):
+                print(url, "does not exist")
+    if external:
+        for url in parser.external_links:
+            try:
+                response = requests.head(url)
+            except Exception:
+                print(url, "- error when checking URL")
+            else:
+                if response.status_code > 400:
+                    print(url, "does not exist")
+    #print(parser.external_links)
+    #print(parser.internal_links)
+
+
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument('command', help="either 'build' or 'upload'")
+    parser.add_argument('command', help="either 'build', 'upload', or 'checklinks'")
     parser.add_argument('--server', help="host name for upload (e.g. username@example.com)")
     args = parser.parse_args()
     if args.command == "build":
@@ -316,6 +376,8 @@ if __name__ == "__main__":
     elif args.command == "upload":
         username, url = args.server.split("@")
         upload(url, username)
+    elif args.command == "checklinks":
+        check_links()
     else:
         print("No such command")
         sys.exit(1)

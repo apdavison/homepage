@@ -2,6 +2,9 @@
 Curriculum Vitae
 ================
 
+Andrew P. Davison
+=================
+
 | `Unité de Neuroscience, Information et Complexité <http://www.unic.cnrs-gif.fr/>`_ (UNIC)
 | Institut de Neurobiologie Alfred Fessard
 | Centre Nationale de la Recherche Scientifique

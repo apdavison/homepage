@@ -1,38 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
-  <meta name="Author" content="Andrew Davison, Ph.D.">
-  <title>Andrew Davison: From Hoc to Python: a case study</title>
-  <link type="text/css" rel="stylesheet" href="/css/new.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="Author" content="Andrew Davison, Ph.D.">
+    <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
+
+    <title>Andrew Davison: From Hoc to Python: a case study</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/blog.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+
 </head>
+
 <body>
 
-<div id="container">
-
-<div id="header">
-    <div class="floatright">
-    </div>
-<div class="clear"/>
-    <div id="main-navigation">
-         <ul class="nav">
-            <li class="nav"><a href="/publications/">Publications</a></li>
-            <li class="nav"><a href="/notes/">Blog</a></li>
-            <li class="nav"><a href="/cv/">CV</a></li>
-            <li class="nav"><a href="/about/">About</a></li>
-            
-         </ul>
-        </div>
-    <h1><a href="/">Andrew Davison</a><span class="site-section">: Blog</span></h1>
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="nav blog-nav">
+      <a class="nav-link" href="/"><h1>Some models are useful...</h1></a>
+      <a class="nav-link">&nbsp;</a>
+      <a class="nav-link" href="/publications/">Publications</a>
+      <a class="nav-link active" href="/notes/">Blog</a>
+      <a class="nav-link" href="/cv/">CV</a>
+      <a class="nav-link" href="/about/">About</a>
+    </nav>
+  </div>
 </div>
 
+<div class="container">
 
+    <div class="blog-main">
 
 <div id="content">
-<h2>From Hoc to Python: a case study</h2>
+<h2 class="blog-post-title">From Hoc to Python: a case study</h2>
 <span class="floatright"><strong>Tags:</strong> <em>Python, NEURON</em></span>
-<p class="note">10th November 2010</p>
+<p class="blog-post-meta">10th November 2010</p>
 
 <p>Although I was involved in the process of adding <a class="reference external" href="http://www.python.org/">Python</a> support to the <a class="reference external" href="http://www.neuron.yale.edu/neuron/">NEURON</a>
 simulator, and in writing a <a class="reference external" href="http://www.frontiersin.org/neuroinformatics/10.3389/neuro.11/001.2009/abstract">paper about this</a>, I've never converted a complete,
@@ -50,7 +61,7 @@ it to Python may give you a more flexible and powerful base upon which to build.
 <p>The model I chose to convert is one I developed during my PhD thesis, of the
 mammalian olfactory bulb (<a class="reference external" href="http://intl-jn.physiology.org/cgi/content/abstract/90/3/1921">Davison, Feng and Brown (2003) J. Neurophysiol. 90:1921-1935</a>).
 The original code for the model is available on <a class="reference external" href="http://senselab.med.yale.edu/modeldb/ShowModel.asp?model=2730">ModelDB with accession number 2730</a>,
-but since I would be extending it, I copied it to a <a class="reference external" href="http://mercurial.selenic.com/">Mercurial</a> repository on
+but since I would be extending it, I copied it to a <a class="reference external" href="http://mercurial-scm.org/">Mercurial</a> repository on
 <a class="reference external" href="http://bitbucket.org/">BitBucket</a>. To checkout a copy:</p>
 <pre class="literal-block">
 $ hg clone http://bitbucket.org/apdavison/bulbnet
@@ -190,17 +201,26 @@ versions are at <a class="reference external" href="http://bitbucket.org/apdavis
 </div>
 
 
+    </div><!-- /.blog-main -->
+
+</div><!-- /.container -->
+
+<footer class="blog-footer">
+  <p>&copy;  Andrew P. Davison</p>
+
+<p></p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a> This blog post is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>. Please feel free to copy or modify it, provided you link to this web page.</p>
+
+  <p><a href="#">Back to top</a></p>
+</footer>
 
 
-<div id="footer">
-<p>&copy;  Andrew P. Davison</p>
-
-<p></p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a> This blog post is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>. Please feel free to copy or modify them, provided you link to this web page.</p>
-
-</div>
-
-
-</div> <!-- /container -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="/js/ie10-viewport-bug-workaround.js"></script>
 
 </body>
 </html>

@@ -3,7 +3,7 @@ Developpeur(se) Python (H/F)
 ============================
 
 Le laboratoire UNIC du Centre National de la Recherche Scientifique (CNRS) recrute un/une Developpeur(se) Python, pour le developpement de logiciels libres et applications web pour la simulation et analyse de données en neuroscience. Ce travail contribuera au projet européen "Human Brain Project".
-Si vous êtes passionné(e) par la science et souhaitez utiliser vos compétences en informatique pour repousser les frontières des neurosciences dans un projet ouvert et collaboratif, pensez à appliquer!
+Si vous êtes passionné(e) par la science et souhaitez utiliser vos compétences en informatique pour repousser les frontières des neurosciences dans un projet ouvert et collaboratif, pensez à soumettre votre candidature!
 
 Type de contrat: CDD jusqu'au 31 mars 2018, possibilité de renouvelement. Salaire: 24 000 € - 30 000 € par an selon niveau d'expérience.
 
@@ -33,8 +33,8 @@ Localisation
 Gif-sur-Yvette (91), Ile-de-France.
 
 
-Misson
-------
+Mission
+-------
 
 Au sein d'une petite équipe, vous aurez pour principales tâches de:
 

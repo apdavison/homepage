@@ -33,7 +33,7 @@ My slides_ [pdf; 10 MB] are available under the CC-BY licence. Partial notes for
 .. _`CNS 2013`: http://www.cnsorg.org/cns-2013-paris
 .. _slides: https://dl.dropboxusercontent.com/u/730085/workflows_tutorial_cns2013_davison.pdf
 .. _Git: http://git-scm.com/
-.. _Mercurial: http://mercurial.selenic.com/
+.. _Mercurial: http://mercurial-scm.org/
 .. _Sumatra: http://neuralensemble.org/sumatra
 .. _VisTrails: http://www.vistrails.org/
 .. _odML: http://www.g-node.org/projects/odml

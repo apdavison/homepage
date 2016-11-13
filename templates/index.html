@@ -7,59 +7,22 @@
 {% block body %}
 
 <div id="top-panel" class="container">
-    <p>Hi, welcome to my personal homepage. I am a senior research scientist in the
-    <a href="http://www.unic.cnrs-gif.fr/">UNIC</a> lab (Unit&eacute; de Neuroscience, Information et Complexit&eacute;)
-    of the <a href="http://www.cnrs.fr">CNRS</a>, where I lead the Neuroinformatics group. You might also be interested
-    in my <a href="http://www.unic.cnrs-gif.fr/people/Andrew_Davison/">lab homepage</a> or my
-    <a href="https://twitter.com/apdavison">Twitter feed</a>. My ORCID identifier is <a href="http://orcid.org/0000-0002-4793-7541">0000-0002-4793-7541</a>.</p>
+    <div class="page-header">
 
-    <p>My main research interests are in large-scale, data-constrained, biologically-detailed modelling of neuronal
-    networks. My work at the moment has several strands:</p>
-    
-    <ul class="simple">
-        <li>development of tools to facilitate collaborative modelling, model sharing, and the use of novel hardware (GPU,
-        neuromorphic) for neuronal simulations, notably <a href="http://neuralensemble.org/PyNN">PyNN</a>,
-        <a href="http://software.incf.org/software/nineml/home/">NineML</a> and
-        <a href="http://www.neuroml.org">NeuroML</a>.</li>
-        <li>promoting reproducible research in computational neuroscience and neuroinformatics, both through trying to
-        spread best practices and through tool development (see the <a href="http://neuralensemble.org/sumatra">Sumatra</a>
-        project).</li>
-        <li>promoting neurophysiology data sharing, by participation in
-        <a href="http://www.incf.org/programs/datasharing/electrophysiology-task-force">international standardisation efforts</a>,
-        by development of tools to harmonize the handling of electrophysiology data in Python (see the
-        <a href="http://neuralensemble.org/neo">Neo</a> project), and by development of a framework to simplify
-        databasing of neurophysiology data in small labs (see the
-        <a href="https://www.dbunic.cnrs-gif.fr/documentation/helmholtz/">Helmholtz project</a>).</li> 
-        <li>development of models of the early visual system, from retina to primary visual cortex, in close
-        collaboration with experimentalists.</li>
-    </ul>
-    
-    <p>For more information, see the links under &ldquo;Projects&rdquo; below. The following icons link to stuff about or by me elsewhere on the web:</p>
-    
-    <div id="icons">
-    <ul class="nav nav-pills">
-    
-        <li class="nav-item"><a href="https://bitbucket.org/apdavison/"><img src="{{base_path}}/images/icons/bitbucket.png" alt="BitBucket" width=32 height=32></a></li>
+    <div id="icons" class="row">
 
-        <li class="nav-item"><a href="http://www.flickr.com/photos/31675630@N00/"><img src="{{base_path}}/images/icons/flickr.png" alt="Flickr" width=32 height=32></a></li>
+        <div class="col-md-1"><a href="https://github.com/apdavison"><img src="{{base_path}}/images/icons/github.png" alt="GitHub" width=32 height=32></a></div>
+        <div class="col-md-1"><a href="http://twitter.com/apdavison"><img src="{{base_path}}/images/icons/twitter.png" alt="Twitter" width=32 height=32></a></div>
+        <div class="col-md-1"><a href="http://scholar.google.com/citations?user=a_sFeLwAAAAJ"><img src="{{base_path}}/images/icons/google-scholar.png" alt="Google-Scholar" width=32 height=32></a></div>
+        <div class="col-md-1"><a href="https://bitbucket.org/apdavison/"><img src="{{base_path}}/images/icons/bitbucket.png" alt="BitBucket" width=32 height=32></a></div>
+        <div class="col-md-1"><a href="http://orcid.org/0000-0002-4793-7541"><img src="{{base_path}}/images/icons/orcid.png" alt="ORCID" width=32 height=32></a></div>
+        <div class="col-md-1"><a href="http://www.frontiersin.org/people/andrewdavison/937/profile"><img src="{{base_path}}/images/icons/frontiers.png" alt="Frontiers" width=32 height=32></a></div>
+        <div class="col-md-1"><a href="https://plus.google.com/u/0/111766535800518906672/posts"><img src="{{base_path}}/images/icons/google-plus.png" alt="Google-Plus" width=32 height=32></a></div>
+        <div class="col-md-1"><a href="https://www.linkedin.com/in/andrew-davison-a5065622"><img src="{{base_path}}/images/icons/linkedin.png" alt="LinkedIn" width=32 height=32></a></div>
+        <div class="col-md-4"><small>Andrew Davison<br/>Senior Research Scientist, UNIC, CNRS<br/>Group Leader, Neuroinformatics</small></div>
 
-        <li class="nav-item"><a href="http://www.frontiersin.org/people/andrewdavison/937/profile"><img src="{{base_path}}/images/icons/frontiers.png" alt="Frontiers" width=32 height=32></a></li>
+    </div>
     
-        <li class="nav-item"><a href="https://github.com/apdavison"><img src="{{base_path}}/images/icons/github.png" alt="GitHub" width=32 height=32></a></li>
-    
-        <li class="nav-item"><a href="https://plus.google.com/u/0/111766535800518906672/posts"><img src="{{base_path}}/images/icons/google-plus.png" alt="Google-Plus" width=32 height=32></a></li>
-    
-        <li class="nav-item"><a href="http://scholar.google.com/citations?user=a_sFeLwAAAAJ"><img src="{{base_path}}/images/icons/google-scholar.png" alt="Google-Scholar" width=32 height=32></a></li>
-    
-        <li class="nav-item"><a href="http://www.incf.org/community/people/andrewdavison/person_view"><img src="{{base_path}}/images/icons/incf.png" alt="INCF" width=32 height=32></a></li>
-    
-        <li class="nav-item"><a href="http://fr.linkedin.com/pub/andrew-davison/22/656/a50"><img src="{{base_path}}/images/icons/linkedin.png" alt="LinkedIn" width=32 height=32></a></li>
-    
-        <li class="nav-item"><a href="http://orcid.org/0000-0002-4793-7541"><img src="{{base_path}}/images/icons/orcid.png" alt="ORCID" width=32 height=32></a></li>
-    
-        <li class="nav-item"><a href="http://twitter.com/apdavison"><img src="{{base_path}}/images/icons/twitter.png" alt="Twitter" width=32 height=32></a></li>
-    
-    </ul>
     </div>
 </div>
 
@@ -90,57 +53,6 @@
 
         <p><a href="/publications/">more ...</a></p>
 
-        <h2>Projects</h2>
-        <dl>
-        <dt><a href="http://neuralensemble.org/">NeuralEnsemble</a></dt>
-        <dd>An initiative to foster collaborative software development and good software development practices
-        in neuroscience, with an emphasis on use of the <a href="http://www.python.org/">Python</a> programming language.
-        Includes hosting for open-source neuroscience software, the
-        <a href="http://groups.google.com/group/neuralensemble">NeuralEnsemble Google Group</a>, and the
-        <a href="http://neuralensemble.org/meetings/">CodeJam</a> meetings.
-        <a href="http://neuralensemble.org/">more ...</a></dd>
-
-        <dt><a href="http://neuralensemble.org/PyNN/">PyNN</a></dt>
-        <dd>a Python package for simulator-independent specification of spiking neuronal network models. In other words, you
-        can write the code for a model once, using the PyNN API, and then run it without modification on any simulator that
-        PyNN supports. <a href="http://neuralensemble.org/PyNN/">more ...</a></dd>
-
-        <dt><a href="http://neuralensemble.org/sumatra/">Sumatra</a></dt>
-        <dd>Automated tracking of numerical experiments, for reproducible research.
-        <a href="http://neuralensemble.org/sumatra/">more ...</a></dd>
-        </dl>
-
-        <dt><a href="http://neuralensemble.org/neo/">Neo</a></dt>
-        <dd>The goal of Neo is to improve interoperability between Python tools for working with
-        electrophysiology data, by providing a common, shared object model and support for reading a wide range of
-        neurophysiology file formats. <a href="http://neuralensemble.org/neo/">more ...</a></dd>
-        </dl>
-
-        <dt><a href="http://www.neuroml.org/">NeuroML</a> and <a href="http://nineml.incf.org">NineML</a></dt>
-        <dd>NeuroML and NineML are XML-based languages for describing neuronal network models. I am currently involved in
-        developing associated Python libraries: see
-        <a href="https://github.com/NeuralEnsemble/libNeuroML">libNeuroML</a> and the
-        <a href="http://pypi.python.org/pypi/9ML">NineML Python API</a>.</dd>
-        </dl>
-
-        <dt><a href="http://neuralensemble.org/NeuroTools/">NeuroTools</a></dt>
-        <dd>Python tools to simplify the life of a computational neuroscientist, including simulation setup and
-        instrumentation, data storage, analysis and visualisation.
-        <a href="http://neuralensemble.org/NeuroTools/">more ...</a></dd>
-
-        <dt><a href="https://www.dbunic.cnrs-gif.fr/documentation/helmholtz/">Helmholtz</a></dt>
-        <dd>A framework to make it easier for neuroscientists to build a customised database for their experimental data.
-        <a href="https://www.dbunic.cnrs-gif.fr/documentation/helmholtz/">more ...</a></dd>
-        </dl>
-    </div>
-
-    <div  id="notes" class="col-sm-6">
-      <h2>Blog</h2>
-      {% for note in notes %}
-      <p><a href="{{base_path}}/notes/{{note.page}}/">{{note.title}}</a></p>
-      {% endfor %}
-
-
       <h2>Presentations</h2>
         <ul class="publications">
         {% for conf in presentations %}
@@ -163,6 +75,53 @@
         <p><a href="/publications/">more ...</a></p>
 
     </div>
+
+    <div  id="notes" class="col-sm-6">
+      <h2>Blog</h2>
+      {% for note in notes %}
+      <p><a href="{{base_path}}/notes/{{note.page}}/">{{note.title}}</a></p>
+      {% endfor %}
+
+      <h2>Projects</h2>
+        <dl>
+        <dt><a href="http://neuralensemble.org/">NeuralEnsemble</a></dt>
+        <dd>An initiative to foster collaborative software development and good software development practices
+        in neuroscience, with an emphasis on use of the <a href="http://www.python.org/">Python</a> programming language.
+        Includes hosting for open-source neuroscience software, the
+        <a href="http://groups.google.com/group/neuralensemble">NeuralEnsemble Google Group</a>, and the
+        <a href="http://neuralensemble.org/meetings/">CodeJam</a> meetings.
+        <a href="http://neuralensemble.org/">more ...</a></dd>
+
+        <dt><a href="http://neuralensemble.org/PyNN/">PyNN</a></dt>
+        <dd>a Python package for simulator-independent specification of spiking neuronal network models. In other words, you
+        can write the code for a model once, using the PyNN API, and then run it without modification on any simulator that
+        PyNN supports. <a href="http://neuralensemble.org/PyNN/">more ...</a></dd>
+
+        <dt><a href="http://neuralensemble.org/sumatra/">Sumatra</a></dt>
+        <dd>Automated tracking of numerical experiments, for reproducible research.
+        <a href="http://neuralensemble.org/sumatra/">more ...</a></dd>
+
+        <dt><a href="http://neuralensemble.org/neo/">Neo</a></dt>
+        <dd>The goal of Neo is to improve interoperability between Python tools for working with
+        electrophysiology data, by providing a common, shared object model and support for reading a wide range of
+        neurophysiology file formats. <a href="http://neuralensemble.org/neo/">more ...</a></dd>
+
+        <dt><a href="http://www.neuroml.org/">NeuroML</a> and <a href="http://nineml.incf.org">NineML</a></dt>
+        <dd>NeuroML and NineML are XML-based languages for describing neuronal network models. I am currently involved in
+        developing associated Python libraries: see
+        <a href="https://github.com/NeuralEnsemble/libNeuroML">libNeuroML</a> and the
+        <a href="http://pypi.python.org/pypi/9ML">NineML Python API</a>.</dd>
+
+        <dt><a href="http://neuralensemble.org/NeuroTools/">NeuroTools</a></dt>
+        <dd>Python tools to simplify the life of a computational neuroscientist, including simulation setup and
+        instrumentation, data storage, analysis and visualisation.
+        <a href="http://neuralensemble.org/NeuroTools/">more ...</a></dd>
+
+        <dt><a href="https://www.dbunic.cnrs-gif.fr/documentation/helmholtz/">Helmholtz</a></dt>
+        <dd>A framework to make it easier for neuroscientists to build a customised database for their experimental data.
+        <a href="https://www.dbunic.cnrs-gif.fr/documentation/helmholtz/">more ...</a></dd>
+        </dl>
+    </div>
   </div>
 </div>
 
@@ -170,5 +129,5 @@
 
 
 {% block footer %}
-<p>Most of the icons are by <a href="http://icondock.com/free/vector-social-media-icons">IconDock.com</a>. The company logos in the icons are copyright of their respective owners.</p>
+<p>The company logos in the icons are copyright of their respective owners.</p>
 {% endblock %}

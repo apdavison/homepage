@@ -198,7 +198,7 @@ versions are at mitral.py_ and granule.py_.
 .. _`paper about this`: http://www.frontiersin.org/neuroinformatics/10.3389/neuro.11/001.2009/abstract
 .. _`Davison, Feng and Brown (2003) J. Neurophysiol. 90:1921-1935`: http://intl-jn.physiology.org/cgi/content/abstract/90/3/1921
 .. _`ModelDB with accession number 2730`: http://senselab.med.yale.edu/modeldb/ShowModel.asp?model=2730
-.. _Mercurial: http://mercurial.selenic.com/
+.. _Mercurial: http://mercurial-scm.org/
 .. _BitBucket: http://bitbucket.org/
 .. _NMODL: http://www.neuron.yale.edu/neuron/static/papers/nc2000/nmodl.htm
 .. _kfasttab.mod: http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/kfasttab.mod
