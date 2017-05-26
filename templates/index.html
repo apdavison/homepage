@@ -38,7 +38,7 @@
           {% if article.ENTRYTYPE == "article" %}
             <span class="publication">{{article.journal}}</span> {{article.volume}}: {{article.pages}}
           {% else %}{% if article.ENTRYTYPE == "incollection" %}
-            In: <span class="publication">{{article.booktitle}}</span>, edited by {{article.editors}}, {{article.publisher}}{% if article.publisher_address %}: {{article.publisher_address}}{% endif %}{% if article.first_page %}, pp. {{article.pages}}{% endif %}.
+            In: <span class="publication">{{article.booktitle}}</span>, edited by {{article.editor}}; {{article.publisher}}{% if article.publisher_address %}: {{article.publisher_address}}{% endif %}{% if article.first_page %}, pp. {{article.pages}}{% endif %}.
           {% else %}
             Ph.D. thesis, {{article.publisher}}.
           {% endif %}{% endif %}
