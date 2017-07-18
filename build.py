@@ -52,6 +52,7 @@ from docutils.core import publish_programmatically
 from docutils import io, nodes
 from feedgen.feed import FeedGenerator
 from pytz import timezone
+from sumatra.publishing.sphinxext import sumatra_rst
 
 
 builddir = "docs"
@@ -64,7 +65,13 @@ publisher_defaults = dict(source=None, source_class=io.FileInput,
                           parser=None, parser_name='restructuredtext',
                           writer=None, writer_name='html',
                           settings=None, settings_spec=None,
-                          settings_overrides={'initial_header_level': 3}, config_section=None,
+                          settings_overrides={
+                              'initial_header_level': 3,
+                              'sumatra_record_store': "https://labnotebook.andrewdavison.info/records",
+                              'sumatra_project': "Destexhe_JCNS_2009",
+                              'sumatra_link_icon': "/images/icons/icon_info.png"
+                          },
+                          config_section=None,
                           enable_exit_status=False)
 months = ("January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December")

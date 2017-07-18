@@ -2,7 +2,7 @@
 Porting a model from NEURON to PyNN: a case study
 =================================================
 
-:date: 2013-01-17
+:date: 2017-07-18
 :tags: reproducible research, Python, NEURON
 :category: Notes
 :slug: porting-NEURON-PyNN
@@ -15,7 +15,7 @@ simulated on other simulators (for cross-checking or for inclusion as a
 component in a larger model) or on neuromorphic hardware.
 
 This article documents the process of converting one of the models described in
-`Destexhe (2009)`_, originally written in Hoc for the NEURON simulator, to
+`Destexhe (2009)`_ (preprint_), originally written in Hoc for the NEURON simulator, to
 Python, using the PyNN API.
 
 In summary, the process is:
@@ -58,7 +58,7 @@ have one Hoc file and a bunch of NMODL files. The model is a cortical network
 consisting of 500 excitatory and inhibitory cells, in the proportion 4:1, and
 random connectivity. The excitatory cells include a proportion of LTS
 (low-threshold spiking) cells. All cells are modelled as Brette-Gerstner
-adapative exponential integrate-and-fire neurons [ref], implemented by the
+`adapative exponential integrate-and-fire neurons`_, implemented by the
 ``IF_BG4.mod`` mechanism.
 
 Neurons are implemented by a template ``CXcell``, which creates a single
@@ -158,7 +158,7 @@ To port the model from Hoc to PyNN, the approach I have used is the following:
 
     1. convert the code from Hoc to Python, which can be done all at once or
        incrementally, due to the ability to execute fragments of Hoc code from
-       within Python using the :func:`h()` function (see `Hines et al. (2009)`_
+       within Python using the ``h()`` function (see `Hines et al. (2009)`_
        for more on this). At each step, we can compare the results to the
        original output, to check we have changed nothing in the original model.
     2. incrementally replace the original NMODL mechanisms with the nearest
@@ -398,7 +398,7 @@ modification of Destexhe and Mainen's ``gen`` to work with CVODE and NetStim.
 We see that network activity dies out after a few thousand milliseconds.
 Changing the RNG seeds restores the persistence of the activity.
 
-TO INVESTIGATE - if they are so similar, shouldn't they give identical sequences?
+.. TO INVESTIGATE - if they are so similar, shouldn't they give identical sequences?
 
 ::
 
@@ -517,7 +517,7 @@ at a time. i.e. we replace::
                   neurons[j]._cell.adexp.vspike, DT, AMPA_GMAX,
                   sec=neurons[j]._cell)
 
-with
+with::
 
     nc = pyNN.connect(neurons[j], neurons[i], weight=AMPA_GMAX,
                       delay=DT, synapse_type="esyn")
@@ -626,9 +626,11 @@ is left as an exercise for the reader :-)
 
 .. _PyNN: http://neuralensemble.org/PyNN
 .. _`Destexhe (2009)`: http://link.springer.com/article/10.1007/s10827-009-0164-4
+.. _preprint: https://arxiv.org/abs/0809.0654
 .. _`NEURON website`: http://www.neuron.yale.edu/neuron
 .. _Matplotlib: http://matplotlib.org/
-.. _`Hines et al. (2009)`: http://www.frontiersin.org/neuroinformatics/10.3389/neuro.11/001.2009/abstract
+.. _`Hines et al. (2009)`: http://dx.doi.org/10.3389/neuro.11.001.2009
 .. _`Figure 7`: http://link.springer.com/article/10.1007/s10827-009-0164-4/fulltext.html#Fig7
 .. _`the published figure`: http://link.springer.com/article/10.1007/s10827-009-0164-4/fulltext.html#Fig7
 .. _Sumatra: http://neuralensemble.org/sumatra/
+.. _`adapative exponential integrate-and-fire neurons`: http://www.scholarpedia.org/article/Adaptive_exponential_integrate-and-fire_model

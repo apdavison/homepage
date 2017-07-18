@@ -1,4 +1,534 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Some models are useful</title><link>http://andrewdavison.info/atom.xml</link><description>Andrew Davison's Blog</description><atom:link href="http://andrewdavison.info/atom.xml" rel="self"/><copyright>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 26 May 2017 15:32:01 +0200</lastBuildDate><item><title>Managing complex workflows in neural simulation/data analysis</title><link>http://andrewdavison.info/notes/managing-complex-workflows/</link><description>&lt;h2&gt;Managing complex workflows in neural simulation/data analysis&lt;/h2&gt;
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Some models are useful</title><link>http://andrewdavison.info/atom.xml</link><description>Andrew Davison's Blog</description><atom:link href="http://andrewdavison.info/atom.xml" rel="self"/><copyright>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 18 Jul 2017 12:05:15 +0200</lastBuildDate><item><title>Porting a model from NEURON to PyNN: a case study</title><link>http://andrewdavison.info/notes/porting-NEURON-PyNN/</link><description>&lt;h2&gt;Porting a model from NEURON to PyNN: a case study&lt;/h2&gt;
+&lt;p&gt;18th July 2017&lt;/p&gt;
+
+&lt;p&gt;Porting a model from a simulator-specific format to &lt;a class="reference external" href="http://neuralensemble.org/PyNN"&gt;PyNN&lt;/a&gt; allows the model to be
+simulated on other simulators (for cross-checking or for inclusion as a
+component in a larger model) or on neuromorphic hardware.&lt;/p&gt;
+&lt;p&gt;This article documents the process of converting one of the models described in
+&lt;a class="reference external" href="http://link.springer.com/article/10.1007/s10827-009-0164-4"&gt;Destexhe (2009)&lt;/a&gt; (&lt;a class="reference external" href="https://arxiv.org/abs/0809.0654"&gt;preprint&lt;/a&gt;), originally written in Hoc for the NEURON simulator, to
+Python, using the PyNN API.&lt;/p&gt;
+&lt;p&gt;In summary, the process is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;convert the code from Hoc to Python, which is fairly straightforward due
+to the similarities in syntax;&lt;/li&gt;
+&lt;li&gt;one at a time, replace the original NMODL mechanisms with the nearest
+equivalent mechanisms provided by PyNN;&lt;/li&gt;
+&lt;li&gt;incrementally replace NEURON-specific Python code with the equivalent
+from PyNN.&lt;/li&gt;
+&lt;li&gt;after each incremental step, run the simulation and check that the
+results are qualitatively unchanged (sometimes they should be
+quantitatively unchanged as well, but sometimes, as when changing
+random number generators for example, this is not achievable).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For more details, read on.&lt;/p&gt;
+&lt;p&gt;If you would like to follow along and run the code on your own machine, all of
+the code is in a Mercurial repository at &lt;a class="reference external" href="https://bitbucket.org/apdavison/destexhe_jcns_2009"&gt;https://bitbucket.org/apdavison/destexhe_jcns_2009&lt;/a&gt;,
+and each change to the code has been saved to the repository as a separate
+commit. To get started:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg clone https://bitbucket.org/apdavison/destexhe_jcns_2009
+$ cd destexhe_jcns_2009
+$ hg update -r 0         # work with the initial version of the code
+&lt;/pre&gt;
+&lt;div class="section" id="the-original-implementation"&gt;
+&lt;h3&gt;The original implementation&lt;/h3&gt;
+&lt;pre class="literal-block"&gt;
+$ cd demo_cx-lts
+$ ls
+IF_BG4.mod          demo_cx05_N=500b_LTS.oc multiAMPAexp.mod        multiStimexp.mod
+README              gen5.mod                multiGABAAexp.mod
+&lt;/pre&gt;
+&lt;p&gt;These are the files that Alain Destexhe originally sent me. You can see that we
+have one Hoc file and a bunch of NMODL files. The model is a cortical network
+consisting of 500 excitatory and inhibitory cells, in the proportion 4:1, and
+random connectivity. The excitatory cells include a proportion of LTS
+(low-threshold spiking) cells. All cells are modelled as Brette-Gerstner
+&lt;a class="reference external" href="http://www.scholarpedia.org/article/Adaptive_exponential_integrate-and-fire_model"&gt;adapative exponential integrate-and-fire neurons&lt;/a&gt;, implemented by the
+&lt;tt class="docutils literal"&gt;IF_BG4.mod&lt;/tt&gt; mechanism.&lt;/p&gt;
+&lt;p&gt;Neurons are implemented by a template &lt;tt class="docutils literal"&gt;CXcell&lt;/tt&gt;, which creates a single
+compartment and inserts the &lt;tt class="docutils literal"&gt;pas&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;IF_BG4&lt;/tt&gt; mechanisms. The network is
+built through a series of procedures: &lt;tt class="docutils literal"&gt;netCreate()&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;netConnect()&lt;/tt&gt; and
+&lt;tt class="docutils literal"&gt;insertStimulation()&lt;/tt&gt;. The simulation is run through procedure &lt;tt class="docutils literal"&gt;run_sim()&lt;/tt&gt;,
+which calls the standard neuron &lt;tt class="docutils literal"&gt;init()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;run()&lt;/tt&gt; procedures, then
+writes spikes for all cells and the membrane potential for a single cell to file.&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;netCreate()&lt;/tt&gt; loops over excitatory cells, each time creating a &lt;tt class="docutils literal"&gt;CXcell&lt;/tt&gt;
+and storing it in an array &lt;tt class="docutils literal"&gt;neuron[N_CX]&lt;/tt&gt;, setting RS (regular spiking)
+parameters, drawing a random number in [0,1] to determine whether the cell is an
+LTS cell, in which case some of the parameters are changed, and creating
+synapses by calling the procedures &lt;tt class="docutils literal"&gt;setExpAMPA()&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;setExpGABA()&lt;/tt&gt;,
+&lt;tt class="docutils literal"&gt;setExpStim()&lt;/tt&gt;. It then loops over inhibitory cells, creating more &lt;tt class="docutils literal"&gt;CXcell&lt;/tt&gt;
+objects, setting FS (fast spiking) parameters and creating synapses.&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;netConnect()&lt;/tt&gt; has an outer loop over all post-synaptic cells, which contains
+a loop over excitatory pre-synaptic cells followed by a loop over inhibitory
+pre-synaptic cells. Within each loop, a random number in [0,1] is drawn and used
+to determine whether each possible connection is made or not, based on a
+connection probability &lt;tt class="docutils literal"&gt;PROB_CONNECT&lt;/tt&gt;. If a connection is to be made, the
+method &lt;tt class="docutils literal"&gt;addlink()&lt;/tt&gt; of the corresponding synapse object &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;neuron[i].ampa&lt;/span&gt;&lt;/tt&gt; or
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;neuron[i].gaba&lt;/span&gt;&lt;/tt&gt; is called with a reference to the membrane potential of the
+pre-synaptic neuron. This creates a pointer from the synapse mechanism to the
+pre-synaptic membrane potential. The inner loops are exited prematurely if the
+number of connections created passes a threshold. This means that on multiple
+runs of the network with different random seeds, the number of connections will
+follow a truncated binomial distribution.&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;insertStimulation()&lt;/tt&gt; loops over a subset of the neurons (since they are
+ordered by type, it is always the excitatory neurons that are excited), creates
+a new &lt;tt class="docutils literal"&gt;gen&lt;/tt&gt; object (defined in the file &lt;tt class="docutils literal"&gt;gen5.mod&lt;/tt&gt;), which is a Poisson
+spike train generator, and connects it to the neuron via an exponential synapse.&lt;/p&gt;
+&lt;p&gt;Although each synapse type has its own mechanism, &lt;tt class="docutils literal"&gt;multiAMPAexp&lt;/tt&gt;,
+&lt;tt class="docutils literal"&gt;multiGABAAexp&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;multiStimexp&lt;/tt&gt;, they are essentially identical models,
+differing only in their parameters. The reason for making them separate
+mechanisms is to allow global variables to be used for some of the parameters,
+which is presumably more efficient than using range variables.&lt;/p&gt;
+&lt;!-- TODO: [discuss saturation of synapses] --&gt;
+&lt;p&gt;Spikes are recorded/stored inside the &lt;tt class="docutils literal"&gt;IF_BG4&lt;/tt&gt; mechanism. The membrane
+potential for the single neuron that is recorded is stored in a global
+&lt;tt class="docutils literal"&gt;Vector&lt;/tt&gt; object, &lt;tt class="docutils literal"&gt;Vm&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;So, let's compile the NMODL mechanisms and run the simulation (I'm assuming that
+you're familiar with NEURON and have it installed on your machine. If not, see
+the &lt;a class="reference external" href="http://www.neuron.yale.edu/neuron"&gt;NEURON website&lt;/a&gt;):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ nrnivmodl
+$ nrngui demo_cx05_N=500b_LTS.oc
+&lt;/pre&gt;
+&lt;!-- TODO: include screenshot --&gt;
+&lt;p&gt;This produces three data files: &lt;tt class="docutils literal"&gt;spiketimes_cx05_LTS500b.dat&lt;/tt&gt;,
+&lt;tt class="docutils literal"&gt;numspikes_cx05_LTS500b.dat&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Vm170_cx05_LTS500b.dat&lt;/tt&gt;. Note
+that subsequent runs will overwrite the filenames each time, so be sure to
+copy the output data files to some uniquely-named directory after each run to
+avoid this.&lt;/p&gt;
+&lt;p&gt;The data files I obtained are available by clicking on this
+icon: &lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120906-144727/"&gt;&lt;img alt="smt:20120906-144727" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;, which takes you to a record of the precise
+environment used to run the simulation (NEURON version, operating system,
+processor architecture, etc.) If you have trouble reproducing any of the
+results in this article, comparing your own environment to the one I used may
+help to identify the cause of the problem. There is a similar icon for each of
+the simulations in this article, and clicking on any figure will take you to a
+similar record. The environment information was captured automatically using &lt;a class="reference external" href="http://neuralensemble.org/sumatra/"&gt;Sumatra&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="plotting-the-results"&gt;
+&lt;h4&gt;Plotting the results&lt;/h4&gt;
+&lt;p&gt;Alain didn't include any plotting code, so I wrote a short &lt;a class="reference external" href="http://matplotlib.org/"&gt;Matplotlib&lt;/a&gt; script
+to reproduce a fascimile of &lt;a class="reference external" href="http://link.springer.com/article/10.1007/s10827-009-0164-4/fulltext.html#Fig7"&gt;Figure 7&lt;/a&gt; from &lt;a class="reference external" href="http://link.springer.com/article/10.1007/s10827-009-0164-4"&gt;Destexhe (2009)&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 1   # this version adds the plotting script
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
+&lt;/pre&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120907-153528/"&gt;&lt;img alt="Data file generated by computation 20120907-153528" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120907-153528/demo_cx05_N=500b_LTS_d274f9660531.png" /&gt;&lt;/a&gt;
+&lt;p&gt;You can see that it is not quantitatively identical to &lt;a class="reference external" href="http://link.springer.com/article/10.1007/s10827-009-0164-4/fulltext.html#Fig7"&gt;the published figure&lt;/a&gt;, but
+qualitatively shows the same up- and down-state behaviour, with a similar
+distribution of mean firing rates across the population. The differences are
+probably due to differences in the sequence of random numbers used to construct
+the network.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general-porting-strategy"&gt;
+&lt;h3&gt;General porting strategy&lt;/h3&gt;
+&lt;p&gt;To port the model from Hoc to PyNN, the approach I have used is the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;convert the code from Hoc to Python, which can be done all at once or
+incrementally, due to the ability to execute fragments of Hoc code from
+within Python using the &lt;tt class="docutils literal"&gt;h()&lt;/tt&gt; function (see &lt;a class="reference external" href="http://dx.doi.org/10.3389/neuro.11.001.2009"&gt;Hines et al. (2009)&lt;/a&gt;
+for more on this). At each step, we can compare the results to the
+original output, to check we have changed nothing in the original model.&lt;/li&gt;
+&lt;li&gt;incrementally replace the original NMODL mechanisms with the nearest
+equivalent mechanisms from PyNN, again testing that the output is
+unchanged. In some cases the nearest PyNN equivalent may be slightly
+different, as will prove to be the case for the present model, and then
+we will have to decide whether the output is qualitatively similar
+enough. In general it is good in any case for the important features of a
+model not to be too sensitive to the details of individual components.&lt;/li&gt;
+&lt;li&gt;incrementally replace NEURON-specific Python code with the PyNN
+equivalent, testing after each change as in the previous two steps. We
+will know the conversion is complete when the simulations can be run
+with both NEST and NEURON.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Since it will be important to be able to compare different versions of the code,
+our first step is to make the original code more reproducible by adding
+explicit seeds for the random number generators:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 2   # this version adds RNG seeds to the Hoc file
+$ nrngui demo_cx05_N=500b_LTS.oc
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
+&lt;/pre&gt;
+&lt;!-- EMBED DIFF SOMEHOW - or include link --&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120907-165232/"&gt;&lt;img alt="smt:20120907-165232" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120907-165540/"&gt;&lt;img alt="Data file generated by computation 20120907-165540" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120907-165540/demo_cx05_N=500b_LTS_b0ba741de76f.png" /&gt;&lt;/a&gt;
+&lt;p&gt;Because of the different seeds, the results are not quantitatively identical,
+but the qualitative behaviour of up and down-states is preserved.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="converting-from-hoc-to-python"&gt;
+&lt;h3&gt;Converting from Hoc to Python&lt;/h3&gt;
+&lt;p&gt;The syntax of Hoc and Python is actually fairly similar - most of the changes
+needed were as simple as replacing the Hoc comment signifier &lt;tt class="docutils literal"&gt;//&lt;/tt&gt; with &lt;tt class="docutils literal"&gt;#&lt;/tt&gt;.
+We keep the names &lt;tt class="docutils literal"&gt;netCreate()&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;netConnect()&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;insertSimulation()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;run_sim()&lt;/tt&gt;,
+which now become Python functions instead of Hoc procedures.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;CXcell&lt;/tt&gt; template becomes a Python class &lt;tt class="docutils literal"&gt;CXcell&lt;/tt&gt;, inheriting from
+&lt;tt class="docutils literal"&gt;nrn.Section&lt;/tt&gt; to make it a single-compartment NEURON cell (the Python code is
+quite a bit more concise, which is nice.)&lt;/p&gt;
+&lt;!-- TODO: INSERT COMPARISON OF begintemplate and class here, or just show the entirety of both scripts side by side? --&gt;
+&lt;!-- TODO: COULD ADD MORE DESCRIPTION OF DIFFERENCES BETWEEN HOC AND PYTHON VERSION, BUT PROBABLY BETTER JUST TO SHOW THEM SIDE BY SIDE --&gt;
+&lt;p&gt;Now we can run the Python version of the code. We would expect to get identical
+results to the Hoc version.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 3  # direct translation from Hoc to Python
+$ python demo_cx05_N=500b_LTS.py
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-143435/"&gt;&lt;img alt="smt:20120919-143435" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;And indeed the results are precisely identical.&lt;/p&gt;
+&lt;!-- INCLUDE LINKS TO DATAFILES FROM THE PYTHON AND HOC VERSIONS --&gt;
+&lt;!-- SHOULD WE BOTHER INCLUDING THE FIGURE? MAYBE SHOW SIDE BY SIDE? --&gt;
+&lt;pre class="literal-block"&gt;
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
+&lt;/pre&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-143738/"&gt;&lt;img alt="Data file generated by computation 20120919-143738" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120919-143738/demo_cx05_N=500b_LTS_6eedaaf82ddb.png" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="section" id="replacing-the-if-bg4-mechanism-with-adexpif"&gt;
+&lt;h3&gt;Replacing the IF_BG4 mechanism with AdExpIF&lt;/h3&gt;
+&lt;p&gt;Now we begin replacing the original NMODL mechanisms with the PyNN equivalent.
+PyNN has its own implementation of the adaptive exponential integrate-and-fire
+model for NEURON, called &lt;tt class="docutils literal"&gt;AdExpIF&lt;/tt&gt;, so the first step is to use that instead
+of the &lt;tt class="docutils literal"&gt;IF_BG4&lt;/tt&gt; mechanism. First we load &lt;tt class="docutils literal"&gt;AdExpIF&lt;/tt&gt; from wherever we have
+installed PyNN:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from neuron import load_mechanisms
+from pyNN import __path__ as pyNN_path
+load_mechanisms(pyNN_path[0] + &amp;quot;/neuron/nmodl&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;There are two important differences between &lt;tt class="docutils literal"&gt;IF_BG4&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;AdExpIF&lt;/tt&gt;. The
+first is that the former is a &amp;quot;density mechanism&amp;quot; while the latter is a &amp;quot;point
+process&amp;quot;, in NEURON terminology. So we replace:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+self.soma.insert('IF_BG4')
+&lt;/pre&gt;
+&lt;p&gt;by:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+self.adexp = h.AdExpIF(0.5, sec=self.soma)
+&lt;/pre&gt;
+&lt;p&gt;Similarly, parameters are set slightly differently, i.e., we replace:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+neuron[nbactual].soma.Vtr_IF_BG4 = VTR
+&lt;/pre&gt;
+&lt;p&gt;with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+neuron[nbactual].adexp.vthresh = VTR
+&lt;/pre&gt;
+&lt;p&gt;etc. The second important difference is that &lt;tt class="docutils literal"&gt;IF_BG4&lt;/tt&gt; also performs recording
+of spike times, while &lt;tt class="docutils literal"&gt;AdExpIF&lt;/tt&gt; does not, so we need to add some code at the
+Python level to do that:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+self.spike_times = h.Vector()
+self.rec = h.NetCon(self.soma(0.5)._ref_v, None, VTR, 0.0, 0.0, sec=self.soma)
+self.rec.record(self.spike_times)
+&lt;/pre&gt;
+&lt;p&gt;We should also note a small bug in &lt;tt class="docutils literal"&gt;IF_BG4&lt;/tt&gt;, fortunately one which does not,
+as we shall see, qualitatively affect the results. The refractory period is
+implemented by defining a variable &lt;tt class="docutils literal"&gt;reset&lt;/tt&gt; inside the NMODL function
+&lt;tt class="docutils literal"&gt;fire()&lt;/tt&gt;, which is decremented by the integration timestep &lt;tt class="docutils literal"&gt;dt&lt;/tt&gt; each time
+&lt;tt class="docutils literal"&gt;fire()&lt;/tt&gt; is called, i.e. each time the &lt;tt class="docutils literal"&gt;BREAKPOINT&lt;/tt&gt; block is executed.
+However, NEURON executes the &lt;tt class="docutils literal"&gt;BREAKPOINT&lt;/tt&gt; block &lt;em&gt;twice&lt;/em&gt; for every timestep,
+so that &lt;tt class="docutils literal"&gt;reset&lt;/tt&gt; is reduced twice as fast as intended. This means that when
+&lt;tt class="docutils literal"&gt;VTR = 5.0&lt;/tt&gt;, the effective refractory period is actually 2.5 ms.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 4  # replaced IF_BG4 mechanism with AdExpIF
+$ python demo_cx05_N=500b_LTS.py
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-154600/"&gt;&lt;img alt="smt:20120919-154600" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-155931/"&gt;&lt;img alt="Data file generated by computation 20120919-155931" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120919-155931/demo_cx05_N=500b_LTS_f6258f1f86d9.png" /&gt;&lt;/a&gt;
+&lt;p&gt;We might have hoped to get quantitatively identical results, but in fact the
+mean firing rates are slightly higher (33 Hz for RS cells) than in the previous
+simulation (29 Hz). One source for this difference is the behaviour around
+threshold. The following table shows part of the data from the
+&lt;tt class="docutils literal"&gt;Vm170_cx05_LTS500b.dat&lt;/tt&gt; files for the &lt;tt class="docutils literal"&gt;AdExpIF&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;IF_BG4&lt;/tt&gt;
+versions, as the membrane potential reaches threshold and is reset.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="20%" /&gt;
+&lt;col width="40%" /&gt;
+&lt;col width="40%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;&lt;em&gt;t&lt;/em&gt;&lt;/th&gt;
+&lt;th class="head" colspan="2"&gt;&lt;em&gt;v&lt;/em&gt; (mV)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;th class="head"&gt;(ms)&lt;/th&gt;
+&lt;th class="head"&gt;AdExpIF&lt;/th&gt;
+&lt;th class="head"&gt;IF_BG4&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;6.3&lt;/td&gt;
+&lt;td&gt;-52.7427&lt;/td&gt;
+&lt;td&gt;-52.7427&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6.4&lt;/td&gt;
+&lt;td&gt;-51.9997&lt;/td&gt;
+&lt;td&gt;-51.9997&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6.5&lt;/td&gt;
+&lt;td&gt;-51.2844&lt;/td&gt;
+&lt;td&gt;-51.2844&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6.6&lt;/td&gt;
+&lt;td&gt;-50.595&lt;/td&gt;
+&lt;td&gt;-50.595&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6.7&lt;/td&gt;
+&lt;td&gt;40&lt;/td&gt;
+&lt;td&gt;-49.9297&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6.8&lt;/td&gt;
+&lt;td&gt;-60&lt;/td&gt;
+&lt;td&gt;39.0982&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6.9&lt;/td&gt;
+&lt;td&gt;-60&lt;/td&gt;
+&lt;td&gt;-59.0093&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;-60&lt;/td&gt;
+&lt;td&gt;-59.9719&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;You can see that for both mechanisms the threshold crossing takes place between
+6.6 and 6.7 ms.&lt;/p&gt;
+&lt;!-- NEED TO CHECK EXACTLY WHAT HAPPENS - MAYBE SPIKE IS RECORDED AT CORRECT TIME IN BOTH, JUST THAT THE VM CHANGES ARE ONLY INITIATED AND DO NOT TAKE EFFECT UNTIL NEXT TIMESTEP. NEED TO LOOK AT END OF REFRACTORY PERIOD --&gt;
+&lt;p&gt;In any case, again, the difference does not affect the qualitative behaviour of
+the network.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="refactoring-the-python-code"&gt;
+&lt;h3&gt;Refactoring the Python code&lt;/h3&gt;
+&lt;p&gt;At this point I decided to refactor the code, to move the code towards a more
+PyNN-like structure. The main changes are as follows:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;define variables for &lt;em&gt;all&lt;/em&gt; parameter values at the top of the file&lt;/li&gt;
+&lt;li&gt;since &lt;tt class="docutils literal"&gt;CXcell&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;THcell&lt;/tt&gt; have identical code, we replace them by a single
+class, &lt;tt class="docutils literal"&gt;AdExpNeuron&lt;/tt&gt;, whose constructor takes a list of keyword arguments
+for setting parameters. In other words, the parameters can be set at the
+same time as creating the object, which reduces the number of lines of code
+needed.&lt;/li&gt;
+&lt;li&gt;similarly, we define a &lt;tt class="docutils literal"&gt;SpikeGen&lt;/tt&gt; class, which wraps the spike generator
+mechanism.&lt;/li&gt;
+&lt;li&gt;the functions for recording and writing membrane potential and spikes are
+moved into the &lt;tt class="docutils literal"&gt;AdExpNeuron&lt;/tt&gt; class as methods.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 5  # refactoring of original Python conversion, putting more of the code into the cell classes.
+$ python demo_cx05_N=500b_LTS.py
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-165731/"&gt;&lt;img alt="smt:20120919-165731" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- SHOW SHA1 HASHES TO PROVE RESULTS IDENTICAL? --&gt;
+&lt;/div&gt;
+&lt;div class="section" id="replacing-synapse-mechanisms-with-expsyn"&gt;
+&lt;h3&gt;Replacing synapse mechanisms with ExpSyn&lt;/h3&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;multiAMPAexp&lt;/tt&gt; and related mechanisms implement a model with an
+instantaneous step followed by exponential decay of the synaptic conductance.
+As noted above, communication between pre- and post-synaptic neurons is via
+pointers. The &lt;tt class="docutils literal"&gt;ExpSyn&lt;/tt&gt; model used in PyNN to implement the same conductance
+dynamics uses NEURON's &lt;tt class="docutils literal"&gt;NetCon&lt;/tt&gt; mechanism to communicate, which has the
+advantage that the network can be parallelized using MPI. Otherwise, the only
+important difference between &lt;tt class="docutils literal"&gt;multiAMPAexp&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;NetCon&lt;/tt&gt; is that the former
+has a dead time of one millisecond after a conductance step in which any
+incoming spikes have no effect.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 7  # replaced multiStimexp, multiAMPAexp and multiGABAAexp with ExpSyn
+$ python demo_cx05_N=500b_LTS.py
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-172444/"&gt;&lt;img alt="smt:20120919-172444" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Despite this difference, the models give comparable results.&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-173558/"&gt;&lt;img alt="Data file generated by computation 20120919-173558" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120919-173558/demo_cx05_N=500b_LTS_881c9059d3f8.png" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="section" id="replacing-input-spike-generation-mechanism-with-netsimfd"&gt;
+&lt;h3&gt;Replacing input spike generation mechanism with NetSimFD&lt;/h3&gt;
+&lt;p&gt;We have now replaced almost all the NMODL mechanisms from the original model
+with their equivalents, or near-equivalents, from PyNN. Only one remains, the
+&lt;tt class="docutils literal"&gt;gen&lt;/tt&gt; mechanism for generating random spike trains with Poisson statistics.&lt;/p&gt;
+&lt;p&gt;The replacement with the &lt;tt class="docutils literal"&gt;NetStimFD&lt;/tt&gt; mechanism from PyNN is straightforward.
+In fact, &lt;tt class="docutils literal"&gt;NetStimFD&lt;/tt&gt; is a minor modification of Michael Hines' &lt;tt class="docutils literal"&gt;NetStim&lt;/tt&gt;
+to have fixed duration rather than fixed number of spikes, and an interval
+that can safely be varied during the simulation. &lt;tt class="docutils literal"&gt;NetStim&lt;/tt&gt; in turn is a
+modification of Destexhe and Mainen's &lt;tt class="docutils literal"&gt;gen&lt;/tt&gt; to work with CVODE and NetStim.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 8  # replaced gen mechanism with NetStimFD
+$ python demo_cx05_N=500b_LTS.py
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-143918/"&gt;&lt;img alt="smt:20120920-143918" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We see that network activity dies out after a few thousand milliseconds.
+Changing the RNG seeds restores the persistence of the activity.&lt;/p&gt;
+&lt;!-- TO INVESTIGATE - if they are so similar, shouldn't they give identical sequences? --&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 9  # changed seed for random spike generation.
+$ python demo_cx05_N=500b_LTS.py
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-144249/"&gt;&lt;img alt="smt:20120920-144249" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-144538/"&gt;&lt;img alt="Data file generated by computation 20120920-144538" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120920-144538/demo_cx05_N=500b_LTS_710c1ccd7f10.png" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="section" id="replacing-locally-defined-adexp-cell-class-with-brettegerstnerif-from-pynn-neuron"&gt;
+&lt;h3&gt;Replacing locally-defined AdExp cell class with BretteGerstnerIF from pyNN.neuron&lt;/h3&gt;
+&lt;p&gt;Part 2 of our conversion strategy, replacing the original NMODL mechanisms with
+the nearest equivalent from PyNN, is now complete. The third and final part is
+to replace NEURON-specific Python code with its PyNN equivalent, starting with
+the cell model - instead of our own &lt;tt class="docutils literal"&gt;AdExp&lt;/tt&gt; class, we use &lt;tt class="docutils literal"&gt;BretteGerstnerIF&lt;/tt&gt;
+from the &lt;tt class="docutils literal"&gt;pyNN.neuron&lt;/tt&gt; module.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 10  # replaced locally-defined AdExp cell class with BretteGerstnerIF from pyNN.neuron
+$ python demo_cx05_N=500b_LTS.py
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-150201/"&gt;&lt;img alt="smt:20120920-150201" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As expected, the results are unchanged:&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-151715/"&gt;&lt;img alt="Data file generated by computation 20120920-151715" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120920-151715/demo_cx05_N=500b_LTS_b84106ada1b9.png" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="section" id="replacing-lists-of-cells-by-pynn-populations"&gt;
+&lt;h3&gt;Replacing lists of cells by PyNN Populations&lt;/h3&gt;
+&lt;p&gt;A small but important change, now. PyNN automatically parallelizes your code -
+the same script will run both on a single computer and on a cluster using MPI -
+but to run in parallel requires a non-zero synaptic delay. We therefore increase
+the synaptic delays in the model from zero to 0.1 ms.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 12  # changed synaptic delays from zero to 0.1 ms
+$ python demo_cx05_N=500b_LTS.py
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-173017/"&gt;&lt;img alt="smt:20120920-173017" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This has quite a large quantitative effect, but qualitatively, we still see
+the alternation of up- and down-states.&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-173455/"&gt;&lt;img alt="Data file generated by computation 20120920-173455" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120920-173455/demo_cx05_N=500b_LTS_888f50c4119e.png" /&gt;&lt;/a&gt;
+&lt;p&gt;PyNN is designed to make it easier to work with populations of neurons. Thus
+rather than creating cells one at a time and appending them to a list:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+neuron = []
+for nbactual in range(0, N_E):
+    neuron.append(CXcell(**RS_parameters))
+&lt;/pre&gt;
+&lt;p&gt;we create an entire population of neurons in one command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+neurons = pyNN.Population(N_CX, pyNN.EIF_cond_exp_isfa_ista, RS_parameters)
+&lt;/pre&gt;
+&lt;p&gt;(note that &lt;tt class="docutils literal"&gt;EIF_cond_exp_isfa_ista&lt;/tt&gt; is a PyNN &amp;quot;standard&amp;quot; cell model, which is
+implemented by the &lt;tt class="docutils literal"&gt;BretteGerstnerIF&lt;/tt&gt; model in &lt;tt class="docutils literal"&gt;pyNN.neuron&lt;/tt&gt; behind the scenes).&lt;/p&gt;
+&lt;p&gt;Similarly, recording spikes can be done with a single command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+neurons.record()
+&lt;/pre&gt;
+&lt;p&gt;as can writing out the results to file:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+neurons.printSpikes(&amp;quot;spiketimes_%s.dat&amp;quot; % MODEL_ID)
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 13  # replaced list of cells by PyNN Population
+$ python demo_cx05_N=500b_LTS.py
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-173653/"&gt;&lt;img alt="smt:20120920-173653" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The PyNN output file format is slightly different to Alain's original format,
+so minor changes to our plotting script are needed.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 14  # updated plotting script to handle PyNN output format
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm_cx05_LTS500b.dat 170
+&lt;/pre&gt;
+&lt;p&gt;As expected, the simulation output is unchanged.&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120921-135200/"&gt;&lt;img alt="Data file generated by computation 20120921-135200" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120921-135200/demo_cx05_N=500b_LTS_248ee095e176.png" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="section" id="replacing-direct-netcon-creation-with-pynn-connect"&gt;
+&lt;h3&gt;Replacing direct NetCon creation with pyNN.connect()&lt;/h3&gt;
+&lt;p&gt;In the next change, we replace NEURON's method of creating connections (creating
+&lt;tt class="docutils literal"&gt;NetCon&lt;/tt&gt; objects) with the PyNN &lt;tt class="docutils literal"&gt;connect()&lt;/tt&gt; method. (In fact, the
+implementation of &lt;tt class="docutils literal"&gt;connect()&lt;/tt&gt; in &lt;tt class="docutils literal"&gt;pyNN.neuron&lt;/tt&gt; does create &lt;tt class="docutils literal"&gt;NetCon&lt;/tt&gt;s
+behind the scenes, but of course the &lt;tt class="docutils literal"&gt;pyNN.nest&lt;/tt&gt; implementation of the same
+function does not.)&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;connect()&lt;/tt&gt; function (and the more general &lt;tt class="docutils literal"&gt;Projection&lt;/tt&gt; class) allows
+connecting entire populations at once, but here, to minimize the changes from
+the original script, we use it like &lt;tt class="docutils literal"&gt;NetCon&lt;/tt&gt;, to connect one pair of neurons
+at a time. i.e. we replace:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+nc = h.NetCon(neurons[j]._cell.source, neurons[i]._cell.esyn,
+              neurons[j]._cell.adexp.vspike, DT, AMPA_GMAX,
+              sec=neurons[j]._cell)
+&lt;/pre&gt;
+&lt;p&gt;with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+nc = pyNN.connect(neurons[j], neurons[i], weight=AMPA_GMAX,
+                  delay=DT, synapse_type=&amp;quot;esyn&amp;quot;)
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 15  # replaced list of spike sources by PyNN Population and direct NetCon creation with pyNN.connect()
+$ python demo_cx05_N=500b_LTS.py
+$ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm_cx05_LTS500b.dat 170
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120921-151517/"&gt;&lt;img alt="smt:20120921-151517" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The simulation output is unchanged.&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120921-153636/"&gt;&lt;img alt="Data file generated by computation 20120921-153636" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120921-153636/demo_cx05_N=500b_LTS_b5c41e4d9c80.png" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="section" id="removing-the-final-fragments-of-neuron-specific-code"&gt;
+&lt;h3&gt;Removing the final fragments of NEURON-specific code&lt;/h3&gt;
+&lt;p&gt;We're almost there. There are just a few things more until this script can run
+with NEST as well as NEURON. First, we need to make use of the NEURON GUI
+optional.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 16  # added option to run with or without GUI
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120921-160505/"&gt;&lt;img alt="smt:20120921-160505" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Then, we replace use of Hoc's &lt;tt class="docutils literal"&gt;Random&lt;/tt&gt; class with PyNN's &lt;tt class="docutils literal"&gt;NumpyRNG&lt;/tt&gt;, and
+replace hard-coded references to &lt;tt class="docutils literal"&gt;pyNN.neuron&lt;/tt&gt; with the ability to specify
+the simulator on the command line:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+SIMULATOR = sys.argv[-1]
+exec(&amp;quot;import pyNN.%s as pyNN&amp;quot; % SIMULATOR)
+&lt;/pre&gt;
+&lt;p&gt;The final change, for compatibility with the other PyNN backends, is not to
+explicitly represent the spikes in the recorded membrane potential: rather the
+membrane potential is immediately reset on passing threshold. This does not
+change the recorded spike times, it just changes the appearance of the
+membrane potential trace when plotted.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 17  # script now written using purely PyNN
+$ python demo_cx05_N=500b_LTS.py neuron
+$ python plot.py spiketimes_cx05_LTS500b_neuron.dat numspikes_cx05_LTS500b_neuron.dat Vm_cx05_LTS500b_neuron.dat 170
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-105047/"&gt;&lt;img alt="smt:20120928-105047" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Because we are using different random number generators, the simulation output
+is quantitatively different, but the up- and down-state pattern is preserved.&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-110307/"&gt;&lt;img alt="Data file generated by computation 20120928-110307" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120928-110307/demo_cx05_N=500b_LTS_05644ae81d7c.png" /&gt;&lt;/a&gt;
+&lt;p&gt;The conversion is complete. Running the same simulation with NEST requires no
+changes to the code, merely changing one argument on the command line:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ python demo_cx05_N=500b_LTS.py nest
+$ python plot.py spiketimes_cx05_LTS500b_nest.dat numspikes_cx05_LTS500b_nest.dat Vm_cx05_LTS500b_nest.dat 170
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-110419/"&gt;&lt;img alt="smt:20120928-110419" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-111429/"&gt;&lt;img alt="Data file generated by computation 20120928-111429" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120928-111429/demo_cx05_N=500b_LTS_05644ae81d7c.png" /&gt;&lt;/a&gt;
+&lt;p&gt;There is still one major source of difference between the NEST and NEURON
+simulations: each simulator generates its own Poisson spike trains. So that
+both simulations have exactly identical inputs, we need to generate the spike
+trains ourselves, and use &lt;tt class="docutils literal"&gt;SpikeSourceArray&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;SpikeSourcePoisson&lt;/tt&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ hg update -r 18  # switched from SpikeSourcePoisson to SpikeSourceArray, so as to use the same input spike times for the different simulators
+$ python demo_cx05_N=500b_LTS.py nest
+$ python plot.py spiketimes_cx05_LTS500b_nest.dat numspikes_cx05_LTS500b_nest.dat Vm_cx05_LTS500b_nest.dat 170
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-112440/"&gt;&lt;img alt="smt:20120928-112440" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-113952/"&gt;&lt;img alt="Data file generated by computation 20120928-113952" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120928-113952/demo_cx05_N=500b_LTS_5f6221aa3a14.png" /&gt;&lt;/a&gt;
+&lt;pre class="literal-block"&gt;
+$ python demo_cx05_N=500b_LTS.py neuron
+$ python plot.py spiketimes_cx05_LTS500b_neuron.dat numspikes_cx05_LTS500b_neuron.dat Vm_cx05_LTS500b_neuron.dat 170
+&lt;/pre&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-111936/"&gt;&lt;img alt="smt:20120928-111936" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-114020/"&gt;&lt;img alt="Data file generated by computation 20120928-114020" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120928-114020/demo_cx05_N=500b_LTS_5f6221aa3a14.png" /&gt;&lt;/a&gt;
+&lt;p&gt;Of course, even now the NEURON and NEST traces are not the same, past the first few
+milliseconds: the high degree of recurrency of the network means that small numerical
+differences arising from the different implementations of the underlying
+equations are rapidly amplified. Nevertheless, both simulations demonstrate the
+same qualitative behaviour, and the length of time before divergence occurs
+ought to increase as the integration time step is decreased. Testing that
+is left as an exercise for the reader :-)&lt;/p&gt;
+&lt;/div&gt;
+</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/porting-NEURON-PyNN/</guid><pubDate>Tue, 18 Jul 2017 09:00:00 +0009</pubDate></item><item><title>Managing complex workflows in neural simulation/data analysis</title><link>http://andrewdavison.info/notes/managing-complex-workflows/</link><description>&lt;h2&gt;Managing complex workflows in neural simulation/data analysis&lt;/h2&gt;
 &lt;p&gt;29th July 2013&lt;/p&gt;
 
 &lt;p&gt;At the &lt;a class="reference external" href="http://www.cnsorg.org/cns-2013-paris"&gt;CNS 2013&lt;/a&gt; meeting in Paris, France, Sonja Grün, Michael Denker and I gave a tutorial on managing complex workflows in neuroscience. The abstract was as follows:&lt;/p&gt;
@@ -7,7 +537,7 @@
 &lt;p&gt;&lt;em&gt;The failure to routinely achieve replicability in computational neuroscience (probably in computational science in general, see Donoho et al., 2009 [1]) has important implications for both the credibility of the field and for its rate of progress (since reuse of existing code is fundamental to good software engineering). For individual researchers, as the example of ModelDB has shown, sharing reliable code enhances reputation and leads to increased impact.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;In this tutorial we will identify the reasons for the difficulties often encountered in organizing and handling data, sharing work in a collaboration, and performing manageable, reproducible yet complex computational experiments and data analyses. We will also discuss best practices for making our work more reliable and more easily reproducible by ourselves and others -- without adding a huge burden to either our day-to-day research or the publication process.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;We will cover a number of tools that can facilitate a reproducible workflow and allow tracking the provenance of results from a published article back through intermediate analysis stages to the original data, models, and/or simulations. The tools that will be covered include Git_, Mercurial_, Sumatra_, VisTrails_, odML_, Neo_. Furthermore, we will highlight strategies to validate the correctness, reliability and limits of novel concepts and codes when designing computational analysis approaches (e.g., [2-4]).&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;My &lt;a class="reference external" href="https://dl.dropboxusercontent.com/u/730085/workflows_tutorial_cns2013_davison.pdf"&gt;slides&lt;/a&gt; [pdf; 10 MB] are available under the CC-BY licence. Partial notes for the tutorial are online at &lt;a class="reference external" href="http://rrcns.readthedocs.org/en/cns2013/"&gt;http://rrcns.readthedocs.org/en/cns2013/&lt;/a&gt;. I hope I will have time to complete/update them later.&lt;/p&gt;
+&lt;p&gt;My &lt;a class="reference external" href="https://www.dropbox.com/s/zy51fdq3pp38o9t/workflows_tutorial_cns2013_davison.pdf?dl=0"&gt;slides&lt;/a&gt; [pdf; 10 MB] are available under the CC-BY licence. Partial notes for the tutorial are online at &lt;a class="reference external" href="http://rrcns.readthedocs.org/en/cns2013/"&gt;http://rrcns.readthedocs.org/en/cns2013/&lt;/a&gt;. I hope I will have time to complete/update them later.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://dx.doi.org/10.1109/MCSE.2009.15"&gt;Donoho et al. (2009) 15 Years of Reproducible Research in Computational Harmonic Analysis, Computing in Science and Engineering 11: 8-18. doi:10.1109/MCSE.2009.15&lt;/a&gt;&lt;/li&gt;
