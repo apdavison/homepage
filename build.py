@@ -134,6 +134,13 @@ def format_authors(records):
     return records
 
 
+def add_ndash(records):
+    for record in records:
+        if "pages" in record and "--" in record["pages"]:
+            record["pages"] = record["pages"].replace("--", "&#8211;")
+    return records
+
+
 def generate_feed(notes):
     nineam = time(9, 0, 0, tzinfo=timezone("Europe/Paris"))
     fg = FeedGenerator()
@@ -196,7 +203,7 @@ def build():
 
     # -- Build publications page
     print("Building publications page")
-    publications = list(reversed(sorted(format_authors(article_database.entries), key=lambda entry: (entry["year"], months.index(entry["month"])))))
+    publications = list(reversed(sorted(add_ndash(format_authors(article_database.entries)), key=lambda entry: (entry["year"], months.index(entry["month"])))))
     presentations = list(reversed(sorted((entry for entry in presentations_database.entries if entry["ENTRYTYPE"] != "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
     tech_reports = list(reversed(sorted((entry for entry in presentations_database.entries if entry["ENTRYTYPE"] == "unpublished"), key=lambda entry: (entry["year"], months.index(entry["month"])))))
     render_to_file("publications.html", "publications",
