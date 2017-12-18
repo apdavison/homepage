@@ -50,6 +50,8 @@ Professional Activities
 =======================
 
 - Associate Editor, Frontiers in Neuroinformatics, 2011-
+- Member of the Gender Advisory Committee of the Human Brain Project, 2017-
+- Director of the French Node of the INCF, 2017-
 - Member of the Program Committee for the INCF Neuroinformatics Congress 2012, 2011-2012
 - Member of the INCF Taskforce for Electrophysiology Datasharing, 2010-
 - Co-organizer, 4th FACETS CodeJam Workshop. Marseille, France, 2010
