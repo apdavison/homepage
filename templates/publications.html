@@ -40,6 +40,9 @@
     {% if conf.booktitle %}
     <span class="publication">{{conf.booktitle}}</span>{% if conf.volume %} {{conf.volume}}: {{conf.pages}}.{% endif %}
     {% endif %}
+    {% if conf.journal %}
+    <span class="publication">{{conf.journal}}</span>{% if conf.volume %} {{conf.volume}}: {{conf.pages}}.{% endif %}
+    {% endif %}
     {% if conf.doi %}<a href="http://dx.doi.org/{{conf.doi}}">doi:{{conf.doi}}</a> {% endif %}
     <br>
     <span class="publication">{{conf.organization}}</span>, {{conf.address}}, {{conf.month}}.
