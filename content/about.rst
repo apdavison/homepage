@@ -10,7 +10,7 @@ About
 
 This is the personal website of Andrew Davison. I am a senior research scientist in the
 `Department of Integrative and Computational Neuroscience`_ (ICN),
-`Paris-Saclay Institute of Neuroscience`_ (CNRS_/Université Paris Sud),
+`Paris-Saclay Institute of Neuroscience`_ (CNRS_/Université Paris-Saclay),
 where I lead the `Neuroinformatics group`_. You might also be interested
 in my `lab homepage`_ or my `Twitter feed`_. My ORCID identifier is `0000-0002-4793-7541`_.
 
@@ -45,7 +45,7 @@ Mailing address
 .. _`NeuralEnsemble`: http://neuralensemble.org
 .. _`Human Brain Project`: https://www.humanbrainproject.eu/
 .. _`models of the early visual system`: https://www.biorxiv.org/content/early/2018/09/24/416156
-.. _`Department of Integrative and Computational Neuroscience`: http://www.unic.cnrs-gif.fr/
+.. _`Department of Integrative and Computational Neuroscience`: http://neuro-psi.cnrs.fr/spip.php?page=ICN
 .. _`Paris-Saclay Institute of Neuroscience`: http://neuro-psi.cnrs.fr/?lang=en
 .. _CNRS: http://www.cnrs.fr
 .. _`Neuroinformatics group`: http://www.unic.cnrs-gif.fr/teams/Research%20group%20of%20Andrew%20Davison

@@ -5,12 +5,11 @@ Curriculum Vitae
 Andrew P. Davison
 =================
 
-| `Unité de Neuroscience, Information et Complexité <http://www.unic.cnrs-gif.fr/>`_ (UNIC)
-| Institut de Neurobiologie Alfred Fessard
-| Centre Nationale de la Recherche Scientifique
+| `Department of Integrative and Computational Neuroscience`_ (ICN)
+| `Paris-Saclay Institute of Neuroscience`_ (CNRS_/Université Paris-Saclay),
 | 1 Avenue de la Terrasse, 91198 Gif sur Yvette, France
-| +33 1 69 82 41 96
-| andrew.davison@unic.cnrs-gif.fr
+| +33 1 69 82 34 51
+| andrew.davison@cnrs.fr
 | ORCID: `0000-0002-4793-7541 <http://orcid.org/0000-0002-4793-7541>`_
 
 
@@ -24,7 +23,8 @@ Education
 Academic Positions
 ==================
 
-| 2010-      Senior Research Scientist (CR1), UNIC, CNRS, Gif sur Yvette, France.
+| 2010-2019  Senior Research Scientist (CRCN), NeuroPSI, CNRS, Gif sur Yvette, France.
+| 2010-2018  Senior Research Scientist (CR1), UNIC, CNRS, Gif sur Yvette, France.
 | 2006-2010  Research Scientist (CR2), UNIC, CNRS, Gif sur Yvette, France.
 | 2003-2006  Post-doctoral research associate, UNIC, CNRS, Gif sur Yvette, France.
 | 2000-2002  Post-doctoral research associate, Shepherd Laboratory, Yale University, New Haven, CT, USA.
@@ -71,3 +71,7 @@ Languages
 
 Fluent in English and French.
 
+
+.. _`Department of Integrative and Computational Neuroscience`: http://neuro-psi.cnrs.fr/spip.php?page=ICN
+.. _`Paris-Saclay Institute of Neuroscience`: http://neuro-psi.cnrs.fr/?lang=en
+.. _CNRS: http://www.cnrs.fr
