@@ -89,7 +89,7 @@ contains the values of the membrane potential. In Python, this becomes:</p>
 Python version is in <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/tabchannels.py">tabchannels.py</a>. Again, there was no real reason to do this,
 as the same thing could be achieved using:</p>
 <pre class="code python literal-block">
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="literal string">&quot;tabchannels.hoc&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="literal string double">&quot;tabchannels.hoc&quot;</span><span class="punctuation">)</span>
 </pre>
 </div>
 <div class="section" id="cell-models">
@@ -97,8 +97,8 @@ as the same thing could be achieved using:</p>
 <p>The mitral and granule cell models are defined in Hoc templates. These become
 classes in Python, e.g.:</p>
 <pre class="code python literal-block">
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="literal string">&quot;mitral.tem&quot;</span><span class="punctuation">)</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="literal string">&quot;granule.tem&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="literal string double">&quot;mitral.tem&quot;</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">xopen</span><span class="punctuation">(</span><span class="literal string double">&quot;granule.tem&quot;</span><span class="punctuation">)</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">mitral_cell</span> <span class="operator">=</span> <span class="name">h</span><span class="operator">.</span><span class="name">Mit</span><span class="punctuation">()</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">granule_cell</span> <span class="operator">=</span> <span class="name">h</span><span class="operator">.</span><span class="name">Gran</span><span class="punctuation">()</span>
 </pre>
@@ -128,7 +128,7 @@ end up with a lot of lines of code. If we define, in a separate file, a
 <tt class="docutils literal">Mechanism</tt> class as follows:</p>
 <pre class="code python literal-block">
 <span class="keyword">class</span> <span class="name class">Mechanism</span><span class="punctuation">(</span><span class="name builtin">object</span><span class="punctuation">):</span>
-    <span class="keyword">def</span> <span class="name function">__init__</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">name</span><span class="punctuation">,</span> <span class="operator">**</span><span class="name">parameters</span><span class="punctuation">):</span>
+    <span class="keyword">def</span> <span class="name function magic">__init__</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">name</span><span class="punctuation">,</span> <span class="operator">**</span><span class="name">parameters</span><span class="punctuation">):</span>
         <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">name</span> <span class="operator">=</span> <span class="name">name</span>
         <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">parameters</span> <span class="operator">=</span> <span class="name">parameters</span>
 
@@ -142,7 +142,7 @@ end up with a lot of lines of code. If we define, in a separate file, a
 <p>then the code to insert an ion channel into the soma reduces from six lines to
 two:</p>
 <pre class="code python literal-block">
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">hh</span> <span class="operator">=</span> <span class="name">Mechanism</span><span class="punctuation">(</span><span class="literal string">'hh'</span><span class="punctuation">,</span> <span class="name">gnabar</span><span class="operator">=</span><span class="literal number float">0.11</span><span class="punctuation">,</span> <span class="name">gkbar</span><span class="operator">=</span><span class="literal number float">0.03</span><span class="punctuation">,</span> <span class="name">gl</span><span class="operator">=</span><span class="literal number float">0.0004</span><span class="punctuation">,</span> <span class="name">el</span><span class="operator">=-</span><span class="literal number integer">55</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">hh</span> <span class="operator">=</span> <span class="name">Mechanism</span><span class="punctuation">(</span><span class="literal string single">'hh'</span><span class="punctuation">,</span> <span class="name">gnabar</span><span class="operator">=</span><span class="literal number float">0.11</span><span class="punctuation">,</span> <span class="name">gkbar</span><span class="operator">=</span><span class="literal number float">0.03</span><span class="punctuation">,</span> <span class="name">gl</span><span class="operator">=</span><span class="literal number float">0.0004</span><span class="punctuation">,</span> <span class="name">el</span><span class="operator">=-</span><span class="literal number integer">55</span><span class="punctuation">)</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">hh</span><span class="operator">.</span><span class="name">insert_into</span><span class="punctuation">(</span><span class="name">soma</span><span class="punctuation">)</span>
 </pre>
 <p>Similarly, I defined a new <tt class="docutils literal">Section</tt> class, which subclasses <tt class="docutils literal">h.Section</tt> but
@@ -154,7 +154,7 @@ we can reduce:</p>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">L</span> <span class="operator">=</span> <span class="literal number integer">50</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">diam</span> <span class="operator">=</span> <span class="literal number float">2.0</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">Ra</span> <span class="operator">=</span> <span class="literal number float">100.0</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">insert</span><span class="punctuation">(</span><span class="literal string">'hh'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">insert</span><span class="punctuation">(</span><span class="literal string single">'hh'</span><span class="punctuation">)</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="keyword">for</span> <span class="name">segment</span> <span class="operator word">in</span> <span class="name">dend</span><span class="punctuation">:</span>
 <span class="operator">...</span>     <span class="name">segment</span><span class="operator">.</span><span class="name">hh</span><span class="operator">.</span><span class="name">gnabar</span> <span class="operator">=</span> <span class="literal number float">0.11</span>
 <span class="operator">...</span>     <span class="name">segment</span><span class="operator">.</span><span class="name">hh</span><span class="operator">.</span><span class="name">gkbar</span> <span class="operator">=</span> <span class="literal number float">0.03</span>
@@ -174,7 +174,7 @@ we can reduce:</p>
 </pre>
 <p>to:</p>
 <pre class="code python literal-block">
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">add_synapse</span><span class="punctuation">(</span><span class="literal string">&quot;AMPAr&quot;</span><span class="punctuation">,</span> <span class="literal string">&quot;ExpSyn&quot;</span><span class="punctuation">,</span> <span class="name">e</span><span class="operator">=</span><span class="literal number float">0.0</span><span class="punctuation">,</span> <span class="name">tau</span><span class="operator">=</span><span class="literal number float">2.0</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">add_synapse</span><span class="punctuation">(</span><span class="literal string double">&quot;AMPAr&quot;</span><span class="punctuation">,</span> <span class="literal string double">&quot;ExpSyn&quot;</span><span class="punctuation">,</span> <span class="name">e</span><span class="operator">=</span><span class="literal number float">0.0</span><span class="punctuation">,</span> <span class="name">tau</span><span class="operator">=</span><span class="literal number float">2.0</span><span class="punctuation">)</span>
 </pre>
 <p>with the added advantage that the synapse object is now available as <tt class="docutils literal">dend.AMPAr</tt>,
 i.e. it is contained within the dend object, so we don't have to keep track of

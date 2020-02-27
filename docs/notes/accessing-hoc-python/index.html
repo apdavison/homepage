@@ -67,48 +67,48 @@ function defined in the hoc interpreter, e.g.:</p>
 </pre>
 <p>and is also callable, with any valid hoc command as the argument, e.g.:</p>
 <pre class="code python literal-block">
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'x = 2'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'x = 2'</span><span class="punctuation">)</span>
 <span class="name">first</span> <span class="name">instance</span> <span class="name">of</span> <span class="name">x</span>
 <span class="literal number integer">1</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">x</span>
 <span class="literal number float">2.0</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'create soma'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'create soma'</span><span class="punctuation">)</span>
 <span class="literal number integer">1</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'access soma'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'access soma'</span><span class="punctuation">)</span>
 <span class="literal number integer">1</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">soma</span>
 <span class="operator">&lt;</span><span class="name">nrn</span><span class="operator">.</span><span class="name">Section</span> <span class="name builtin">object</span> <span class="name">at</span> <span class="literal number hex">0xb7433060</span><span class="operator">&gt;</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">soma</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">v</span>
 <span class="operator">-</span><span class="literal number float">65.0</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'strdef s'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'strdef s'</span><span class="punctuation">)</span>
 <span class="literal number integer">1</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">s</span> <span class="operator">=</span> <span class="literal string">'hello'</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">s</span> <span class="operator">=</span> <span class="literal string single">'hello'</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">s</span>
-<span class="literal string">'hello'</span>
+<span class="literal string single">'hello'</span>
 </pre>
 <p>Note that the return value of the <tt class="docutils literal">h()</tt> call (often <tt class="docutils literal">1</tt>) is printed to the
 screen. If you don't like this behaviour, you can always assign the return
 value to a variable, e.g.:</p>
 <pre class="code python literal-block">
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">tmp</span> <span class="operator">=</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'x=5'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">tmp</span> <span class="operator">=</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'x=5'</span><span class="punctuation">)</span>
 <span class="operator">&gt;&gt;&gt;</span>
 </pre>
 <p>Note that you cannot assign to a variable that has not already been defined:</p>
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">y</span> <span class="operator">=</span> <span class="literal number integer">3</span>
 <span class="name">Traceback</span> <span class="punctuation">(</span><span class="name">most</span> <span class="name">recent</span> <span class="name">call</span> <span class="name">last</span><span class="punctuation">):</span>
- <span class="name">File</span> <span class="literal string">&quot;stdin&quot;</span><span class="punctuation">,</span> <span class="name">line</span> <span class="literal number integer">1</span><span class="punctuation">,</span> <span class="operator word">in</span> <span class="operator">&lt;</span><span class="name">module</span><span class="operator">&gt;</span>
-<span class="name exception">LookupError</span><span class="punctuation">:</span> <span class="literal string">'y'</span> <span class="operator word">is</span> <span class="operator word">not</span> <span class="name">a</span> <span class="name">hoc</span> <span class="name">variable</span> <span class="name">name</span><span class="operator">.</span>
+ <span class="name">File</span> <span class="literal string double">&quot;stdin&quot;</span><span class="punctuation">,</span> <span class="name">line</span> <span class="literal number integer">1</span><span class="punctuation">,</span> <span class="operator word">in</span> <span class="operator">&lt;</span><span class="name">module</span><span class="operator">&gt;</span>
+<span class="name exception">LookupError</span><span class="punctuation">:</span> <span class="literal string single">'y'</span> <span class="operator word">is</span> <span class="operator word">not</span> <span class="name">a</span> <span class="name">hoc</span> <span class="name">variable</span> <span class="name">name</span><span class="operator">.</span>
 </pre>
 <p>Objects defined in hoc behave in almost all ways like Python objects, e.g.:</p>
 <pre class="code python literal-block">
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'objref vec'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'objref vec'</span><span class="punctuation">)</span>
 <span class="literal number integer">1</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'vec = new Vector(5)'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'vec = new Vector(5)'</span><span class="punctuation">)</span>
 <span class="literal number integer">1</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'objref list'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'objref list'</span><span class="punctuation">)</span>
 <span class="literal number integer">1</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'list = new List()'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'list = new List()'</span><span class="punctuation">)</span>
 <span class="literal number integer">1</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">list</span><span class="operator">.</span><span class="name">append</span><span class="punctuation">(</span><span class="name">h</span><span class="operator">.</span><span class="name">vec</span><span class="punctuation">)</span>
 <span class="literal number float">1.0</span>
@@ -147,9 +147,9 @@ object:</p>
 <p>Also, all <tt class="docutils literal">HocObject</tt>s have the same type, whatever the object type in hoc:</p>
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">my_vec</span><span class="punctuation">)</span>
-<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string">'hoc.HocObject'</span><span class="operator">&gt;</span>
+<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string single">'hoc.HocObject'</span><span class="operator">&gt;</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">my_list</span><span class="punctuation">)</span>
-<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string">'hoc.HocObject'</span><span class="operator">&gt;</span>
+<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string single">'hoc.HocObject'</span><span class="operator">&gt;</span>
 </pre>
 <p>However, listing the object attributes and methods using <tt class="docutils literal">dir(obj)</tt> lists those of the specific hoc object type,
 and <tt class="docutils literal">help(obj)</tt> gives help about the object's hoc type.</p>

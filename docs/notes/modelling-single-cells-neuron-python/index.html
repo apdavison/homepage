@@ -74,7 +74,7 @@ able to set section properties in the constructor):</p>
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span> <span class="operator">=</span> <span class="name">Section</span><span class="punctuation">()</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">soma</span><span class="punctuation">)</span>
-<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string">'nrn.Section'</span><span class="operator">&gt;</span>
+<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string single">'nrn.Section'</span><span class="operator">&gt;</span>
 </pre>
 <p>As in hoc, a section's length, axial resistance and number of segments may be
 accessed and changed using dot notation:</p>
@@ -104,7 +104,7 @@ the x-location (0-1) as an argument:</p>
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">central_seg</span> <span class="operator">=</span> <span class="name">soma</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">)</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">central_seg</span><span class="punctuation">)</span>
-<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string">'nrn.Segment'</span><span class="operator">&gt;</span>
+<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string single">'nrn.Segment'</span><span class="operator">&gt;</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">central_seg</span><span class="operator">.</span><span class="name">diam</span>
 <span class="literal number float">500.0</span>
 </pre>
@@ -125,9 +125,9 @@ the <tt class="docutils literal">nrn</tt> module returns the currently accessed 
 object:</p>
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">()</span>
-<span class="literal string">'PySec_402d1040'</span>
+<span class="literal string single">'PySec_402d1040'</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">cas</span><span class="punctuation">()</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">()</span>
-<span class="literal string">'PySec_402d1040'</span>
+<span class="literal string single">'PySec_402d1040'</span>
 </pre>
 <p>If we now create a new section, <tt class="docutils literal">soma</tt> is still the currently-accessed
 section:</p>
@@ -148,7 +148,7 @@ section:</p>
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">L</span>
 <span class="literal number float">100.0</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string">'L = 200'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="punctuation">(</span><span class="literal string single">'L = 200'</span><span class="punctuation">)</span>
 <span class="literal number integer">1</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">L</span>
 <span class="literal number float">200.0</span>
@@ -211,7 +211,7 @@ connect can be controlled with additional, optional arguments:</p>
 <div class="section" id="inserting-membrane-mechanisms">
 <h3>Inserting membrane mechanisms</h3>
 <pre class="code python literal-block">
-<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">insert</span><span class="punctuation">(</span><span class="literal string">'pas'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span><span class="operator">.</span><span class="name">insert</span><span class="punctuation">(</span><span class="literal string single">'pas'</span><span class="punctuation">)</span>
 </pre>
 <p>Accessing range variables can be done in two ways: using a more object-oriented notation:</p>
 <pre class="code python literal-block">
@@ -247,7 +247,7 @@ connect can be controlled with additional, optional arguments:</p>
 <pre class="code python literal-block">
 <span class="keyword">for</span> <span class="name">seg</span> <span class="operator word">in</span> <span class="name">soma</span><span class="punctuation">:</span>
 <span class="operator">...</span>   <span class="keyword">for</span> <span class="name">mech</span> <span class="operator word">in</span> <span class="name">seg</span><span class="punctuation">:</span>
-<span class="operator">...</span>     <span class="keyword">if</span> <span class="name">mech</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">()</span> <span class="operator">==</span> <span class="literal string">'pas'</span><span class="punctuation">:</span>
+<span class="operator">...</span>     <span class="keyword">if</span> <span class="name">mech</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">()</span> <span class="operator">==</span> <span class="literal string single">'pas'</span><span class="punctuation">:</span>
 <span class="operator">...</span>       <span class="keyword">print</span> <span class="name">seg</span><span class="operator">.</span><span class="name">x</span><span class="punctuation">,</span> <span class="name">mech</span><span class="operator">.</span><span class="name">g</span><span class="punctuation">,</span> <span class="name">mech</span><span class="operator">.</span><span class="name">e</span>
 <span class="operator">...</span>
 <span class="literal number float">0.166666666667</span> <span class="literal number float">0.00166666666667</span> <span class="operator">-</span><span class="literal number float">64.0</span>
@@ -264,13 +264,13 @@ which is more convenient, pass the section as the <tt class="docutils literal">s
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span> <span class="operator">=</span> <span class="name">h</span><span class="operator">.</span><span class="name">IClamp</span><span class="punctuation">(</span><span class="literal number float">0.5</span><span class="punctuation">,</span> <span class="name">sec</span><span class="operator">=</span><span class="name">soma</span><span class="punctuation">)</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">stim</span><span class="punctuation">)</span>
-<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string">'hoc.HocObject'</span><span class="operator">&gt;</span>
+<span class="operator">&lt;</span><span class="name builtin">type</span> <span class="literal string single">'hoc.HocObject'</span><span class="operator">&gt;</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span><span class="operator">.</span><span class="name">amp</span>
 <span class="literal number float">0.0</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span><span class="operator">.</span><span class="name">dur</span>
 <span class="literal number float">0.0</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span><span class="operator">.</span><span class="keyword">del</span>
-  <span class="name">File</span> <span class="literal string">&quot;&lt;stdin&gt;&quot;</span><span class="punctuation">,</span> <span class="name">line</span> <span class="literal number integer">1</span>
+  <span class="name">File</span> <span class="literal string double">&quot;&lt;stdin&gt;&quot;</span><span class="punctuation">,</span> <span class="name">line</span> <span class="literal number integer">1</span>
     <span class="name">stim</span><span class="operator">.</span><span class="keyword">del</span>
            <span class="operator">^</span>
 <span class="name exception">SyntaxError</span><span class="punctuation">:</span> <span class="name">invalid</span> <span class="name">syntax</span>
@@ -284,9 +284,9 @@ called <tt class="docutils literal">del</tt> in hoc, has been renamed to <tt cla
 <p>Note, however, that the original name can still be accessed using the Python
 <tt class="docutils literal">getattr()</tt> and <tt class="docutils literal">setattr()</tt> functions:</p>
 <pre class="code python literal-block">
-<span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">getattr</span><span class="punctuation">(</span><span class="name">stim</span><span class="punctuation">,</span> <span class="literal string">'del'</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">getattr</span><span class="punctuation">(</span><span class="name">stim</span><span class="punctuation">,</span> <span class="literal string single">'del'</span><span class="punctuation">)</span>
 <span class="literal number float">50.0</span>
-<span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">setattr</span><span class="punctuation">(</span><span class="name">stim</span><span class="punctuation">,</span> <span class="literal string">'del'</span><span class="punctuation">,</span> <span class="literal number float">100.0</span><span class="punctuation">)</span>
+<span class="operator">&gt;&gt;&gt;</span> <span class="name builtin">setattr</span><span class="punctuation">(</span><span class="name">stim</span><span class="punctuation">,</span> <span class="literal string single">'del'</span><span class="punctuation">,</span> <span class="literal number float">100.0</span><span class="punctuation">)</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">stim</span><span class="operator">.</span><span class="name">delay</span>
 <span class="literal number float">100.0</span>
 </pre>
