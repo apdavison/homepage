@@ -35,7 +35,7 @@ Mailing address
 
 | Institut des Neurosciences Paris-Saclay (NeuroPSI)
 | Département de Neurosciences Intégratives et Computationnelles (ICN)
-| UMR9197 CNRS/Université Paris Sud
+| UMR9197 CNRS/Université Paris-Saclay
 | CNRS, Bât. 32/33
 | 1 Av. de la Terrasse,
 | 91198 Gif-sur-Yvette Cedex
