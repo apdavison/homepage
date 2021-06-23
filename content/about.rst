@@ -45,11 +45,11 @@ Mailing address
 .. _`NeuralEnsemble`: http://neuralensemble.org
 .. _`Human Brain Project`: https://www.humanbrainproject.eu/
 .. _`models of the early visual system`: https://www.biorxiv.org/content/early/2018/09/24/416156
-.. _`Department of Integrative and Computational Neuroscience`: http://neuro-psi.cnrs.fr/spip.php?page=ICN
-.. _`Paris-Saclay Institute of Neuroscience`: http://neuro-psi.cnrs.fr/?lang=en
+.. _`Department of Integrative and Computational Neuroscience`: https://neuropsi.cnrs.fr/departements/icn/
+.. _`Paris-Saclay Institute of Neuroscience`: http://neuro-psi.cnrs.fr
 .. _CNRS: http://www.cnrs.fr
-.. _`Neuroinformatics group`: http://www.unic.cnrs-gif.fr/teams/Research%20group%20of%20Andrew%20Davison
-.. _`lab homepage`: http://www.unic.cnrs-gif.fr/people/Andrew_Davison/
+.. _`Neuroinformatics group`: https://neuropsi.cnrs.fr/departements/icn/equipe-andrew-davison/
+.. _`lab homepage`: https://neuropsi.cnrs.fr/annuaire/andrew-davison/
 .. _`Twitter feed`: https://twitter.com/apdavison
 .. _`0000-0002-4793-7541`: http://orcid.org/0000-0002-4793-7541
 .. _PyNN: http://neuralensemble.org/PyNN
