@@ -48,6 +48,7 @@ from argparse import ArgumentParser
 from html.parser import HTMLParser
 from jinja2 import FileSystemLoader, Environment
 import bibtexparser
+from bibtexparser.bparser import BibTexParser
 from docutils.core import publish_programmatically
 from docutils import io, nodes
 from feedgen.feed import FeedGenerator
@@ -184,10 +185,11 @@ def build():
         shutil.copytree("content/%s" % subdir, os.path.join(builddir, subdir))
 
     # -- Load BibTeX database
+    parser = BibTexParser(ignore_nonstandard_types=False)
     with open('content/publications.bib', encoding='utf-8') as bibtex_file:
         article_database = bibtexparser.load(bibtex_file)
     with open('content/presentations.bib', encoding='utf-8') as bibtex_file:
-        presentations_database = bibtexparser.load(bibtex_file)
+        presentations_database = bibtexparser.load(bibtex_file, parser=parser)
 
     # -- Create individual BibTeX files
     os.makedirs(os.path.join(builddir, 'publications'), exist_ok=True)
