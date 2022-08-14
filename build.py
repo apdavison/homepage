@@ -163,7 +163,7 @@ def generate_feed(notes):
         entry.title(note["title"])
         entry.link(href=link, rel="alternate", type="text/html")
         entry.author(name='Andrew Davison',
-                     email='andrew.davison@unic.cnrs-gif.fr')
+                     email='andrew.davison@cnrs.fr')
         entry.content(content, type="xhtml")
         entry.published(datetime.combine(note["date"], nineam))
 
