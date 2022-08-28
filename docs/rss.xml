@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Some models are useful</title><link>http://andrewdavison.info/atom.xml</link><description>Andrew Davison's Blog</description><atom:link href="http://andrewdavison.info/atom.xml" rel="self"/><copyright>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 27 Feb 2020 11:11:48 +0100</lastBuildDate><item><title>Modelling STDP in the NEURON simulator</title><link>http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</link><description>&lt;h2&gt;Modelling STDP in the NEURON simulator&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Some models are useful</title><link>http://andrewdavison.info/atom.xml</link><description>Andrew Davison's Blog</description><atom:link href="http://andrewdavison.info/atom.xml" rel="self"/><copyright>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 28 Aug 2022 16:20:08 +0200</lastBuildDate><item><title>Modelling STDP in the NEURON simulator</title><link>http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</link><description>&lt;h2&gt;Modelling STDP in the NEURON simulator&lt;/h2&gt;
 &lt;p&gt;11th February 2007&lt;/p&gt;
 
 &lt;p&gt;At the time of writing (or at least, last time I looked), the &lt;a class="reference external" href="http://www.neuron.yale.edu/neuron/"&gt;NEURON simulator&lt;/a&gt; does not have a built-in mechanism for spike-timing-dependent plasticity (STDP). There are many possible ways of implementing such a mechanism, using the NMODL language. This page describes one such possibility.&lt;/p&gt;
@@ -13,7 +13,7 @@
 &lt;img alt="Screenshot of STDwa demo, bottom graph" class="align-center" src="/figures/demo_stdwa3.png" style="width: 750px;" /&gt;
 &lt;p&gt;The bottom panel shows the weight change.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;To be continued.&lt;/em&gt; Check back in a few days, I plan to explain in more detail what is happening and how to use the mechanism in your own code.&lt;/p&gt;
-</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</guid><pubDate>Sun, 11 Feb 2007 09:00:00 +0009</pubDate></item><item><title>Installation of NEURON with Python</title><link>http://andrewdavison.info/notes/installation-neuron-python/</link><description>&lt;h2&gt;Installation of NEURON with Python&lt;/h2&gt;
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</guid><pubDate>Sun, 11 Feb 2007 09:00:00 +0009</pubDate></item><item><title>Installation of NEURON with Python</title><link>http://andrewdavison.info/notes/installation-neuron-python/</link><description>&lt;h2&gt;Installation of NEURON with Python&lt;/h2&gt;
 &lt;p&gt;19th March 2008&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Updated 2009-01-22 for NEURON v7.0&lt;/em&gt;&lt;/p&gt;
@@ -104,7 +104,7 @@ See http://www.neuron.yale.edu/credits.html
 In [2]:
 &lt;/pre&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/installation-neuron-python/</guid><pubDate>Wed, 19 Mar 2008 09:00:00 +0009</pubDate></item><item><title>Modelling single cells in NEURON with the Python interpreter</title><link>http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</link><description>&lt;h2&gt;Modelling single cells in NEURON with the Python interpreter&lt;/h2&gt;
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/installation-neuron-python/</guid><pubDate>Wed, 19 Mar 2008 09:00:00 +0009</pubDate></item><item><title>Modelling single cells in NEURON with the Python interpreter</title><link>http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</link><description>&lt;h2&gt;Modelling single cells in NEURON with the Python interpreter&lt;/h2&gt;
 &lt;p&gt;23rd March 2008&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;(updated for NEURON 7.0 on 2009-01-25)&lt;/em&gt;&lt;/p&gt;
@@ -155,7 +155,7 @@ accessed and changed using dot notation:&lt;/p&gt;
 section:&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;seg&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;soma&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;
-&lt;span class="operator"&gt;...&lt;/span&gt;   &lt;span class="keyword"&gt;print&lt;/span&gt; &lt;span class="name"&gt;seg&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;x&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="name"&gt;seg&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;diam&lt;/span&gt;
+&lt;span class="operator"&gt;...&lt;/span&gt;   &lt;span class="name builtin"&gt;print&lt;/span&gt; &lt;span class="name"&gt;seg&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;x&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="name"&gt;seg&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;diam&lt;/span&gt;
 &lt;span class="operator"&gt;...&lt;/span&gt;
 &lt;span class="literal number float"&gt;0.166666666667&lt;/span&gt; &lt;span class="literal number float"&gt;500.0&lt;/span&gt;
 &lt;span class="literal number float"&gt;0.5&lt;/span&gt; &lt;span class="literal number float"&gt;500.0&lt;/span&gt;
@@ -196,15 +196,15 @@ section:&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;dend&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;Section&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;soma&lt;/span&gt; &lt;span class="operator"&gt;==&lt;/span&gt; &lt;span class="name"&gt;cas&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
-&lt;span class="name builtin pseudo"&gt;True&lt;/span&gt;
+&lt;span class="keyword constant"&gt;True&lt;/span&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;dend&lt;/span&gt; &lt;span class="operator"&gt;==&lt;/span&gt; &lt;span class="name"&gt;cas&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
-&lt;span class="name builtin pseudo"&gt;False&lt;/span&gt;
+&lt;span class="keyword constant"&gt;False&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;To make &lt;tt class="docutils literal"&gt;dend&lt;/tt&gt; the currently-accessed section, use its &lt;tt class="docutils literal"&gt;push()&lt;/tt&gt; method:&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;dend&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;push&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;dend&lt;/span&gt; &lt;span class="operator"&gt;==&lt;/span&gt; &lt;span class="name"&gt;cas&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
-&lt;span class="name builtin pseudo"&gt;True&lt;/span&gt;
+&lt;span class="keyword constant"&gt;True&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;We can now perform operations on dend using hoc calls, e.g.:&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
@@ -223,7 +223,7 @@ function:&lt;/p&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;h&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;pop_section&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
 &lt;span class="literal number float"&gt;1.0&lt;/span&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;soma&lt;/span&gt; &lt;span class="operator"&gt;==&lt;/span&gt; &lt;span class="name"&gt;cas&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
-&lt;span class="name builtin pseudo"&gt;True&lt;/span&gt;
+&lt;span class="keyword constant"&gt;True&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="connecting-sections-together"&gt;
@@ -310,7 +310,7 @@ connect can be controlled with additional, optional arguments:&lt;/p&gt;
 &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;seg&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;soma&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;
 &lt;span class="operator"&gt;...&lt;/span&gt;   &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;mech&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;seg&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;
 &lt;span class="operator"&gt;...&lt;/span&gt;     &lt;span class="keyword"&gt;if&lt;/span&gt; &lt;span class="name"&gt;mech&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;name&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt; &lt;span class="operator"&gt;==&lt;/span&gt; &lt;span class="literal string single"&gt;'pas'&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;
-&lt;span class="operator"&gt;...&lt;/span&gt;       &lt;span class="keyword"&gt;print&lt;/span&gt; &lt;span class="name"&gt;seg&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;x&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="name"&gt;mech&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;g&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="name"&gt;mech&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;e&lt;/span&gt;
+&lt;span class="operator"&gt;...&lt;/span&gt;       &lt;span class="name builtin"&gt;print&lt;/span&gt; &lt;span class="name"&gt;seg&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;x&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="name"&gt;mech&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;g&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="name"&gt;mech&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;e&lt;/span&gt;
 &lt;span class="operator"&gt;...&lt;/span&gt;
 &lt;span class="literal number float"&gt;0.166666666667&lt;/span&gt; &lt;span class="literal number float"&gt;0.00166666666667&lt;/span&gt; &lt;span class="operator"&gt;-&lt;/span&gt;&lt;span class="literal number float"&gt;64.0&lt;/span&gt;
 &lt;span class="literal number float"&gt;0.5&lt;/span&gt; &lt;span class="literal number float"&gt;0.005&lt;/span&gt; &lt;span class="operator"&gt;-&lt;/span&gt;&lt;span class="literal number float"&gt;64.0&lt;/span&gt;
@@ -353,7 +353,7 @@ called &lt;tt class="docutils literal"&gt;del&lt;/tt&gt; in hoc, has been rename
 &lt;span class="literal number float"&gt;100.0&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</guid><pubDate>Sun, 23 Mar 2008 09:00:00 +0009</pubDate></item><item><title>Accessing hoc from Python</title><link>http://andrewdavison.info/notes/accessing-hoc-python/</link><description>&lt;h2&gt;Accessing hoc from Python&lt;/h2&gt;
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</guid><pubDate>Sun, 23 Mar 2008 09:00:00 +0009</pubDate></item><item><title>Accessing hoc from Python</title><link>http://andrewdavison.info/notes/accessing-hoc-python/</link><description>&lt;h2&gt;Accessing hoc from Python&lt;/h2&gt;
 &lt;p&gt;22nd January 2009&lt;/p&gt;
 
 &lt;p&gt;When running NEURON with Python, the hoc interpreter is still available from within Python,
@@ -453,7 +453,7 @@ although we showed above that &lt;tt class="docutils literal"&gt;my_vec&lt;/tt&g
 object:&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;my_vec&lt;/span&gt; &lt;span class="operator"&gt;==&lt;/span&gt; &lt;span class="name"&gt;h&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;vec&lt;/span&gt;
-&lt;span class="name builtin pseudo"&gt;False&lt;/span&gt;
+&lt;span class="keyword constant"&gt;False&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Also, all &lt;tt class="docutils literal"&gt;HocObject&lt;/tt&gt;s have the same type, whatever the object type in hoc:&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
@@ -464,7 +464,7 @@ object:&lt;/p&gt;
 &lt;/pre&gt;
 &lt;p&gt;However, listing the object attributes and methods using &lt;tt class="docutils literal"&gt;dir(obj)&lt;/tt&gt; lists those of the specific hoc object type,
 and &lt;tt class="docutils literal"&gt;help(obj)&lt;/tt&gt; gives help about the object's hoc type.&lt;/p&gt;
-</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/accessing-hoc-python/</guid><pubDate>Thu, 22 Jan 2009 09:00:00 +0009</pubDate></item><item><title>From Hoc to Python: a case study</title><link>http://andrewdavison.info/notes/hoc-to-python-bulbnet/</link><description>&lt;h2&gt;From Hoc to Python: a case study&lt;/h2&gt;
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/accessing-hoc-python/</guid><pubDate>Thu, 22 Jan 2009 09:00:00 +0009</pubDate></item><item><title>From Hoc to Python: a case study</title><link>http://andrewdavison.info/notes/hoc-to-python-bulbnet/</link><description>&lt;h2&gt;From Hoc to Python: a case study&lt;/h2&gt;
 &lt;p&gt;10th November 2010&lt;/p&gt;
 
 &lt;p&gt;Although I was involved in the process of adding &lt;a class="reference external" href="http://www.python.org/"&gt;Python&lt;/a&gt; support to the &lt;a class="reference external" href="http://www.neuron.yale.edu/neuron/"&gt;NEURON&lt;/a&gt;
@@ -619,7 +619,7 @@ The development repository for &lt;em&gt;nrnutils&lt;/em&gt; is at &lt;a class="
 &lt;p&gt;The original cell templates are at &lt;a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/mitral.tem"&gt;mitral.tem&lt;/a&gt; and &lt;a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/granule.tem"&gt;granule.tem&lt;/a&gt;, the Python
 versions are at &lt;a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/mitral.py"&gt;mitral.py&lt;/a&gt; and &lt;a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/granule.py"&gt;granule.py&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/hoc-to-python-bulbnet/</guid><pubDate>Wed, 10 Nov 2010 09:00:00 +0009</pubDate></item><item><title>Modelling simple neurons with PyMOOSE</title><link>http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</link><description>&lt;h2&gt;Modelling simple neurons with PyMOOSE&lt;/h2&gt;
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/hoc-to-python-bulbnet/</guid><pubDate>Wed, 10 Nov 2010 09:00:00 +0009</pubDate></item><item><title>Modelling simple neurons with PyMOOSE</title><link>http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</link><description>&lt;h2&gt;Modelling simple neurons with PyMOOSE&lt;/h2&gt;
 &lt;p&gt;7th January 2011&lt;/p&gt;
 
 &lt;p&gt;&lt;a class="reference external" href="http://moose.ncbs.res.in/"&gt;MOOSE&lt;/a&gt; (Multiscale Object-oriented Simulation Environment) is a modelling
@@ -751,7 +751,7 @@ give us a depolarization of 10 mV:&lt;/p&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;spike_source&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;maxAmp&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="literal number float"&gt;1.0&lt;/span&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;s&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="literal number float"&gt;1.0&lt;/span&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;spike_source&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;rate&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="literal number integer"&gt;100&lt;/span&gt;&lt;span class="operator"&gt;/&lt;/span&gt;&lt;span class="name"&gt;s&lt;/span&gt;
-&lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;spike_source&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;reset&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name builtin pseudo"&gt;True&lt;/span&gt;
+&lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;spike_source&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;reset&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="keyword constant"&gt;True&lt;/span&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="name"&gt;spike_source&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;resetValue&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="literal number float"&gt;0.0&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;and create a synaptic connection:&lt;/p&gt;
@@ -787,7 +787,7 @@ the spikes based on threshold crossing:&lt;/p&gt;
 &lt;p&gt;We can now print the spike times:&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
 &lt;span class="operator"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;label&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="literal string double"&gt;&amp;quot;input&amp;quot;&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="literal string double"&gt;&amp;quot;output&amp;quot;&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;
-&lt;span class="operator"&gt;...&lt;/span&gt;     &lt;span class="keyword"&gt;print&lt;/span&gt; &lt;span class="name"&gt;label&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="name"&gt;numpy&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;array&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;spike_tables&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="name"&gt;label&lt;/span&gt;&lt;span class="punctuation"&gt;])&lt;/span&gt;&lt;span class="operator"&gt;/&lt;/span&gt;&lt;span class="name"&gt;ms&lt;/span&gt;
+&lt;span class="operator"&gt;...&lt;/span&gt;     &lt;span class="name builtin"&gt;print&lt;/span&gt; &lt;span class="name"&gt;label&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="name"&gt;numpy&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;array&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;spike_tables&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="name"&gt;label&lt;/span&gt;&lt;span class="punctuation"&gt;])&lt;/span&gt;&lt;span class="operator"&gt;/&lt;/span&gt;&lt;span class="name"&gt;ms&lt;/span&gt;
 &lt;span class="name builtin"&gt;input&lt;/span&gt; &lt;span class="punctuation"&gt;[&lt;/span&gt;  &lt;span class="literal number float"&gt;13.6&lt;/span&gt;     &lt;span class="literal number float"&gt;22.575&lt;/span&gt;   &lt;span class="literal number float"&gt;30.425&lt;/span&gt;   &lt;span class="literal number float"&gt;39.35&lt;/span&gt;    &lt;span class="literal number float"&gt;72.55&lt;/span&gt;    &lt;span class="literal number float"&gt;75.825&lt;/span&gt;   &lt;span class="literal number float"&gt;79.075&lt;/span&gt;   &lt;span class="literal number float"&gt;91.775&lt;/span&gt;
    &lt;span class="literal number float"&gt;98.675&lt;/span&gt;   &lt;span class="literal number float"&gt;99.2&lt;/span&gt;    &lt;span class="literal number float"&gt;102.15&lt;/span&gt;   &lt;span class="literal number float"&gt;118.425&lt;/span&gt;  &lt;span class="literal number float"&gt;125.625&lt;/span&gt;  &lt;span class="literal number float"&gt;142.&lt;/span&gt;     &lt;span class="literal number float"&gt;143.675&lt;/span&gt;  &lt;span class="literal number float"&gt;144.45&lt;/span&gt;
   &lt;span class="literal number float"&gt;156.475&lt;/span&gt;  &lt;span class="literal number float"&gt;165.65&lt;/span&gt;   &lt;span class="literal number float"&gt;178.&lt;/span&gt;     &lt;span class="literal number float"&gt;178.925&lt;/span&gt;  &lt;span class="literal number float"&gt;179.75&lt;/span&gt;   &lt;span class="literal number float"&gt;189.5&lt;/span&gt;    &lt;span class="literal number float"&gt;192.925&lt;/span&gt;    &lt;span class="literal number float"&gt;0.&lt;/span&gt;   &lt;span class="punctuation"&gt;]&lt;/span&gt;
@@ -797,13 +797,13 @@ the spikes based on threshold crossing:&lt;/p&gt;
 be discarded.&lt;/p&gt;
 &lt;p&gt;This post has only scratched the surface of MOOSE. I will post more notes as I
 explore further.&lt;/p&gt;
-</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</guid><pubDate>Fri, 07 Jan 2011 09:00:00 +0009</pubDate></item><item><title>Workflows for reproducible research in comp. neurosci.</title><link>http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</link><description>&lt;h2&gt;Workflows for reproducible research in comp. neurosci.&lt;/h2&gt;
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</guid><pubDate>Fri, 07 Jan 2011 09:00:00 +0009</pubDate></item><item><title>Workflows for reproducible research in comp. neurosci.</title><link>http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</link><description>&lt;h2&gt;Workflows for reproducible research in comp. neurosci.&lt;/h2&gt;
 &lt;p&gt;23rd July 2012&lt;/p&gt;
 
 &lt;p&gt;At the &lt;a class="reference external" href="http://www.cnsorg.org/cns-2012-atlantadecatur"&gt;CNS 2012&lt;/a&gt; meeting in Decatur, Georgia, I gave a tutorial on reproducible research, focusing on computational neuroscience. The tutorial covered best practices for writing code to facilitate reproducibility, version control systems, testing, and provenance tracking.&lt;/p&gt;
 &lt;p&gt;Notes for the tutorial are online at &lt;a class="reference external" href="http://rrcns.readthedocs.org/en/cns2012/"&gt;http://rrcns.readthedocs.org/en/cns2012/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The notes are written using &lt;a class="reference external" href="http://sphinx.pocoo.org/"&gt;Sphinx&lt;/a&gt;, and are Creative Commons licensed, so feel free to fork the &lt;a class="reference external" href="https://bitbucket.org/apdavison/reproducible_research_cns"&gt;repository&lt;/a&gt; at BitBucket if you would like to reuse or adapt them.&lt;/p&gt;
-</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</guid><pubDate>Mon, 23 Jul 2012 09:00:00 +0009</pubDate></item><item><title>Managing complex workflows in neural simulation/data analysis</title><link>http://andrewdavison.info/notes/managing-complex-workflows/</link><description>&lt;h2&gt;Managing complex workflows in neural simulation/data analysis&lt;/h2&gt;
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</guid><pubDate>Mon, 23 Jul 2012 09:00:00 +0009</pubDate></item><item><title>Managing complex workflows in neural simulation/data analysis</title><link>http://andrewdavison.info/notes/managing-complex-workflows/</link><description>&lt;h2&gt;Managing complex workflows in neural simulation/data analysis&lt;/h2&gt;
 &lt;p&gt;29th July 2013&lt;/p&gt;
 
 &lt;p&gt;At the &lt;a class="reference external" href="http://www.cnsorg.org/cns-2013-paris"&gt;CNS 2013&lt;/a&gt; meeting in Paris, France, Sonja Grün, Michael Denker and I gave a tutorial on managing complex workflows in neuroscience. The abstract was as follows:&lt;/p&gt;
@@ -820,7 +820,7 @@ explore further.&lt;/p&gt;
 &lt;li&gt;Louis et al. (2010) Generation and selection of surrogate methods for correlation analysis. In: &lt;a class="reference external" href="http://www.springer.com/biomed/neuroscience/book/978-1-4419-5674-3"&gt;Analysis of parallel spike trains. eds. Grün &amp;amp; Rotter. Springer Series in Computational Neuroscience.&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://dx.doi.org/10.3389/fncom.2010.00127"&gt;Louis et al. (2010) Surrogate spike train generation through dithering in operational time. Front. Comput. Neurosci. 4: 127. doi:10.3389/fncom.2010.00127&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/managing-complex-workflows/</guid><pubDate>Mon, 29 Jul 2013 09:00:00 +0009</pubDate></item><item><title>Porting a model from NEURON to PyNN: a case study</title><link>http://andrewdavison.info/notes/porting-NEURON-PyNN/</link><description>&lt;h2&gt;Porting a model from NEURON to PyNN: a case study&lt;/h2&gt;
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/managing-complex-workflows/</guid><pubDate>Mon, 29 Jul 2013 09:00:00 +0009</pubDate></item><item><title>Porting a model from NEURON to PyNN: a case study</title><link>http://andrewdavison.info/notes/porting-NEURON-PyNN/</link><description>&lt;h2&gt;Porting a model from NEURON to PyNN: a case study&lt;/h2&gt;
 &lt;p&gt;18th July 2017&lt;/p&gt;
 
 &lt;p&gt;Porting a model from a simulator-specific format to &lt;a class="reference external" href="http://neuralensemble.org/PyNN"&gt;PyNN&lt;/a&gt; allows the model to be
@@ -921,7 +921,7 @@ that subsequent runs will overwrite the filenames each time, so be sure to
 copy the output data files to some uniquely-named directory after each run to
 avoid this.&lt;/p&gt;
 &lt;p&gt;The data files I obtained are available by clicking on this
-icon: &lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120906-144727/"&gt;&lt;img alt="smt:20120906-144727" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;, which takes you to a record of the precise
+icon: &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120906-144727/"&gt;&lt;img alt="smt:20120906-144727" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;, which takes you to a record of the precise
 environment used to run the simulation (NEURON version, operating system,
 processor architecture, etc.) If you have trouble reproducing any of the
 results in this article, comparing your own environment to the one I used may
@@ -976,7 +976,7 @@ $ nrngui demo_cx05_N=500b_LTS.oc
 $ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
 &lt;/pre&gt;
 &lt;!-- EMBED DIFF SOMEHOW - or include link --&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120907-165232/"&gt;&lt;img alt="smt:20120907-165232" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120907-165232/"&gt;&lt;img alt="smt:20120907-165232" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120907-165540/"&gt;&lt;img alt="Data file generated by computation 20120907-165540" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120907-165540/demo_cx05_N=500b_LTS_b0ba741de76f.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Because of the different seeds, the results are not quantitatively identical,
 but the qualitative behaviour of up and down-states is preserved.&lt;/p&gt;
@@ -998,7 +998,7 @@ results to the Hoc version.&lt;/p&gt;
 $ hg update -r 3  # direct translation from Hoc to Python
 $ python demo_cx05_N=500b_LTS.py
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-143435/"&gt;&lt;img alt="smt:20120919-143435" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-143435/"&gt;&lt;img alt="smt:20120919-143435" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;And indeed the results are precisely identical.&lt;/p&gt;
 &lt;!-- INCLUDE LINKS TO DATAFILES FROM THE PYTHON AND HOC VERSIONS --&gt;
 &lt;!-- SHOULD WE BOTHER INCLUDING THE FIGURE? MAYBE SHOW SIDE BY SIDE? --&gt;
@@ -1058,7 +1058,7 @@ $ hg update -r 4  # replaced IF_BG4 mechanism with AdExpIF
 $ python demo_cx05_N=500b_LTS.py
 $ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-154600/"&gt;&lt;img alt="smt:20120919-154600" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-154600/"&gt;&lt;img alt="smt:20120919-154600" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-155931/"&gt;&lt;img alt="Data file generated by computation 20120919-155931" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120919-155931/demo_cx05_N=500b_LTS_f6258f1f86d9.png" /&gt;&lt;/a&gt;
 &lt;p&gt;We might have hoped to get quantitatively identical results, but in fact the
 mean firing rates are slightly higher (33 Hz for RS cells) than in the previous
@@ -1142,7 +1142,7 @@ moved into the &lt;tt class="docutils literal"&gt;AdExpNeuron&lt;/tt&gt; class a
 $ hg update -r 5  # refactoring of original Python conversion, putting more of the code into the cell classes.
 $ python demo_cx05_N=500b_LTS.py
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-165731/"&gt;&lt;img alt="smt:20120919-165731" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-165731/"&gt;&lt;img alt="smt:20120919-165731" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- SHOW SHA1 HASHES TO PROVE RESULTS IDENTICAL? --&gt;
 &lt;/div&gt;
 &lt;div class="section" id="replacing-synapse-mechanisms-with-expsyn"&gt;
@@ -1161,7 +1161,7 @@ $ hg update -r 7  # replaced multiStimexp, multiAMPAexp and multiGABAAexp with E
 $ python demo_cx05_N=500b_LTS.py
 $ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-172444/"&gt;&lt;img alt="smt:20120919-172444" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-172444/"&gt;&lt;img alt="smt:20120919-172444" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Despite this difference, the models give comparable results.&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120919-173558/"&gt;&lt;img alt="Data file generated by computation 20120919-173558" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120919-173558/demo_cx05_N=500b_LTS_881c9059d3f8.png" /&gt;&lt;/a&gt;
 &lt;/div&gt;
@@ -1179,7 +1179,7 @@ modification of Destexhe and Mainen's &lt;tt class="docutils literal"&gt;gen&lt;
 $ hg update -r 8  # replaced gen mechanism with NetStimFD
 $ python demo_cx05_N=500b_LTS.py
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-143918/"&gt;&lt;img alt="smt:20120920-143918" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-143918/"&gt;&lt;img alt="smt:20120920-143918" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;We see that network activity dies out after a few thousand milliseconds.
 Changing the RNG seeds restores the persistence of the activity.&lt;/p&gt;
 &lt;!-- TO INVESTIGATE - if they are so similar, shouldn't they give identical sequences? --&gt;
@@ -1188,7 +1188,7 @@ $ hg update -r 9  # changed seed for random spike generation.
 $ python demo_cx05_N=500b_LTS.py
 $ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-144249/"&gt;&lt;img alt="smt:20120920-144249" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-144249/"&gt;&lt;img alt="smt:20120920-144249" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-144538/"&gt;&lt;img alt="Data file generated by computation 20120920-144538" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120920-144538/demo_cx05_N=500b_LTS_710c1ccd7f10.png" /&gt;&lt;/a&gt;
 &lt;/div&gt;
 &lt;div class="section" id="replacing-locally-defined-adexp-cell-class-with-brettegerstnerif-from-pynn-neuron"&gt;
@@ -1203,7 +1203,7 @@ $ hg update -r 10  # replaced locally-defined AdExp cell class with BretteGerstn
 $ python demo_cx05_N=500b_LTS.py
 $ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-150201/"&gt;&lt;img alt="smt:20120920-150201" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-150201/"&gt;&lt;img alt="smt:20120920-150201" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;As expected, the results are unchanged:&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-151715/"&gt;&lt;img alt="Data file generated by computation 20120920-151715" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120920-151715/demo_cx05_N=500b_LTS_b84106ada1b9.png" /&gt;&lt;/a&gt;
 &lt;/div&gt;
@@ -1218,7 +1218,7 @@ $ hg update -r 12  # changed synaptic delays from zero to 0.1 ms
 $ python demo_cx05_N=500b_LTS.py
 $ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm170_cx05_LTS500b.dat
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-173017/"&gt;&lt;img alt="smt:20120920-173017" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-173017/"&gt;&lt;img alt="smt:20120920-173017" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This has quite a large quantitative effect, but qualitatively, we still see
 the alternation of up- and down-states.&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-173455/"&gt;&lt;img alt="Data file generated by computation 20120920-173455" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120920-173455/demo_cx05_N=500b_LTS_888f50c4119e.png" /&gt;&lt;/a&gt;
@@ -1247,7 +1247,7 @@ neurons.printSpikes(&amp;quot;spiketimes_%s.dat&amp;quot; % MODEL_ID)
 $ hg update -r 13  # replaced list of cells by PyNN Population
 $ python demo_cx05_N=500b_LTS.py
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-173653/"&gt;&lt;img alt="smt:20120920-173653" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120920-173653/"&gt;&lt;img alt="smt:20120920-173653" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The PyNN output file format is slightly different to Alain's original format,
 so minor changes to our plotting script are needed.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
@@ -1283,7 +1283,7 @@ $ hg update -r 15  # replaced list of spike sources by PyNN Population and direc
 $ python demo_cx05_N=500b_LTS.py
 $ python plot.py spiketimes_cx05_LTS500b.dat numspikes_cx05_LTS500b.dat Vm_cx05_LTS500b.dat 170
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120921-151517/"&gt;&lt;img alt="smt:20120921-151517" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120921-151517/"&gt;&lt;img alt="smt:20120921-151517" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The simulation output is unchanged.&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120921-153636/"&gt;&lt;img alt="Data file generated by computation 20120921-153636" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120921-153636/demo_cx05_N=500b_LTS_b5c41e4d9c80.png" /&gt;&lt;/a&gt;
 &lt;/div&gt;
@@ -1295,7 +1295,7 @@ optional.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ hg update -r 16  # added option to run with or without GUI
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120921-160505/"&gt;&lt;img alt="smt:20120921-160505" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120921-160505/"&gt;&lt;img alt="smt:20120921-160505" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then, we replace use of Hoc's &lt;tt class="docutils literal"&gt;Random&lt;/tt&gt; class with PyNN's &lt;tt class="docutils literal"&gt;NumpyRNG&lt;/tt&gt;, and
 replace hard-coded references to &lt;tt class="docutils literal"&gt;pyNN.neuron&lt;/tt&gt; with the ability to specify
 the simulator on the command line:&lt;/p&gt;
@@ -1313,7 +1313,7 @@ $ hg update -r 17  # script now written using purely PyNN
 $ python demo_cx05_N=500b_LTS.py neuron
 $ python plot.py spiketimes_cx05_LTS500b_neuron.dat numspikes_cx05_LTS500b_neuron.dat Vm_cx05_LTS500b_neuron.dat 170
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-105047/"&gt;&lt;img alt="smt:20120928-105047" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-105047/"&gt;&lt;img alt="smt:20120928-105047" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Because we are using different random number generators, the simulation output
 is quantitatively different, but the up- and down-state pattern is preserved.&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-110307/"&gt;&lt;img alt="Data file generated by computation 20120928-110307" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120928-110307/demo_cx05_N=500b_LTS_05644ae81d7c.png" /&gt;&lt;/a&gt;
@@ -1323,7 +1323,7 @@ changes to the code, merely changing one argument on the command line:&lt;/p&gt;
 $ python demo_cx05_N=500b_LTS.py nest
 $ python plot.py spiketimes_cx05_LTS500b_nest.dat numspikes_cx05_LTS500b_nest.dat Vm_cx05_LTS500b_nest.dat 170
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-110419/"&gt;&lt;img alt="smt:20120928-110419" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-110419/"&gt;&lt;img alt="smt:20120928-110419" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-111429/"&gt;&lt;img alt="Data file generated by computation 20120928-111429" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120928-111429/demo_cx05_N=500b_LTS_05644ae81d7c.png" /&gt;&lt;/a&gt;
 &lt;p&gt;There is still one major source of difference between the NEST and NEURON
 simulations: each simulator generates its own Poisson spike trains. So that
@@ -1334,13 +1334,13 @@ $ hg update -r 18  # switched from SpikeSourcePoisson to SpikeSourceArray, so as
 $ python demo_cx05_N=500b_LTS.py nest
 $ python plot.py spiketimes_cx05_LTS500b_nest.dat numspikes_cx05_LTS500b_nest.dat Vm_cx05_LTS500b_nest.dat 170
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-112440/"&gt;&lt;img alt="smt:20120928-112440" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-112440/"&gt;&lt;img alt="smt:20120928-112440" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-113952/"&gt;&lt;img alt="Data file generated by computation 20120928-113952" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120928-113952/demo_cx05_N=500b_LTS_5f6221aa3a14.png" /&gt;&lt;/a&gt;
 &lt;pre class="literal-block"&gt;
 $ python demo_cx05_N=500b_LTS.py neuron
 $ python plot.py spiketimes_cx05_LTS500b_neuron.dat numspikes_cx05_LTS500b_neuron.dat Vm_cx05_LTS500b_neuron.dat 170
 &lt;/pre&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-111936/"&gt;&lt;img alt="smt:20120928-111936" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-111936/"&gt;&lt;img alt="smt:20120928-111936" src="/images/icons/icon_info.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://labnotebook.andrewdavison.info/records/Destexhe_JCNS_2009/20120928-114020/"&gt;&lt;img alt="Data file generated by computation 20120928-114020" src="https://labnotebook.andrewdavison.info/data/Destexhe_JCNS_2009/20120928-114020/demo_cx05_N=500b_LTS_5f6221aa3a14.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Of course, even now the NEURON and NEST traces are not the same, past the first few
 milliseconds: the high degree of recurrency of the network means that small numerical
@@ -1350,4 +1350,4 @@ same qualitative behaviour, and the length of time before divergence occurs
 ought to increase as the integration time step is decreased. Testing that
 is left as an exercise for the reader :-)&lt;/p&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@unic.cnrs-gif.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/porting-NEURON-PyNN/</guid><pubDate>Tue, 18 Jul 2017 09:00:00 +0009</pubDate></item></channel></rss>
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/porting-NEURON-PyNN/</guid><pubDate>Tue, 18 Jul 2017 09:00:00 +0009</pubDate></item></channel></rss>
