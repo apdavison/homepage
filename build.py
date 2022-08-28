@@ -103,7 +103,7 @@ def docinfo_as_dict(docinfo):
     D = {}
     for child in docinfo.children:
         if isinstance(child, nodes.date):
-            D['date'] = child.children[0].rawsource
+            D['date'] = child.astext()
         elif isinstance(child, nodes.author):
             pass  # todo
         elif isinstance(child, nodes.field):

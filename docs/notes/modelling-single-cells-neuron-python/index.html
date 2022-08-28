@@ -93,7 +93,7 @@ accessed and changed using dot notation:</p>
 section:</p>
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="keyword">for</span> <span class="name">seg</span> <span class="operator word">in</span> <span class="name">soma</span><span class="punctuation">:</span>
-<span class="operator">...</span>   <span class="keyword">print</span> <span class="name">seg</span><span class="operator">.</span><span class="name">x</span><span class="punctuation">,</span> <span class="name">seg</span><span class="operator">.</span><span class="name">diam</span>
+<span class="operator">...</span>   <span class="name builtin">print</span> <span class="name">seg</span><span class="operator">.</span><span class="name">x</span><span class="punctuation">,</span> <span class="name">seg</span><span class="operator">.</span><span class="name">diam</span>
 <span class="operator">...</span>
 <span class="literal number float">0.166666666667</span> <span class="literal number float">500.0</span>
 <span class="literal number float">0.5</span> <span class="literal number float">500.0</span>
@@ -134,15 +134,15 @@ section:</p>
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span> <span class="operator">=</span> <span class="name">Section</span><span class="punctuation">()</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span> <span class="operator">==</span> <span class="name">cas</span><span class="punctuation">()</span>
-<span class="name builtin pseudo">True</span>
+<span class="keyword constant">True</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span> <span class="operator">==</span> <span class="name">cas</span><span class="punctuation">()</span>
-<span class="name builtin pseudo">False</span>
+<span class="keyword constant">False</span>
 </pre>
 <p>To make <tt class="docutils literal">dend</tt> the currently-accessed section, use its <tt class="docutils literal">push()</tt> method:</p>
 <pre class="code python literal-block">
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span><span class="operator">.</span><span class="name">push</span><span class="punctuation">()</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">dend</span> <span class="operator">==</span> <span class="name">cas</span><span class="punctuation">()</span>
-<span class="name builtin pseudo">True</span>
+<span class="keyword constant">True</span>
 </pre>
 <p>We can now perform operations on dend using hoc calls, e.g.:</p>
 <pre class="code python literal-block">
@@ -161,7 +161,7 @@ function:</p>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">h</span><span class="operator">.</span><span class="name">pop_section</span><span class="punctuation">()</span>
 <span class="literal number float">1.0</span>
 <span class="operator">&gt;&gt;&gt;</span> <span class="name">soma</span> <span class="operator">==</span> <span class="name">cas</span><span class="punctuation">()</span>
-<span class="name builtin pseudo">True</span>
+<span class="keyword constant">True</span>
 </pre>
 </div>
 <div class="section" id="connecting-sections-together">
@@ -248,7 +248,7 @@ connect can be controlled with additional, optional arguments:</p>
 <span class="keyword">for</span> <span class="name">seg</span> <span class="operator word">in</span> <span class="name">soma</span><span class="punctuation">:</span>
 <span class="operator">...</span>   <span class="keyword">for</span> <span class="name">mech</span> <span class="operator word">in</span> <span class="name">seg</span><span class="punctuation">:</span>
 <span class="operator">...</span>     <span class="keyword">if</span> <span class="name">mech</span><span class="operator">.</span><span class="name">name</span><span class="punctuation">()</span> <span class="operator">==</span> <span class="literal string single">'pas'</span><span class="punctuation">:</span>
-<span class="operator">...</span>       <span class="keyword">print</span> <span class="name">seg</span><span class="operator">.</span><span class="name">x</span><span class="punctuation">,</span> <span class="name">mech</span><span class="operator">.</span><span class="name">g</span><span class="punctuation">,</span> <span class="name">mech</span><span class="operator">.</span><span class="name">e</span>
+<span class="operator">...</span>       <span class="name builtin">print</span> <span class="name">seg</span><span class="operator">.</span><span class="name">x</span><span class="punctuation">,</span> <span class="name">mech</span><span class="operator">.</span><span class="name">g</span><span class="punctuation">,</span> <span class="name">mech</span><span class="operator">.</span><span class="name">e</span>
 <span class="operator">...</span>
 <span class="literal number float">0.166666666667</span> <span class="literal number float">0.00166666666667</span> <span class="operator">-</span><span class="literal number float">64.0</span>
 <span class="literal number float">0.5</span> <span class="literal number float">0.005</span> <span class="operator">-</span><span class="literal number float">64.0</span>
