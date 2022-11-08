@@ -20,7 +20,7 @@
   {% else %}
     Ph.D. thesis, {{article.school}}.
   {% endif %}{% endif %}
-  {% if article.doi %}<a href="http://dx.doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
+  {% if article.doi %}<a href="http://doi.org/{{article.doi}}">doi:{{article.doi}}</a> {% endif %}
   <span class="note">
         [<a href="/publications/{{article.year}}/{{article.ID}}.bib">BibTeX</a>]
         {% if article.full_text %}[<a href="{{article.full_text}}">Full text</a>]{% endif %}
@@ -72,5 +72,3 @@
 </div>
 
 {% endblock %}
-
-
