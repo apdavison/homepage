@@ -1,0 +1,235 @@
+<html>
+
+<head>
+  <link href="poster.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <div id="title">
+      <h1><a href="https://neuropsi.cnrs.fr/departements/icn/equipe-andrew-davison/">Equipe
+          Neuroinformatique</a><br /><a
+          href="https://neuropsi.cnrs.fr/en/departments/icn/group-leader-andrew-davison/"><i>Neuroinformatics Research
+            Group</i></a></h1>
+      <div id="authors">Institut des Neurosciences Paris-Saclay / Paris-Saclay Institute of Neuroscience</div>
+      <div id="affiliations">Département/Department : Neurosciences Intégratives & Computationnelles / Integrative
+        & Computational Neuroscience
+      </div>
+    </div>
+
+    <div id="logos">
+      <img src="logos/neuropsi_logo.png" alt="NeuroPSI logo">
+      <img src="figures/qr-code-this-poster-fr.png"
+        alt="QR code: link to French version of this poster: https://andrewdavison.info/posters/EquipeNeuroinformatique/"
+        class="floatright" width="20%">
+      <img src="logos/logo_univ_paris-saclay.png" alt="Logo of the Université Paris-Saclay">
+      <img src="logos/cnrs_logo_140.png" alt="CNRS logo">
+      <img src="figures/qr-code-this-poster-en.png"
+        alt="QR code: link to English version of this poster: https://andrewdavison.info/posters/NeuroinformaticsTeam/"
+        class="floatright" width="20%">
+    </div>
+  </header>
+
+  <div id="leftcolumn">
+
+    <div id="about">
+
+      <h2>About us</h2>
+      <p class="large">
+        Working at the interface of physics, biology and computer science, the Neuroinformatics research group focuses
+        on
+        understanding how neuronal properties, synaptic mechanisms and network connectivity interact in giving
+        rise to cortical and sub-cortical network function. To study this we use a data-driven, open science
+        approach based on large-scale modelling and simulation, data-sharing, and development of open source
+        software tools.
+      </p>
+      <p class="large">Our work has two intertwined threads, one focused on specific questions in neuroscience, the
+        other on
+        developing novel informatics tools and approaches for neuroscience data sharing, modelling and
+        simulation, and brain-inspired computing more generally. </p>
+      <p class="large">The neuroinformatics tools are essential for
+        our own neuroscience research. By making the extra effort to generalize and share the tools so they can
+        be used more widely, we accelerate the work of others, receive feedback that increases the quality and
+        robustness of our own work, and benefit from the contributions of others.</p>
+
+    </div>
+
+    <div id="digitaltools">
+
+      <h2>Digital tools for neuroscience</h2>
+
+      <p>The group is an active contributor to the <a href="https://ebrains.eu">EBRAINS digital infrastructure</a>,
+        developed by the EC <a href="https://www.humanbrainproject.eu/en/">Human Brain Project</a>. Here are some of the
+        tools we develop:</p>
+
+      <img src="figures/neo-viewer-screenshot.jpg" alt="Screenshot of Neo Viewer" width="55%" class="floatright">
+      <h3>Neo Viewer</h3>
+      <p>Neo Viewer provides web-based visualisation of electrophysiology data, with support for most of the
+        widely-used file formats in neurophysiology, including community standards such as NIX and NWB.</p>
+      <p>It consists of a REST API and a Javascript component that can be embedded in any web page. A hosted demo of
+        the service is available at https://neo-viewer.brainsimulation.eu/. </p>
+
+      <img src="figures/live-papers-screenshot.jpg" alt="Screenshot of Live Papers service" width="60%"
+        class="floatleft">
+      <h3>Live Papers</h3>
+      <p>Live papers are online, interactive scientific documents.</p>
+      <p>The EBRAINS Live Papers service allows authors to easily create and publish interactive documents combining
+        text with
+        digital resources, such as data, code, and notebooks. Interactivity is a
+        prominent feature of the Live Papers, with features to download, visualise or simulate data and models.
+        Many authors use live papers as interactive supplementary material, associated with a more traditional
+        publication.</p>
+
+      <div class="studentprojects">
+        <h4>Projects</h3>
+          <ul>
+            <li>Extend NeoViewer to perform and visualize common data analysis methods in the web browser.</li>
+            <li>Develop visualization widgets for new data types in live papers.</li>
+          </ul>
+      </div>
+    </div>
+
+    <div id="projects">
+      <h2>Requirements</h2>
+      <h4>For neuroscience-focused projects</h4>
+      <ul>
+        <li>Knowledge of the Python programming language and basic use of version control / Git.</li>
+        <li>Basic neuroscience knowledge.</li>
+      </ul>
+      <h4>For informatics/computer-science projects</h4>
+      <ul>
+        <li>Experience with software development using Python and/or Javascript/CSS/HTML.</li>
+        <li>An interest in neuroscience.</li>
+      </ul>
+    </div>
+
+  </div> <!-- leftcolumn -->
+
+  <div id="rightcolumn">
+
+    <div id="modelling">
+      <h2>Data-driven modelling of sensory systems</h2>
+
+      <img src="figures/v1-architecture.jpg" alt="Connectivity in a model of the early visual system of the cat"
+        width="30%" class="floatleft" style="margin-right: 50px">
+      <p>In collaboration with other research groups in NeuroPSI and with colleagues from Charles University, Prague,
+        the group develops biologically-constrained models of early sensory systems, including retina, thalamus and
+        primary sensory cortices.
+        The models are notable for their extensive validation: our aim is to reproduce as many experimental findings as
+        possible with a single set of model parameters.
+      </p>
+      <p>The challenges of
+      <ol>
+        <li> managing the large and complex sets of data used to build, constrain and validate the model, </li>
+        <li>simulating networks of tens of thousands of neurons and millions of synapses while verifying the accuracy
+          and stability of the results, and </li>
+        <li>managing the even larger datasets generated by these simulations
+        </li>
+      </ol>
+      are the driving force behind our neuroinformatics projects.</p>
+
+
+      <div class="studentprojects">
+        <h4>Projects</h4>
+        <ul>
+          <li>Adapt the visual system model to other species (rat, mouse, macaque).</li>
+          <li>Model the rodent somatosensory system (barrel cortex) using the same framework.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div id="neuromorphic">
+
+      <img src="figures/why_PyNN_20210331.jpg"
+        alt="Graphic showing how PyNN allows a model description in Python to be run on any supported simulator or neuromorphic computing system."
+        width="30%" class="floatright">
+      <h2>Technology for large-scale simulations</h2>
+
+      <p>PyNN is a Python API for simulator-independent modelling and simulation of spiking neuronal networks,
+        with support for the NEST, NEURON and Brian simulators, and the SpiNNaker and BrainScaleS neuromorphic computing
+        systems.
+        PyNN makes it much easier to migrate code from one simulator to another, and to cross-validate your simulation
+        results across multiple simulators.</p>
+      <div class="studentprojects">
+        <h4>Projects</h4>
+        <ul>
+          <li>Help extend the PyNN API from point neuron models to morphologically and biophysically-detailed neuron
+            models,
+            essential for understanding the role of dendrites and individual ion channels in neural function.
+          </li>
+          <li>Reproduce and verify published modelling studies using the PyNN framework.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div id="datasharing">
+      <h2>Tools for data and model sharing</h2>
+
+      <img src="figures/ebrains-stats-screenshot.jpg" alt="Screenshot of the EBRAINS statistics app" width="40%"
+        class="floatright">
+
+
+      <p>
+        Funding agencies and journals increasingly expect research products,
+        whether they be data, models or code, to be freely shared according to the FAIR principles.
+        However, such sharing often requires a lot of effort, for an uncertain benefit.
+      </p>
+      <p>
+        To make data and code sharing easier and more rewarding, our group has been working
+        with the INCF and the HBP/EBRAINS to:
+      <ul>
+        <li>develop international standards for data formats through INCF working groups;</li>
+        <li>develop metadata schemas for neuroscience, thus facilitating secondary analyses and meta-analyses of
+          published data
+          (<a href="https://github.com/HumanBrainProject/openMINDS">openMINDS</a> project);
+        </li>
+        <li>curate models and datasets shared through the <a href="https://www.ebrains.eu/data/find-data">EBRAINS
+            repository</a>.
+        </li>
+        <li>develop software tools such as <a href="https://fairgraph.readthedocs.io/"><i>fairgraph</i></a>
+          that make it easier to access online data and metadata in Python scripts and Jupyter notebooks.</li>
+      </ul>
+      </p>
+      <div class="studentprojects">
+        <h3>Projects</h3>
+        <ul>
+          <li>Collaborate with other research groups in NeuroPSI to help prepare data for sharing.</li>
+          <li>Develop novel analyses of public datasets to find new insights.</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div id="thanks">
+      <h4>Acknowledgments</h4>
+      <p>Our work has been supported by the CNRS and by the European Union’s Horizon 2020 Framework Programme for
+        Research and Innovation under Specific Grant Agreements No. 720270, No. 785907 and No. 945539 (Human Brain
+        Project SGA1, SGA2 and SGA3).</p>
+    </div>
+
+  </div> <!-- rightcolumn -->
+
+
+  <div id="groupphoto">
+    <img src="figures/group_photo_20220909.jpg" alt="Group photo from 9th September 2022" width="100%">
+    <div id="photocaption">
+      <p>Group photo, September 2022.</p>
+      <p> Standing, from left: Hassen Aguili, Chitaranjan Mahapatra, Florent Bonnier, Peyman Najafi, Matthieu
+        Sénoville, Elodie Legouée, Lungsi Sharma, Onur Ates, Pedro Garcia. Seated, from left: Fatma Gara-El
+        Haddad, Andrew Davison, Shailesh Appukuttan. Inset: Yves Frégnac.</p>
+    </div>
+    <div id="inset">
+      <img src="figures/yvesfregnac.jpg" width="200" height="200" alt="Photograph of Yves Frégnac"
+        style="border: white 5px solid;">
+    </div>
+  </div>
+
+  <footer>&copy; 2023 <a href="https://andrewdavison.info">Andrew P. Davison</a>. <a
+      href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY</a>. E-mail: andrew.davison@cnrs.fr, Twitter:
+    @apdavison, Mastodon: <a href="https://fosstodon.org/@apdavison">@apdavison@fosstodon.org</a>.</footer>
+
+</body>
+
+</html>
