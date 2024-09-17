@@ -1,0 +1,386 @@
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* -------------------------------------------- */
+
+
+/* The poster boards measure 90cm wide and 135cm tall. */
+/* A0 is 1189 x 841 mm */
+
+@page {
+    size: 841mm 1189mm;    
+}
+
+body {
+    /*width: 821mm;
+    height: 1169mm;*/
+    background-color: lightgrey;
+    margin: 0mm 0mm 0mm 0mm; 
+    /*background-image: url('grid.png');*/
+    /*background-size: 100% 100%; */
+    /*background-repeat: repeat;*/
+    /*background-origin: content-box;*/
+    font-size: 20pt;
+    line-height: 28pt;
+    font-family: sans-serif;
+}
+
+#theposter {
+    width: 841mm;
+    height: 1189mm;
+    margin: 0mm 0mm 0mm 0mm; 
+    background-color: white;
+}
+
+header {
+    width: 791mm;
+    height: 130mm;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10mm;
+    margin: 10mm;
+    border-radius: 10mm;
+}
+
+#title {
+    width: 600mm;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 48pt;
+}
+
+#logos {
+    width: 160mm;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    padding-left: 100px;
+}
+
+#logos img {
+    padding: 2mm;
+}
+
+h1 {
+    font-size: 84pt;
+    line-height: 96pt;
+}
+
+h2 {
+    font-size: 48pt;
+    line-height: 64pt;
+    padding-bottom: 12pt;
+}
+
+h3 {
+    font-size: 36pt;
+    line-height: 48pt;
+}
+
+h4 {
+    font-size: 24pt;
+    line-height: 36pt;
+}
+
+.large {
+    font-size: 24pt;
+    line-height: 32pt;
+}
+
+small {
+    font-size: 12pt;
+}
+
+ul li {
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-left: 2em;
+}
+
+ol li {
+    list-style-type: decimal;
+    list-style-position: outside;
+    margin-left: 2em;
+}
+
+a:link {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+footer {
+    position: absolute;
+    top: 1130mm;
+    height: 59mm;
+    width: 821mm; /*100%;*/
+    left: 0mm;
+    background-color: white;
+    text-align: left;
+    padding-right: 10mm;
+}
+
+hr {
+    width: 100%;
+    border: 10px solid rgba(99, 179, 99, 1);
+}
+
+sup {
+    font-size: 24pt;
+}
+
+code {
+    font-family: monospace;
+}
+
+code.display {
+    font-size: 14pt;
+}
+
+pre.prettyprint {
+    border: none !important;
+    margin-bottom: 6pt;
+}
+
+figure {
+    padding: 5mm;
+    display: table;  /* these lines are to make the caption wrap around at the*/
+    width: 50mm;     /* figure width. This width is arbitrary */
+}
+
+figcaption {
+    text-align: center;
+    font-style: italic;
+    padding-top: 12pt;
+}
+
+#signupbox {
+    background-color:rgba(99, 179, 99, 0.7); 
+    padding: 7mm; 
+    border-radius: 10mm;
+    display: flex;
+    align-items:center;
+}
+
+p {
+    margin-bottom: 12pt;
+    text-align: justify;
+}
+
+ul {
+    margin-bottom: 12pt;
+}
+
+td {
+    vertical-align: middle;
+}
+
+#authors {
+    font-size: 40pt;
+    line-height: 48pt;
+}
+
+#affiliations {
+    padding-top: 12pt;
+    font-size: 24pt;
+    line-height: 30pt;
+    color: gray;
+}
+
+#leftcolumn {
+    position: absolute;
+    width: 380mm;
+    top: 175mm;
+    /*top: 170mm;*/
+    /*left: 0mm;*/
+}
+
+#rightcolumn {
+    position: absolute;
+    left: 410mm;
+    width: 380mm;
+    top: 175mm;
+}
+
+#groupphoto {
+    position: absolute;
+    top: 934mm;
+    width: 821mm;
+    z-index: -1;
+}
+
+#photocaption {
+    background-color: rgba(64, 64, 64, 0.6);
+    position: relative;
+    width: 200mm;
+    top: -85mm;
+    left: 580mm;
+    z-index: 100;
+    padding: 6mm;
+}
+
+#inset {
+    position: relative;
+    top: -150mm;
+    left: 30mm;
+    z-index: 50;
+}
+
+#photocaption p {
+    color: white;
+}
+
+.panel {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 380mm;
+    margin-left: 10mm;
+    margin-right: 10mm;
+    margin-top: 5mm;
+    margin-bottom: 5mm;
+    padding: 10mm;
+    border-radius: 10mm;
+}
+
+#about {
+    position: relative;
+    /*position: absolute;
+      top: 170mm;
+      height: 230mm;
+      left: 0mm;*/
+}
+
+#panel1 {
+    position: relative;
+    /*position: absolute;
+      top: 465mm;
+      height: 100mm;
+      left: 0mm;*/
+}
+
+#panel2 {
+    position: relative;
+    /*position: absolute;
+      top: 570mm;
+      height: 230mm;
+      left: 0mm;*/
+}
+
+#panel3 {
+    position: relative;
+    /*position: absolute;
+      top: 960mm;
+      height: 130mm;
+      left: 0mm;*/
+}
+
+#panel4 {
+    position: relative;
+    /*position: absolute;
+      top: 170mm;
+      height: 220mm;
+      left: 410mm;*/
+}
+
+#modelling h2 {
+    padding-bottom: 24pt;  /* to avoid the architecture figure butting up against the logo */
+}
+
+#panel5 {
+    position: relative;
+    /*position: absolute;
+      top: 620mm;
+      height: 230mm;
+      left: 410mm;*/   
+}
+
+#panel6 {
+    position: relative;
+}
+
+#thanks {
+    background-color: rgba(255, 255, 255, 0.8);
+    /*position: absolute;
+      top: 900mm;
+      height: 30mm;
+      left: 410mm;*/
+    width: 380mm;
+    margin: 10mm;
+    padding: 10mm;
+    font-size: 12pt;
+    line-height: 18pt;
+    border-radius: 10mm;
+}
+
+.floatright {
+    float: right;
+    padding: 5mm;
+}
+
+.floatleft {
+    float: left;
+    padding: 5mm;
+}
+
+.clear {
+    clear: both;
+}
+
+.TODO {
+    background-color: yellow;
+}
+
+.withborder {
+    border: thin silver solid;
+    margin: 5mm;
+}

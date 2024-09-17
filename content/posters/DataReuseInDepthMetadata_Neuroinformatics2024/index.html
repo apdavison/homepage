@@ -1,0 +1,258 @@
+<html>
+
+<head>
+  <link href="poster.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="theposter">
+    <header>
+      <div id="title">
+        <h1><a href="https://neuropsi.cnrs.fr/en/departments/icn/group-leader-andrew-davison/">Facilitating data reuse
+            with in-depth metadata</a></h1>
+        <div id="authors">
+          <a href="https://orcid.org/0000-0002-4793-7541">Andrew P. Davison</a><sup>1</sup>,
+          Isaure Botherel<sup>1</sup>,
+          Liam Chan-Kin<sup>1</sup>,
+          Laura Morel<sup>1</sup>,<br />
+          Ulrike Schlegel<sup>2</sup>,
+          <a href="https://orcid.org/0000-0002-5947-9939">Lyuba Zehl</a><sup>3</sup> &
+          <a href="https://orcid.org/0000-0003-1746-3995">Peyman Najafi</a><sup>1</sup>
+        </div>
+        <div id="affiliations">
+          <sup>1</sup>&nbsp;Institut des Neurosciences Paris-Saclay, Université Paris-Saclay, CNRS, Saclay, France<br />
+          <sup>2</sup>&nbsp;Institute of Basic Medical Sciences, University of Oslo, Oslo, Norway<br />
+          <sup>3</sup>&nbsp;EBRAINS AISBL, Brussels, Belgium
+        </div>
+      </div>
+
+      <div id="logos">
+        <table>
+          <tr>
+            <td><img src="logos/neuropsi_logo-140.png" alt="NeuroPSI logo"></td>
+            <td><img src="logos/ebrains-logo-square-170.jpeg" alt="EBRAINS logo"></td>
+          </tr>
+          <tr>
+            <td><img src="logos/logo_univ_paris-saclay.png" alt="Logo of the Université Paris-Saclay"></td>
+            <td><img src="logos/cnrs_logo_140.png" alt="CNRS logo"></td>
+          </tr>
+          <tr>
+            <td><img src="logos/uio-english-logo-125.jpeg" alt="University of Oslo logo"></td>
+            <td>
+              <img src="logos/qr-code-this-poster.png"
+                alt="QR code: link to online version of this poster: https://andrewdavison.info/posters/DataReuseInDepthMetadata-INCF2024/"
+                width="150px">
+              <p style="text-align: center;"><small>this poster online</small></p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <hr />
+    </header>
+
+    <div id="leftcolumn">
+
+      <div id="about" class="panel">
+
+        <h2>Background</h2>
+        <p class="large">
+          Sharing scientific data is not an end in itself; the value of shared data is only realised when those data are
+          reused, whether to validate publications, test new hypotheses, build computational models, or conduct
+          meta-analyses. However, “reuse” is perhaps the most challenging of the FAIR principles to achieve. One of the
+          main reasons for this is the need to fully understand how the data were produced: for example, the details of
+          the experimental preparation, the recording conditions, and any stimulation or behavioural protocols used.
+        </p>
+        <p class="large">
+          Many scientific data repositories provide only minimal metadata, insufficient for easily reusing the data. The
+          EBRAINS data repository provides basic metadata for all datasets, using the openMINDS metadata framework,
+          including properties of individual experimental subjects and samples. For a subset of EBRAINS datasets,
+          curators
+          have gone further, annotating datasets with extended, in-depth metadata including rich information about data
+          files, recording setups, and stimuli.
+        </p>
+        <p class="large">
+          Taking a number of these datasets as case studies, we have developed Jupyter notebooks showing how to reuse
+          the
+          data, focusing on recreating published figures. For each dataset we wrote one notebook based on the dataset
+          after basic curation, and another notebook making use of the additional metadata available after extended
+          curation. By comparing the “before” and “after” versions we aim to demonstrate the value and the limitations
+          of
+          in-depth metadata for facilitating data reuse.
+        </p>
+      </div>
+
+      <div id="panel1" class="panel">
+
+        <h2>The EBRAINS Data Repository</h2>
+        <p class="large">
+          <a href="https://ebrains.eu">EBRAINS</a> is a digital research infrastructure for neuroscience,
+          building on the legacy of the <a href="https://www.humanbrainproject.eu">EU Human Brain Project</a>.
+          One part of this infrastructure is a data repository, which hosts neuroscience datasets alongside other
+          research products such as models and software.
+        </p>
+        <p class="large">All EBRAINS datasets go through a manual curation process, to ensure they have adequate and
+          accurate metadata. Dataset providers are required to provide a detailed data descriptor giving details of the
+          dataset structure, the file formats used, and how the data were acquired.</p>
+        <p class="large">Metadata are stored in the EBRAINS Knowledge Graph (KG).
+          Data files are stored at supercomputer centres in Switzerland and Germany, or in certain approved external
+          repositories, with only the metadata stored in the KG.</p>
+        <p class="large">The KG has different user interfaces, including a search UI (see screenshot below) and a REST
+          API.
+          Software development kits are available for Python, JavaScript/TypeScript and Java.
+        </p>
+        <a href="https://doi.org/10.25493/VAV5-BXU">
+          <img src="figures/screenshot-Garad-Lessman-2022.png"
+            alt="Screenshot of dataset by Garad & Lessman (2022) from https://doi.org/10.25493/VAV5-BXU" width="100%"
+            class="withborder" /></a>
+      </div>
+
+      <div id="panel2" class="panel">
+        <h2>The openMINDS metadata framework</h2>
+        <img src="logos/openMINDS_logo_light.png" width="360px" height="180px" alt="openMINDS logo" class="floatleft" />
+        <p class="large">The EBRAINS Data Repository uses openMINDS to structure its metadata.
+          openMINDS is a community-developed metadata framework for linked data, with a focus on
+          neuroscience.<br /><br /><br />
+        <p>
+
+          <img src="figures/openMINDS-modules.png" width="60%" alt="openMINDS module structure"
+            class="floatright withborder" />
+        <p class="large">The framework comprises:</p>
+        <ul class="large">
+          <li>Schema specifications for interconnected metadata models, organized into modules ➡️</li>
+          <li>Libraries of metadata instances for well-defined terms, such as terminologies, with links to ontologies
+            where available</li>
+          <li>Supportive tooling for handling openMINDS in Python or MATLAB</li>
+        </ul>
+        </p>
+      </div>
+
+      <div class="clear"></div>
+
+    </div> <!-- leftcolumn -->
+
+    <div id="rightcolumn">
+
+      <div id="panel3" class="panel">
+        <h2>Annotating electrophysiology datasets</h2>
+        <img src="figures/curation-workflow.png" width="50%"
+          alt="In EBRAINS, curation is divided into three stages: basic curation, atlas integration and in-depth curation"
+          class="floatright" style="margin-left:5mm">
+        <p class="large">In EBRAINS, curation is divided into three stages: basic curation, atlas integration and
+          in-depth curation. All datasets go through basic curation. In-depth curation is performed for a subset of
+          datasets,
+          of particular high re-use potential and/or already having structured, detailed metadata available.</p>
+        <img src="figures/openMINDS_ephys_example.png"
+          alt="Graph structure of a dataset annotated using the openMINDS framework" width="70%"
+          class="withborder floatleft" />
+        <p class="large">The figure to the left shows part of the graph structure for a whole-cell patch clamp dataset.
+          Nodes in blue are some of those generated during basic curation. Nodes in yellow are added during in-depth
+          curation,
+          and provide detailed information about individual data files and the different steps of the experimental
+          protocol.
+        </p>
+      </div>
+
+      <div id="panel4" class="panel clear">
+
+        <h2>Case study of data reuse: minimal metadata</h2>
+        <a
+          href="https://lab.ebrains.eu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FNeuroPSI-Neuroinformatics%2Fcase-studies-for-data-reuse&urlpath=lab%2Ftree%2Fcase-studies-for-data-reuse%2F10.25493-VAV5-BXU%2FGaradLessmann2022_nokg.ipynb&branch=main"><img
+            src="logos/qrcode-GaradLessman2022-nokg-notebook.png"
+            alt="QR code redirecting to Jupyter notebook for reuse of the Garad-Lessman-2022 dataset _without_ accessing metadata from the EBRAINS KG"
+            class="floatright" style="margin-left: 10mm;"></a>
+        <p class="large">For the dataset shown at left (<a href="https://doi.org/10.25493/VAV5-BXU">Garad & Leßmann,
+            2022</a>),
+          we have developed an executable tutorial, in the form of a Jupyter notebook, to show how the dataset can be
+          reused.
+          The re-use is rather simple: we tried to reproduce two figures from the published paper associated with the
+          dataset.</p>
+        <p class="large">The QR code ➡️ loads this notebook in the EBRAINS Lab, where it can be run directly
+          provided you have an EBRAINS account.
+        </p>
+        <div id="signupbox">
+          <img src="logos/qrcode-ebrains-account.png" />
+          <span style="font-size:36pt">&nbsp;&nbsp;⬅️ register for an EBRAINS account here</span>
+        </div>
+      </div>
+
+      <div id="panel 5" class="panel">
+        <h2>Case study of data reuse: detailed metadata</h2>
+
+        <a
+          href="https://lab.ebrains.eu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FNeuroPSI-Neuroinformatics%2Fcase-studies-for-data-reuse&urlpath=lab%2Ftree%2Fcase-studies-for-data-reuse%2F10.25493-VAV5-BXU%2FGaradLessmann2022.ipynb&branch=main"><img
+            src="logos/qrcode-GaradLessman2022-withkg-notebook.png"
+            alt="QR code redirecting to Jupyter notebook for reuse of the Garad-Lessman-2022 dataset using metadata from the EBRAINS KG"
+            class="floatright" style="margin-left: 10mm;">
+        </a>
+        <p class="large">We also developed a second version of the tutorial (QR code ➡️), in which the metadata needed
+          for the analysis and plotting were obtained from the KG using the <a href="https://docs.kg.ebrains.eu/">KG
+            core API</a> via the <a href="https://fairgraph.readthedocs.io/">fairgraph</a> Python library.</p>
+
+
+        <p class="large">In the case studies we examined, some of the uses of metadata were:</p>
+
+        <ul class="large">
+          <li>locating data for download</li>
+          <li>quickly viewing descriptions/annotations <i>in situ</i> (e.g., in a Jupyter notebook), without having to
+            switch
+            to a different window (e.g., web browser)</li>
+          <li>applying corrections/offsets to raw data (e.g., liquid junction potential)</li>
+          <li>obtaining units for measured/recorded quantities and for stimulus parameters, allowing quick and
+            guaranteed-correct unit conversions</li>
+          <li>verifying that units and other metadata stored within data files have been correctly read (important when
+            using different software from that used by the dataset providers)</li>
+          <li>automatically reconstructing stimuli for use in data analysis</li>
+          <li>unambiguous linkage between individual recordings and the specific experimental conditions used for each
+            recording</li>
+          <li>automatically partitioning of datasets by experimental variables</li>
+          <li>partitioning of continuous recordings by experimental/stimulation conditions.</li>
+        </ul>
+
+        <img src="figures/influence-of-metadata.png" width="60%"
+          alt="Graph of membrane potential taken from the case study, showing examples of how metadata are used"
+          class="floatright">
+        <p class="large"><br />Even in such a simple example of re-use as plotting the recorded membrane potential,
+          metadata are used in multiple ways, as the figure to the right shows.
+        </p>
+
+      </div>
+
+      <div id="panel 5" class="panel">
+        <h2>Perspectives</h2>
+        <p class="large">
+          In the datasets studied so far, the structure of the data was fairly simple.
+          We next plan to look next at datasets with more complex structures, where the availability of detailed
+          metadata
+          may be more critical to a successful reanalysis. We will also investigate the use of metadata for
+          parameterizing
+          standardized data analysis methods for datasets with similar structures.
+          In all our case studies, the most critical
+          missing information was the details of the data analysis methods used in the papers, underscoring the
+          importance
+          of sharing data analysis code alongside the data.
+        </p>
+      </div>
+
+
+    </div> <!-- rightcolumn -->
+
+    <footer>
+      <hr />
+      <img src="logos/eu_flag.jpg" alt="EU flag" width="240" height="160" class="floatleft" />
+      <p>&copy; 2024 <a href="https://andrewdavison.info">Andrew P. Davison</a>, Isaure Botherel, Liam Chan-Kin, Laura
+        Morel, Ulrike Schlegel, Lyuba Zehl and Peyman Najafi. This poster is shared under the Creative Commons
+        Attribution licence (<a href="http://creativecommons.org/licenses/by/4.0/">CC-BY</a>) version 4.
+      <p>E-mail: andrew.davison@cnrs.fr &nbsp;&nbsp;
+        Twitter: @apdavison &nbsp;&nbsp;
+        Mastodon: <a href="https://fosstodon.org/@apdavison">@apdavison@fosstodon.org</a>.</p>
+      <p>The work has been supported by the CNRS, by the European Union's Horizon 2020 Framework Programme for
+        Research and Innovation under Specific Grant Agreements No. 720270, No. 785907 and No. 945539 (Human Brain
+        Project SGA1, SGA2 and SGA3), and by the European Union's Research and Innovation Program Horizon Europe
+        Grant Agreement No. 101147319 (EBRAINS 2.0).
+      </p>
+    </footer>
+
+  </div>
+</body>
+
+</html>
