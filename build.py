@@ -166,10 +166,12 @@ def generate_feed(notes):
         entry.author(name='Andrew Davison',
                      email='andrew.davison@cnrs.fr')
         entry.content(content, type="xhtml")
-        entry.published(datetime.combine(note["date"], nineam))
+        pub_datetime = datetime.combine(note["date"], nineam)
+        entry.published(pub_datetime)
+        entry.updated(pub_datetime)
 
-    fg.atom_file(os.path.join(builddir, 'atom.xml'))
-    fg.rss_file(os.path.join(builddir, 'rss.xml'))
+    fg.atom_file(os.path.join(builddir, 'atom.xml'), pretty=True)
+    fg.rss_file(os.path.join(builddir, 'rss.xml'), pretty=True)
     # note: have a Python-specific feed for PlanetSciPy?
 
 
@@ -287,6 +289,8 @@ def build():
     # -- Generate RSS/Atom feeds
     print("Generating RSS and Atom feeds")
     generate_feed(notes)
+
+    # -- Check internal links
     check_links(internal=True, external=False)
 
 

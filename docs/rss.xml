@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Some models are useful</title><link>http://andrewdavison.info/atom.xml</link><description>Andrew Davison's Blog</description><atom:link href="http://andrewdavison.info/atom.xml" rel="self"/><copyright>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 08 Nov 2022 09:23:16 +0100</lastBuildDate><item><title>Modelling STDP in the NEURON simulator</title><link>http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</link><description>&lt;h2&gt;Modelling STDP in the NEURON simulator&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Some models are useful</title><link>http://andrewdavison.info/atom.xml</link><description>Andrew Davison's Blog</description><atom:link href="http://andrewdavison.info/atom.xml" rel="self"/><copyright>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 10 Jan 2025 17:16:33 +0100</lastBuildDate><item><title>Modelling STDP in the NEURON simulator</title><link>http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</link><description>&lt;h2&gt;Modelling STDP in the NEURON simulator&lt;/h2&gt;
 &lt;p&gt;11th February 2007&lt;/p&gt;
 
 &lt;p&gt;At the time of writing (or at least, last time I looked), the &lt;a class="reference external" href="http://www.neuron.yale.edu/neuron/"&gt;NEURON simulator&lt;/a&gt; does not have a built-in mechanism for spike-timing-dependent plasticity (STDP). There are many possible ways of implementing such a mechanism, using the NMODL language. This page describes one such possibility.&lt;/p&gt;
@@ -1350,4 +1350,88 @@ same qualitative behaviour, and the length of time before divergence occurs
 ought to increase as the integration time step is decreased. Testing that
 is left as an exercise for the reader :-)&lt;/p&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/porting-NEURON-PyNN/</guid><pubDate>Tue, 18 Jul 2017 09:00:00 +0009</pubDate></item></channel></rss>
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/porting-NEURON-PyNN/</guid><pubDate>Tue, 18 Jul 2017 09:00:00 +0009</pubDate></item><item><title>Typesetting subscripts, units and physical quantities</title><link>http://andrewdavison.info/notes/typesetting-comp-neuro/</link><description>&lt;h2&gt;Typesetting subscripts, units and physical quantities&lt;/h2&gt;
+&lt;p&gt;10th January 2025&lt;/p&gt;
+
+&lt;p&gt;My brain is a nitpicker.
+I am easily distracted by small imperfections and inconsistencies,
+which is a handicap when reviewing (both for scientific articles and for code)
+because minor details such as spelling mistakes or non-standard code style
+interfere with my ability to take in the big picture.&lt;/p&gt;
+&lt;p&gt;An example of such minor details, one that I encounter a lot,
+is the typesetting of subscripts, units, and physical quantities
+in manuscripts I am asked to review,
+which are typically in the fields of computational neuroscience,
+neuroinformatics, data science or neuromorphic computing.&lt;/p&gt;
+&lt;p&gt;When I encounter such problems,
+unless I know that the journal in question will fix the typesetting,
+I usually flag them in my comments to the authors, as minor issues.
+Whenever this occurs, I spend time searching the web for references to the rules that are being broken,
+because I never remember them.&lt;/p&gt;
+&lt;p&gt;This article, then, is mostly written for myself,
+to collect these references in one place so that I can easily find them again!&lt;/p&gt;
+&lt;div class="section" id="subscripts-and-superscripts"&gt;
+&lt;h3&gt;Subscripts and superscripts&lt;/h3&gt;
+&lt;p&gt;The general rule for typesetting mathematics that is most often broken here is:&lt;/p&gt;
+&lt;blockquote&gt;
+Symbols that represent variables should be italicized, all other terms should not be italicized.&lt;/blockquote&gt;
+&lt;p&gt;For more details on this, see the &lt;a class="reference external" href="http://pleasemakeanote.blogspot.com/2010/07/italics-in-math-equations.html"&gt;Please Make A Note blog&lt;/a&gt;
+or &lt;a class="reference external" href="https://physics.nist.gov/cuu/pdf/typefaces.pdf"&gt;&amp;quot;Typefaces&amp;quot;&lt;/a&gt; from the US National Institute of Standards and Technology (NIST)
+(the ultimate reference for this is the &lt;a class="reference external" href="https://www.iso.org/obp/ui/#iso:std:iso:80000:-2:ed-2:v2:en"&gt;ISO 80000 standard&lt;/a&gt;, but that is not a very accessible document.)&lt;/p&gt;
+&lt;p&gt;What this means for subscripts (and superscripts) is that if the subscript represents a variable it should be in italics:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+V_x \qquad E^{i}_{y}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;but if it is a descriptive term, or a number, it should be in an upright (also called roman) font style:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+V_{\mathrm{soma}} \qquad V_{\mathrm{m}} \qquad E_{\mathrm{NMDA}} \qquad I_{\mathrm{Na}} \qquad V_{\mathrm{m}}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;(in the latter case, &amp;quot;m&amp;quot; is short for &amp;quot;membrane&amp;quot;, and so is descriptive).
+This is particularly important when using acronyms or entire words as subscripts,
+because otherwise LaTeX treats the letters as a sequence of variables multiplied together,
+and puts too much space between them, e.g.:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E_{NMDA}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;The reason this rule is so often broken is that by default &lt;span class="math"&gt;\(\LaTeX\)&lt;/span&gt; assumes a subscript is a variable:&lt;/p&gt;
+&lt;p class="center"&gt;&lt;tt class="docutils literal"&gt;V_m&lt;/tt&gt; ➜ &lt;span class="math"&gt;\(V_m\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To typeset the subscript in a roman/upright type requires something like:&lt;/p&gt;
+&lt;p class="center"&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;V_{\\mathrm{m}}&lt;/span&gt;&lt;/tt&gt; ➜ &lt;span class="math"&gt;\(V_{\mathrm{m}}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;(There are several ways to do this. I usually use &lt;tt class="docutils literal"&gt;\\mathrm&lt;/tt&gt;.
+This &lt;a class="reference external" href="https://tex.stackexchange.com/questions/98406/which-command-should-i-use-for-textual-subscripts-in-math-mode"&gt;StackExchange article&lt;/a&gt; has a nice discussion of alternative approaches.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="units-and-physical-quantities"&gt;
+&lt;h3&gt;Units and physical quantities&lt;/h3&gt;
+&lt;p&gt;Here the basic rules are:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;units should always be in roman (upright) type;&lt;/li&gt;
+&lt;li&gt;for quantities there should always be a space between the number and the unit.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For more detailed rules, see the NIST &lt;a class="reference external" href="https://physics.nist.gov/cuu/pdf/sp811.pdf"&gt;Guide for the Use of the International System of Units&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When writing in &lt;span class="math"&gt;\(\LaTeX\)&lt;/span&gt; I usually use a thin space, &lt;tt class="docutils literal"&gt;\,&lt;/tt&gt;, e.g.:&lt;/p&gt;
+&lt;p class="center"&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;250\,\mathrm{pS/cm^{2}}&lt;/span&gt;&lt;/tt&gt; ➜ &lt;span class="math"&gt;\(250\,\mathrm{pS/cm^{2}}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;but this is a stylistic choice, a full space is also fine; publishers may have their own style guides for this.&lt;/p&gt;
+&lt;p class="center"&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;250~\mathrm{pS/cm^{2}}&lt;/span&gt;&lt;/tt&gt; ➜ &lt;span class="math"&gt;\(250~\mathrm{pS/cm^{2}}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;(Note also the use of &lt;tt class="docutils literal"&gt;~&lt;/tt&gt; for the full space; this prevents the number and units being separated by a line break.)&lt;/p&gt;
+&lt;p&gt;Alternaively, the &lt;span class="math"&gt;\(\LaTeX\)&lt;/span&gt; &lt;a class="reference external" href="https://ctan.org/pkg/siunitx"&gt;siunitx&lt;/a&gt; package provides a nice set of tools for consistent typesetting of quantities, e.g.:&lt;/p&gt;
+&lt;pre class="code latex literal-block"&gt;
+&lt;span class="keyword"&gt;\usepackage&lt;/span&gt;&lt;span class="name builtin"&gt;{&lt;/span&gt;siunitx&lt;span class="name builtin"&gt;}&lt;/span&gt;
+
+&lt;span class="keyword"&gt;\qty&lt;/span&gt;&lt;span class="name builtin"&gt;{&lt;/span&gt;250&lt;span class="name builtin"&gt;}{&lt;/span&gt;pS/cm&lt;span class="name builtin"&gt;^&lt;/span&gt;2&lt;span class="name builtin"&gt;}&lt;/span&gt;
+&lt;span class="keyword"&gt;\qty&lt;/span&gt;&lt;span class="name builtin"&gt;{&lt;/span&gt;250&lt;span class="name builtin"&gt;}{&lt;/span&gt;&lt;span class="keyword"&gt;\pico\siemens\per\square\cm&lt;/span&gt;&lt;span class="name builtin"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;I should probably switch to using this myself, but old habits die hard.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;In summary, please typeset your subscripts and quantities properly.
+It will soothe my pedantic brain and make it much easier for me to focus on what really matters,
+the content of what you have to say!&lt;/p&gt;
+&lt;/div&gt;
+</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/typesetting-comp-neuro/</guid><pubDate>Fri, 10 Jan 2025 09:00:00 +0009</pubDate></item></channel></rss>

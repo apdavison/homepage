@@ -1,5 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><id>http://andrewdavison.info/</id><title>Some models are useful</title><updated>2022-11-08T09:23:16.860501+01:00</updated><link href="http://andrewdavison.info" rel="alternate"/><link href="http://andrewdavison.info/atom.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><rights>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</rights><subtitle>Andrew Davison's Blog</subtitle><entry><id>http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</id><title>Modelling STDP in the NEURON simulator</title><updated>2022-11-08T08:23:16.861342+00:00</updated><author><name>Andrew Davison</name><email>andrew.davison@cnrs.fr</email></author><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h2>Modelling STDP in the NEURON simulator</h2>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>http://andrewdavison.info/</id>
+  <title>Some models are useful</title>
+  <updated>2025-01-10T17:16:33.052670+01:00</updated>
+  <link href="http://andrewdavison.info" rel="alternate"/>
+  <link href="http://andrewdavison.info/atom.xml" rel="self"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator>
+  <rights>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</rights>
+  <subtitle>Andrew Davison's Blog</subtitle>
+  <entry>
+    <id>http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</id>
+    <title>Modelling STDP in the NEURON simulator</title>
+    <updated>2007-02-11T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Modelling STDP in the NEURON simulator</h2>
 <p>11th February 2007</p>
 
 <p>At the time of writing (or at least, last time I looked), the <a class="reference external" href="http://www.neuron.yale.edu/neuron/">NEURON simulator</a> does not have a built-in mechanism for spike-timing-dependent plasticity (STDP). There are many possible ways of implementing such a mechanism, using the NMODL language. This page describes one such possibility.</p>
@@ -13,7 +31,21 @@
 <img alt="Screenshot of STDwa demo, bottom graph" class="align-center" src="/figures/demo_stdwa3.png" style="width: 750px;"/>
 <p>The bottom panel shows the weight change.</p>
 <p><em>To be continued.</em> Check back in a few days, I plan to explain in more detail what is happening and how to use the mechanism in your own code.</p>
-</div></content><link href="http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/" rel="alternate" type="text/html"/><published>2007-02-11T09:00:00+00:09</published></entry><entry><id>http://andrewdavison.info/notes/installation-neuron-python/</id><title>Installation of NEURON with Python</title><updated>2022-11-08T08:23:16.861320+00:00</updated><author><name>Andrew Davison</name><email>andrew.davison@cnrs.fr</email></author><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h2>Installation of NEURON with Python</h2>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/" rel="alternate" type="text/html"/>
+    <published>2007-02-11T09:00:00+00:09</published>
+  </entry>
+  <entry>
+    <id>http://andrewdavison.info/notes/installation-neuron-python/</id>
+    <title>Installation of NEURON with Python</title>
+    <updated>2008-03-19T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Installation of NEURON with Python</h2>
 <p>19th March 2008</p>
 
 <p><em>Updated 2009-01-22 for NEURON v7.0</em></p>
@@ -104,7 +136,21 @@ See http://www.neuron.yale.edu/credits.html
 In [2]:
 </pre>
 </div>
-</div></content><link href="http://andrewdavison.info/notes/installation-neuron-python/" rel="alternate" type="text/html"/><published>2008-03-19T09:00:00+00:09</published></entry><entry><id>http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</id><title>Modelling single cells in NEURON with the Python interpreter</title><updated>2022-11-08T08:23:16.861293+00:00</updated><author><name>Andrew Davison</name><email>andrew.davison@cnrs.fr</email></author><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h2>Modelling single cells in NEURON with the Python interpreter</h2>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/installation-neuron-python/" rel="alternate" type="text/html"/>
+    <published>2008-03-19T09:00:00+00:09</published>
+  </entry>
+  <entry>
+    <id>http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</id>
+    <title>Modelling single cells in NEURON with the Python interpreter</title>
+    <updated>2008-03-23T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Modelling single cells in NEURON with the Python interpreter</h2>
 <p>23rd March 2008</p>
 
 <p><em>(updated for NEURON 7.0 on 2009-01-25)</em></p>
@@ -353,7 +399,21 @@ called <tt class="docutils literal">del</tt> in hoc, has been renamed to <tt cla
 <span class="literal number float">100.0</span>
 </pre>
 </div>
-</div></content><link href="http://andrewdavison.info/notes/modelling-single-cells-neuron-python/" rel="alternate" type="text/html"/><published>2008-03-23T09:00:00+00:09</published></entry><entry><id>http://andrewdavison.info/notes/accessing-hoc-python/</id><title>Accessing hoc from Python</title><updated>2022-11-08T08:23:16.861269+00:00</updated><author><name>Andrew Davison</name><email>andrew.davison@cnrs.fr</email></author><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h2>Accessing hoc from Python</h2>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/modelling-single-cells-neuron-python/" rel="alternate" type="text/html"/>
+    <published>2008-03-23T09:00:00+00:09</published>
+  </entry>
+  <entry>
+    <id>http://andrewdavison.info/notes/accessing-hoc-python/</id>
+    <title>Accessing hoc from Python</title>
+    <updated>2009-01-22T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Accessing hoc from Python</h2>
 <p>22nd January 2009</p>
 
 <p>When running NEURON with Python, the hoc interpreter is still available from within Python,
@@ -464,7 +524,21 @@ object:</p>
 </pre>
 <p>However, listing the object attributes and methods using <tt class="docutils literal">dir(obj)</tt> lists those of the specific hoc object type,
 and <tt class="docutils literal">help(obj)</tt> gives help about the object's hoc type.</p>
-</div></content><link href="http://andrewdavison.info/notes/accessing-hoc-python/" rel="alternate" type="text/html"/><published>2009-01-22T09:00:00+00:09</published></entry><entry><id>http://andrewdavison.info/notes/hoc-to-python-bulbnet/</id><title>From Hoc to Python: a case study</title><updated>2022-11-08T08:23:16.861241+00:00</updated><author><name>Andrew Davison</name><email>andrew.davison@cnrs.fr</email></author><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h2>From Hoc to Python: a case study</h2>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/accessing-hoc-python/" rel="alternate" type="text/html"/>
+    <published>2009-01-22T09:00:00+00:09</published>
+  </entry>
+  <entry>
+    <id>http://andrewdavison.info/notes/hoc-to-python-bulbnet/</id>
+    <title>From Hoc to Python: a case study</title>
+    <updated>2010-11-10T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>From Hoc to Python: a case study</h2>
 <p>10th November 2010</p>
 
 <p>Although I was involved in the process of adding <a class="reference external" href="http://www.python.org/">Python</a> support to the <a class="reference external" href="http://www.neuron.yale.edu/neuron/">NEURON</a>
@@ -619,7 +693,21 @@ The development repository for <em>nrnutils</em> is at <a class="reference exter
 <p>The original cell templates are at <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/mitral.tem">mitral.tem</a> and <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/granule.tem">granule.tem</a>, the Python
 versions are at <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/mitral.py">mitral.py</a> and <a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/granule.py">granule.py</a>.</p>
 </div>
-</div></content><link href="http://andrewdavison.info/notes/hoc-to-python-bulbnet/" rel="alternate" type="text/html"/><published>2010-11-10T09:00:00+00:09</published></entry><entry><id>http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</id><title>Modelling simple neurons with PyMOOSE</title><updated>2022-11-08T08:23:16.861217+00:00</updated><author><name>Andrew Davison</name><email>andrew.davison@cnrs.fr</email></author><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h2>Modelling simple neurons with PyMOOSE</h2>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/hoc-to-python-bulbnet/" rel="alternate" type="text/html"/>
+    <published>2010-11-10T09:00:00+00:09</published>
+  </entry>
+  <entry>
+    <id>http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</id>
+    <title>Modelling simple neurons with PyMOOSE</title>
+    <updated>2011-01-07T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Modelling simple neurons with PyMOOSE</h2>
 <p>7th January 2011</p>
 
 <p><a class="reference external" href="http://moose.ncbs.res.in/">MOOSE</a> (Multiscale Object-oriented Simulation Environment) is a modelling
@@ -797,13 +885,41 @@ the spikes based on threshold crossing:</p>
 be discarded.</p>
 <p>This post has only scratched the surface of MOOSE. I will post more notes as I
 explore further.</p>
-</div></content><link href="http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/" rel="alternate" type="text/html"/><published>2011-01-07T09:00:00+00:09</published></entry><entry><id>http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</id><title>Workflows for reproducible research in comp. neurosci.</title><updated>2022-11-08T08:23:16.861187+00:00</updated><author><name>Andrew Davison</name><email>andrew.davison@cnrs.fr</email></author><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h2>Workflows for reproducible research in comp. neurosci.</h2>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/" rel="alternate" type="text/html"/>
+    <published>2011-01-07T09:00:00+00:09</published>
+  </entry>
+  <entry>
+    <id>http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</id>
+    <title>Workflows for reproducible research in comp. neurosci.</title>
+    <updated>2012-07-23T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Workflows for reproducible research in comp. neurosci.</h2>
 <p>23rd July 2012</p>
 
 <p>At the <a class="reference external" href="http://www.cnsorg.org/cns-2012-atlantadecatur">CNS 2012</a> meeting in Decatur, Georgia, I gave a tutorial on reproducible research, focusing on computational neuroscience. The tutorial covered best practices for writing code to facilitate reproducibility, version control systems, testing, and provenance tracking.</p>
 <p>Notes for the tutorial are online at <a class="reference external" href="http://rrcns.readthedocs.org/en/cns2012/">http://rrcns.readthedocs.org/en/cns2012/</a></p>
 <p>The notes are written using <a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a>, and are Creative Commons licensed, so feel free to fork the <a class="reference external" href="https://bitbucket.org/apdavison/reproducible_research_cns">repository</a> at BitBucket if you would like to reuse or adapt them.</p>
-</div></content><link href="http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/" rel="alternate" type="text/html"/><published>2012-07-23T09:00:00+00:09</published></entry><entry><id>http://andrewdavison.info/notes/managing-complex-workflows/</id><title>Managing complex workflows in neural simulation/data analysis</title><updated>2022-11-08T08:23:16.861158+00:00</updated><author><name>Andrew Davison</name><email>andrew.davison@cnrs.fr</email></author><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h2>Managing complex workflows in neural simulation/data analysis</h2>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/" rel="alternate" type="text/html"/>
+    <published>2012-07-23T09:00:00+00:09</published>
+  </entry>
+  <entry>
+    <id>http://andrewdavison.info/notes/managing-complex-workflows/</id>
+    <title>Managing complex workflows in neural simulation/data analysis</title>
+    <updated>2013-07-29T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Managing complex workflows in neural simulation/data analysis</h2>
 <p>29th July 2013</p>
 
 <p>At the <a class="reference external" href="http://www.cnsorg.org/cns-2013-paris">CNS 2013</a> meeting in Paris, France, Sonja Grün, Michael Denker and I gave a tutorial on managing complex workflows in neuroscience. The abstract was as follows:</p>
@@ -820,7 +936,21 @@ explore further.</p>
 <li>Louis et al. (2010) Generation and selection of surrogate methods for correlation analysis. In: <a class="reference external" href="http://www.springer.com/biomed/neuroscience/book/978-1-4419-5674-3">Analysis of parallel spike trains. eds. Grün &amp; Rotter. Springer Series in Computational Neuroscience.</a></li>
 <li><a class="reference external" href="http://dx.doi.org/10.3389/fncom.2010.00127">Louis et al. (2010) Surrogate spike train generation through dithering in operational time. Front. Comput. Neurosci. 4: 127. doi:10.3389/fncom.2010.00127</a></li>
 </ol>
-</div></content><link href="http://andrewdavison.info/notes/managing-complex-workflows/" rel="alternate" type="text/html"/><published>2013-07-29T09:00:00+00:09</published></entry><entry><id>http://andrewdavison.info/notes/porting-NEURON-PyNN/</id><title>Porting a model from NEURON to PyNN: a case study</title><updated>2022-11-08T08:23:16.861111+00:00</updated><author><name>Andrew Davison</name><email>andrew.davison@cnrs.fr</email></author><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h2>Porting a model from NEURON to PyNN: a case study</h2>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/managing-complex-workflows/" rel="alternate" type="text/html"/>
+    <published>2013-07-29T09:00:00+00:09</published>
+  </entry>
+  <entry>
+    <id>http://andrewdavison.info/notes/porting-NEURON-PyNN/</id>
+    <title>Porting a model from NEURON to PyNN: a case study</title>
+    <updated>2017-07-18T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Porting a model from NEURON to PyNN: a case study</h2>
 <p>18th July 2017</p>
 
 <p>Porting a model from a simulator-specific format to <a class="reference external" href="http://neuralensemble.org/PyNN">PyNN</a> allows the model to be
@@ -1350,4 +1480,107 @@ same qualitative behaviour, and the length of time before divergence occurs
 ought to increase as the integration time step is decreased. Testing that
 is left as an exercise for the reader :-)</p>
 </div>
-</div></content><link href="http://andrewdavison.info/notes/porting-NEURON-PyNN/" rel="alternate" type="text/html"/><published>2017-07-18T09:00:00+00:09</published></entry></feed>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/porting-NEURON-PyNN/" rel="alternate" type="text/html"/>
+    <published>2017-07-18T09:00:00+00:09</published>
+  </entry>
+  <entry>
+    <id>http://andrewdavison.info/notes/typesetting-comp-neuro/</id>
+    <title>Typesetting subscripts, units and physical quantities</title>
+    <updated>2025-01-10T09:00:00+00:09</updated>
+    <author>
+      <name>Andrew Davison</name>
+      <email>andrew.davison@cnrs.fr</email>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Typesetting subscripts, units and physical quantities</h2>
+<p>10th January 2025</p>
+
+<p>My brain is a nitpicker.
+I am easily distracted by small imperfections and inconsistencies,
+which is a handicap when reviewing (both for scientific articles and for code)
+because minor details such as spelling mistakes or non-standard code style
+interfere with my ability to take in the big picture.</p>
+<p>An example of such minor details, one that I encounter a lot,
+is the typesetting of subscripts, units, and physical quantities
+in manuscripts I am asked to review,
+which are typically in the fields of computational neuroscience,
+neuroinformatics, data science or neuromorphic computing.</p>
+<p>When I encounter such problems,
+unless I know that the journal in question will fix the typesetting,
+I usually flag them in my comments to the authors, as minor issues.
+Whenever this occurs, I spend time searching the web for references to the rules that are being broken,
+because I never remember them.</p>
+<p>This article, then, is mostly written for myself,
+to collect these references in one place so that I can easily find them again!</p>
+<div class="section" id="subscripts-and-superscripts">
+<h3>Subscripts and superscripts</h3>
+<p>The general rule for typesetting mathematics that is most often broken here is:</p>
+<blockquote>
+Symbols that represent variables should be italicized, all other terms should not be italicized.</blockquote>
+<p>For more details on this, see the <a class="reference external" href="http://pleasemakeanote.blogspot.com/2010/07/italics-in-math-equations.html">Please Make A Note blog</a>
+or <a class="reference external" href="https://physics.nist.gov/cuu/pdf/typefaces.pdf">"Typefaces"</a> from the US National Institute of Standards and Technology (NIST)
+(the ultimate reference for this is the <a class="reference external" href="https://www.iso.org/obp/ui/#iso:std:iso:80000:-2:ed-2:v2:en">ISO 80000 standard</a>, but that is not a very accessible document.)</p>
+<p>What this means for subscripts (and superscripts) is that if the subscript represents a variable it should be in italics:</p>
+<div class="math">
+\begin{equation*}
+V_x \qquad E^{i}_{y}
+\end{equation*}
+</div>
+<p>but if it is a descriptive term, or a number, it should be in an upright (also called roman) font style:</p>
+<div class="math">
+\begin{equation*}
+V_{\mathrm{soma}} \qquad V_{\mathrm{m}} \qquad E_{\mathrm{NMDA}} \qquad I_{\mathrm{Na}} \qquad V_{\mathrm{m}}
+\end{equation*}
+</div>
+<p>(in the latter case, "m" is short for "membrane", and so is descriptive).
+This is particularly important when using acronyms or entire words as subscripts,
+because otherwise LaTeX treats the letters as a sequence of variables multiplied together,
+and puts too much space between them, e.g.:</p>
+<div class="math">
+\begin{equation*}
+E_{NMDA}
+\end{equation*}
+</div>
+<p>The reason this rule is so often broken is that by default <span class="math">\(\LaTeX\)</span> assumes a subscript is a variable:</p>
+<p class="center"><tt class="docutils literal">V_m</tt> ➜ <span class="math">\(V_m\)</span></p>
+<p>To typeset the subscript in a roman/upright type requires something like:</p>
+<p class="center"><tt class="docutils literal"><span class="pre">V_{\\mathrm{m}}</span></tt> ➜ <span class="math">\(V_{\mathrm{m}}\)</span></p>
+<p>(There are several ways to do this. I usually use <tt class="docutils literal">\\mathrm</tt>.
+This <a class="reference external" href="https://tex.stackexchange.com/questions/98406/which-command-should-i-use-for-textual-subscripts-in-math-mode">StackExchange article</a> has a nice discussion of alternative approaches.)</p>
+</div>
+<div class="section" id="units-and-physical-quantities">
+<h3>Units and physical quantities</h3>
+<p>Here the basic rules are:</p>
+<ol class="arabic simple">
+<li>units should always be in roman (upright) type;</li>
+<li>for quantities there should always be a space between the number and the unit.</li>
+</ol>
+<p>For more detailed rules, see the NIST <a class="reference external" href="https://physics.nist.gov/cuu/pdf/sp811.pdf">Guide for the Use of the International System of Units</a>.</p>
+<p>When writing in <span class="math">\(\LaTeX\)</span> I usually use a thin space, <tt class="docutils literal">\,</tt>, e.g.:</p>
+<p class="center"><tt class="docutils literal"><span class="pre">250\,\mathrm{pS/cm^{2}}</span></tt> ➜ <span class="math">\(250\,\mathrm{pS/cm^{2}}\)</span></p>
+<p>but this is a stylistic choice, a full space is also fine; publishers may have their own style guides for this.</p>
+<p class="center"><tt class="docutils literal"><span class="pre">250~\mathrm{pS/cm^{2}}</span></tt> ➜ <span class="math">\(250~\mathrm{pS/cm^{2}}\)</span></p>
+<p>(Note also the use of <tt class="docutils literal">~</tt> for the full space; this prevents the number and units being separated by a line break.)</p>
+<p>Alternaively, the <span class="math">\(\LaTeX\)</span> <a class="reference external" href="https://ctan.org/pkg/siunitx">siunitx</a> package provides a nice set of tools for consistent typesetting of quantities, e.g.:</p>
+<pre class="code latex literal-block">
+<span class="keyword">\usepackage</span><span class="name builtin">{</span>siunitx<span class="name builtin">}</span>
+
+<span class="keyword">\qty</span><span class="name builtin">{</span>250<span class="name builtin">}{</span>pS/cm<span class="name builtin">^</span>2<span class="name builtin">}</span>
+<span class="keyword">\qty</span><span class="name builtin">{</span>250<span class="name builtin">}{</span><span class="keyword">\pico\siemens\per\square\cm</span><span class="name builtin">}</span>
+</pre>
+<p>I should probably switch to using this myself, but old habits die hard.</p>
+</div>
+<div class="section" id="conclusion">
+<h3>Conclusion</h3>
+<p>In summary, please typeset your subscripts and quantities properly.
+It will soothe my pedantic brain and make it much easier for me to focus on what really matters,
+the content of what you have to say!</p>
+</div>
+</div>
+    </content>
+    <link href="http://andrewdavison.info/notes/typesetting-comp-neuro/" rel="alternate" type="text/html"/>
+    <published>2025-01-10T09:00:00+00:09</published>
+  </entry>
+</feed>
