@@ -69,6 +69,9 @@
             <span class="note">
                 {% if conf.full_text %}[<a href="{{conf.full_text}}">Full text</a>]{% endif %}
                 {% if conf.slides %}[<a href="{{conf.slides}}">Slides</a>]{% endif %}
+                {% if conf.poster %}[<a href="{{conf.poster}}">Poster</a>]{% endif %}
+                {% if conf.video %}[<a href="{{conf.video}}">Video</a>]{% endif %}
+                {% if conf.workshop_website %}[<a href="{{conf.workshop_website}}">Workshop website</a>]{% endif %}
                 {% if conf.proceedings %}[<a href="{{conf.proceedings}}">Proceedings</a>]{% endif %}</span>
         </li>
         {% endfor %}
