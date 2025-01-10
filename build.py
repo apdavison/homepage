@@ -184,6 +184,8 @@ def build():
     shutil.copytree("js", os.path.join(builddir, "js"))
     for subdir in ("images", "figures", "files", "posters"):
         shutil.copytree("content/%s" % subdir, os.path.join(builddir, subdir))
+    with open(os.path.join(builddir, "CNAME"), "w") as fp:
+        fp.write("andrewdavison.info")
 
     # -- Load BibTeX database
     parser = BibTexParser(ignore_nonstandard_types=False)
@@ -203,6 +205,7 @@ def build():
             os.mkdir(directory)
         with open(os.path.join(directory, "%s.bib" % article["ID"]), "w", encoding="utf-8") as fp:
             bibtexparser.dump(tmp_db, fp)
+            fp.write("\n")
 
     # -- Build publications page
     print("Building publications page")

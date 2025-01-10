@@ -115,8 +115,8 @@ I should probably switch to using this myself, but old habits die hard.
 Conclusion
 ----------
 
-In summary, please typeset your subscripts and quantities properly,
-it will soothe my pedantic brain and make it much easier to focus on what actually matters,
+In summary, please typeset your subscripts and quantities properly.
+It will soothe my pedantic brain and make it much easier for me to focus on what really matters,
 the content of what you have to say!
 
 .. _`Please Make A Note blog`: http://pleasemakeanote.blogspot.com/2010/07/italics-in-math-equations.html
