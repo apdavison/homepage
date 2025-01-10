@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="Author" content="Andrew Davison, Ph.D.">
+    <meta name="Keywords" content="computational neuroscience,neuroinformatics,vision,olfaction,multi-sensory,STDP">
+
+    <title>Andrew Davison: Typesetting subscripts, units and physical quantities</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/blog.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="nav blog-nav">
+      <a class="nav-link" href="/"><h1>Some models are useful...</h1></a>
+      <a class="nav-link">&nbsp;</a>
+      <a class="nav-link" href="/publications/">Publications</a>
+      <a class="nav-link active" href="/notes/">Blog</a>
+      <a class="nav-link" href="/cv/">CV</a>
+      <a class="nav-link" href="/about/">About</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+
+    <div class="blog-main">
+
+<div id="content">
+<h2 class="blog-post-title">Typesetting subscripts, units and physical quantities</h2>
+<span class="floatright"><strong>Tags:</strong> <em>LaTeX</em></span>
+<p class="blog-post-meta">10th January 2025</p>
+
+<p>My brain is a nitpicker.
+I am easily distracted by small imperfections and inconsistencies,
+which is a handicap when reviewing (both for scientific articles and for code)
+because minor details such as spelling mistakes or non-standard code style
+interfere with my ability to take in the big picture.</p>
+<p>An example of such minor details, one that I encounter a lot,
+is the typesetting of subscripts, units, and physical quantities
+in manuscripts I am asked to review,
+which are typically in the fields of computational neuroscience,
+neuroinformatics, data science or neuromorphic computing.</p>
+<p>When I encounter such problems,
+unless I know that the journal in question will fix the typesetting,
+I usually flag them in my comments to the authors, as minor issues.
+Whenever this occurs, I spend time searching the web for references to the rules that are being broken,
+because I never remember them.</p>
+<p>This article, then, is mostly written for myself,
+to collect these references in one place so that I can easily find them again!</p>
+<div class="section" id="subscripts-and-superscripts">
+<h3>Subscripts and superscripts</h3>
+<p>The general rule for typesetting mathematics that is most often broken here is:</p>
+<blockquote>
+Symbols that represent variables should be italicized, all other terms should not be italicized.</blockquote>
+<p>For more details on this, see the <a class="reference external" href="http://pleasemakeanote.blogspot.com/2010/07/italics-in-math-equations.html">Please Make A Note blog</a>
+or <a class="reference external" href="https://physics.nist.gov/cuu/pdf/typefaces.pdf">&quot;Typefaces&quot;</a> from the US National Institute of Standards and Technology (NIST)
+(the ultimate reference for this is the <a class="reference external" href="https://www.iso.org/obp/ui/#iso:std:iso:80000:-2:ed-2:v2:en">ISO 80000 standard</a>, but that is not a very accessible document.)</p>
+<p>What this means for subscripts (and superscripts) is that if the subscript represents a variable it should be in italics:</p>
+<div class="math">
+\begin{equation*}
+V_x \qquad E^{i}_{y}
+\end{equation*}
+</div>
+<p>but if it is a descriptive term, or a number, it should be in an upright (also called roman) font style:</p>
+<div class="math">
+\begin{equation*}
+V_{\mathrm{soma}} \qquad V_{\mathrm{m}} \qquad E_{\mathrm{NMDA}} \qquad I_{\mathrm{Na}} \qquad V_{\mathrm{m}}
+\end{equation*}
+</div>
+<p>(in the latter case, &quot;m&quot; is short for &quot;membrane&quot;, and so is descriptive).
+This is particularly important when using acronyms or entire words as subscripts,
+because otherwise LaTeX treats the letters as a sequence of variables multiplied together,
+and puts too much space between them, e.g.:</p>
+<div class="math">
+\begin{equation*}
+E_{NMDA}
+\end{equation*}
+</div>
+<p>The reason this rule is so often broken is that by default <span class="math">\(\LaTeX\)</span> assumes a subscript is a variable:</p>
+<p class="center"><tt class="docutils literal">V_m</tt> ➜ <span class="math">\(V_m\)</span></p>
+<p>To typeset the subscript in a roman/upright type requires something like:</p>
+<p class="center"><tt class="docutils literal"><span class="pre">V_{\\mathrm{m}}</span></tt> ➜ <span class="math">\(V_{\mathrm{m}}\)</span></p>
+<p>(There are several ways to do this. I usually use <tt class="docutils literal">\\mathrm</tt>.
+This <a class="reference external" href="https://tex.stackexchange.com/questions/98406/which-command-should-i-use-for-textual-subscripts-in-math-mode">StackExchange article</a> has a nice discussion of alternative approaches.)</p>
+</div>
+<div class="section" id="units-and-physical-quantities">
+<h3>Units and physical quantities</h3>
+<p>Here the basic rules are:</p>
+<ol class="arabic simple">
+<li>units should always be in roman (upright) type;</li>
+<li>for quantities there should always be a space between the number and the unit.</li>
+</ol>
+<p>For more detailed rules, see the NIST <a class="reference external" href="https://physics.nist.gov/cuu/pdf/sp811.pdf">Guide for the Use of the International System of Units</a>.</p>
+<p>When writing in <span class="math">\(\LaTeX\)</span> I usually use a thin space, <tt class="docutils literal">\,</tt>, e.g.:</p>
+<p class="center"><tt class="docutils literal"><span class="pre">250\,\mathrm{pS/cm^{2}}</span></tt> ➜ <span class="math">\(250\,\mathrm{pS/cm^{2}}\)</span></p>
+<p>but this is a stylistic choice, a full space is also fine; publishers may have their own style guides for this.</p>
+<p class="center"><tt class="docutils literal"><span class="pre">250~\mathrm{pS/cm^{2}}</span></tt> ➜ <span class="math">\(250~\mathrm{pS/cm^{2}}\)</span></p>
+<p>(Note also the use of <tt class="docutils literal">~</tt> for the full space; this prevents the number and units being separated by a line break.)</p>
+<p>Alternaively, the <span class="math">\(\LaTeX\)</span> <a class="reference external" href="https://ctan.org/pkg/siunitx">siunitx</a> package provides a nice set of tools for consistent typesetting of quantities, e.g.:</p>
+<pre class="code latex literal-block">
+<span class="keyword">\usepackage</span><span class="name builtin">{</span>siunitx<span class="name builtin">}</span>
+
+<span class="keyword">\qty</span><span class="name builtin">{</span>250<span class="name builtin">}{</span>pS/cm<span class="name builtin">^</span>2<span class="name builtin">}</span>
+<span class="keyword">\qty</span><span class="name builtin">{</span>250<span class="name builtin">}{</span><span class="keyword">\pico\siemens\per\square\cm</span><span class="name builtin">}</span>
+</pre>
+<p>I should probably switch to using this myself, but old habits die hard.</p>
+</div>
+<div class="section" id="conclusion">
+<h3>Conclusion</h3>
+<p>In summary, please typeset your subscripts and quantities properly,
+it will soothe my pedantic brain and make it much easier to focus on what actually matters,
+the content of what you have to say!</p>
+</div>
+
+</div>
+
+
+    </div><!-- /.blog-main -->
+
+</div><!-- /.container -->
+
+<footer class="blog-footer">
+  <p>&copy;  Andrew P. Davison</p>
+
+<p></p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a> This blog post is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>. Please feel free to copy or modify it, provided you link to this web page.</p>
+
+  <p><a href="#">Back to top</a></p>
+</footer>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="/js/ie10-viewport-bug-workaround.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

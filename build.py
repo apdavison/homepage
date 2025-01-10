@@ -67,6 +67,7 @@ publisher_defaults = dict(source=None, source_class=io.FileInput,
                           writer=None, writer_name='html',
                           settings=None, settings_spec=None,
                           settings_overrides={
+                              'math_output': "mathjax https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",
                               'initial_header_level': 3,
                               'sumatra_record_store': "https://labnotebook.andrewdavison.info/records",
                               'sumatra_project': "Destexhe_JCNS_2009",
