@@ -222,6 +222,12 @@ def build():
                     "base_path": get_base_path(level=1),
                     "section": "publications"})
 
+    # -- Build projects page
+    print("Building projects page")
+    render_to_file("projects.html", "projects",
+                   {"base_path": get_base_path(level=1),
+                    "section": "projects"})
+
     # -- Build simple pages
     print("Building About and CV")
     for page in ("about", "cv"):

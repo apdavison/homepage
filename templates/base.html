@@ -19,6 +19,8 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{base_path}}/js/ie10-viewport-bug-workaround.js"></script>
 
+    {% block runOnLoad %}{% endblock %}
+
 </head>
 
 <body>
@@ -29,6 +31,7 @@
       <a class="nav-link{% if section == "home" %} active{% endif %}" href="/"><h1>Some models are useful...</h1></a>
       <a class="nav-link">&nbsp;</a>
       <a class="nav-link{% if section == "publications" %} active{% endif %}" href="{{base_path}}/publications/">Publications</a>
+      <a class="nav-link{% if section == "projects" %} active{% endif %}" href="{{base_path}}/projects/">Projects</a>
       <a class="nav-link{% if section == "blog" %} active{% endif %}" href="{{base_path}}/notes/">Blog</a>
       <a class="nav-link{% if section == "cv" %} active{% endif %}" href="{{base_path}}/cv/">CV</a>
       <a class="nav-link{% if section == "about" %} active{% endif %}" href="{{base_path}}/about/">About</a>

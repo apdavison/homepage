@@ -23,7 +23,7 @@ Education
 Academic Positions
 ==================
 
-| 2010-2019  Senior Research Scientist (CRCN), NeuroPSI, CNRS, Gif sur Yvette, France.
+| 2018-      Senior Research Scientist (CRCN), NeuroPSI, CNRS, Gif sur Yvette, France.
 | 2010-2018  Senior Research Scientist (CR1), UNIC, CNRS, Gif sur Yvette, France.
 | 2006-2010  Research Scientist (CR2), UNIC, CNRS, Gif sur Yvette, France.
 | 2003-2006  Post-doctoral research associate, UNIC, CNRS, Gif sur Yvette, France.

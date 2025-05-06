@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}: {{title}}{% endblock %}
+
+{% block runOnLoad %}
+<script>
+    window.addEventListener("DOMContentLoaded", () => renderProjects(), false);
+  </script>
+{% endblock %}
+
+{% block heading %}<a href="/">Andrew Davison</a><span class="site-section">: Projects</span>{% endblock %}
+
+{% block body %}
+
+<!-- todo: arrange projects by topic, rather than by active/inactive -->
+
+<h2>Active projects</h2>
+
+<h3>PyNN</h3>
+<div id="PyNN"></div>
+
+<h3>Neo</h3>
+<div id="neo"></div>
+
+<h3>Sumatra</h3>
+<div id="Sumatra"></div>
+
+<h3>fairgraph</h3>
+<div id="fairgraph"></div>
+
+<h3>quantities</h3>
+<div id="quantities"></div>
+
+<h3>lazyarray</h3>
+<div id="lazyarray"></div>
+
+<h3>ebrains-drive</h3>
+<div id="ebrains-drive"></div>
+
+<h3>openMINDS</h3>
+<div id="openMINDS"></div>
+
+<h3>bids2openminds</h3>
+<div id="bids2openminds"></div>
+
+<h3>hippounit</h3>
+<div id="hippounit"></div>
+
+<h3>basalunit</h3>
+<div id="basalunit"></div>
+
+<h3>cerebunit</h3>
+<div id="cerebunit"></div>
+
+<h3>morphounit</h3>
+<div id="morphounit"></div>
+
+<h3>ebrains-validation-framework</h3>
+<div id="ebrains-validation-framework"></div>
+
+<h3>hbp-neuromorphic-platform</h3>
+<div id="hbp-neuromorphic-platform"></div>
+
+<h3>Neo Viewer</h3>
+<div id="neo-viewer"></div>
+
+<h3>Arkheia</h3>
+<div id="arkheia"></div>
+
+<h3>Helmholtz</h3>
+<div id="helmholtz"></div>
+
+<h3>EBRAINS Neuromorphic Remote Access service</h3>
+<div id="nmpi"></div>
+
+<h3>EBRAINS Model Catalog</h3>
+<div id="model-catalog"></div>
+
+<h3>EBRAINS Provenance API</h3>
+<div id="prov-api"></div>
+
+<h3>EBRAINS Workflow components library</h3>
+<div id="ebrains-workflow-components"></div>
+
+<h3>EBRAINS Live Papers service</h3>
+<div id="live-papers"></div>
+
+<h2>Previous projects</h2>
+
+<h3>Elephant</h3>
+<div id="elephant"></div>
+
+<h3>Mozaik</h3>
+<div id="mozaik"></div>
+
+<h3>NineML</h3>
+<div id="nineml"></div>
+
+<h3>NeuroTools</h3>
+<div id="NeuroTools"></div>
+
+<h3>parameters</h3>
+<div id="parameters"></div>
+
+<h3>hbp-archive</h3>
+<div id="hbp-archive"></div>
+
+
+{% endblock %}
+
+{% block footer %}
+<p></p><a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a> This page is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>. Please feel free to copy or modify it, provided you link to this web page.</p>
+{% endblock %}
+
+{% block extrajs %}<script src="{{base_path}}/js/utils.js"></script>
+{% endblock %}
