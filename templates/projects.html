@@ -60,8 +60,6 @@
 
 <h2>Services</h2>
 
-{% for service in services %}
-<h3>{{ service.name }}</h3>
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
@@ -79,6 +77,7 @@
     </tr>
   </thead>
   <tbody>
+    {% for service in services %}
     {% for iface in service.interfaces %}
     <tr>
       <td>{{ iface.name }}</td>
@@ -139,9 +138,9 @@
       </td>
     </tr>
     {% endfor %}
+    {% endfor %}
   </tbody>
 </table>
-{% endfor %}
 
 <!-- todo: arrange projects by topic, rather than by active/inactive -->
 
