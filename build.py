@@ -41,6 +41,7 @@ files, posters, presentations?
 
 import os
 import sys
+import json
 import shutil
 from getpass import getpass
 from datetime import datetime, time
@@ -224,9 +225,12 @@ def build():
 
     # -- Build projects page
     print("Building projects page")
+    with open("content/software.json") as fp:
+        software = json.load(fp)
     render_to_file("projects.html", "projects",
                    {"base_path": get_base_path(level=1),
-                    "section": "projects"})
+                    "section": "projects",
+                    "software": software})
 
     # -- Build simple pages
     print("Building About and CV")
@@ -252,7 +256,8 @@ def build():
     print("Building blog posts")
     os.makedirs(os.path.join(builddir, "notes"))
     notes = []
-    for path in os.listdir("content/notes"):
+    # for path in os.listdir("content/notes"):
+    for path in []:  ####
         page, ext = os.path.splitext(path)
         print("  ", page)
         if ext == ".rst":

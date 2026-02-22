@@ -12,6 +12,52 @@
 
 {% block body %}
 
+<h2>Software</h2>
+
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Version</th>
+      <th>Git</th>
+      <th>Docs</th>
+      <th>Download</th>
+      <th>CI</th>
+      <th>Coverage</th>
+      <th>Spack</th>
+      <th>KG</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sw in software %}
+    <tr>
+      <td>{{ sw.name }}</td>
+      <td>{{ sw.latest_version }}</td>
+      {% for field_name in ["git_repo", "documentation", "download", "ci", "coverage", "spack", "kg"] %}
+      <td class="text-center">
+        {% if field_name in sw %}
+          {% set field = sw[field_name] %}
+          {% if field.link == "n/a" %}
+            n/a
+          {% elif "badge" in field %}
+            <a href="{{ field.link }}" target="_blank" rel="noopener noreferrer"><img src="{{ field.badge }}" height="16"></a>
+          {% elif "icon" in field %}
+            {% if field.icon.startswith("http") %}
+              <a href="{{ field.link }}" target="_blank" rel="noopener noreferrer"><img src="{{ field.icon }}" height="32"></a>
+            {% else %}
+              <a href="{{ field.link }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/{{ field.icon }}" height="32"></a>
+            {% endif %}
+          {% else %}
+            <a href="{{ field.link }}" target="_blank" rel="noopener noreferrer">↗</a>
+          {% endif %}
+        {% endif %}
+      </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 <!-- todo: arrange projects by topic, rather than by active/inactive -->
 
 <h2>Active projects</h2>

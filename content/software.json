@@ -1,0 +1,364 @@
+[
+  {
+    "name": "PyNN",
+    "latest_version": "0.12.4",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/NeuralEnsemble/PyNN/"
+    },
+    "documentation": {
+      "icon": "neurens.gif",
+      "link": "http://neuralensemble.org/docs/PyNN/"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/PyNN.svg",
+      "link": "https://pypi.org/project/PyNN/"
+    },
+    "ci": {
+      "badge": "https://github.com/NeuralEnsemble/PyNN/actions/workflows/full-test.yml/badge.svg",
+      "link": "https://github.com/NeuralEnsemble/PyNN/actions"
+    },
+    "coverage": {
+      "badge": "https://coveralls.io/repos/github/NeuralEnsemble/PyNN/badge.svg?branch=master",
+      "link": "https://coveralls.io/github/NeuralEnsemble/PyNN?branch=master"
+    },
+    "spack": {
+      "icon": "spack-logo.png",
+      "link": "https://gitlab.ebrains.eu/ri/tech-hub/platform/esd/ebrains-spack-builds/-/tree/master/packages/py-pynn"
+    },
+    "kg": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://search.kg.ebrains.eu/instances/45ee3031-f964-4679-a466-f4a162b2edf9"
+    },
+    "ebrains": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://ebrains.eu/data-tools-services/tools/pynn"
+    }
+  },
+  {
+    "name": "lazyarray",
+    "latest_version": "0.7.0",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/NeuralEnsemble/lazyarray/"
+    },
+    "documentation": {
+      "icon": "readthedocs-icon.png",
+      "link": "https://lazyarray.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/lazyarray.svg",
+      "link": "https://pypi.org/project/lazyarray/"
+    },
+    "ci": {
+      "badge": "https://github.com/NeuralEnsemble/lazyarray/actions/workflows/test.yml/badge.svg",
+      "link": "https://github.com/NeuralEnsemble/lazyarray/actions"
+    },
+    "coverage": {
+      "badge": "https://coveralls.io/repos/github/NeuralEnsemble/lazyarray/badge.svg?branch=master",
+      "link": "https://coveralls.io/github/NeuralEnsemble/lazyarray?branch=master"
+    },
+    "spack": {
+      "icon": "spack-logo.png",
+      "link": "https://packages.spack.io/package.html?name=py-lazyarray"
+    }
+  },
+  {
+    "name": "Neo",
+    "latest_version": "0.14.3",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/NeuralEnsemble/python-neo/"
+    },
+    "documentation": {
+      "icon": "readthedocs-icon.png",
+      "link": "https://neo.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/neo.svg",
+      "link": "https://pypi.org/project/neo/"
+    },
+    "ci": {
+      "badge": "https://github.com/NeuralEnsemble/python-neo/actions/workflows/core-test.yml/badge.svg",
+      "link": "https://github.com/NeuralEnsemble/python-neo/actions"
+    },
+    "coverage": {
+      "badge": "https://coveralls.io/repos/github/NeuralEnsemble/python-neo/badge.svg?branch=master",
+      "link": "https://coveralls.io/github/NeuralEnsemble/python-neo?branch=master"
+    },
+    "spack": {
+      "icon": "spack-logo.png",
+      "link": "https://gitlab.ebrains.eu/ri/tech-hub/platform/esd/ebrains-spack-builds/-/blob/master/packages/py-neo"
+    },
+    "kg": {
+        "icon": "ebrains-logo-64.png",
+        "link": "https://search.kg.ebrains.eu/instances/7e1120da-f47e-4f37-98f3-943577ff5680"
+    },
+    "ebrains": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://ebrains.eu/data-tools-services/tools/neo"
+    }
+  },
+  {
+    "name": "quantities",
+    "latest_version": "0.16.4",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/python-quantities/python-quantities/"
+    },
+    "documentation": {
+      "icon": "readthedocs-icon.png",
+      "link": "https://python-quantities.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/quantities.svg",
+      "link": "https://pypi.org/project/quantities/"
+    },
+    "ci": {
+      "badge": "https://github.com/python-quantities/python-quantities/actions/workflows/test.yml/badge.svg",
+      "link": "https://github.com/python-quantities/python-quantities/actions"
+    },
+    "spack": {
+      "icon": "spack-logo.png",
+      "link": "https://gitlab.ebrains.eu/ri/tech-hub/platform/esd/ebrains-spack-builds/-/tree/master/packages/py-quantities"
+    }
+  },
+  {
+    "name": "fairgraph",
+    "latest_version": "0.13.2",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/HumanBrainProject/fairgraph/"
+    },
+    "documentation": {
+      "icon": "readthedocs-icon.png",
+      "link": "https://fairgraph.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/fairgraph.svg",
+      "link": "https://pypi.org/project/fairgraph/"
+    },
+    "ci": {
+      "badge": "https://github.com/HumanBrainProject/fairgraph/actions/workflows/tests.yml/badge.svg",
+      "link": "https://github.com/HumanBrainProject/fairgraph/actions"
+    },
+    "kg": {
+        "icon": "ebrains-logo-64.png",
+        "link": "https://search.kg.ebrains.eu/instances/a322edef-8b53-48aa-9798-168355b40f5b"
+    },
+    "ebrains": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://ebrains.eu/data-tools-services/tools/fairgraph"
+    }
+  },
+  {
+    "name": "NMPI client",
+    "latest_version": "0.11.2",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/HumanBrainProject/hbp-neuromorphic-client/"
+    },
+    "documentation": {
+      "icon": "github_pages.png",
+      "link": "https://electronicvisions.github.io/hbp-sp9-guidebook/"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/hbp-neuromorphic-platform.svg",
+      "link": "https://pypi.org/project/hbp-neuromorphic-platform/"
+    },
+    "ci": {
+      "badge": "https://gitlab.ebrains.eu/neuromorphic/python-client/badges/main/pipeline.svg?ignore_skipped=true",
+      "link": "https://gitlab.ebrains.eu/neuromorphic/python-client/-/pipelines"
+    },
+    "spack": {
+      "icon": "spack-logo.png",
+      "link": "https://gitlab.ebrains.eu/ri/tech-hub/platform/esd/ebrains-spack-builds/-/tree/master/packages/py-hbp-neuromorphic-platform?ref_type=heads"
+    },
+    "kg": {
+        "icon": "ebrains-logo-64.png",
+        "link": "https://search.kg.ebrains.eu/instances/5fa0c62d-4be5-4576-b723-8d96591196f3"
+    },
+    "ebrains": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://ebrains.eu/data-tools-services/tools/neuromorphic-platform-python-client"
+    }
+  },
+  {
+    "name": "VF client",
+    "latest_version": "0.6.6",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/HumanBrainProject/hbp-validation-client"
+    },
+    "documentation": {
+      "icon": "readthedocs-icon.png",
+      "link": "http://hbp-validation-client.readthedocs.io/"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/hbp-validation-framework.svg",
+      "link": "https://pypi.org/project/hbp-validation-framework/"
+    },
+    "ci": {
+      "badge": "https://api.travis-ci.com/HumanBrainProject/hbp-validation-client.svg?branch=master",
+      "link": "https://travis-ci.com/HumanBrainProject/hbp-validation-client"
+    },
+    "kg": {
+        "icon": "ebrains-logo-64.png",
+        "link": "https://search.kg.ebrains.eu/instances/9d516886-24b6-422d-a252-d74ebd2e0013"
+    },
+    "tc": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://wiki.ebrains.eu/bin/view/Collabs/technical-coordination/EBRAINS%20components/HBP%20Model%20Validation%20Service/"
+    }
+  },
+  {
+    "name": "EBRAINS Storage client",
+    "latest_version": "0.5.0",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/HumanBrainProject/ebrains-drive"
+    },
+    "documentation": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/HumanBrainProject/ebrains-drive/blob/master/doc.md"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/ebrains-drive.svg",
+      "link": "https://pypi.org/project/ebrains-drive/"
+    }
+  },
+  {
+    "name": "Hippounit",
+    "latest_version": "1.3.6",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/kalilab/hippounit"
+    },
+    "documentation": {
+      "icon": "readthedocs-icon.png",
+      "link": "https://hippounit.readthedocs.io/"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/hippounit.svg",
+      "link": "https://pypi.org/project/hippounit/"
+    },
+    "kg": {
+        "icon": "ebrains-logo-64.png",
+        "link": "https://search.kg.ebrains.eu/instances/834e9cc5-ac64-4566-b7fe-7d70e9bc2f89"
+    },
+    "plus": {
+      "icon": "https://plus.humanbrainproject.eu/static/app/img/favicon.png",
+      "link": "https://plus.humanbrainproject.eu/components/1680/"
+    },
+    "tc": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://wiki.ebrains.eu/bin/view/Collabs/technical-coordination/EBRAINS%20components/HBP%20Model%20Validation%20Framework%20/"
+    }
+  },
+  {
+    "name": "CerebUnit",
+    "latest_version": "0.0.1",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/cerebunit/cerebunit"
+    },
+    "documentation": {
+      "icon": "readthedocs-icon.png",
+      "link": "https://cerebunit.readthedocs.io/"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/cerebunit.svg",
+      "link": "https://pypi.org/project/cerebunit/"
+    },
+    "plus": {
+      "icon": "https://plus.humanbrainproject.eu/static/app/img/favicon.png",
+      "link": "https://plus.humanbrainproject.eu/components/1680/"
+    },
+    "tc": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://wiki.ebrains.eu/bin/view/Collabs/technical-coordination/EBRAINS%20components/HBP%20Model%20Validation%20Framework%20/"
+    }
+  },
+  {
+    "name": "MorphoUnit",
+    "latest_version": "1.0.4",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/appukuttan-shailesh/morphounit"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/morphounit.svg",
+      "link": "https://pypi.org/project/morphounit/"
+    },
+    "kg": {
+        "icon": "ebrains-logo-64.png",
+        "link": "https://search.kg.ebrains.eu/instances/68b8ab2c-2d9d-4e62-a064-c36d685fedb3"
+    },
+    "plus": {
+      "icon": "https://plus.humanbrainproject.eu/static/app/img/favicon.png",
+      "link": "https://plus.humanbrainproject.eu/components/1680/"
+    },
+    "tc": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://wiki.ebrains.eu/bin/view/Collabs/technical-coordination/EBRAINS%20components/HBP%20Model%20Validation%20Framework%20/"
+    }
+  },
+  {
+    "name": "NeoViewer JS",
+    "latest_version": "1.0.4",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/NeuralEnsemble/neo-viewer"
+    },
+    "documentation": {
+      "icon": "npm-icon.png",
+      "link": "https://www.npmjs.com/package/neural-activity-visualizer-react"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/js/neural-activity-visualizer-react.svg",
+      "link": "https://www.npmjs.com/package/neural-activity-visualizer-react"
+    },
+    "spack": {
+      "link": "n/a"
+    },
+    "kg": {
+        "icon": "ebrains-logo-64.png",
+        "link": "https://search.kg.ebrains.eu/instances/49864d1b-df9e-44c9-93c0-5d23a1f6017e"
+    },
+    "tc": {
+      "icon": "ebrains-logo-64.png",
+      "link": "https://wiki.ebrains.eu/bin/view/Collabs/technical-coordination/EBRAINS%20components/Neo-Viewer/"
+    }
+  },
+  {
+    "name": "openMINDS Python",
+    "latest_version": "0.4.0",
+    "git_repo": {
+      "icon": "github_icon.png",
+      "link": "https://github.com/openMetadataInitiative/openMINDS_Python"
+    },
+    "documentation": {
+      "icon": "readthedocs-icon.png",
+      "link": "https://openminds.docs.om-i.org/en/latest/shared/supportive_tooling.html#openminds-python"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/openminds.svg",
+      "link": "https://pypi.org/project/openminds/"
+    },
+    "ci": {
+      "badge": "https://github.com/openMetadataInitiative/openMINDS_Python/actions/workflows/test.yml/badge.svg",
+      "link": "https://github.com/openMetadataInitiative/openMINDS_Python/actions"
+    },
+    "coverage": {
+      "link": "n/a"
+    },
+    "spack": {
+      "icon": "spack-logo.png",
+      "link": "https://gitlab.ebrains.eu/ri/tech-hub/platform/esd/ebrains-spack-builds/-/tree/master/packages/py-openminds"
+    },
+    "kg": {
+        "icon": "ebrains-logo-64.png",
+        "link": "https://search.kg.ebrains.eu/instances/d7cce0fc-1e77-4e0f-825b-d17b8a8f77a7"
+    }
+  }
+]
