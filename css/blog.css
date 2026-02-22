@@ -227,3 +227,14 @@ blockquote {
 .center {
   text-align: center;
 }
+
+table.centered {
+  width: auto !important;
+}
+
+.table-wrapper {
+  width: fit-content;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

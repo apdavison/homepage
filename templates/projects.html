@@ -14,7 +14,9 @@
 
 <h2>Software</h2>
 
-<table class="table table-bordered table-condensed">
+<!-- div wrapper needed because Safari doesn't support position:relative on <table> elements -->
+<div class="table-wrapper">
+<table class="table table-bordered table-condensed centered">
   <thead>
     <tr>
       <th>Name</th>
@@ -57,15 +59,18 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 
 <h2>Services</h2>
 
-<table class="table table-bordered table-condensed">
+<!-- div wrapper needed because Safari doesn't support position:relative on <table> elements -->
+<div class="table-wrapper">
+<table class="table table-bordered table-condensed centered">
   <thead>
     <tr>
       <th>Name</th>
       <th>Latest version</th>
-      <th>Production</th>
+      <th>Prod.</th>
       <th>Dev</th>
       <th>Repository</th>
       <th>Docs</th>
@@ -78,23 +83,23 @@
   </thead>
   <tbody>
     {% for service in services %}
-    {% for iface in service.interfaces %}
+    {% for interface in service.interfaces %}
     <tr>
-      <td>{{ iface.name }}</td>
-      <td>{{ iface.version }}</td>
+      <td>{{ interface.name }}</td>
+      <td>{{ interface.version }}</td>
       <td class="text-center">
-        {% if iface.entrypoints and iface.entrypoints.prod %}
-          <a href="{{ iface.entrypoints.prod }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/entrypoint_icon.png" height="32"></a>
+        {% if interface.entrypoints and interface.entrypoints.prod %}
+          <a href="{{ interface.entrypoints.prod }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/entrypoint_icon.png" height="32"></a>
         {% endif %}
       </td>
       <td class="text-center">
-        {% if iface.entrypoints and iface.entrypoints.get("dev") %}
-          <a href="{{ iface.entrypoints.dev }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/entrypoint_icon.png" height="32"></a>
+        {% if interface.entrypoints and interface.entrypoints.get("dev") %}
+          <a href="{{ interface.entrypoints.dev }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/entrypoint_icon.png" height="32"></a>
         {% endif %}
       </td>
       <td class="text-center">
-        {% if iface.codeRepository %}
-          {% for repo_url in [iface.codeRepository.primary, iface.codeRepository.get("mirror")] %}
+        {% if interface.codeRepository %}
+          {% for repo_url in [interface.codeRepository.primary, interface.codeRepository.get("mirror")] %}
             {% if repo_url %}
               {% if "github" in repo_url %}
                 <a href="{{ repo_url }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/github_icon.png" height="32"></a>
@@ -106,38 +111,38 @@
         {% endif %}
       </td>
       <td class="text-center">
-        {% if iface.documentation %}
-          <a href="{{ iface.documentation }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/docs_icon.png" height="32"></a>
+        {% if interface.documentation %}
+          <a href="{{ interface.documentation }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/docs_icon.png" height="32"></a>
         {% endif %}
       </td>
       <td class="text-center">
-        {% if iface.get("ebrains") %}
-          <a href="{{ iface.ebrains }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/ebrains-logo-64.png" height="32"></a>
+        {% if interface.get("ebrains") %}
+          <a href="{{ interface.ebrains }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/ebrains-logo-64.png" height="32"></a>
         {% endif %}
       </td>
       <td class="text-center">
-        {% if iface.get("containerImage") %}
-          <a href="https://docker-registry.ebrains.eu/harbor/projects" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/harbor-icon-64.png" height="32" alt="{{ iface.containerImage }}"></a>
+        {% if interface.get("containerImage") %}
+          <a href="https://docker-registry.ebrains.eu/harbor/projects" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/harbor-icon-64.png" height="32" alt="{{ interface.containerImage }}"></a>
         {% endif %}
       </td>
       <td class="text-center">
-        {% for ci_entry in iface.get("ci", []) %}
+        {% for ci_entry in interface.get("ci", []) %}
           <a href="{{ ci_entry.link }}" target="_blank" rel="noopener noreferrer"><img src="{{ ci_entry.badge }}" height="16"></a>
         {% endfor %}
       </td>
       <td class="text-center">
-        {% if iface.get("monitoring") %}
-          {% if iface.monitoring.resources %}
-            <a href="{{ iface.monitoring.resources }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/grafana_logo.jpg" height="32"></a>
+        {% if interface.get("monitoring") %}
+          {% if interface.monitoring.resources %}
+            <a href="{{ interface.monitoring.resources }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/grafana_logo.jpg" height="32"></a>
           {% endif %}
-          {% if iface.monitoring.users %}
-            <a href="{{ iface.monitoring.users }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/Matomo-logo.png" height="32"></a>
+          {% if interface.monitoring.users %}
+            <a href="{{ interface.monitoring.users }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/Matomo-logo.png" height="32"></a>
           {% endif %}
         {% endif %}
       </td>
       <td class="text-center">
-        {% if iface.get("deploymentProtocol") %}
-          <a href="{{ iface.deploymentProtocol }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/Kubernetes_logo.png" height="32"></a>
+        {% if interface.get("deploymentProtocol") %}
+          <a href="{{ interface.deploymentProtocol }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/Kubernetes_logo.png" height="32"></a>
         {% endif %}
       </td>
     </tr>
@@ -145,6 +150,7 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 
 <!-- todo: arrange projects by topic, rather than by active/inactive -->
 

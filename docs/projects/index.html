@@ -50,7 +50,9 @@
 
 <h2>Software</h2>
 
-<table class="table table-bordered table-condensed">
+<!-- div wrapper needed because Safari doesn't support position:relative on <table> elements -->
+<div class="table-wrapper">
+<table class="table table-bordered table-condensed centered">
   <thead>
     <tr>
       <th>Name</th>
@@ -920,15 +922,18 @@
     
   </tbody>
 </table>
+</div>
 
 <h2>Services</h2>
 
-<table class="table table-bordered table-condensed">
+<!-- div wrapper needed because Safari doesn't support position:relative on <table> elements -->
+<div class="table-wrapper">
+<table class="table table-bordered table-condensed centered">
   <thead>
     <tr>
       <th>Name</th>
       <th>Latest version</th>
-      <th>Production</th>
+      <th>Prod.</th>
       <th>Dev</th>
       <th>Repository</th>
       <th>Docs</th>
@@ -1974,6 +1979,7 @@
     
   </tbody>
 </table>
+</div>
 
 <!-- todo: arrange projects by topic, rather than by active/inactive -->
 
