@@ -176,6 +176,37 @@ def generate_feed(notes):
     # note: have a Python-specific feed for PlanetSciPy?
 
 
+def add_software_icons(software):
+    """Derive icon filenames from link URLs, so the JSON need not store them."""
+    def doc_icon(link):
+        if "readthedocs.io" in link:
+            return "readthedocs-icon.png"
+        if "github.io" in link:
+            return "github_pages.png"
+        if "github.com" in link:
+            return "github_icon.png"
+        if "npmjs.com" in link:
+            return "npm-icon.png"
+        if "neuralensemble.org" in link:
+            return "neurens.gif"
+        return "docs_icon.png"
+
+    icon_funcs = {
+        "git_repo":      lambda link: "github_icon.png" if "github.com" in link else "gitlab_icon.png",
+        "documentation": doc_icon,
+        "spack":         lambda link: "spack-logo.png",
+        "kg":            lambda link: "ebrains-logo-64.png",
+        "ebrains":       lambda link: "ebrains-logo-64.png",
+    }
+    for sw in software:
+        for field_name, icon_func in icon_funcs.items():
+            if field_name in sw:
+                field = sw[field_name]
+                if "badge" not in field and field.get("link", "n/a") != "n/a":
+                    field["icon"] = icon_func(field["link"])
+    return software
+
+
 def build():
 
     # -- Remove any existing build directory, and create a new one
@@ -227,6 +258,7 @@ def build():
     print("Building projects page")
     with open("content/software.json") as fp:
         software = json.load(fp)
+    software = add_software_icons(software)
     with open("content/services.json") as fp:
         services = json.load(fp)
     render_to_file("projects.html", "projects",
