@@ -64,13 +64,13 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Version</th>
-      <th>Type</th>
-      <th>Prod</th>
+      <th>Latest version</th>
+      <th>Production</th>
       <th>Dev</th>
-      <th>Git</th>
+      <th>Repository</th>
       <th>Docs</th>
-      <th>EBRAINS</th>
+      <th>ebrains.eu</th>
+      <th>Image</th>
       <th>CI</th>
       <th>Monitoring</th>
       <th>Deployment</th>
@@ -82,7 +82,6 @@
     <tr>
       <td>{{ iface.name }}</td>
       <td>{{ iface.version }}</td>
-      <td>{{ iface.type }}</td>
       <td class="text-center">
         {% if iface.entrypoints and iface.entrypoints.prod %}
           <a href="{{ iface.entrypoints.prod }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/entrypoint_icon.png" height="32"></a>
@@ -114,6 +113,11 @@
       <td class="text-center">
         {% if iface.get("ebrains") %}
           <a href="{{ iface.ebrains }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/ebrains-logo-64.png" height="32"></a>
+        {% endif %}
+      </td>
+      <td class="text-center">
+        {% if iface.get("containerImage") %}
+          <a href="https://docker-registry.ebrains.eu/harbor/projects" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/harbor-icon-64.png" height="32" alt="{{ iface.containerImage }}"></a>
         {% endif %}
       </td>
       <td class="text-center">
