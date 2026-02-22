@@ -179,7 +179,7 @@ def generate_feed(notes):
 def add_software_icons(software):
     """Derive icon filenames from link URLs, so the JSON need not store them."""
     def doc_icon(link):
-        if "readthedocs.io" in link:
+        if "readthedocs.io" in link or "om-i.org" in link:
             return "readthedocs-icon.png"
         if "github.io" in link:
             return "github_pages.png"

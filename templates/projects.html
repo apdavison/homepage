@@ -34,7 +34,11 @@
     {% for sw in software %}
     <tr>
       <td>{{ sw.name }}</td>
+      {% if sw.latest_version == "dynamic" %}
+      <td id="sw-version-{{ sw.download.link.split('/')[-2] }}">…</td>
+      {% else %}
       <td>{{ sw.latest_version }}</td>
+      {% endif %}
       {% for field_name in ["git_repo", "documentation", "download", "ci", "coverage", "spack", "kg"] %}
       <td class="text-center">
         {% if field_name in sw %}

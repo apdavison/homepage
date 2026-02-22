@@ -77,6 +77,7 @@ async function renderProjects() {
     "morphounit",
     "ebrains-validation-framework",
     "hbp-neuromorphic-platform",
+    "hbp-validation-framework",
   ];
   const inactivePythonProjects = [
     "elephant",
@@ -134,4 +135,14 @@ async function renderProjects() {
       ).toDateString()}</p>`;
     }
   }
+
+  document.querySelectorAll("td[id^='sw-version-']").forEach(cell => {
+    const pkgName = cell.id.slice("sw-version-".length);
+    const key = Object.keys(projectData).find(
+      k => k.toLowerCase() === pkgName.toLowerCase()
+    );
+    if (key) {
+      cell.textContent = projectData[key].info.version;
+    }
+  });
 }

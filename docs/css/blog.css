@@ -241,4 +241,5 @@ table.centered {
 
 th {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
 }

@@ -1,7 +1,7 @@
 [
   {
     "name": "PyNN",
-    "latest_version": "0.12.4",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/PyNN/"
     },
@@ -32,7 +32,7 @@
   },
   {
     "name": "lazyarray",
-    "latest_version": "0.7.0",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/lazyarray/"
     },
@@ -57,7 +57,7 @@
   },
   {
     "name": "Neo",
-    "latest_version": "0.14.3",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/python-neo/"
     },
@@ -88,7 +88,7 @@
   },
   {
     "name": "quantities",
-    "latest_version": "0.16.4",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/python-quantities/python-quantities/"
     },
@@ -109,7 +109,7 @@
   },
   {
     "name": "fairgraph",
-    "latest_version": "0.13.2",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/HumanBrainProject/fairgraph/"
     },
@@ -133,7 +133,7 @@
   },
   {
     "name": "NMPI client",
-    "latest_version": "0.11.2",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/HumanBrainProject/hbp-neuromorphic-client/"
     },
@@ -160,7 +160,7 @@
   },
   {
     "name": "VF client",
-    "latest_version": "0.6.6",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/HumanBrainProject/hbp-validation-client"
     },
@@ -184,7 +184,7 @@
   },
   {
     "name": "EBRAINS Storage client",
-    "latest_version": "0.5.0",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/HumanBrainProject/ebrains-drive"
     },
@@ -198,7 +198,7 @@
   },
   {
     "name": "Hippounit",
-    "latest_version": "1.3.6",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/kalilab/hippounit"
     },
@@ -221,7 +221,7 @@
   },
   {
     "name": "CerebUnit",
-    "latest_version": "0.0.1",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/cerebunit/cerebunit"
     },
@@ -241,7 +241,7 @@
   },
   {
     "name": "MorphoUnit",
-    "latest_version": "1.0.4",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/appukuttan-shailesh/morphounit"
     },
@@ -284,7 +284,7 @@
   },
   {
     "name": "openMINDS Python",
-    "latest_version": "0.4.0",
+    "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/openMetadataInitiative/openMINDS_Python"
     },

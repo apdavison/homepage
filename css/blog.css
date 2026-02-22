@@ -238,3 +238,8 @@ table.centered {
   left: 50%;
   transform: translateX(-50%);
 }
+
+th {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+}

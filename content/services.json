@@ -99,8 +99,8 @@
         "containerImage": "docker-registry.ebrains.eu/live-papers/collab-file-cloner:latest",
         "ci": [
           {
-            "link": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner//-/pipelines",
-            "badge": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner//badges/main/pipeline.svg?ignore_skipped=true"
+            "link": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner/badges/main/pipeline.svg?ignore_skipped=true"
           }
         ],
         "monitoring": {
