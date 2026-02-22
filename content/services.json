@@ -1,0 +1,498 @@
+[
+  {
+    "name": "Live Papers",
+    "kg": "https://search.kg.ebrains.eu/instances/d3270f6d-3898-4f30-bf21-524c0b863737",
+    "ebrains": "https://ebrains.eu/data-tools-services/data-knowledge/live-papers",
+    "backup": "https://github.com/apdavison/published-live-papers",
+    "interfaces": [
+      {
+        "name": "Live Papers Viewer app",
+        "type": "web app",
+        "version": "2025-10-07",
+        "entrypoints": {
+          "prod": "https://live-papers.apps.ebrains.eu/",
+          "dev": "https://live-papers-dev.apps.ebrains.eu/"
+        },
+        "documentation": "https://live-papers.apps.ebrains.eu/docs/",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-live-papers-app",
+        "containerImage": "docker-registry.ebrains.eu/live-papers/live-papers-apps:staging",
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/live-papers/live-papers-platform"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/live-papers/live-papers-platform/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/live-papers/live-papers-platform/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/f4257354-3548-47de-a703-d5db2e6350e3/live-papers",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=day&idSite=18",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/live-papers/app"
+      },
+      {
+        "name": "Live Papers Builder app",
+        "type": "web app",
+        "version": "2025-10-07",
+        "entrypoints": {
+          "prod": "https://live-papers.apps.ebrains.eu/builder",
+          "dev": "https://live-papers-dev.apps.ebrains.eu/"
+        },
+        "documentation": "https://live-papers.apps.ebrains.eu/docs/",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-live-papers-app",
+        "containerImage": "docker-registry.ebrains.eu/live-papers/live-papers-apps:staging",
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/live-papers/live-papers-platform"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/live-papers/live-papers-platform/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/live-papers/live-papers-platform/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/f4257354-3548-47de-a703-d5db2e6350e3/live-papers",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=day&idSite=18",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/live-papers/app"
+      },
+      {
+        "name": "Live Papers API",
+        "type": "REST API",
+        "version": "20251006",
+        "entrypoints": {
+          "prod": "https://live-papers-api.apps.ebrains.eu/"
+        },
+        "documentation": "https://live-papers-api.apps.ebrains.eu/docs/",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-live-papers-api",
+        "containerImage": "docker-registry.ebrains.eu/live-papers/live-papers-api:k8s",
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/live-papers/live-papers-api"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/live-papers/live-papers-api/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/live-papers/live-papers-api/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/f4257354-3548-47de-a703-d5db2e6350e3/live-papers",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/live-papers/api"
+      },
+      {
+        "name": "Collab File Cloner",
+        "type": "web app",
+        "version": "2025-09-02",
+        "entrypoints": {
+          "prod": "https://collab-file-cloner.apps.ebrains.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner"
+        },
+        "documentation": "https://collab-file-cloner.apps.ebrains.eu/",
+        "containerImage": "docker-registry.ebrains.eu/live-papers/collab-file-cloner:latest",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner//-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner//badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/f4257354-3548-47de-a703-d5db2e6350e3/live-papers",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=day&idSite=18",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/live-papers/collab-file-cloner"
+      }
+    ]
+  },
+  {
+    "name": "Model Validation Service",
+    "kg": "https://search.kg.ebrains.eu/instances/de2f6456-46a3-40f0-8a51-93833d00b729",
+    "ebrains": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Model Validation API",
+        "type": "REST API",
+        "version": "v3.5",
+        "entrypoints": {
+          "prod": "https://model-validation-api.apps.ebrains.eu/"
+        },
+        "documentation": "https://model-validation-api.apps.ebrains.eu//docs/",
+        "containerImage": "docker-registry.ebrains.eu/model-catalog/validation_service-v3beta:staging",
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/hbp-validation-framework",
+          "mirror": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/a9fbd2b3-e839-4168-a1e9-47d09a76ae8a/model-validation",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/model-validation/api"
+      },
+      {
+        "name": "Model Catalog",
+        "type": "web app",
+        "version": "v2.3",
+        "entrypoints": {
+          "prod": "https://model-catalog.apps.ebrains.eu/"
+        },
+        "documentation": "https://model-catalog.apps.ebrains.eu/docs/",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-model-catalog",
+        "containerImage": "docker-registry.ebrains.eu/model-catalog/model-catalog-v2:prod",
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/model-catalog",
+          "mirror": "https://gitlab.ebrains.eu/model-validation/model-catalog"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/model-validation/model-catalog/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/model-validation/model-catalog/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/a9fbd2b3-e839-4168-a1e9-47d09a76ae8a/model-validation",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=day&idSite=21",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/model-validation/app"
+      }
+    ]
+  },
+  {
+    "name": "Neo Viewer",
+    "kg": "https://search.kg.ebrains.eu/instances/6327334f-fffc-49d4-aa4a-b70bf17afcf4",
+    "ebrains": "https://ebrains.eu/data-tools-services/tools/neo-viewer",
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Neo Viewer API",
+        "type": "REST API",
+        "version": "v2.3.0",
+        "entrypoints": {
+          "prod": "https://neoviewer.apps.ebrains.eu/api/v1"
+        },
+        "documentation": "https://neoviewer.apps.ebrains.eu/api/docs",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/neo-viewer",
+        "containerImage": "docker-registry.ebrains.eu/neuralactivity/neo-viewer:prod",
+        "codeRepository": {
+          "primary": "https://github.com/NeuralEnsemble/neo-viewer",
+          "mirror": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/cc7b61c9-0ce4-4527-ad70-8b4405cf5571/neo-viewer",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/neo-viewer"
+      },
+      {
+        "name": "Neo Viewer Demo",
+        "type": "web app",
+        "version": "v2.3.0",
+        "entrypoints": {
+          "prod": "https://neoviewer.apps.ebrains.eu"
+        },
+        "documentation": "https://neoviewer.apps.ebrains.eu",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/neo-viewer",
+        "containerImage": "docker-registry.ebrains.eu/neuralactivity/neo-viewer:prod",
+        "codeRepository": {
+          "primary": "https://github.com/NeuralEnsemble/neo-viewer",
+          "mirror": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/cc7b61c9-0ce4-4527-ad70-8b4405cf5571/neo-viewer",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/neo-viewer"
+      }
+    ]
+  },
+  {
+    "name": "EBRAINS Provenance",
+    "kg": "https://search.kg.ebrains.eu/instances/de221b1e-8672-483e-9935-c2234c099cfc",
+    "ebrains": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Provenance API",
+        "type": "REST API",
+        "version": "20241216",
+        "entrypoints": {
+          "prod": "https://prov-api.apps.ebrains.eu/"
+        },
+        "documentation": "https://prov-api.apps.ebrains.eu/docs",
+        "containerImage": "docker-registry.ebrains.eu/prov-api/prov-api:latest",
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/provenance/prov-api"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/provenance/prov-api/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/provenance/prov-api/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/aabe7808-9d56-419b-a50d-da3a195f7881/provenance",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/prov/api"
+      },
+      {
+        "name": "Provenance Visualiser",
+        "type": "web app",
+        "version": "alpha",
+        "entrypoints": {
+          "prod": "https://prov-vis.apps.tc.humanbrainproject.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/provenance/prov-vis"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/prov-vis/prov-vis-app:latest",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/provenance/prov-vis/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/provenance/prov-vis/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": null,
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/prov/app"
+      }
+    ]
+  },
+  {
+    "name": "EBRAINS Neuromorphic Computing",
+    "kg": "https://search.kg.ebrains.eu/instances/7b73d422-9dae-405b-a613-457a62231e22",
+    "ebrains": "https://ebrains.eu/data-tools-services/modelling-simulation/neuromorphic-computing",
+    "database": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Neuromorphic Job Manager",
+        "type": "web app",
+        "version": "release-2025-11-28",
+        "entrypoints": {
+          "prod": "https://neuromorphic-job-manager.apps.ebrains.eu/"
+        },
+        "documentation": "https://electronicvisions.github.io/hbp-sp9-guidebook",
+        "containerImage": "docker-registry.ebrains.eu/neuromorphic/nmpi_job_manager:prod",
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/nmpi-job-manager-app",
+          "mirror": "https://gitlab.ebrains.eu/neuromorphic/nmpi-job-manager-app"
+        },
+        "ci": [
+          {
+            "link": "https://github.com/HumanBrainProject/nmpi-job-manager-app/actions/workflows/test.yml",
+            "badge": "https://github.com/HumanBrainProject/nmpi-job-manager-app/actions/workflows/test.yml/badge.svg"
+          },
+          {
+            "link": "https://gitlab.ebrains.eu/neuromorphic/nmpi-job-manager-app/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuromorphic/nmpi-job-manager-app/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/b7a2de0a-e345-4ac3-9929-f946aa1328b5/neuromorphic-remote-access",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=month&idSite=22",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/neuromorphic-remote-access/job-manager"
+      },
+      {
+        "name": "Neuromorphic Remote Access API",
+        "type": "REST API",
+        "version": "2025D",
+        "entrypoints": {
+          "prod": "https://nmpi-v3.hbpneuromorphic.eu/"
+        },
+        "documentation": "https://nmpi-v3.hbpneuromorphic.eu/docs",
+        "containerImage": "docker-registry.ebrains.eu/neuromorphic/nmpi_queue_server_v3:prod",
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api",
+          "mirror": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api"
+        },
+        "ci": [
+          {
+            "link": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api/actions/workflows/test_simqueue.yml",
+            "badge": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api/actions/workflows/test_simqueue.yml/badge.svg"
+          },
+          {
+            "link": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/b7a2de0a-e345-4ac3-9929-f946aa1328b5/neuromorphic-remote-access",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api/blob/master/api/deployment/docker-compose-template.yml"
+      },
+      {
+        "name": "Demo Neuromorphic Provider",
+        "type": "web app",
+        "version": "0.11.2",
+        "entrypoints": null,
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/hbp-neuromorphic-client",
+          "mirror": "https://gitlab.ebrains.eu/neuromorphic/python-client"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/neuromorphic/demo:latest",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/neuromorphic/python-client/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuromorphic/python-client/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": null,
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/neuromorphic-remote-access/demo-nmc-provider"
+      }
+    ]
+  },
+  {
+    "name": "EBRAINS Metadata Utilities",
+    "kg": null,
+    "ebrains": null,
+    "interfaces": [
+      {
+        "name": "Codemeta Generator",
+        "type": "web app",
+        "version": "0.2.0",
+        "entrypoints": {
+          "prod": "https://codemeta.apps.ebrains.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/data-services/codemeta-generator"
+        },
+        "documentation": "https://codemeta.apps.ebrains.eu/",
+        "containerImage": "docker-registry.ebrains.eu/model-catalog/codemeta:prod",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/data-services/codemeta-generator/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/data-services/codemeta-generator/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/c3709a17-d108-4c01-94cc-7c4f810b448b/metadata-utils",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=month&idSite=40",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/codemeta"
+      },
+      {
+        "name": "Servicemeta Generator",
+        "type": "web app",
+        "version": "alpha",
+        "entrypoints": {
+          "prod": "https://servicemeta.apps.tc.humanbrainproject.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/data-services/servicemeta"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/metadata-tools/servicemeta",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/data-services/servicemeta/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/data-services/servicemeta/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/c3709a17-d108-4c01-94cc-7c4f810b448b/metadata-utils",
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/servicemeta"
+      },
+      {
+        "name": "Neural Activity Resource",
+        "type": "web app",
+        "version": "0.3.4",
+        "entrypoints": {
+          "prod": "https://nar.apps.tc.humanbrainproject.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/neural-activity-resource",
+          "mirror": "https://gitlab.ebrains.eu/data-services/neural-activity-resource"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/neuralactivity/nar-app-v3:prod",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/data-services/neural-activity-resource/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/data-services/neural-activity-resource/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/c3709a17-d108-4c01-94cc-7c4f810b448b/metadata-utils",
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/neural-activity-resource"
+      },
+      {
+        "name": "Curation tools",
+        "type": "web app",
+        "version": "2026-01-21",
+        "entrypoints": {
+          "prod": "https://curation-tools.apps.ebrains.eu/",
+          "dev": "https://curation-tools-dev.apps.ebrains.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/data-services/curation-tools"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/metadata-tools/curation-tools:prod",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/data-services/curation-tools/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/data-services/curation-tools/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/c3709a17-d108-4c01-94cc-7c4f810b448b/metadata-utils",
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/curation-tools"
+      }
+    ]
+  }
+]

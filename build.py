@@ -227,10 +227,13 @@ def build():
     print("Building projects page")
     with open("content/software.json") as fp:
         software = json.load(fp)
+    with open("content/services.json") as fp:
+        services = json.load(fp)
     render_to_file("projects.html", "projects",
                    {"base_path": get_base_path(level=1),
                     "section": "projects",
-                    "software": software})
+                    "software": software,
+                    "services": services})
 
     # -- Build simple pages
     print("Building About and CV")
