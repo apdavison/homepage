@@ -494,5 +494,57 @@
         "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/curation-tools"
       }
     ]
+  },
+  {
+    "name": "Arkheia",
+    "kg": null,
+    "ebrains": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Arkheia",
+        "type": "web app",
+        "version": "",
+        "entrypoints": null,
+        "codeRepository": {
+          "primary": "https://github.com/antolikjan/Arkheia"
+        },
+        "documentation": null,
+        "containerImage": null,
+        "ci": [],
+        "monitoring": {
+          "resources": null,
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": null
+      }
+    ]
+  },
+  {
+    "name": "Helmholtz",
+    "kg": null,
+    "ebrains": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Helmholtz",
+        "type": "web app",
+        "version": "",
+        "entrypoints": null,
+        "codeRepository": {
+          "primary": "https://github.com/apdavison/helmholtz"
+        },
+        "documentation": null,
+        "containerImage": null,
+        "ci": [],
+        "monitoring": {
+          "resources": null,
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": null
+      }
+    ]
   }
 ]

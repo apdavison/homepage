@@ -87,6 +87,28 @@
     }
   },
   {
+    "name": "Sumatra",
+    "latest_version": "dynamic",
+    "git_repo": {
+      "link": "https://github.com/open-research/sumatra"
+    },
+    "documentation": {
+      "link": "https://sumatra.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/Sumatra.svg",
+      "link": "https://pypi.org/project/Sumatra/"
+    },
+    "ci": {
+      "badge": "https://github.com/open-research/sumatra/actions/workflows/tests.yml/badge.svg",
+      "link": "https://github.com/open-research/sumatra/actions"
+    },
+    "coverage": {
+      "badge": "https://coveralls.io/repos/github/open-research/sumatra/badge.svg?branch=master",
+      "link": "https://coveralls.io/github/open-research/sumatra?branch=master"
+    }
+  },
+  {
     "name": "quantities",
     "latest_version": "dynamic",
     "git_repo": {
@@ -162,24 +184,17 @@
     "name": "VF client",
     "latest_version": "dynamic",
     "git_repo": {
-      "link": "https://github.com/HumanBrainProject/hbp-validation-client"
+      "link": "https://github.com/HumanBrainProject/ebrains-validation-client"
     },
     "documentation": {
-      "link": "http://hbp-validation-client.readthedocs.io/"
+      "link": "http://ebrains-validation-client.readthedocs.io/"
     },
     "download": {
-      "badge": "https://badge.fury.io/py/hbp-validation-framework.svg",
-      "link": "https://pypi.org/project/hbp-validation-framework/"
-    },
-    "ci": {
-      "badge": "https://api.travis-ci.com/HumanBrainProject/hbp-validation-client.svg?branch=master",
-      "link": "https://travis-ci.com/HumanBrainProject/hbp-validation-client"
+      "badge": "https://badge.fury.io/py/ebrains-validation-framework.svg",
+      "link": "https://pypi.org/project/ebrains-validation-framework/"
     },
     "kg": {
       "link": "https://search.kg.ebrains.eu/instances/9d516886-24b6-422d-a252-d74ebd2e0013"
-    },
-    "tc": {
-      "link": "https://wiki.ebrains.eu/bin/view/Collabs/technical-coordination/EBRAINS%20components/HBP%20Model%20Validation%20Service/"
     }
   },
   {
@@ -214,9 +229,23 @@
     },
     "plus": {
       "link": "https://plus.humanbrainproject.eu/components/1680/"
+    }
+  },
+  {
+    "name": "basalunit",
+    "latest_version": "dynamic",
+    "git_repo": {
+      "link": "https://github.com/appukuttan-shailesh/basalunit"
     },
-    "tc": {
-      "link": "https://wiki.ebrains.eu/bin/view/Collabs/technical-coordination/EBRAINS%20components/HBP%20Model%20Validation%20Framework%20/"
+    "download": {
+      "badge": "https://badge.fury.io/py/basalunit.svg",
+      "link": "https://pypi.org/project/basalunit/"
+    },
+    "kg": {
+      "link": "https://search.kg.ebrains.eu/instances/0e588b64-dfdf-4711-a54a-ba22a980a681"
+    },
+    "ebrains": {
+      "link": "https://ebrains.eu/data-tools-services/tools/basalunit"
     }
   },
   {
@@ -234,9 +263,6 @@
     },
     "plus": {
       "link": "https://plus.humanbrainproject.eu/components/1680/"
-    },
-    "tc": {
-      "link": "https://wiki.ebrains.eu/bin/view/Collabs/technical-coordination/EBRAINS%20components/HBP%20Model%20Validation%20Framework%20/"
     }
   },
   {
@@ -254,9 +280,6 @@
     },
     "plus": {
       "link": "https://plus.humanbrainproject.eu/components/1680/"
-    },
-    "tc": {
-      "link": "https://wiki.ebrains.eu/bin/view/Collabs/technical-coordination/EBRAINS%20components/HBP%20Model%20Validation%20Framework%20/"
     }
   },
   {
@@ -307,6 +330,142 @@
     },
     "kg": {
       "link": "https://search.kg.ebrains.eu/instances/d7cce0fc-1e77-4e0f-825b-d17b8a8f77a7"
+    }
+  },
+  {
+    "name": "bids2openminds",
+    "latest_version": "dynamic",
+    "git_repo": {
+      "link": "https://github.com/openMetadataInitiative/bids2openminds"
+    },
+    "documentation": {
+      "link": "https://bids2openminds.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/bids2openminds.svg",
+      "link": "https://pypi.org/project/bids2openminds/"
+    },
+    "ci": {
+      "badge": "https://github.com/openMetadataInitiative/bids2openminds/actions/workflows/test.yml/badge.svg",
+      "link": "https://github.com/openMetadataInitiative/bids2openminds/actions"
+    },
+    "kg": {
+      "link": "https://search.kg.ebrains.eu/instances/0c4a51fd-c592-459d-b7ea-cdbf011cd592"
+    }
+  },
+  {
+    "name": "EBRAINS Workflow components",
+    "latest_version": "",
+    "git_repo": {
+      "link": "https://gitlab.ebrains.eu/workflows/components"
+    }
+  },
+  {
+    "name": "Elephant",
+    "latest_version": "dynamic",
+    "git_repo": {
+      "link": "https://github.com/NeuralEnsemble/elephant"
+    },
+    "documentation": {
+      "link": "https://elephant.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/elephant.svg",
+      "link": "https://pypi.org/project/elephant/"
+    },
+    "ci": {
+      "badge": "https://github.com/NeuralEnsemble/elephant/actions/workflows/CI.yml/badge.svg",
+      "link": "https://github.com/NeuralEnsemble/elephant/actions"
+    },
+    "coverage": {
+      "badge": "https://coveralls.io/repos/github/NeuralEnsemble/elephant/badge.svg?branch=master",
+      "link": "https://coveralls.io/github/NeuralEnsemble/elephant?branch=master"
+    },
+    "spack": {
+      "link": "https://packages.spack.io/package.html?name=py-elephant"
+    }
+  },
+  {
+    "name": "mozaik",
+    "latest_version": "dynamic",
+    "git_repo": {
+      "link": "https://github.com/CSNG-MFF/mozaik"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/mozaik.svg",
+      "link": "https://pypi.org/project/mozaik/"
+    }
+  },
+  {
+    "name": "NineML",
+    "latest_version": "dynamic",
+    "git_repo": {
+      "link": "https://github.com/INCF/nineml-python"
+    },
+    "documentation": {
+      "link": "https://nineml-python.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/nineml.svg",
+      "link": "https://pypi.org/project/nineml/"
+    },
+    "ci": {
+      "badge": "https://travis-ci.org/INCF/nineml-python.svg?branch=master",
+      "link": "https://travis-ci.org/INCF/nineml-python"
+    },
+    "coverage": {
+      "badge": "https://coveralls.io/repos/github/INCF/nineml-python/badge.svg?branch=master",
+      "link": "https://coveralls.io/github/INCF/nineml-python?branch=master"
+    }
+  },
+  {
+    "name": "parameters",
+    "latest_version": "dynamic",
+    "git_repo": {
+      "link": "https://github.com/NeuralEnsemble/parameters"
+    },
+    "documentation": {
+      "link": "https://parameters.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/parameters.svg",
+      "link": "https://pypi.org/project/parameters/"
+    }
+  },
+  {
+    "name": "NeuroTools",
+    "latest_version": "dynamic",
+    "git_repo": {
+      "link": "https://github.com/NeuralEnsemble/NeuroTools"
+    },
+    "documentation": {
+      "link": "http://neuralensemble.org/NeuroTools/"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/NeuroTools.svg",
+      "link": "https://pypi.org/project/NeuroTools/"
+    },
+    "ci": {
+      "badge": "https://travis-ci.org/NeuralEnsemble/NeuroTools.png?branch=master",
+      "link": "https://travis-ci.org/NeuralEnsemble/NeuroTools"
+    },
+    "coverage": {
+      "badge": "https://coveralls.io/repos/NeuralEnsemble/NeuroTools/badge.png",
+      "link": "https://coveralls.io/r/NeuralEnsemble/NeuroTools"
+    }
+  },
+  {
+    "name": "hbp-archive",
+    "latest_version": "dynamic",
+    "git_repo": {
+      "link": "https://github.com/HumanBrainProject/hbp_archive"
+    },
+    "documentation": {
+      "link": "https://hbp-archive.readthedocs.io"
+    },
+    "download": {
+      "badge": "https://badge.fury.io/py/hbp-archive.svg",
+      "link": "https://pypi.org/project/hbp-archive/"
     }
   }
 ]
