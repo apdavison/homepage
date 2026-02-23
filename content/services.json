@@ -1,6 +1,9 @@
 [
   {
     "name": "Live Papers",
+    "summary": "An EBRAINS web service for creating interactive, resource-rich companion documents for neuroscience publications.",
+    "description": "Live Papers are structured online documents that complement published scientific articles by presenting the underlying data, code, model files, and interactive visualisations within a narrative structure. Authors use the web-based *Live Papers Builder* to assemble a paper, linking to resources stored on `EBRAINS <https://ebrains.eu>`_, `ModelDB <https://modeldb.science>`_, `NeuroMorpho.org <https://neuromorpho.org>`_, the `Allen Brain Atlas <https://brain-map.org>`_, and other community repositories. Readers can then download or directly run the associated resources, view embedded interactive plots of electrophysiology recordings, or launch neuronal simulations, all without leaving the browser.\n\nInteractive tools run on the `EBRAINS Research Infrastructure <https://ebrains.eu>`_. The platform consists of a viewer app, a builder app, and a REST API backed by the EBRAINS Knowledge Graph. Researchers in the Human Brain Project have used it to publish interactive supplementary material accompanying articles in journals including *Nature Communications*, *PLOS Computational Biology*, and *eLife*. Over 30 live papers have been published to date",
+    "status": "active",
     "kg": "https://search.kg.ebrains.eu/instances/d3270f6d-3898-4f30-bf21-524c0b863737",
     "ebrains": "https://ebrains.eu/data-tools-services/data-knowledge/live-papers",
     "backup": "https://github.com/apdavison/published-live-papers",
@@ -114,6 +117,9 @@
   },
   {
     "name": "Model Validation Service",
+    "summary": "An EBRAINS service providing a web API and catalog for registering computational neuroscience models and recording structured validation test results.",
+    "description": "The Model Validation Service addresses the challenge of assessing the scientific quality of computational brain models in a systematic and reproducible way. It consists of a REST API (`model-validation-api.apps.ebrains.eu <https://model-validation-api.apps.ebrains.eu>`_) backed by the EBRAINS Knowledge Graph, and the `Model Catalog <https://model-catalog.apps.ebrains.eu>`_ web interface where users can browse and curate model entries, validation test definitions, and the results of running those tests.\n\nValidation tests are written using the `SciUnit <https://scidash.org/sciunit.html>`_ framework, which decouples validation test implementations from model implementation details, and several domain-specific validation libraries (HippoUnit, MorphoUnit, BasalUnit, CerebUnit, NetworkUnit, CerebTests) have been developed, providing pre-built test suites. The Python client (`ebrains-validation-framework <https://pypi.org/project/ebrains-validation-framework/>`_) allows tests to be run and results submitted to the service programmatically.",
+    "status": "active",
     "kg": "https://search.kg.ebrains.eu/instances/de2f6456-46a3-40f0-8a51-93833d00b729",
     "ebrains": null,
     "backup": null,
@@ -175,6 +181,9 @@
   },
   {
     "name": "Neo Viewer",
+    "summary": "A browser-based service for visualising electrophysiology recordings from any file format supported by the Neo library.",
+    "description": "Neo Viewer (also called the Neural Activity Visualizer) allows neurophysiology data to be visualised and explored without requiring local software installation or format conversion. The service exposes a REST API that accepts a URL pointing to an electrophysiology data file, reads it using the `Neo <https://neo.readthedocs.io>`_ Python library, and returns the signal and spike-train data as JSON. The backend supports all file formats that Neo can read, including proprietary formats such as Plexon, NeuroExplorer, and AlphaOmega, as well as open formats like Neurodata Without Borders and HDF5.\n\nOn the frontend, the project provides React and AngularJS JavaScript components (published on npm as `neural-activity-visualizer-react <https://www.npmjs.com/package/neural-activity-visualizer-react>`_) that can be embedded in any web page to render interactive plots using the Plotly library. This makes it straightforward for data portals and scientific papers — including EBRAINS Live Papers — to embed live, zoomable views of recorded signals directly in the browser. A public demonstration instance is hosted on EBRAINS at `neoviewer.apps.ebrains.eu <https://neoviewer.apps.ebrains.eu>`_, and the backend is easily self-hosted via Docker.",
+    "status": "active",
     "kg": "https://search.kg.ebrains.eu/instances/6327334f-fffc-49d4-aa4a-b70bf17afcf4",
     "ebrains": "https://ebrains.eu/data-tools-services/tools/neo-viewer",
     "backup": null,
@@ -237,6 +246,9 @@
   },
   {
     "name": "EBRAINS Provenance",
+    "summary": "An EBRAINS REST API for recording and querying the provenance of neuroscience simulations and data analysis workflows.",
+    "description": "Computational provenance is the structured record of all steps in a scientific workflow: the code run, input datasets, the computing environment, the person responsible, and the resulting outputs. The EBRAINS Provenance API (`prov-api.apps.ebrains.eu <https://prov-api.apps.ebrains.eu>`_) provides a lightweight REST interface for recording this information in the EBRAINS Knowledge Graph using the openMINDS ``computation`` schemas, which are compatible with the W3C PROV data model and define types for *Simulation*, *DataAnalysis*, *Visualization*, and related activities.\n\nThe API is designed to be called programmatically at the end of a simulation or analysis script, registering inputs, outputs, parameter sets, software versions, and hardware environment in a single request. Stored provenance records can then be queried and visualised through a companion *Provenance Visualiser* web app. The service complements other EBRAINS tools: provenance records link directly to datasets in the Knowledge Graph and to entries in the Model Validation Service, giving researchers a traceable audit trail from raw data through analysis to published results.",
+    "status": "active",
     "kg": "https://search.kg.ebrains.eu/instances/de221b1e-8672-483e-9935-c2234c099cfc",
     "ebrains": null,
     "backup": null,
@@ -295,6 +307,9 @@
   },
   {
     "name": "EBRAINS Neuromorphic Computing",
+    "summary": "An EBRAINS service providing remote access to the SpiNNaker and BrainScaleS neuromorphic hardware systems via a job queue and web interface.",
+    "description": "The neuromorphic computing systems SpiNNaker (University of Manchester) and BrainScaleS (Heidelberg University) implement spiking neural network models in specialised low-power hardware, with BrainScaleS emulating neurons at up to 1000x biological real time. The EBRAINS Neuromorphic Computing service provides a centralised job queue that allows researchers to submit simulations to these systems without needing direct hardware access. Jobs are written as Python scripts using the `PyNN <http://neuralensemble.org/docs/PyNN/>`_ simulator-independent API, submitted via the `hbp-neuromorphic-platform <https://pypi.org/project/hbp-neuromorphic-platform/>`_ Python client or the *Neuromorphic Job Manager* web app, queued on the server, executed on the chosen hardware system, and results made available for download.\n\nThe service consists of a REST job queue API (`nmpi-v3.hbpneuromorphic.eu <https://nmpi-v3.hbpneuromorphic.eu>`_), the Job Manager web application (`neuromorphic-job-manager.apps.ebrains.eu <https://neuromorphic-job-manager.apps.ebrains.eu>`_), and the Python/command-line client. Job scripts can reference input data stored locally, in Git repositories, or in EBRAINS Collaboratory storage. The platform is integrated with EBRAINS authentication and the Knowledge Graph for provenance tracking of neuromorphic simulation runs.",
+    "status": "active",
     "kg": "https://search.kg.ebrains.eu/instances/7b73d422-9dae-405b-a613-457a62231e22",
     "ebrains": "https://ebrains.eu/data-tools-services/modelling-simulation/neuromorphic-computing",
     "database": null,
@@ -388,6 +403,9 @@
   },
   {
     "name": "EBRAINS Metadata Utilities",
+    "summary": "A collection of EBRAINS web applications for generating and validating structured metadata for software tools, web services, and neural activity datasets.",
+    "description": "Registering software and services in the EBRAINS ecosystem requires structured metadata in community-standard formats. The EBRAINS Metadata Utilities are a suite of small web applications that lower the barrier to producing that metadata. The *Codemeta Generator* (`codemeta.apps.ebrains.eu <https://codemeta.apps.ebrains.eu>`_) provides a web form for creating ``codemeta.json`` files — JSON-LD documents describing software tools — with validation rules aligned to EBRAINS registration requirements. The *Servicemeta Generator* produces analogous structured metadata for web services. The *Neural Activity Resource* app supports the visualisation of detailed metadata for electrophysiology datasets. *Curation tools* provide internal support for EBRAINS data managers reviewing and improving submitted metadata.\n\nAll the applications feed into the EBRAINS Knowledge Graph: the metadata they produce is used to create or update Knowledge Graph entries, making research outputs findable through the EBRAINS search interface. The tools are lightweight and self-contained, designed to be usable without deep familiarity with JSON-LD or the Knowledge Graph data model.",
+    "status": "active",
     "kg": null,
     "ebrains": null,
     "interfaces": [
@@ -497,6 +515,9 @@
   },
   {
     "name": "Arkheia",
+    "summary": "A web-based data management and communication platform for storing, exploring, and sharing computational neuroscience simulation results.",
+    "description": "Arkheia addresses the practical problem of managing the large numbers of simulation runs generated during computational neuroscience modelling work, particularly during parameter searches. It is a client-server application — built on a REST API with a web-based front end — that provides an automatic, interactive, graphical presentation of simulation results, experimental protocols, and model specifications within a browser.\n\nUnlike centralised platforms, Arkheia is designed for self-hosting: a researcher or group can deploy their own instance either locally (as a private daily-use store for simulation results, with GUI-based exploration of parameter searches) or publicly (as a publishing platform to accompany a paper or project). The API is openly specified and separated from the storage layer, so any simulation framework can write a backend adapter to push data into an Arkheia instance. The project was developed primarily by `Ján Antolík <http://antolik.net>`_ and described in a `Frontiers in Neuroinformatics article <https://doi.org/10.3389/fninf.2018.00006>`_.",
+    "status": "active",
     "kg": null,
     "ebrains": null,
     "backup": null,
@@ -523,6 +544,9 @@
   },
   {
     "name": "Helmholtz",
+    "summary": "An inactive Django-based web framework for managing electrophysiology experiment metadata and recordings in neuroscience laboratories.",
+    "description": "Helmholtz was a modular, customisable web application for neurophysiology data management, designed to serve as an in-laboratory database for electrophysiology experiments (both *in vivo* and *in vitro*). It allowed labs to define their own metadata schemas for stimulation and recording protocols, store results, and expose the data through a web interface and a web-services API, making experimental records findable and accessible within a research group.\n\nThe project was presented at the Neuroinformatics 2010 conference as an early attempt to bring structured data management to experimental neuroscience labs, predating the Human Brain Project and the EBRAINS infrastructure. It is now inactive; the data management and provenance-tracking goals it pursued have been taken over by the EBRAINS Knowledge Graph, the Provenance API, and the openMINDS metadata framework. The source code is archived at `github.com/apdavison/helmholtz <https://github.com/apdavison/helmholtz>`_.",
+    "status": "inactive",
     "kg": null,
     "ebrains": null,
     "backup": null,

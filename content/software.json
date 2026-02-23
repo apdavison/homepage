@@ -1,6 +1,9 @@
 [
   {
     "name": "PyNN",
+    "summary": "A simulator-independent Python API for specifying and running spiking neural network models on multiple backends.",
+    "description": "PyNN (pronounced 'pine') lets researchers write a neuronal network model once, using a common Python API, and then run it without modification on any supported simulator — currently NEURON, NEST, and Brian 2 — as well as on neuromorphic hardware systems such as SpiNNaker and BrainScaleS. The API operates at a high level of abstraction (populations of neurons, layers, columns, and the connections between them) while still permitting access to individual neuron and synapse parameters when needed.\n\nPyNN ships with a library of standard neuron, synapse, and synaptic plasticity models that have been verified to produce consistent results across backends, together with a suite of built-in connectivity algorithms (all-to-all, random, distance-dependent, small-world, and others). It has been adopted as the common interface for the neuromorphic hardware systems of the `EBRAINS research infrastructure <https://ebrains.eu/nmc>`_.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/PyNN/"
@@ -32,6 +35,9 @@
   },
   {
     "name": "lazyarray",
+    "summary": "A Python package providing a lazily-evaluated numerical array class compatible with NumPy, supporting deferred computation and partial evaluation.",
+    "description": "lazyarray provides ``larray``, a drop-in NumPy-compatible array type whose construction and element-wise operations are deferred until the values are actually needed. Arrays may be created from scalars, sequences, NumPy arrays, iterators, generators, or functions of the form ``f(i)`` or ``f(i, j)``; in the function case, individual elements are only computed when accessed. All  operations on an ``larray`` are queued and executed lazily on first access.\n\nThe primary motivation for lazyarray is memory and runtime efficiency in distributed or conditional computation: when only a subset of elements will ever be used — for example, because an MPI parallel simulation assigns different subsets of neurons to different processes — the full array never needs to be materialised. It was originally developed as an internal component of PyNN to handle the large parameter arrays (synaptic weights, delays, neuron parameters) that arise in large-scale neural network models, but is packaged and distributed independently so it can be used in other contexts.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/lazyarray/"
@@ -57,6 +63,9 @@
   },
   {
     "name": "Neo",
+    "summary": "A Python package providing a common object model for representing and reading electrophysiology data across dozens of file formats.",
+    "description": "Neo solves the interoperability problem that arises because electrophysiology data is stored in a large number of incompatible proprietary and open formats (Spike2, Plexon, Blackrock, Axon, NeuroExplorer, AlphaOmega, Neurodata Without Borders, MATLAB, HDF5, and many others). It defines a hierarchical object model — ``Block``, ``Segment``, ``AnalogSignal``, ``SpikeTrain``, ``Event``, and related classes — that can faithfully represent continuous signals, spike trains, and trial structure, with full physical units carried through all objects via the `quantities` package.\n\nDeliberately limited to data representation rather than analysis or visualisation, Neo is designed to be a lightweight dependency that other tools can build on. It is used by Elephant (analysis), NeoViewer (browser-based visualisation), PyNN (simulation output), tridesclous and SpikeInterface (spike sorting), ephyviewer, SpykeViewer, and the EBRAINS G-Node data infrastructure, making it a central piece of the Python neuroscience ecosystem. IO modules covering dozens of formats are included, with both a high-level and a raw-IO layer to simplify adding new formats.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/python-neo/"
@@ -88,6 +97,9 @@
   },
   {
     "name": "Sumatra",
+    "summary": "Automated electronic lab notebook for tracking and reproducing numerical simulations and data analyses.",
+    "description": "Reproducibility is a central challenge in computational science: when a simulation is run weeks or months later, the exact code version, parameters, and environment may be forgotten or changed. Sumatra solves this by automatically recording all information needed to reproduce a computation — the script and executable versions (via Git, Mercurial, Subversion, or Bazaar), parameter values, execution time, console output, and output data file locations.\n\nSumatra provides three interfaces: a command-line tool (*smt*) that wraps the execution of any script or program; a built-in web interface (*smtweb*) for browsing, searching, filtering, and annotating records; and a Python API for deeper integration into custom workflows. It also supports re-running a previous computation and automatically verifying that the results are unchanged, making it a practical tool for validating reproducibility.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/open-research/sumatra"
@@ -110,6 +122,9 @@
   },
   {
     "name": "quantities",
+    "summary": "NumPy-based library for arithmetic and unit conversion of physical quantities with optional uncertainty support.",
+    "description": "Working with physical measurements in scientific code requires tracking not just numerical values but also their units and dimensions. The *quantities* library extends NumPy arrays so that every value carries explicit unit information, enabling automatic unit tracking through arithmetic operations: dividing a distance by a time yields a velocity in the correct units, and attempting to add incompatible quantities (e.g. metres and seconds) raises an error rather than silently producing nonsense.\n\nBuilt on top of NumPy and compatible with its universal functions, *quantities* supports a comprehensive set of physical units, unit conversion, physical constants, and optional propagation of measurement uncertainties. It is used across scientific Python workflows wherever dimensional correctness needs to be enforced programmatically.\n\n*quantities* was originally developed by Darren Dale; I am the current maintainer.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/python-quantities/python-quantities/"
@@ -131,6 +146,9 @@
   },
   {
     "name": "fairgraph",
+    "summary": "Python API for the EBRAINS Knowledge Graph, providing an object-oriented interface to neuroscience research metadata.",
+    "description": "fairgraph allows researchers to interact with the `EBRAINS Knowledge Graph <https://kg.ebrains.eu>`_ using Python objects rather than raw API calls. Each metadata type defined in the openMINDS schema — datasets, models, subjects, brain atlases, and more — is represented as a Python class, so users can query, filter, and traverse relationships between research objects with natural syntax.\n\nThe library is used both by data curators registering new datasets and models in the Knowledge Graph and by scientists discovering and reusing existing research products. It supports reading and writing metadata, resolving linked entities, and works seamlessly within the EBRAINS JupyterLab environment. fairgraph is widely used within the EBRAINS data-sharing infrastructure and is the primary Python interface for working programmatically with brain research metadata deposited in EBRAINS.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/HumanBrainProject/fairgraph/"
@@ -155,6 +173,9 @@
   },
   {
     "name": "NMPI client",
+    "summary": "Python client for submitting and managing simulation jobs on the EBRAINS Neuromorphic Computing Platform.",
+    "description": "The NMPI (Neuromorphic Platform Interface) client provides programmatic access to the `EBRAINS Neuromorphic Computing Platform <https://ebrains.eu/nmc>`_, which offers remote access to two large-scale neuromorphic hardware systems: the *BrainScaleS* system developed in Heidelberg and the *SpiNNaker* system developed in Manchester. Users write experiment scripts using the PyNN API, which can target either hardware backend or a software simulator interchangeably.\n\nThe client handles authentication, job submission, status polling, and retrieval of results and output data. Experiment code can be provided as a local file path, a Git repository URL, or a compressed archive containing a ``run.py`` entry point. This abstraction lets computational neuroscientists run spiking neural network experiments on dedicated neuromorphic hardware without needing to manage the underlying platform infrastructure directly.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/HumanBrainProject/hbp-neuromorphic-client/"
@@ -182,6 +203,9 @@
   },
   {
     "name": "VF client",
+    "summary": "Python client for the EBRAINS Model Validation Framework, enabling systematic quantitative validation of neuroscience models.",
+    "description": "The `ebrains-validation-client` provides a Python interface to the EBRAINS Model Validation Framework web service, which stores metadata about computational neuroscience models, validation tests, and test results. It allows researchers to register models and tests, run validations programmatically, and record results in a shared, searchable database — supporting reproducible model development workflows.\n\nValidation tests are formalised using the `SciUnit <https://scidash.org/sciunit.html>`_ framework, which defines a standard interface for comparing model output against experimental data. Specialised testing libraries built on SciUnit — such as HippoUnit for hippocampal cell models and MorphoUnit for neuronal morphology — integrate directly with this framework.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/HumanBrainProject/ebrains-validation-client"
@@ -199,6 +223,9 @@
   },
   {
     "name": "EBRAINS Storage client",
+    "summary": "Python client for reading and writing files on EBRAINS Collaboratory Drive and Bucket (object) storage.",
+    "description": "ebrains-drive provides a unified Python interface to the two main storage systems in the EBRAINS research infrastructure: the *Collaboratory Drive*, a Seafile-based file storage system for collaborative working, and *Buckets*, an object storage service backed by the EBRAINS data-proxy.\n\nThe library also supports accessing public buckets without authentication. It is used by researchers and platform services within the EBRAINS ecosystem who need programmatic, scriptable access to shared data storage from Python code or Jupyter notebooks.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/HumanBrainProject/ebrains-drive"
@@ -213,6 +240,9 @@
   },
   {
     "name": "Hippounit",
+    "summary": "A SciUnit library for automated, data-driven validation testing of hippocampal CA1 pyramidal cell and interneuron models.",
+    "description": "HippoUnit provides a suite of quantitative validation tests for detailed compartmental models of hippocampal neurons, built on the `SciUnit <https://scidash.github.io/sciunit.html>`_ framework. It compares model output against experimental electrophysiological data using z-scores as a standardised measure of discrepancy.\n\nThe library implements six tests covering somatic excitability, depolarisation block, backpropagating action potentials in the apical trunk, postsynaptic potential attenuation from dendrite to soma, oblique dendrite integration with synchronous and asynchronous synaptic inputs, and pathway interaction under theta-rhythmic stimulation. It was developed within the Human Brain Project to support reproducible model validation, with the lead developer being Sára Sáray in the lab of Szabolcs Káli, and is aimed at neuroscientists building or evaluating detailed biophysical models of hippocampal circuits. For more information, see `Sáray et al, 2021 <http://doi.org/10.1371/journal.pcbi.1008114>`_.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/kalilab/hippounit"
@@ -233,6 +263,9 @@
   },
   {
     "name": "basalunit",
+    "summary": "A SciUnit library for data-driven validation testing of basal ganglia computational models using curve-similarity scoring.",
+    "description": "BasalUnit applies the `SciUnit <https://scidash.github.io/sciunit.html>`_ testing framework to the validation of basal ganglia models, measuring how closely model output traces match experimental recordings.\n\nThe library was developed as part of the European Human Brain Project (the lead developer being Shailesh Appukuttan) and is intended to provide objective, repeatable quality metrics for models of the basal ganglia — a set of subcortical nuclei involved in action selection, reinforcement learning, and motor control. Like the other HBP validation libraries, it integrates with the EBRAINS model validation infrastructure.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/appukuttan-shailesh/basalunit"
@@ -250,6 +283,9 @@
   },
   {
     "name": "CerebUnit",
+    "summary": "A SciUnit library for running data-driven validation tests on computational models of the cerebellum.",
+    "description": "CerebUnit provides a collection of validation tests for cerebellar computational models, built on the `SciUnit <https://scidash.github.io/sciunit.html>`_ framework. By comparing simulation output against experimental data, it generates standardised scores that quantify how well a model reproduces observed cerebellar physiology.\n\nThe package was developed within the European Human Brain Project (the lead developer being Lungsi Sharma) as part of a broader effort to establish rigorous, community-shared validation workflows for brain region models. It is closely related to the other HBP-developed SciUnit libraries (HippoUnit, BasalUnit, MorphoUnit) and is intended to integrate with the EBRAINS model validation platform.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/cerebunit/cerebunit"
@@ -267,6 +303,9 @@
   },
   {
     "name": "MorphoUnit",
+    "summary": "A SciUnit library for data-driven testing and validation of neuronal morphologies against experimental measurements.",
+    "description": "MorphoUnit extends the `SciUnit <https://scidash.github.io/sciunit.html>`_ framework to the validation of neuronal morphology, allowing researchers to compare geometric and structural properties of reconstructed or synthesised cell models against experimental reference data. It provides scoring metrics that quantify the similarity between model morphologies and empirical measurements, and has been applied to cell types including fast-spiking interneurons.\n\nThe library was developed by Shailesh Appukuttan and Pedro Garcia-Rodriguez as part of the Human Brain Project, complementing electrophysiology-focused tools such as HippoUnit and BasalUnit. It targets a gap in the model-validation ecosystem by treating morphological fidelity — soma size, dendritic arborisation, axonal geometry — as a testable, quantifiable property rather than a visual judgement.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/appukuttan-shailesh/morphounit"
@@ -283,7 +322,10 @@
     }
   },
   {
-    "name": "NeoViewer JS",
+    "name": "NeoViewer",
+    "summary": "A React component and REST API for interactive browser-based visualisation of electrophysiology data in any format supported by Neo.",
+    "description": "NeoViewer JS (npm package `neural-activity-visualizer-react <https://www.npmjs.com/package/neural-activity-visualizer-react>`_) is a React component that renders analog signals, spike trains, LFPs, and other neurophysiological recordings directly in a web browser. It communicates with a backend REST API — implemented with FastAPI and deployable as a Docker container — which uses Neo to read data from any of the dozens of file formats Neo supports and returns the data as JSON. An AngularJS variant of the front-end component is also available.\n\nThe goal is to allow neuroscientists to inspect and share electrophysiology datasets without requiring local software installation. The architecture — a thin embeddable JavaScript component backed by a containerised Neo-based API — means it can be embedded in any web page or data portal, making it straightforward to add interactive previews to data repositories or electronic publications. For more information see `Ates et al., 2024 <http://doi.org/10.1016/j.softx.2024.101710>`_.",
+    "status": "active",
     "latest_version": "1.0.4",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/neo-viewer"
@@ -307,6 +349,9 @@
   },
   {
     "name": "openMINDS Python",
+    "summary": "Python package providing all openMINDS metadata schemas as Python classes for creating and manipulating neuroscience metadata.",
+    "description": "openMINDS is the open Metadata Initiative for Neuroscience Data Structures, a set of metadata models developed to facilitate access to and interoperability of neuroscience research products. The `openMINDS Python <https://github.com/openMetadataInitiative/openMINDS_Python>`_ package auto-generates Python classes from the openMINDS JSON-Schema definitions, covering schemas for datasets, models, software, specimens, and computational workflows. It supports import and export in JSON-LD format, making it straightforward to create openMINDS-compliant metadata records from Python code and to serialize them for upload to the `EBRAINS Knowledge Graph <https://search.kg.ebrains.eu>`_.\n\nThe package is the foundational tooling layer of the openMINDS ecosystem. It is used directly by researchers curating data for EBRAINS, and is depended upon by higher-level tools such as `fairgraph <https://fairgraph.readthedocs.io>`_ and `bids2openminds <https://bids2openminds.readthedocs.io>`_. The build pipeline is automated via GitHub Actions, regenerating the package whenever the upstream schema definitions change and publishing updated releases to PyPI.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/openMetadataInitiative/openMINDS_Python"
@@ -334,6 +379,9 @@
   },
   {
     "name": "bids2openminds",
+    "summary": "Converts BIDS-organised neuroimaging datasets into openMINDS metadata format for EBRAINS data registration.",
+    "description": "bids2openminds automates the extraction of both implicit and explicit metadata from datasets structured according to the `Brain Imaging Data Structure (BIDS) <https://bids.neuroimaging.io>`_ standard and conversion of these metadata into the `openMINDS <https://openminds.ebrains.eu>`_ schemas used by the EBRAINS Knowledge Graph. Rather than manually authoring JSON-LD metadata files for each dataset submission, researchers point the tool at an existing BIDS dataset and receive ready-to-submit openMINDS metadata as output.\n\nIt is invoked from the command line or via its Python API, and is aimed at neuroimaging researchers who wish to share their BIDS datasets through the EBRAINS infrastructure. The project is part of the Open Metadata Initiative and is under active early development.",
+    "status": "active",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/openMetadataInitiative/bids2openminds"
@@ -354,7 +402,10 @@
     }
   },
   {
-    "name": "EBRAINS Workflow components",
+    "name": "EBRAINS Workflow Library",
+    "summary": "A collection of reusable CWL tool and workflow definitions for running neuroscience analysis pipelines on EBRAINS infrastructure.",
+    "description": "The EBRAINS Workflow Library (EWL) provides a collection of reusable `Common Workflow Language (CWL) <https://www.commonwl.org/>`_ descriptions wrapping individual EBRAINS tools and services, allowing them to be composed into larger analysis pipelines that are portable across local, cloud, and HPC computing environments.\n\nEach component wraps a command-line tool or REST API call with a CWL document that declares its inputs, outputs, and resource requirements. Input and output data can be loaded from and written back to the EBRAINS Knowledge Graph using openMINDS-compliant metadata, enabling sharing and reproducibility. The repository supports the broader EBRAINS goal of making scientific workflows FAIR (Findable, Accessible, Interoperable, Reusable) by providing well-described, version-controlled building blocks that can be assembled by individual research groups for their own simulation and analysis needs.",
+    "status": "active",
     "latest_version": "",
     "git_repo": {
       "link": "https://gitlab.ebrains.eu/workflows/components"
@@ -362,6 +413,9 @@
   },
   {
     "name": "Elephant",
+    "summary": "An open-source Python toolkit for the statistical analysis of electrophysiology data, built on Neo data structures.",
+    "description": "Elephant (Electrophysiology Analysis Toolkit) provides a modular, community-maintained library of analysis methods for neurophysiology data, operating directly on Neo objects so that data read from any Neo-supported file format can be analysed without format-specific preprocessing. Its core modules cover spike train statistics (firing rates, inter-spike interval distributions, Fano factor, CV), spike train correlation (cross-correlograms, covariance, SPADE), spectral analysis of analog signals and LFPs, spike train generation, and dissimilarity measures.\n\nElephant grew out of earlier NeuralEnsemble efforts (including NeuroTools) and is now primarily maintained by the Institute of Neuroscience and Medicine at Forschungszentrum Jülich, though Andrew Davison's team contributed to its foundation and early development. It is a core analysis component in the EBRAINS research infrastructure and is widely used alongside Neo and PyNN in computational and experimental neuroscience workflows.",
+    "status": "active-elsewhere",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/elephant"
@@ -387,6 +441,9 @@
   },
   {
     "name": "mozaik",
+    "summary": "An integrated workflow framework for specifying, running, analysing, and visualising large-scale spiking neural network simulations.",
+    "description": "Mozaik addresses the growing complexity of large-scale, heterogeneous spiking network simulations by integrating model specification, experimental protocol definition, simulation execution, data storage, analysis, and visualisation into a single automated pipeline. Researchers define a model and a set of virtual experiments in a high-level Python API; Mozaik then orchestrates the entire workflow through to publication-quality figures, reducing the fragmentation that typically arises when each stage uses a different tool.\n\nThe framework is built on top of `PyNN <http://neuralensemble.org/PyNN/>`_ and the NEST simulator, and uses MPI for distributed execution on multi-core and cluster systems. Data is stored using the Neo data model, ensuring interoperability with the broader neuroscience data ecosystem. Mozaik was originally developed in the Davison team at UNIC (CNRS, Gif sur Yvette), primarily by Jan Antolík, and is now developed primarily in Antolík's Computational Systems Neuroscience Group at Charles University (Prague). It is particularly well suited to modelling visual cortical circuits with complex, stimulus-driven experimental protocols (see `Antolík et al., 2024 <http://doi.org/10.1371/journal.pcbi.1012342>`_).",
+    "status": "active-elsewhere",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/CSNG-MFF/mozaik"
@@ -398,6 +455,9 @@
   },
   {
     "name": "NineML",
+    "summary": "Python library implementing the NineML specification for describing and exchanging neuronal network models.",
+    "description": "NineML (Network Interchange for Neuroscience Markup Language, also written 9ML) is a declarative language for specifying the dynamics and connectivity of spiking neuronal networks. The Python library maps the NineML object model onto Python classes, providing a programmatic interface for creating, reading, validating, and manipulating NineML descriptions without hand-editing XML.\n\nModels can be serialised and deserialised in XML, JSON, YAML, and HDF5, making it straightforward to exchange model descriptions between simulators and tools. The library is used to implement the NineML Catalog, a curated collection of reusable model components. Originally developed by a working group of the `International Neuroinformatics Coordinating Facility (INCF) <https://incf.org>`_, it is intended to support simulator-agnostic model sharing across the computational neuroscience community, complementing tools such as PyNN and NeuroML.",
+    "status": "active-elsewhere",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/INCF/nineml-python"
@@ -420,6 +480,9 @@
   },
   {
     "name": "parameters",
+    "summary": "Python library for defining, validating, and managing hierarchical parameter sets for computational models.",
+    "description": "A key software engineering practice in computational modelling is keeping parameter sets cleanly separated from model code, so that configurations can be versioned, stored in databases, and explored systematically. The *parameters* package provides Python classes for building deeply hierarchical parameter sets, drawing values from random distributions, defining ranges for sensitivity analysis, specifying physical dimensions and allowed value ranges, and validating sets against schemas.\n\nThe library is particularly aimed at computational neuroscience workflows where models may have many interacting subsystems, each with their own configuration. It integrates naturally with tools such as `PyNN <http://neuralensemble.org/PyNN/>`_ and Sumatra. Further information is at `parameters.readthedocs.io <https://parameters.readthedocs.io>`_.",
+    "status": "active-elsewhere",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/parameters"
@@ -434,6 +497,9 @@
   },
   {
     "name": "NeuroTools",
+    "summary": "Collection of Python utilities for representing, managing, and analysing data from neural network simulations.",
+    "description": "NeuroTools grew out of the `NeuralEnsemble <http://neuralensemble.org>`_ community's need to avoid duplicating analysis and data-handling code across different simulator codebases. It provides modules for simulation setup, parameterisation, spike train and membrane potential analysis, data management, and visualisation, and is designed to work with simulation engines that expose a Python interface, including NEURON, NEST, and Brian.\n\nThe project is now in maintenance-only mode; active development of electrophysiology analysis functionality has migrated to `Elephant <http://neuralensemble.org/elephant/>`_. NeuroTools remains useful as a source of established analysis routines and as part of older workflows built around `PyNN <http://neuralensemble.org/PyNN/>`_.",
+    "status": "inactive",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/NeuralEnsemble/NeuroTools"
@@ -456,6 +522,9 @@
   },
   {
     "name": "hbp-archive",
+    "summary": "High-level Python API for accessing archival storage from the Human Brain Project at CSCS.",
+    "description": "The Human Brain Project generated large volumes of simulation and experimental data stored in the CSCS archival system. *hbp-archive* provided a simple Python interface — wrapping the underlying storage API — that allowed researchers to list, download, read, and manage files in HBP project containers without writing low-level storage calls directly.\n\nThe library offered classes for public and authenticated containers, project-level organisation, and bulk operations. The repository is now archived (January 2026) and the underlying storage is no longer accessible via this package; users working with EBRAINS data should use the successor `ebrains-drive <https://pypi.org/project/ebrains-drive/>`_ library instead.",
+    "status": "inactive",
     "latest_version": "dynamic",
     "git_repo": {
       "link": "https://github.com/HumanBrainProject/hbp_archive"

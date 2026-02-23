@@ -123,16 +123,11 @@ async function renderProjects() {
     const anchor = document.getElementById(projectName);
     console.log(projectName);
     if (anchor) {
-      anchor.innerHTML += `<p>${projectData[projectName].info.summary}</p>`;
       anchor.innerHTML += `<p>
         Most recent version: ${projectData[projectName].info.version}
-        - released ${latestReleaseDate(releases).toDateString()}
+        - released ${latestReleaseDate(releases).toDateString()}.
+        ${countReleases(releases)} versions published since ${firstReleaseDate(releases).toDateString()}
       </p>`;
-      anchor.innerHTML += `<p>${countReleases(
-        releases
-      )} versions published since ${firstReleaseDate(
-        releases
-      ).toDateString()}</p>`;
     }
   }
 

@@ -50,7 +50,7 @@ from html.parser import HTMLParser
 from jinja2 import FileSystemLoader, Environment
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
-from docutils.core import publish_programmatically
+from docutils.core import publish_programmatically, publish_parts
 from docutils import io, nodes
 from feedgen.feed import FeedGenerator
 from pytz import timezone
@@ -176,6 +176,13 @@ def generate_feed(notes):
     # note: have a Python-specific feed for PlanetSciPy?
 
 
+def rst_fragment_to_html(text):
+    """Convert a reStructuredText fragment to an HTML body string."""
+    parts = publish_parts(text, writer_name='html',
+                          settings_overrides={'initial_header_level': 3})
+    return parts['body']
+
+
 def add_software_icons(software):
     """Derive icon filenames from link URLs, so the JSON need not store them."""
     def doc_icon(link):
@@ -259,8 +266,14 @@ def build():
     with open("content/software.json") as fp:
         software = json.load(fp)
     software = add_software_icons(software)
+    for item in software:
+        if "description" in item:
+            item["description_html"] = rst_fragment_to_html(item["description"])
     with open("content/services.json") as fp:
         services = json.load(fp)
+    for service in services:
+        if "description" in service:
+            service["description_html"] = rst_fragment_to_html(service["description"])
     render_to_file("projects.html", "projects",
                    {"base_path": get_base_path(level=1),
                     "section": "projects",
