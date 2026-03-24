@@ -57,12 +57,15 @@
 {% if sw.download and sw.download.link and "pypi.org" in sw.download.link %}{% set sw_id = sw.download.link.split('/')[-2] %}{% else %}{% set sw_id = sw.name | lower | replace(' ', '-') %}{% endif %}
 <h3 id="{{ sw_id }}">{{ sw.name }}</h3>
 <div id="x-{{ sw_id }}">{% if sw.summary is defined %}<p><strong>{{ sw.summary }}</strong></p>{% endif %}
+<p>{% if sw.git_repo is defined %}<a href="{{ sw.git_repo.link }}" target="_blank" rel="noopener noreferrer">[repository]</a> {% endif %}
+{% if sw.documentation is defined %}<a href="{{ sw.documentation.link }}" target="_blank" rel="noopener noreferrer">[documentation]</a>{% endif %}</p>
 {% if sw.description_html is defined %}{{ sw.description_html | safe }}{% endif %}</div>
 {% endfor %}
 {% for service in services if service.status == "active" %}
 {% set svc_id = service.name | lower | replace(' ', '-') %}
 <h3 id="{{ svc_id }}">{{ service.name }}</h3>
 <div id="x-{{ svc_id }}">{% if service.summary is defined %}<p><strong>{{ service.summary }}</strong></p>{% endif %}
+<p>{% for interface in service.interfaces %}{% if interface.codeRepository is defined %}<a href="{{ interface.codeRepository.primary }}" target="_blank" rel="noopener noreferrer">[{{ interface.name }}]</a> {% endif %}{% endfor %}</p>
 {% if service.description_html is defined %}{{ service.description_html | safe }}{% endif %}</div>
 {% endfor %}
 
@@ -72,6 +75,8 @@
 {% if sw.download and sw.download.link and "pypi.org" in sw.download.link %}{% set sw_id = sw.download.link.split('/')[-2] %}{% else %}{% set sw_id = sw.name | lower | replace(' ', '-') %}{% endif %}
 <h3 id="{{ sw_id }}">{{ sw.name }}</h3>
 <div id="x-{{ sw_id }}">{% if sw.summary is defined %}<p><strong>{{ sw.summary }}</strong></p>{% endif %}
+<p>{% if sw.git_repo is defined %}<a href="{{ sw.git_repo.link }}" target="_blank" rel="noopener noreferrer">[repository]</a> {% endif %}
+{% if sw.documentation is defined %}<a href="{{ sw.documentation.link }}" target="_blank" rel="noopener noreferrer">[documentation]</a>{% endif %}</p>
 {% if sw.description_html is defined %}{{ sw.description_html | safe }}{% endif %}</div>
 {% endfor %}
 
@@ -81,12 +86,15 @@
 {% if sw.download and sw.download.link and "pypi.org" in sw.download.link %}{% set sw_id = sw.download.link.split('/')[-2] %}{% else %}{% set sw_id = sw.name | lower | replace(' ', '-') %}{% endif %}
 <h3 id="{{ sw_id }}">{{ sw.name }}</h3>
 <div id="x-{{ sw_id }}">{% if sw.summary is defined %}<p><strong>{{ sw.summary }}</strong></p>{% endif %}
+<p>{% if sw.git_repo is defined %}<a href="{{ sw.git_repo.link }}" target="_blank" rel="noopener noreferrer">[repository]</a> {% endif %}
+{% if sw.documentation is defined %}<a href="{{ sw.documentation.link }}" target="_blank" rel="noopener noreferrer">[documentation]</a>{% endif %}</p>
 {% if sw.description_html is defined %}{{ sw.description_html | safe }}{% endif %}</div>
 {% endfor %}
 {% for service in services if service.status == "inactive" %}
 {% set svc_id = service.name | lower | replace(' ', '-') %}
 <h3 id="{{ svc_id }}">{{ service.name }}</h3>
 <div id="x-{{ svc_id }}">{% if service.summary is defined %}<p><strong>{{ service.summary }}</strong></p>{% endif %}
+<p>{% for interface in service.interfaces %}{% if interface.codeRepository is defined %}<a href="{{ interface.codeRepository.primary }}" target="_blank" rel="noopener noreferrer">[{{ interface.name }}]</a> {% endif %}{% endfor %}</p>
 {% if service.description_html is defined %}{{ service.description_html | safe }}{% endif %}</div>
 {% endfor %}
 

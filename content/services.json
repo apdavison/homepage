@@ -180,7 +180,7 @@
     ]
   },
   {
-    "name": "Neo Viewer",
+    "name": "NeoViewer service",
     "summary": "A browser-based service for visualising electrophysiology recordings from any file format supported by the Neo library.",
     "description": "Neo Viewer (also called the Neural Activity Visualizer) allows neurophysiology data to be visualised and explored without requiring local software installation or format conversion. The service exposes a REST API that accepts a URL pointing to an electrophysiology data file, reads it using the `Neo <https://neo.readthedocs.io>`_ Python library, and returns the signal and spike-train data as JSON. The backend supports all file formats that Neo can read, including proprietary formats such as Plexon, NeuroExplorer, and AlphaOmega, as well as open formats like Neurodata Without Borders and HDF5.\n\nOn the frontend, the project provides React and AngularJS JavaScript components (published on npm as `neural-activity-visualizer-react <https://www.npmjs.com/package/neural-activity-visualizer-react>`_) that can be embedded in any web page to render interactive plots using the Plotly library. This makes it straightforward for data portals and scientific papers — including EBRAINS Live Papers — to embed live, zoomable views of recorded signals directly in the browser. A public demonstration instance is hosted on EBRAINS at `neoviewer.apps.ebrains.eu <https://neoviewer.apps.ebrains.eu>`_, and the backend is easily self-hosted via Docker.",
     "status": "active",
