@@ -7,8 +7,7 @@ To build:
 To view the generated pages on the local host:
 
     cd docs
-    python -m http.server 8000 --bind 127.0.0.1
+    python -m http.server 9000 --bind 127.0.0.1
 
-To upload:
-
-    python build.py --url=https://username:password@host upload
+To upload, commit everything to the master branch and push to GitHub.
+The site is currently served by GitHub Pages.

@@ -1,0 +1,574 @@
+[
+  {
+    "name": "Live Papers",
+    "summary": "An EBRAINS web service for creating interactive, resource-rich companion documents for neuroscience publications.",
+    "description": "Live Papers are structured online documents that complement published scientific articles by presenting the underlying data, code, model files, and interactive visualisations within a narrative structure. Authors use the web-based *Live Papers Builder* to assemble a paper, linking to resources stored on `EBRAINS <https://ebrains.eu>`_, `ModelDB <https://modeldb.science>`_, `NeuroMorpho.org <https://neuromorpho.org>`_, the `Allen Brain Atlas <https://brain-map.org>`_, and other community repositories. Readers can then download or directly run the associated resources, view embedded interactive plots of electrophysiology recordings, or launch neuronal simulations, all without leaving the browser.\n\nInteractive tools run on the `EBRAINS Research Infrastructure <https://ebrains.eu>`_. The platform consists of a viewer app, a builder app, and a REST API backed by the EBRAINS Knowledge Graph. Researchers in the Human Brain Project have used it to publish interactive supplementary material accompanying articles in journals including *Nature Communications*, *PLOS Computational Biology*, and *eLife*. Over 30 live papers have been published to date",
+    "status": "active",
+    "kg": "https://search.kg.ebrains.eu/instances/d3270f6d-3898-4f30-bf21-524c0b863737",
+    "ebrains": "https://ebrains.eu/data-tools-services/data-knowledge/live-papers",
+    "backup": "https://github.com/apdavison/published-live-papers",
+    "interfaces": [
+      {
+        "name": "Live Papers Viewer app",
+        "type": "web app",
+        "version": "2025-10-07",
+        "entrypoints": {
+          "prod": "https://live-papers.apps.ebrains.eu/",
+          "dev": "https://live-papers-dev.apps.ebrains.eu/"
+        },
+        "documentation": "https://live-papers.apps.ebrains.eu/docs/",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-live-papers-app",
+        "containerImage": "docker-registry.ebrains.eu/live-papers/live-papers-apps:staging",
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/live-papers/live-papers-platform"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/live-papers/live-papers-platform/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/live-papers/live-papers-platform/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/f4257354-3548-47de-a703-d5db2e6350e3/live-papers",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=day&idSite=18",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/live-papers/app"
+      },
+      {
+        "name": "Live Papers Builder app",
+        "type": "web app",
+        "version": "2025-10-07",
+        "entrypoints": {
+          "prod": "https://live-papers.apps.ebrains.eu/builder",
+          "dev": "https://live-papers-dev.apps.ebrains.eu/"
+        },
+        "documentation": "https://live-papers.apps.ebrains.eu/docs/",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-live-papers-app",
+        "containerImage": "docker-registry.ebrains.eu/live-papers/live-papers-apps:staging",
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/live-papers/live-papers-platform"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/live-papers/live-papers-platform/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/live-papers/live-papers-platform/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/f4257354-3548-47de-a703-d5db2e6350e3/live-papers",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=day&idSite=18",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/live-papers/app"
+      },
+      {
+        "name": "Live Papers API",
+        "type": "REST API",
+        "version": "20251006",
+        "entrypoints": {
+          "prod": "https://live-papers-api.apps.ebrains.eu/"
+        },
+        "documentation": "https://live-papers-api.apps.ebrains.eu/docs/",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-live-papers-api",
+        "containerImage": "docker-registry.ebrains.eu/live-papers/live-papers-api:k8s",
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/live-papers/live-papers-api"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/live-papers/live-papers-api/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/live-papers/live-papers-api/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/f4257354-3548-47de-a703-d5db2e6350e3/live-papers",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/live-papers/api"
+      },
+      {
+        "name": "Collab File Cloner",
+        "type": "web app",
+        "version": "2025-09-02",
+        "entrypoints": {
+          "prod": "https://collab-file-cloner.apps.ebrains.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner"
+        },
+        "documentation": "https://collab-file-cloner.apps.ebrains.eu/",
+        "containerImage": "docker-registry.ebrains.eu/live-papers/collab-file-cloner:latest",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/live-papers/collab-file-cloner/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/f4257354-3548-47de-a703-d5db2e6350e3/live-papers",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=day&idSite=18",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/live-papers/collab-file-cloner"
+      }
+    ]
+  },
+  {
+    "name": "Model Validation Service",
+    "summary": "An EBRAINS service providing a web API and catalog for registering computational neuroscience models and recording structured validation test results.",
+    "description": "The Model Validation Service addresses the challenge of assessing the scientific quality of computational brain models in a systematic and reproducible way. It consists of a REST API (`model-validation-api.apps.ebrains.eu <https://model-validation-api.apps.ebrains.eu>`_) backed by the EBRAINS Knowledge Graph, and the `Model Catalog <https://model-catalog.apps.ebrains.eu>`_ web interface where users can browse and curate model entries, validation test definitions, and the results of running those tests.\n\nValidation tests are written using the `SciUnit <https://scidash.org/sciunit.html>`_ framework, which decouples validation test implementations from model implementation details, and several domain-specific validation libraries (HippoUnit, MorphoUnit, BasalUnit, CerebUnit, NetworkUnit, CerebTests) have been developed, providing pre-built test suites. The Python client (`ebrains-validation-framework <https://pypi.org/project/ebrains-validation-framework/>`_) allows tests to be run and results submitted to the service programmatically.",
+    "status": "active",
+    "kg": "https://search.kg.ebrains.eu/instances/de2f6456-46a3-40f0-8a51-93833d00b729",
+    "ebrains": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Model Validation API",
+        "type": "REST API",
+        "version": "v3.5",
+        "entrypoints": {
+          "prod": "https://model-validation-api.apps.ebrains.eu/"
+        },
+        "documentation": "https://model-validation-api.apps.ebrains.eu//docs/",
+        "containerImage": "docker-registry.ebrains.eu/model-catalog/validation_service-v3beta:staging",
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/hbp-validation-framework",
+          "mirror": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/a9fbd2b3-e839-4168-a1e9-47d09a76ae8a/model-validation",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/model-validation/api"
+      },
+      {
+        "name": "Model Catalog",
+        "type": "web app",
+        "version": "v2.3",
+        "entrypoints": {
+          "prod": "https://model-catalog.apps.ebrains.eu/"
+        },
+        "documentation": "https://model-catalog.apps.ebrains.eu/docs/",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-model-catalog",
+        "containerImage": "docker-registry.ebrains.eu/model-catalog/model-catalog-v2:prod",
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/model-catalog",
+          "mirror": "https://gitlab.ebrains.eu/model-validation/model-catalog"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/model-validation/model-catalog/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/model-validation/model-catalog/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/a9fbd2b3-e839-4168-a1e9-47d09a76ae8a/model-validation",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=day&idSite=21",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/model-validation/app"
+      }
+    ]
+  },
+  {
+    "name": "NeoViewer service",
+    "summary": "A browser-based service for visualising electrophysiology recordings from any file format supported by the Neo library.",
+    "description": "Neo Viewer (also called the Neural Activity Visualizer) allows neurophysiology data to be visualised and explored without requiring local software installation or format conversion. The service exposes a REST API that accepts a URL pointing to an electrophysiology data file, reads it using the `Neo <https://neo.readthedocs.io>`_ Python library, and returns the signal and spike-train data as JSON. The backend supports all file formats that Neo can read, including proprietary formats such as Plexon, NeuroExplorer, and AlphaOmega, as well as open formats like Neurodata Without Borders and HDF5.\n\nOn the frontend, the project provides React and AngularJS JavaScript components (published on npm as `neural-activity-visualizer-react <https://www.npmjs.com/package/neural-activity-visualizer-react>`_) that can be embedded in any web page to render interactive plots using the Plotly library. This makes it straightforward for data portals and scientific papers — including EBRAINS Live Papers — to embed live, zoomable views of recorded signals directly in the browser. A public demonstration instance is hosted on EBRAINS at `neoviewer.apps.ebrains.eu <https://neoviewer.apps.ebrains.eu>`_, and the backend is easily self-hosted via Docker.",
+    "status": "active",
+    "kg": "https://search.kg.ebrains.eu/instances/6327334f-fffc-49d4-aa4a-b70bf17afcf4",
+    "ebrains": "https://ebrains.eu/data-tools-services/tools/neo-viewer",
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Neo Viewer API",
+        "type": "REST API",
+        "version": "v2.3.0",
+        "entrypoints": {
+          "prod": "https://neoviewer.apps.ebrains.eu/api/v1"
+        },
+        "documentation": "https://neoviewer.apps.ebrains.eu/api/docs",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/neo-viewer",
+        "containerImage": "docker-registry.ebrains.eu/neuralactivity/neo-viewer:prod",
+        "codeRepository": {
+          "primary": "https://github.com/NeuralEnsemble/neo-viewer",
+          "mirror": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/cc7b61c9-0ce4-4527-ad70-8b4405cf5571/neo-viewer",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/neo-viewer"
+      },
+      {
+        "name": "Neo Viewer Demo",
+        "type": "web app",
+        "version": "v2.3.0",
+        "entrypoints": {
+          "prod": "https://neoviewer.apps.ebrains.eu"
+        },
+        "documentation": "https://neoviewer.apps.ebrains.eu",
+        "ebrains": "https://ebrains.eu/data-tools-services/tools/neo-viewer",
+        "containerImage": "docker-registry.ebrains.eu/neuralactivity/neo-viewer:prod",
+        "codeRepository": {
+          "primary": "https://github.com/NeuralEnsemble/neo-viewer",
+          "mirror": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuralensemble/neo-viewer/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/cc7b61c9-0ce4-4527-ad70-8b4405cf5571/neo-viewer",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/neo-viewer"
+      }
+    ]
+  },
+  {
+    "name": "EBRAINS Provenance",
+    "summary": "An EBRAINS REST API for recording and querying the provenance of neuroscience simulations and data analysis workflows.",
+    "description": "Computational provenance is the structured record of all steps in a scientific workflow: the code run, input datasets, the computing environment, the person responsible, and the resulting outputs. The EBRAINS Provenance API (`prov-api.apps.ebrains.eu <https://prov-api.apps.ebrains.eu>`_) provides a lightweight REST interface for recording this information in the EBRAINS Knowledge Graph using the openMINDS ``computation`` schemas, which are compatible with the W3C PROV data model and define types for *Simulation*, *DataAnalysis*, *Visualization*, and related activities.\n\nThe API is designed to be called programmatically at the end of a simulation or analysis script, registering inputs, outputs, parameter sets, software versions, and hardware environment in a single request. Stored provenance records can then be queried and visualised through a companion *Provenance Visualiser* web app. The service complements other EBRAINS tools: provenance records link directly to datasets in the Knowledge Graph and to entries in the Model Validation Service, giving researchers a traceable audit trail from raw data through analysis to published results.",
+    "status": "active",
+    "kg": "https://search.kg.ebrains.eu/instances/de221b1e-8672-483e-9935-c2234c099cfc",
+    "ebrains": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Provenance API",
+        "type": "REST API",
+        "version": "20241216",
+        "entrypoints": {
+          "prod": "https://prov-api.apps.ebrains.eu/"
+        },
+        "documentation": "https://prov-api.apps.ebrains.eu/docs",
+        "containerImage": "docker-registry.ebrains.eu/prov-api/prov-api:latest",
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/provenance/prov-api"
+        },
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/provenance/prov-api/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/provenance/prov-api/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/aabe7808-9d56-419b-a50d-da3a195f7881/provenance",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/prov/api"
+      },
+      {
+        "name": "Provenance Visualiser",
+        "type": "web app",
+        "version": "alpha",
+        "entrypoints": {
+          "prod": "https://prov-vis.apps.tc.humanbrainproject.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/provenance/prov-vis"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/prov-vis/prov-vis-app:latest",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/provenance/prov-vis/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/provenance/prov-vis/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": null,
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/prov/app"
+      }
+    ]
+  },
+  {
+    "name": "EBRAINS Neuromorphic Computing",
+    "summary": "An EBRAINS service providing remote access to the SpiNNaker and BrainScaleS neuromorphic hardware systems via a job queue and web interface.",
+    "description": "The neuromorphic computing systems SpiNNaker (University of Manchester) and BrainScaleS (Heidelberg University) implement spiking neural network models in specialised low-power hardware, with BrainScaleS emulating neurons at up to 1000x biological real time. The EBRAINS Neuromorphic Computing service provides a centralised job queue that allows researchers to submit simulations to these systems without needing direct hardware access. Jobs are written as Python scripts using the `PyNN <http://neuralensemble.org/docs/PyNN/>`_ simulator-independent API, submitted via the `hbp-neuromorphic-platform <https://pypi.org/project/hbp-neuromorphic-platform/>`_ Python client or the *Neuromorphic Job Manager* web app, queued on the server, executed on the chosen hardware system, and results made available for download.\n\nThe service consists of a REST job queue API (`nmpi-v3.hbpneuromorphic.eu <https://nmpi-v3.hbpneuromorphic.eu>`_), the Job Manager web application (`neuromorphic-job-manager.apps.ebrains.eu <https://neuromorphic-job-manager.apps.ebrains.eu>`_), and the Python/command-line client. Job scripts can reference input data stored locally, in Git repositories, or in EBRAINS Collaboratory storage. The platform is integrated with EBRAINS authentication and the Knowledge Graph for provenance tracking of neuromorphic simulation runs.",
+    "status": "active",
+    "kg": "https://search.kg.ebrains.eu/instances/7b73d422-9dae-405b-a613-457a62231e22",
+    "ebrains": "https://ebrains.eu/data-tools-services/modelling-simulation/neuromorphic-computing",
+    "database": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Neuromorphic Job Manager",
+        "type": "web app",
+        "version": "release-2025-11-28",
+        "entrypoints": {
+          "prod": "https://neuromorphic-job-manager.apps.ebrains.eu/"
+        },
+        "documentation": "https://electronicvisions.github.io/hbp-sp9-guidebook",
+        "containerImage": "docker-registry.ebrains.eu/neuromorphic/nmpi_job_manager:prod",
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/nmpi-job-manager-app",
+          "mirror": "https://gitlab.ebrains.eu/neuromorphic/nmpi-job-manager-app"
+        },
+        "ci": [
+          {
+            "link": "https://github.com/HumanBrainProject/nmpi-job-manager-app/actions/workflows/test.yml",
+            "badge": "https://github.com/HumanBrainProject/nmpi-job-manager-app/actions/workflows/test.yml/badge.svg"
+          },
+          {
+            "link": "https://gitlab.ebrains.eu/neuromorphic/nmpi-job-manager-app/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuromorphic/nmpi-job-manager-app/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/b7a2de0a-e345-4ac3-9929-f946aa1328b5/neuromorphic-remote-access",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=month&idSite=22",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/neuromorphic-remote-access/job-manager"
+      },
+      {
+        "name": "Neuromorphic Remote Access API",
+        "type": "REST API",
+        "version": "2025D",
+        "entrypoints": {
+          "prod": "https://nmpi-v3.hbpneuromorphic.eu/"
+        },
+        "documentation": "https://nmpi-v3.hbpneuromorphic.eu/docs",
+        "containerImage": "docker-registry.ebrains.eu/neuromorphic/nmpi_queue_server_v3:prod",
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api",
+          "mirror": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api"
+        },
+        "ci": [
+          {
+            "link": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api/actions/workflows/test_simqueue.yml",
+            "badge": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api/actions/workflows/test_simqueue.yml/badge.svg"
+          },
+          {
+            "link": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/b7a2de0a-e345-4ac3-9929-f946aa1328b5/neuromorphic-remote-access",
+          "users": null,
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api/blob/master/api/deployment/docker-compose-template.yml"
+      },
+      {
+        "name": "Demo Neuromorphic Provider",
+        "type": "web app",
+        "version": "0.11.2",
+        "entrypoints": null,
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/hbp-neuromorphic-client",
+          "mirror": "https://gitlab.ebrains.eu/neuromorphic/python-client"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/neuromorphic/demo:latest",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/neuromorphic/python-client/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/neuromorphic/python-client/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": null,
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/neuromorphic-remote-access/demo-nmc-provider"
+      }
+    ]
+  },
+  {
+    "name": "EBRAINS Metadata Utilities",
+    "summary": "A collection of EBRAINS web applications for generating and validating structured metadata for software tools, web services, and neural activity datasets.",
+    "description": "Registering software and services in the EBRAINS ecosystem requires structured metadata in community-standard formats. The EBRAINS Metadata Utilities are a suite of small web applications that lower the barrier to producing that metadata. The *Codemeta Generator* (`codemeta.apps.ebrains.eu <https://codemeta.apps.ebrains.eu>`_) provides a web form for creating ``codemeta.json`` files — JSON-LD documents describing software tools — with validation rules aligned to EBRAINS registration requirements. The *Servicemeta Generator* produces analogous structured metadata for web services. The *Neural Activity Resource* app supports the visualisation of detailed metadata for electrophysiology datasets. *Curation tools* provide internal support for EBRAINS data managers reviewing and improving submitted metadata.\n\nAll the applications feed into the EBRAINS Knowledge Graph: the metadata they produce is used to create or update Knowledge Graph entries, making research outputs findable through the EBRAINS search interface. The tools are lightweight and self-contained, designed to be usable without deep familiarity with JSON-LD or the Knowledge Graph data model.",
+    "status": "active",
+    "kg": null,
+    "ebrains": null,
+    "interfaces": [
+      {
+        "name": "Codemeta Generator",
+        "type": "web app",
+        "version": "0.2.0",
+        "entrypoints": {
+          "prod": "https://codemeta.apps.ebrains.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/data-services/codemeta-generator"
+        },
+        "documentation": "https://codemeta.apps.ebrains.eu/",
+        "containerImage": "docker-registry.ebrains.eu/model-catalog/codemeta:prod",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/data-services/codemeta-generator/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/data-services/codemeta-generator/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/c3709a17-d108-4c01-94cc-7c4f810b448b/metadata-utils",
+          "users": "https://stats.humanbrainproject.eu/index.php?module=CoreHome&action=index&date=yesterday&period=month&idSite=40",
+          "status": "https://status.ebrains.eu"
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/codemeta"
+      },
+      {
+        "name": "Servicemeta Generator",
+        "type": "web app",
+        "version": "alpha",
+        "entrypoints": {
+          "prod": "https://servicemeta.apps.tc.humanbrainproject.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/data-services/servicemeta"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/metadata-tools/servicemeta",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/data-services/servicemeta/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/data-services/servicemeta/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/c3709a17-d108-4c01-94cc-7c4f810b448b/metadata-utils",
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/servicemeta"
+      },
+      {
+        "name": "Neural Activity Resource",
+        "type": "web app",
+        "version": "0.3.4",
+        "entrypoints": {
+          "prod": "https://nar.apps.tc.humanbrainproject.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://github.com/HumanBrainProject/neural-activity-resource",
+          "mirror": "https://gitlab.ebrains.eu/data-services/neural-activity-resource"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/neuralactivity/nar-app-v3:prod",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/data-services/neural-activity-resource/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/data-services/neural-activity-resource/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/c3709a17-d108-4c01-94cc-7c4f810b448b/metadata-utils",
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/neural-activity-resource"
+      },
+      {
+        "name": "Curation tools",
+        "type": "web app",
+        "version": "2026-01-21",
+        "entrypoints": {
+          "prod": "https://curation-tools.apps.ebrains.eu/",
+          "dev": "https://curation-tools-dev.apps.ebrains.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/data-services/curation-tools"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/metadata-tools/curation-tools:prod",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/data-services/curation-tools/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/data-services/curation-tools/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/c3709a17-d108-4c01-94cc-7c4f810b448b/metadata-utils",
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/curation-tools"
+      }
+    ]
+  },
+  {
+    "name": "Arkheia",
+    "summary": "A web-based data management and communication platform for storing, exploring, and sharing computational neuroscience simulation results.",
+    "description": "Arkheia addresses the practical problem of managing the large numbers of simulation runs generated during computational neuroscience modelling work, particularly during parameter searches. It is a client-server application — built on a REST API with a web-based front end — that provides an automatic, interactive, graphical presentation of simulation results, experimental protocols, and model specifications within a browser.\n\nUnlike centralised platforms, Arkheia is designed for self-hosting: a researcher or group can deploy their own instance either locally (as a private daily-use store for simulation results, with GUI-based exploration of parameter searches) or publicly (as a publishing platform to accompany a paper or project). The API is openly specified and separated from the storage layer, so any simulation framework can write a backend adapter to push data into an Arkheia instance. The project was developed primarily by `Ján Antolík <http://antolik.net>`_ and described in a `Frontiers in Neuroinformatics article <https://doi.org/10.3389/fninf.2018.00006>`_.",
+    "status": "active",
+    "kg": null,
+    "ebrains": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Arkheia",
+        "type": "web app",
+        "version": "",
+        "entrypoints": null,
+        "codeRepository": {
+          "primary": "https://github.com/antolikjan/Arkheia"
+        },
+        "documentation": null,
+        "containerImage": null,
+        "ci": [],
+        "monitoring": {
+          "resources": null,
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": null
+      }
+    ]
+  },
+  {
+    "name": "Helmholtz",
+    "summary": "An inactive Django-based web framework for managing electrophysiology experiment metadata and recordings in neuroscience laboratories.",
+    "description": "Helmholtz was a modular, customisable web application for neurophysiology data management, designed to serve as an in-laboratory database for electrophysiology experiments (both *in vivo* and *in vitro*). It allowed labs to define their own metadata schemas for stimulation and recording protocols, store results, and expose the data through a web interface and a web-services API, making experimental records findable and accessible within a research group.\n\nThe project was presented at the Neuroinformatics 2010 conference as an early attempt to bring structured data management to experimental neuroscience labs, predating the Human Brain Project and the EBRAINS infrastructure. It is now inactive; the data management and provenance-tracking goals it pursued have been taken over by the EBRAINS Knowledge Graph, the Provenance API, and the openMINDS metadata framework. The source code is archived at `github.com/apdavison/helmholtz <https://github.com/apdavison/helmholtz>`_.",
+    "status": "inactive",
+    "kg": null,
+    "ebrains": null,
+    "backup": null,
+    "interfaces": [
+      {
+        "name": "Helmholtz",
+        "type": "web app",
+        "version": "",
+        "entrypoints": null,
+        "codeRepository": {
+          "primary": "https://github.com/apdavison/helmholtz"
+        },
+        "documentation": null,
+        "containerImage": null,
+        "ci": [],
+        "monitoring": {
+          "resources": null,
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": null
+      }
+    ]
+  }
+]

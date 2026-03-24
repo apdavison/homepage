@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>http://andrewdavison.info/</id>
   <title>Some models are useful</title>
-  <updated>2025-01-10T17:16:33.052670+01:00</updated>
+  <updated>2026-03-25T00:10:15.732229+01:00</updated>
   <link href="http://andrewdavison.info" rel="alternate"/>
   <link href="http://andrewdavison.info/atom.xml" rel="self"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator>

@@ -41,6 +41,7 @@ files, posters, presentations?
 
 import os
 import sys
+import json
 import shutil
 from getpass import getpass
 from datetime import datetime, time
@@ -49,7 +50,7 @@ from html.parser import HTMLParser
 from jinja2 import FileSystemLoader, Environment
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
-from docutils.core import publish_programmatically
+from docutils.core import publish_programmatically, publish_parts
 from docutils import io, nodes
 from feedgen.feed import FeedGenerator
 from pytz import timezone
@@ -175,6 +176,44 @@ def generate_feed(notes):
     # note: have a Python-specific feed for PlanetSciPy?
 
 
+def rst_fragment_to_html(text):
+    """Convert a reStructuredText fragment to an HTML body string."""
+    parts = publish_parts(text, writer_name='html',
+                          settings_overrides={'initial_header_level': 3})
+    return parts['body']
+
+
+def add_software_icons(software):
+    """Derive icon filenames from link URLs, so the JSON need not store them."""
+    def doc_icon(link):
+        if "readthedocs.io" in link or "om-i.org" in link:
+            return "readthedocs-icon.png"
+        if "github.io" in link:
+            return "github_pages.png"
+        if "github.com" in link:
+            return "github_icon.png"
+        if "npmjs.com" in link:
+            return "npm-icon.png"
+        if "neuralensemble.org" in link:
+            return "neurens.gif"
+        return "docs_icon.png"
+
+    icon_funcs = {
+        "git_repo":      lambda link: "github_icon.png" if "github.com" in link else "gitlab_icon.png",
+        "documentation": doc_icon,
+        "spack":         lambda link: "spack-logo.png",
+        "kg":            lambda link: "ebrains-logo-64.png",
+        "ebrains":       lambda link: "ebrains-logo-64.png",
+    }
+    for sw in software:
+        for field_name, icon_func in icon_funcs.items():
+            if field_name in sw:
+                field = sw[field_name]
+                if "badge" not in field and field.get("link", "n/a") != "n/a":
+                    field["icon"] = icon_func(field["link"])
+    return software
+
+
 def build():
 
     # -- Remove any existing build directory, and create a new one
@@ -222,6 +261,30 @@ def build():
                     "base_path": get_base_path(level=1),
                     "section": "publications"})
 
+    # -- Build projects page
+    print("Building projects page")
+    with open("content/software.json") as fp:
+        software = json.load(fp)
+    software = add_software_icons(software)
+    for item in software:
+        if "description" in item:
+            item["description_html"] = rst_fragment_to_html(item["description"])
+    with open("content/services.json") as fp:
+        services = json.load(fp)
+    for service in services:
+        if "description" in service:
+            service["description_html"] = rst_fragment_to_html(service["description"])
+    render_to_file("projects.html", "projects",
+                   {"base_path": get_base_path(level=1),
+                    "section": "projects",
+                    "software": software,
+                    "services": services})
+    render_to_file("projects_status.html", "projects/status",
+                   {"base_path": get_base_path(level=2),
+                    "section": "projects",
+                    "software": software,
+                    "services": services})
+
     # -- Build simple pages
     print("Building About and CV")
     for page in ("about", "cv"):
@@ -247,6 +310,7 @@ def build():
     os.makedirs(os.path.join(builddir, "notes"))
     notes = []
     for path in os.listdir("content/notes"):
+    #for path in []:  ####
         page, ext = os.path.splitext(path)
         print("  ", page)
         if ext == ".rst":
