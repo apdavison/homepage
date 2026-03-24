@@ -309,8 +309,8 @@ def build():
     print("Building blog posts")
     os.makedirs(os.path.join(builddir, "notes"))
     notes = []
-    # for path in os.listdir("content/notes"):
-    for path in []:  ####
+    for path in os.listdir("content/notes"):
+    #for path in []:  ####
         page, ext = os.path.splitext(path)
         print("  ", page)
         if ext == ".rst":

@@ -1,5 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Some models are useful</title><link>http://andrewdavison.info/atom.xml</link><description>Andrew Davison's Blog</description><atom:link href="http://andrewdavison.info/atom.xml" rel="self"/><copyright>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Fri, 10 Jan 2025 17:16:33 +0100</lastBuildDate><item><title>Modelling STDP in the NEURON simulator</title><link>http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</link><description>&lt;h2&gt;Modelling STDP in the NEURON simulator&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>Some models are useful</title>
+    <link>http://andrewdavison.info/atom.xml</link>
+    <description>Andrew Davison's Blog</description>
+    <atom:link href="http://andrewdavison.info/atom.xml" rel="self"/>
+    <copyright>This blog post is licensed under a Creative Commons Attribution License, CC-BY-3.0. Please feel free to copy or modify it, provided you link to http://andrewdavison.info</copyright>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>python-feedgen</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Mar 2026 00:10:15 +0100</lastBuildDate>
+    <item>
+      <title>Modelling STDP in the NEURON simulator</title>
+      <link>http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</link>
+      <description>&lt;h2&gt;Modelling STDP in the NEURON simulator&lt;/h2&gt;
 &lt;p&gt;11th February 2007&lt;/p&gt;
 
 &lt;p&gt;At the time of writing (or at least, last time I looked), the &lt;a class="reference external" href="http://www.neuron.yale.edu/neuron/"&gt;NEURON simulator&lt;/a&gt; does not have a built-in mechanism for spike-timing-dependent plasticity (STDP). There are many possible ways of implementing such a mechanism, using the NMODL language. This page describes one such possibility.&lt;/p&gt;
@@ -13,7 +27,15 @@
 &lt;img alt="Screenshot of STDwa demo, bottom graph" class="align-center" src="/figures/demo_stdwa3.png" style="width: 750px;" /&gt;
 &lt;p&gt;The bottom panel shows the weight change.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;To be continued.&lt;/em&gt; Check back in a few days, I plan to explain in more detail what is happening and how to use the mechanism in your own code.&lt;/p&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</guid><pubDate>Sun, 11 Feb 2007 09:00:00 +0009</pubDate></item><item><title>Installation of NEURON with Python</title><link>http://andrewdavison.info/notes/installation-neuron-python/</link><description>&lt;h2&gt;Installation of NEURON with Python&lt;/h2&gt;
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/modelling-stdp-neuron-simulator/</guid>
+      <pubDate>Sun, 11 Feb 2007 09:00:00 +0009</pubDate>
+    </item>
+    <item>
+      <title>Installation of NEURON with Python</title>
+      <link>http://andrewdavison.info/notes/installation-neuron-python/</link>
+      <description>&lt;h2&gt;Installation of NEURON with Python&lt;/h2&gt;
 &lt;p&gt;19th March 2008&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Updated 2009-01-22 for NEURON v7.0&lt;/em&gt;&lt;/p&gt;
@@ -104,7 +126,15 @@ See http://www.neuron.yale.edu/credits.html
 In [2]:
 &lt;/pre&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/installation-neuron-python/</guid><pubDate>Wed, 19 Mar 2008 09:00:00 +0009</pubDate></item><item><title>Modelling single cells in NEURON with the Python interpreter</title><link>http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</link><description>&lt;h2&gt;Modelling single cells in NEURON with the Python interpreter&lt;/h2&gt;
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/installation-neuron-python/</guid>
+      <pubDate>Wed, 19 Mar 2008 09:00:00 +0009</pubDate>
+    </item>
+    <item>
+      <title>Modelling single cells in NEURON with the Python interpreter</title>
+      <link>http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</link>
+      <description>&lt;h2&gt;Modelling single cells in NEURON with the Python interpreter&lt;/h2&gt;
 &lt;p&gt;23rd March 2008&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;(updated for NEURON 7.0 on 2009-01-25)&lt;/em&gt;&lt;/p&gt;
@@ -353,7 +383,15 @@ called &lt;tt class="docutils literal"&gt;del&lt;/tt&gt; in hoc, has been rename
 &lt;span class="literal number float"&gt;100.0&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</guid><pubDate>Sun, 23 Mar 2008 09:00:00 +0009</pubDate></item><item><title>Accessing hoc from Python</title><link>http://andrewdavison.info/notes/accessing-hoc-python/</link><description>&lt;h2&gt;Accessing hoc from Python&lt;/h2&gt;
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/modelling-single-cells-neuron-python/</guid>
+      <pubDate>Sun, 23 Mar 2008 09:00:00 +0009</pubDate>
+    </item>
+    <item>
+      <title>Accessing hoc from Python</title>
+      <link>http://andrewdavison.info/notes/accessing-hoc-python/</link>
+      <description>&lt;h2&gt;Accessing hoc from Python&lt;/h2&gt;
 &lt;p&gt;22nd January 2009&lt;/p&gt;
 
 &lt;p&gt;When running NEURON with Python, the hoc interpreter is still available from within Python,
@@ -464,7 +502,15 @@ object:&lt;/p&gt;
 &lt;/pre&gt;
 &lt;p&gt;However, listing the object attributes and methods using &lt;tt class="docutils literal"&gt;dir(obj)&lt;/tt&gt; lists those of the specific hoc object type,
 and &lt;tt class="docutils literal"&gt;help(obj)&lt;/tt&gt; gives help about the object's hoc type.&lt;/p&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/accessing-hoc-python/</guid><pubDate>Thu, 22 Jan 2009 09:00:00 +0009</pubDate></item><item><title>From Hoc to Python: a case study</title><link>http://andrewdavison.info/notes/hoc-to-python-bulbnet/</link><description>&lt;h2&gt;From Hoc to Python: a case study&lt;/h2&gt;
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/accessing-hoc-python/</guid>
+      <pubDate>Thu, 22 Jan 2009 09:00:00 +0009</pubDate>
+    </item>
+    <item>
+      <title>From Hoc to Python: a case study</title>
+      <link>http://andrewdavison.info/notes/hoc-to-python-bulbnet/</link>
+      <description>&lt;h2&gt;From Hoc to Python: a case study&lt;/h2&gt;
 &lt;p&gt;10th November 2010&lt;/p&gt;
 
 &lt;p&gt;Although I was involved in the process of adding &lt;a class="reference external" href="http://www.python.org/"&gt;Python&lt;/a&gt; support to the &lt;a class="reference external" href="http://www.neuron.yale.edu/neuron/"&gt;NEURON&lt;/a&gt;
@@ -619,7 +665,15 @@ The development repository for &lt;em&gt;nrnutils&lt;/em&gt; is at &lt;a class="
 &lt;p&gt;The original cell templates are at &lt;a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/mitral.tem"&gt;mitral.tem&lt;/a&gt; and &lt;a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/granule.tem"&gt;granule.tem&lt;/a&gt;, the Python
 versions are at &lt;a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/mitral.py"&gt;mitral.py&lt;/a&gt; and &lt;a class="reference external" href="http://bitbucket.org/apdavison/bulbnet/src/0191a439827a/python/granule.py"&gt;granule.py&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/hoc-to-python-bulbnet/</guid><pubDate>Wed, 10 Nov 2010 09:00:00 +0009</pubDate></item><item><title>Modelling simple neurons with PyMOOSE</title><link>http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</link><description>&lt;h2&gt;Modelling simple neurons with PyMOOSE&lt;/h2&gt;
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/hoc-to-python-bulbnet/</guid>
+      <pubDate>Wed, 10 Nov 2010 09:00:00 +0009</pubDate>
+    </item>
+    <item>
+      <title>Modelling simple neurons with PyMOOSE</title>
+      <link>http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</link>
+      <description>&lt;h2&gt;Modelling simple neurons with PyMOOSE&lt;/h2&gt;
 &lt;p&gt;7th January 2011&lt;/p&gt;
 
 &lt;p&gt;&lt;a class="reference external" href="http://moose.ncbs.res.in/"&gt;MOOSE&lt;/a&gt; (Multiscale Object-oriented Simulation Environment) is a modelling
@@ -797,13 +851,29 @@ the spikes based on threshold crossing:&lt;/p&gt;
 be discarded.&lt;/p&gt;
 &lt;p&gt;This post has only scratched the surface of MOOSE. I will post more notes as I
 explore further.&lt;/p&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</guid><pubDate>Fri, 07 Jan 2011 09:00:00 +0009</pubDate></item><item><title>Workflows for reproducible research in comp. neurosci.</title><link>http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</link><description>&lt;h2&gt;Workflows for reproducible research in comp. neurosci.&lt;/h2&gt;
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/modelling-simple-neurons-pymoose/</guid>
+      <pubDate>Fri, 07 Jan 2011 09:00:00 +0009</pubDate>
+    </item>
+    <item>
+      <title>Workflows for reproducible research in comp. neurosci.</title>
+      <link>http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</link>
+      <description>&lt;h2&gt;Workflows for reproducible research in comp. neurosci.&lt;/h2&gt;
 &lt;p&gt;23rd July 2012&lt;/p&gt;
 
 &lt;p&gt;At the &lt;a class="reference external" href="http://www.cnsorg.org/cns-2012-atlantadecatur"&gt;CNS 2012&lt;/a&gt; meeting in Decatur, Georgia, I gave a tutorial on reproducible research, focusing on computational neuroscience. The tutorial covered best practices for writing code to facilitate reproducibility, version control systems, testing, and provenance tracking.&lt;/p&gt;
 &lt;p&gt;Notes for the tutorial are online at &lt;a class="reference external" href="http://rrcns.readthedocs.org/en/cns2012/"&gt;http://rrcns.readthedocs.org/en/cns2012/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The notes are written using &lt;a class="reference external" href="http://sphinx.pocoo.org/"&gt;Sphinx&lt;/a&gt;, and are Creative Commons licensed, so feel free to fork the &lt;a class="reference external" href="https://bitbucket.org/apdavison/reproducible_research_cns"&gt;repository&lt;/a&gt; at BitBucket if you would like to reuse or adapt them.&lt;/p&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</guid><pubDate>Mon, 23 Jul 2012 09:00:00 +0009</pubDate></item><item><title>Managing complex workflows in neural simulation/data analysis</title><link>http://andrewdavison.info/notes/managing-complex-workflows/</link><description>&lt;h2&gt;Managing complex workflows in neural simulation/data analysis&lt;/h2&gt;
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/workflows-reproducible-research-comp-neuro/</guid>
+      <pubDate>Mon, 23 Jul 2012 09:00:00 +0009</pubDate>
+    </item>
+    <item>
+      <title>Managing complex workflows in neural simulation/data analysis</title>
+      <link>http://andrewdavison.info/notes/managing-complex-workflows/</link>
+      <description>&lt;h2&gt;Managing complex workflows in neural simulation/data analysis&lt;/h2&gt;
 &lt;p&gt;29th July 2013&lt;/p&gt;
 
 &lt;p&gt;At the &lt;a class="reference external" href="http://www.cnsorg.org/cns-2013-paris"&gt;CNS 2013&lt;/a&gt; meeting in Paris, France, Sonja Grün, Michael Denker and I gave a tutorial on managing complex workflows in neuroscience. The abstract was as follows:&lt;/p&gt;
@@ -820,7 +890,15 @@ explore further.&lt;/p&gt;
 &lt;li&gt;Louis et al. (2010) Generation and selection of surrogate methods for correlation analysis. In: &lt;a class="reference external" href="http://www.springer.com/biomed/neuroscience/book/978-1-4419-5674-3"&gt;Analysis of parallel spike trains. eds. Grün &amp;amp; Rotter. Springer Series in Computational Neuroscience.&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://dx.doi.org/10.3389/fncom.2010.00127"&gt;Louis et al. (2010) Surrogate spike train generation through dithering in operational time. Front. Comput. Neurosci. 4: 127. doi:10.3389/fncom.2010.00127&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/managing-complex-workflows/</guid><pubDate>Mon, 29 Jul 2013 09:00:00 +0009</pubDate></item><item><title>Porting a model from NEURON to PyNN: a case study</title><link>http://andrewdavison.info/notes/porting-NEURON-PyNN/</link><description>&lt;h2&gt;Porting a model from NEURON to PyNN: a case study&lt;/h2&gt;
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/managing-complex-workflows/</guid>
+      <pubDate>Mon, 29 Jul 2013 09:00:00 +0009</pubDate>
+    </item>
+    <item>
+      <title>Porting a model from NEURON to PyNN: a case study</title>
+      <link>http://andrewdavison.info/notes/porting-NEURON-PyNN/</link>
+      <description>&lt;h2&gt;Porting a model from NEURON to PyNN: a case study&lt;/h2&gt;
 &lt;p&gt;18th July 2017&lt;/p&gt;
 
 &lt;p&gt;Porting a model from a simulator-specific format to &lt;a class="reference external" href="http://neuralensemble.org/PyNN"&gt;PyNN&lt;/a&gt; allows the model to be
@@ -1350,7 +1428,15 @@ same qualitative behaviour, and the length of time before divergence occurs
 ought to increase as the integration time step is decreased. Testing that
 is left as an exercise for the reader :-)&lt;/p&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/porting-NEURON-PyNN/</guid><pubDate>Tue, 18 Jul 2017 09:00:00 +0009</pubDate></item><item><title>Typesetting subscripts, units and physical quantities</title><link>http://andrewdavison.info/notes/typesetting-comp-neuro/</link><description>&lt;h2&gt;Typesetting subscripts, units and physical quantities&lt;/h2&gt;
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/porting-NEURON-PyNN/</guid>
+      <pubDate>Tue, 18 Jul 2017 09:00:00 +0009</pubDate>
+    </item>
+    <item>
+      <title>Typesetting subscripts, units and physical quantities</title>
+      <link>http://andrewdavison.info/notes/typesetting-comp-neuro/</link>
+      <description>&lt;h2&gt;Typesetting subscripts, units and physical quantities&lt;/h2&gt;
 &lt;p&gt;10th January 2025&lt;/p&gt;
 
 &lt;p&gt;My brain is a nitpicker.
@@ -1434,4 +1520,10 @@ This &lt;a class="reference external" href="https://tex.stackexchange.com/questi
 It will soothe my pedantic brain and make it much easier for me to focus on what really matters,
 the content of what you have to say!&lt;/p&gt;
 &lt;/div&gt;
-</description><author>andrew.davison@cnrs.fr (Andrew Davison)</author><guid isPermaLink="false">http://andrewdavison.info/notes/typesetting-comp-neuro/</guid><pubDate>Fri, 10 Jan 2025 09:00:00 +0009</pubDate></item></channel></rss>
+</description>
+      <author>andrew.davison@cnrs.fr (Andrew Davison)</author>
+      <guid isPermaLink="false">http://andrewdavison.info/notes/typesetting-comp-neuro/</guid>
+      <pubDate>Fri, 10 Jan 2025 09:00:00 +0009</pubDate>
+    </item>
+  </channel>
+</rss>
