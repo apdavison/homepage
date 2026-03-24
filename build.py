@@ -279,6 +279,11 @@ def build():
                     "section": "projects",
                     "software": software,
                     "services": services})
+    render_to_file("projects_status.html", "projects/status",
+                   {"base_path": get_base_path(level=2),
+                    "section": "projects",
+                    "software": software,
+                    "services": services})
 
     # -- Build simple pages
     print("Building About and CV")

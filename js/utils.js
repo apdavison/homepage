@@ -126,7 +126,7 @@ async function renderProjects() {
       anchor.innerHTML += `<p>
         Most recent version: ${projectData[projectName].info.version}
         - released ${latestReleaseDate(releases).toDateString()}.
-        ${countReleases(releases)} versions published since ${firstReleaseDate(releases).toDateString()}
+        ${countReleases(releases)} versions published since ${firstReleaseDate(releases).toDateString()}.
       </p>`;
     }
   }
