@@ -244,3 +244,37 @@ th {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
 }
+
+.toc-float {
+  float: right;
+  max-width: 33%;
+  margin: 0 0 1rem 1.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #f5f5f5;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.toc-float ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin-bottom: 0;
+}
+
+.toc-float > ul {
+  padding-left: 0;
+}
+
+.toc-float > ul > li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.toc-float li {
+  margin-bottom: 0.15rem;
+}
+
+.toc-float p {
+  margin-bottom: 0.5rem;
+}

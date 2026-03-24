@@ -13,43 +13,80 @@
 {% block body %}
 
 <p><a href="{{base_path}}/projects/status/">Software and services status tables &rarr;</a></p>
+<div class="toc-float">
+  <h4>Contents</h4>
+  <ul>
+    <li><strong>Active projects</strong>
+      <ul>
+        {% for sw in software if sw.status == "active" %}
+        {% if sw.download and sw.download.link and "pypi.org" in sw.download.link %}{% set sw_id = sw.download.link.split('/')[-2] %}{% else %}{% set sw_id = sw.name | lower | replace(' ', '-') %}{% endif %}
+        <li><a href="#{{ sw_id }}">{{ sw.name }}</a></li>
+        {% endfor %}
+        {% for service in services if service.status == "active" %}
+        <li><a href="#{{ service.name | lower | replace(' ', '-') }}">{{ service.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li><strong>No longer contributing</strong>
+      <ul>
+        {% for sw in software if sw.status == "active-elsewhere" %}
+        {% if sw.download and sw.download.link and "pypi.org" in sw.download.link %}{% set sw_id = sw.download.link.split('/')[-2] %}{% else %}{% set sw_id = sw.name | lower | replace(' ', '-') %}{% endif %}
+        <li><a href="#{{ sw_id }}">{{ sw.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li><strong>Inactive projects</strong>
+      <ul>
+        {% for sw in software if sw.status == "inactive" %}
+        {% if sw.download and sw.download.link and "pypi.org" in sw.download.link %}{% set sw_id = sw.download.link.split('/')[-2] %}{% else %}{% set sw_id = sw.name | lower | replace(' ', '-') %}{% endif %}
+        <li><a href="#{{ sw_id }}">{{ sw.name }}</a></li>
+        {% endfor %}
+        {% for service in services if service.status == "inactive" %}
+        <li><a href="#{{ service.name | lower | replace(' ', '-') }}">{{ service.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+</div>
 
 <!-- todo: arrange projects by topic, rather than by active/inactive -->
 
-<h2>Active projects</h2>
+<h2 id="active">Active projects</h2>
 
 {% for sw in software if sw.status == "active" %}
 {% if sw.download and sw.download.link and "pypi.org" in sw.download.link %}{% set sw_id = sw.download.link.split('/')[-2] %}{% else %}{% set sw_id = sw.name | lower | replace(' ', '-') %}{% endif %}
-<h3>{{ sw.name }}</h3>
-<div id="{{ sw_id }}">{% if sw.summary is defined %}<p><strong>{{ sw.summary }}</strong></p>{% endif %}
+<h3 id="{{ sw_id }}">{{ sw.name }}</h3>
+<div id="x-{{ sw_id }}">{% if sw.summary is defined %}<p><strong>{{ sw.summary }}</strong></p>{% endif %}
 {% if sw.description_html is defined %}{{ sw.description_html | safe }}{% endif %}</div>
 {% endfor %}
 {% for service in services if service.status == "active" %}
-<h3>{{ service.name }}</h3>
-<div id="{{ service.name | lower | replace(' ', '-') }}">{% if service.summary is defined %}<p><strong>{{ service.summary }}</strong></p>{% endif %}
+{% set svc_id = service.name | lower | replace(' ', '-') %}
+<h3 id="{{ svc_id }}">{{ service.name }}</h3>
+<div id="x-{{ svc_id }}">{% if service.summary is defined %}<p><strong>{{ service.summary }}</strong></p>{% endif %}
 {% if service.description_html is defined %}{{ service.description_html | safe }}{% endif %}</div>
 {% endfor %}
 
-<h2>Projects my team no longer contributes to</h2>
+<h2 id="active-elsewhere">Projects my team no longer contributes to</h2>
 
 {% for sw in software if sw.status == "active-elsewhere" %}
 {% if sw.download and sw.download.link and "pypi.org" in sw.download.link %}{% set sw_id = sw.download.link.split('/')[-2] %}{% else %}{% set sw_id = sw.name | lower | replace(' ', '-') %}{% endif %}
-<h3>{{ sw.name }}</h3>
-<div id="{{ sw_id }}">{% if sw.summary is defined %}<p><strong>{{ sw.summary }}</strong></p>{% endif %}
+<h3 id="{{ sw_id }}">{{ sw.name }}</h3>
+<div id="x-{{ sw_id }}">{% if sw.summary is defined %}<p><strong>{{ sw.summary }}</strong></p>{% endif %}
 {% if sw.description_html is defined %}{{ sw.description_html | safe }}{% endif %}</div>
 {% endfor %}
 
-<h2>Inactive projects</h2>
+<h2 id="inactive">Inactive projects</h2>
 
 {% for sw in software if sw.status == "inactive" %}
 {% if sw.download and sw.download.link and "pypi.org" in sw.download.link %}{% set sw_id = sw.download.link.split('/')[-2] %}{% else %}{% set sw_id = sw.name | lower | replace(' ', '-') %}{% endif %}
-<h3>{{ sw.name }}</h3>
-<div id="{{ sw_id }}">{% if sw.summary is defined %}<p><strong>{{ sw.summary }}</strong></p>{% endif %}
+<h3 id="{{ sw_id }}">{{ sw.name }}</h3>
+<div id="x-{{ sw_id }}">{% if sw.summary is defined %}<p><strong>{{ sw.summary }}</strong></p>{% endif %}
 {% if sw.description_html is defined %}{{ sw.description_html | safe }}{% endif %}</div>
 {% endfor %}
 {% for service in services if service.status == "inactive" %}
-<h3>{{ service.name }}</h3>
-<div id="{{ service.name | lower | replace(' ', '-') }}">{% if service.summary is defined %}<p><strong>{{ service.summary }}</strong></p>{% endif %}
+{% set svc_id = service.name | lower | replace(' ', '-') %}
+<h3 id="{{ svc_id }}">{{ service.name }}</h3>
+<div id="x-{{ svc_id }}">{% if service.summary is defined %}<p><strong>{{ service.summary }}</strong></p>{% endif %}
 {% if service.description_html is defined %}{{ service.description_html | safe }}{% endif %}</div>
 {% endfor %}
 
@@ -62,4 +99,3 @@
 
 {% block extrajs %}<script src="{{base_path}}/js/utils.js"></script>
 {% endblock %}
-

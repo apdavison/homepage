@@ -120,13 +120,13 @@ async function renderProjects() {
   for (const projectName of Object.keys(projectData)) {
     console.log(projectData[projectName]);
     const releases = filterValidReleases(projectData[projectName].releases);
-    const anchor = document.getElementById(projectName);
+    const anchor = document.getElementById(`x-${projectName}`);
     console.log(projectName);
     if (anchor) {
       anchor.innerHTML += `<p>
         Most recent version: ${projectData[projectName].info.version}
         - released ${latestReleaseDate(releases).toDateString()}.
-        ${countReleases(releases)} versions published since ${firstReleaseDate(releases).toDateString()}
+        ${countReleases(releases)} versions published since ${firstReleaseDate(releases).toDateString()}.
       </p>`;
     }
   }
