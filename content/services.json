@@ -140,7 +140,7 @@
         "ci": [
           {
             "link": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework/-/pipelines",
-            "badge": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework/badges/main/pipeline.svg?ignore_skipped=true"
+            "badge": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework/badges/master/pipeline.svg?ignore_skipped=true"
           }
         ],
         "monitoring": {

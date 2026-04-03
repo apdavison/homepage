@@ -41,11 +41,25 @@
       {% else %}
       <td>{{ sw.latest_version }}</td>
       {% endif %}
-      {% for field_name in ["git_repo", "documentation", "download", "ci", "coverage", "spack", "kg"] %}
+      {% for field_name in ["codeRepository", "documentation", "download", "ci", "coverage", "spack", "kg"] %}
       <td class="text-center">
         {% if field_name in sw %}
           {% set field = sw[field_name] %}
-          {% if field.link == "n/a" %}
+          {% if field is sequence and field is not string and field is not mapping %}
+            {% for ci_entry in field %}
+              <a href="{{ ci_entry.link }}" target="_blank" rel="noopener noreferrer"><img src="{{ ci_entry.badge }}" height="16"></a>
+            {% endfor %}
+          {% elif field.primary is defined %}
+            {% for repo_url in [field.primary, field.get("mirror")] %}
+              {% if repo_url %}
+                {% if "github" in repo_url %}
+                  <a href="{{ repo_url }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/github_icon.png" height="32"></a>
+                {% else %}
+                  <a href="{{ repo_url }}" target="_blank" rel="noopener noreferrer"><img src="{{ base_path }}/images/icons/gitlab_icon.png" height="32"></a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% elif field.link == "n/a" %}
             n/a
           {% elif "badge" in field %}
             <a href="{{ field.link }}" target="_blank" rel="noopener noreferrer"><img src="{{ field.badge }}" height="16"></a>

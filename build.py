@@ -199,7 +199,7 @@ def add_software_icons(software):
         return "docs_icon.png"
 
     icon_funcs = {
-        "git_repo":      lambda link: "github_icon.png" if "github.com" in link else "gitlab_icon.png",
+        "codeRepository": lambda link: "github_icon.png" if "github.com" in link else "gitlab_icon.png",
         "documentation": doc_icon,
         "spack":         lambda link: "spack-logo.png",
         "kg":            lambda link: "ebrains-logo-64.png",
@@ -209,8 +209,9 @@ def add_software_icons(software):
         for field_name, icon_func in icon_funcs.items():
             if field_name in sw:
                 field = sw[field_name]
-                if "badge" not in field and field.get("link", "n/a") != "n/a":
-                    field["icon"] = icon_func(field["link"])
+                link = field.get("link") or field.get("primary")
+                if "badge" not in field and link and link != "n/a":
+                    field["icon"] = icon_func(link)
     return software
 
 
