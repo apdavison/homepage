@@ -67,7 +67,8 @@
         "type": "REST API",
         "version": "20251006",
         "entrypoints": {
-          "prod": "https://live-papers-api.apps.ebrains.eu/"
+          "prod": "https://live-papers-api.apps.ebrains.eu/",
+          "dev": "https://live-papers-api.apps.dev-adacloud.ebrains.eu/"
         },
         "documentation": "https://live-papers-api.apps.ebrains.eu/docs/",
         "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-live-papers-api",
@@ -129,7 +130,8 @@
         "type": "REST API",
         "version": "v3.5",
         "entrypoints": {
-          "prod": "https://model-validation-api.apps.ebrains.eu/"
+          "prod": "https://model-validation-api.apps.ebrains.eu/",
+          "dev": "https://model-validation-api.apps.dev-adacloud.ebrains.eu/"
         },
         "documentation": "https://model-validation-api.apps.ebrains.eu//docs/",
         "containerImage": "docker-registry.ebrains.eu/model-catalog/validation_service-v3beta:staging",
@@ -155,7 +157,8 @@
         "type": "web app",
         "version": "v2.3",
         "entrypoints": {
-          "prod": "https://model-catalog.apps.ebrains.eu/"
+          "prod": "https://model-catalog.apps.ebrains.eu/",
+          "dev": "https://model-catalog.apps.dev-adacloud.ebrains.eu"
         },
         "documentation": "https://model-catalog.apps.ebrains.eu/docs/",
         "ebrains": "https://ebrains.eu/data-tools-services/tools/ebrains-model-catalog",
@@ -464,7 +467,8 @@
         "type": "web app",
         "version": "0.3.4",
         "entrypoints": {
-          "prod": "https://nar.apps.tc.humanbrainproject.eu/"
+          "prod": "https://nar.apps.tc.humanbrainproject.eu/",
+          "dev": "https://nar.apps.dev-adacloud.ebrains.eu/"
         },
         "codeRepository": {
           "primary": "https://github.com/HumanBrainProject/neural-activity-resource",
@@ -491,7 +495,7 @@
         "version": "2026-01-21",
         "entrypoints": {
           "prod": "https://curation-tools.apps.ebrains.eu/",
-          "dev": "https://curation-tools-dev.apps.ebrains.eu/"
+          "dev": "https://curation-tools.apps.dev-adacloud.ebrains.eu/"
         },
         "codeRepository": {
           "primary": "https://gitlab.ebrains.eu/data-services/curation-tools"
@@ -510,6 +514,32 @@
           "status": null
         },
         "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/curation-tools"
+      },
+      {
+        "name": "fairgraph MCP",
+        "type": "MCP server",
+        "version": "2026-01-21",
+        "entrypoints": {
+          "prod": null,
+          "dev": "https://fairgraph-mcp.apps.dev-adacloud.ebrains.eu/"
+        },
+        "codeRepository": {
+          "primary": "https://gitlab.ebrains.eu/data-services/ebrains-kg-mcp"
+        },
+        "documentation": null,
+        "containerImage": "docker-registry.ebrains.eu/metadata-tools/fairgraph-mcp:prod",
+        "ci": [
+          {
+            "link": "https://gitlab.ebrains.eu/data-services/ebrains-kg-mcp/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/data-services/ebrains-kg-mcp/badges/main/pipeline.svg?ignore_skipped=true"
+          }
+        ],
+        "monitoring": {
+          "resources": "https://grafana.ebrains.eu/dashboards/f/c3709a17-d108-4c01-94cc-7c4f810b448b/metadata-utils",
+          "users": null,
+          "status": null
+        },
+        "deploymentProtocol": "https://gitlab.ebrains.eu/cnrs-neuroinformatics/ebrains-components/-/tree/main/metadata-utils/fairgraph-mcp"
       }
     ]
   },
