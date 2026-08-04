@@ -3,6 +3,6 @@ jinja2
 bibtexparser>=0.6.1
 feedgen
 pytz
-sumatra
+sumatra[remote]
 pygments
 requests

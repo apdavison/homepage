@@ -370,7 +370,7 @@
     "summary": "A React component and REST API for interactive browser-based visualisation of electrophysiology data in any format supported by Neo.",
     "description": "NeoViewer JS (npm package `neural-activity-visualizer-react <https://www.npmjs.com/package/neural-activity-visualizer-react>`_) is a React component that renders analog signals, spike trains, LFPs, and other neurophysiological recordings directly in a web browser. It communicates with a backend REST API — implemented with FastAPI and deployable as a Docker container — which uses Neo to read data from any of the dozens of file formats Neo supports and returns the data as JSON. An AngularJS variant of the front-end component is also available.\n\nThe goal is to allow neuroscientists to inspect and share electrophysiology datasets without requiring local software installation. The architecture — a thin embeddable JavaScript component backed by a containerised Neo-based API — means it can be embedded in any web page or data portal, making it straightforward to add interactive previews to data repositories or electronic publications. For more information see `Ates et al., 2024 <http://doi.org/10.1016/j.softx.2024.101710>`_.",
     "status": "active",
-    "latest_version": "1.0.4",
+    "latest_version": "2.1.1",
     "codeRepository": {
       "primary": "https://github.com/NeuralEnsemble/neo-viewer",
       "mirror": "https://gitlab.ebrains.eu/NeuralEnsemble/neo-viewer"
@@ -470,7 +470,7 @@
     "summary": "A collection of reusable CWL tool and workflow definitions for running neuroscience analysis pipelines on EBRAINS infrastructure.",
     "description": "The EBRAINS Workflow Library (EWL) provides a collection of reusable `Common Workflow Language (CWL) <https://www.commonwl.org/>`_ descriptions wrapping individual EBRAINS tools and services, allowing them to be composed into larger analysis pipelines that are portable across local, cloud, and HPC computing environments.\n\nEach component wraps a command-line tool or REST API call with a CWL document that declares its inputs, outputs, and resource requirements. Input and output data can be loaded from and written back to the EBRAINS Knowledge Graph using openMINDS-compliant metadata, enabling sharing and reproducibility. The repository supports the broader EBRAINS goal of making scientific workflows FAIR (Findable, Accessible, Interoperable, Reusable) by providing well-described, version-controlled building blocks that can be assembled by individual research groups for their own simulation and analysis needs.",
     "status": "active",
-    "latest_version": "",
+    "latest_version": "v0.1",
     "codeRepository": {
       "primary": "https://gitlab.ebrains.eu/workflows/components"
     },

@@ -11,7 +11,7 @@
       {
         "name": "Live Papers Viewer app",
         "type": "web app",
-        "version": "2025-10-07",
+        "version": "2026-05-20",
         "entrypoints": {
           "prod": "https://live-papers.apps.ebrains.eu/",
           "dev": "https://live-papers-dev.apps.ebrains.eu/"
@@ -38,7 +38,7 @@
       {
         "name": "Live Papers Builder app",
         "type": "web app",
-        "version": "2025-10-07",
+        "version": "2026-05-20",
         "entrypoints": {
           "prod": "https://live-papers.apps.ebrains.eu/builder",
           "dev": "https://live-papers-dev.apps.ebrains.eu/"
@@ -321,7 +321,7 @@
       {
         "name": "Neuromorphic Job Manager",
         "type": "web app",
-        "version": "release-2025-11-28",
+        "version": "release-2026-06-25",
         "entrypoints": {
           "prod": "https://neuromorphic-job-manager.apps.ebrains.eu/"
         },
@@ -415,7 +415,7 @@
       {
         "name": "Codemeta Generator",
         "type": "web app",
-        "version": "0.2.0",
+        "version": "0.4.0",
         "entrypoints": {
           "prod": "https://codemeta.apps.ebrains.eu/"
         },
@@ -465,7 +465,7 @@
       {
         "name": "Neural Activity Resource",
         "type": "web app",
-        "version": "0.3.4",
+        "version": "0.4.0",
         "entrypoints": {
           "prod": "https://nar.apps.tc.humanbrainproject.eu/",
           "dev": "https://nar.apps.dev-adacloud.ebrains.eu/"
@@ -492,7 +492,7 @@
       {
         "name": "Curation tools",
         "type": "web app",
-        "version": "2026-01-21",
+        "version": "2026-03-18",
         "entrypoints": {
           "prod": "https://curation-tools.apps.ebrains.eu/",
           "dev": "https://curation-tools.apps.dev-adacloud.ebrains.eu/"
