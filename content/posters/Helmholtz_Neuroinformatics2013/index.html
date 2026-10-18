@@ -1,0 +1,209 @@
+<html>
+
+<head>
+    <link href="Helmholtz_Neuroinformatics2013.css" rel="stylesheet" />
+</head>    
+
+<body>
+.
+<header>
+<div id="title">
+<h1>Helmholtz: a customizable framework for neurophysiology data management</h1>
+    <div id="authors">Andrew P. Davison, Thierry Brizzi, Domenico Guarino, Olivier Manette, Cyril Monier, G&eacute;rard Sadoc, Yves Fr&eacute;gnac</div>
+    <div id="affiliations">
+        <address>Unit&eacute; de Neurosciences, Information et Complexit&eacute; (UNIC), Centre Nationale de la Recherche Scientifique (CNRS), Gif sur Yvette, France</address>
+    </div>
+</div>
+
+<div id="logos">
+    <img src="logos/cnrs_logo_140.png" alt="CNRS logo">
+    <img src="logos/unic_logo_160.png" alt="UNIC logo">
+    <img src="logos/brainscales_logo.png" alt="BrainScaleS logo">
+</div>
+</header>
+
+
+<div id="column">
+
+
+<div class="box">
+  <h2>Data problem</h2>
+
+  <p>Databasing of experimental neurophysiology data together with the annotations/metadata needed to understand it promises major payoffs both for the scientists who generate the data and for the progress of neuroscience in general.</p>
+  <figure class="floatright">
+    <img src="figures/helmholtz.jpg" width="225" height="293">
+  </figure>
+  <p>However, systematically putting the annotations and other metadata into a digital form is generally an arduous task at present, and the benefits difficult to realize, so that the cost/benefit ratio for the experimentalist is a poor one, with the corollary that the flow of data shared with the broader community is more a trickle than a flood.</p>
+  <p>To improve this situation requires tools that make it easier for neuroscientists to put their data into a database, to annotate it appropriately, to obtain some immediate benefit from the effort, and to share the data with others, under terms they control, if they so wish.</p>
+  <p><b>Here we present Helmholtz, an open-source framework for developing databases that are customized to the needs of individual neurophysiology labs</b>, named after the 19th century physicist and physiologist <i>Hermann Ludwig Ferdinand von Helmholtz</i> for his work on perception and in the hope that we can contribute to the conservation of energy in neuroscience <b>:)</b></p>
+  <p>The tension between immediate benefit in having a better tool for scientists to manage their own data and longer-term considerations of sharing with others has several implications:</p> 
+  <ol>
+    <li>the metadata stored should be <b>customizable</b>, since the needs of different labs can vary widely, but there should also be a common core to ensure interoperability if the data are published</li>
+    <li>we should support storing both <b>raw and processed/analyzed data</b>, so that the scientist can manage all phases of their workflow and so that the provenance of an individual result or graph can be easily tracked</li>
+    <li>the same tool should be usable both as both <b>local and public resource</b></li>
+    <li>both data and metadata should have <b>fine-grained and easy-to-use</b> access controls</li>
+  </ol>
+</div>
+
+
+<div class="box">
+  <h2>Web Solution</h2>
+
+  <p>The framework is built on top of the Django web framework (http://www.djangoproject.com/). The advantages of using a web framework are:</p> 
+  <ol>
+    <li>it makes it <b>easy to setup</b> either a <b>public or local database</b> (Django comes with a simple built-in web-server)</li>
+    <li>a <b>highly modular structure</b> makes the database <b>easy to customize and extend</b></li>
+    <li><b>abstraction of the underlying database layer</b>, so that (i) any supported relational database can be used (e.g. MySQL, PostgreSQL, Oracle or the built-in SQLite); (ii) knowledge of SQL is not required, making it <b>easy for non-database specialists to develop tools and extensions</b></li>
+    <li>it is easy to develop <b>multiple interfaces</b>, e.g. a web interface, a web-services interface, interfaces to desktop acquisition or analysis software</li>
+  </ol>
+
+</div>
+
+
+
+<div class="box">
+  <h2>Architecture</h2>
+
+  <p>Helmholtz provides core components which handle elements that are common to all or many domains of neurophysiology. For example, information about data acquisition: metadata for <b>experimental setups</b> (equipment, etc.), <b>subjects</b> (species, weight, anaesthesia, surgery, etc.), <b>stimulation</b> and <b>recording protocols</b>, for electrophysiology (in vivo and in vitro), optical imaging and morphological reconstructions.</p>
+  <p>A generic form of referencing supports databasing of <b>measurements</b> and <b>analysis</b> methods and steps, which can be linked to any object in the database, supplying the first building block for additional operations.</p>
+  <p>Each component of the structure is represented as a Django application and has a database table associated with it.</p>
+  <figure class="">
+    <img src="figures/helmholtz_architecture.png" width="1350" alt="architecture">
+  </figure>
+  <p>Extension components to support the specific needs of individual labs are straightforward to write, requiring minimal programming experience.</p>
+  <figure class="floatright">
+    <img src="figures/base_schematic.png" width="450" alt="Neo 0.3 architecture">
+    <figcaption>Neo 0.3 architecture</figcaption>
+  </figure>
+  <p>In order to explain the principles underlying Helmholtz architecture, let's take a closer look at the central data structures representing metadata associated with recordings.</p> 
+  <p>Following interoperability directions, Helmholtz structures for recording metadata mirror those in <b>Neo</b>, a python package for representing hierarchies of electrophysiology data and metadata, together with support for reading and writing a wide range of neurophysiology file formats, including Spike2, NeuroExplorer, AlphaOmega, Axon, Blackrock, Plexon, Tdt, Matlab and HDF5.</p>
+  <p>A direct mapping of <b>Neo</b>'s object at attribute level exists among <b>Block</b>, <b>Segment</b> (with reference to the protocol presentation), analog and discrete <b>Signal</b>s, the actual recordings.</p>
+  <p>These objects are integrated seamlessly into Helmholtz architecture, by including references to the experiment and stimulation metadata that generated the recordings, as well as the storage location of files containing the recordings.</p>
+  <figure class="">
+    <img src="figures/recording.png" width="1200" alt="recording architecture">
+  </figure>
+</div>
+
+
+<div class="box">
+  <h2>Future plans</h2>
+  <p>Following deployment of the web-services API for the BrainScaleS database, the next steps are:</p>
+  <ul>
+    <li>Implement a high-level Python client library, building on top of requests, enabling simulation and analysis scripts to directly and automatically record their parameters, inputs and outputs in the database</li>
+    <li>Fully develop the analysis support in order to capture, for each step, not only the input and output (already implemented) but also the algorithm used, with possible additional parameters</li>
+    <li>Further development of the query interface</li>
+  </ul>
+</div>
+
+
+</div> <!-- leftcolumn -->
+
+<!-- rightcolumn -->
+<div id="column">
+
+
+<div class="box">
+<h2>Interactions</h2>
+
+  <p>To populate, inspect and change the metadata, Helmholtz users have several options ranging from python interactive shell to self-developed ones. Let's take a look at some of them...</p>
+  
+  <h3>Python shell</h3>
+  <p>An experimental setup is defined by its location and the various devices that makes it up:<pre class="prettyprint">
+<code class="display">>>> from helmholtz.devices.models import Setup, SubSystem
+>>> amps = SubSystem(label="amplifiers")
+>>> amps.save()
+>>> amps.device.add(my_amp)
+>>> amps.save()
+>>> vis = SubSystem(label="visualisation")
+>>> vis.save()
+>>> my_setup = Setup(place=my_lab, room="C253")
+>>> my_setup.save()
+>>> my_setup.subsystems.add(amps, vis)
+>>> my_setup.save()</code></pre>
+</p>
+  <p>Once the general information about the experimental setup are stored in Helmholtz, a new Experiment object can be created:<pre class="prettyprint">
+<code class="display">>>> from helmholtz.devices.models import Setup
+>>> from helmholtz.people.models import Researcher
+>>> setup = Setup.objects.get(room="B254")
+>>> researchers = Researcher.objects.filter(first_name__in=["Alice", "Bob"])
+>>> expt = Experiment(label=datetime.now().strftime("%F"), start=datetime.now(), setup=setup)
+>>> expt.save()
+>>> expt.researchers.add(*researchers)
+>>> expt.save()</code></pre>
+  Of course, several other elements could be included in the description, like animal characteristics, drugs applications, preparation properties ...
+  </p>
+
+  <h3>Web Service API</h3>
+  <p>We decided to implement a web-services API using a RESTful architecture, so to see the database as a <b>collection of resources</b>, each of which is referenced with a globally unique identifier (URI).</p>
+  <p>A client that wishes to obtain information from the database sends an HTTP GET request to the URL of the resource of interest, and receives a representation of that resource. This representation could be in several different formats. The Helmholtz API supports <b>XML</b>, <b>JSON</b>, <b>YAML</b>, <b>odML</b> and <b>HTML</b>. The preferred format is included as part of the query or as part of the URL.<br/>
+  As an example, a query to:<pre class="prettyprint"><code class="display">https://www.dbunic.cnrs-gif.fr/visiondb/experiments/?format=xml</code></pre>
+will return the following document:</p>
+  <figure class="floatleft">
+    <img src="figures/api.png" width="" alt="api">
+    <figcaption>any web browser can read the API</figcaption>
+  </figure>
+  
+  <p>Several features can already be noted from this example:
+  <ul>
+    <li>representations are both human- and machine-readable, which facilitates debugging</li>
+    <li>the same information can be returned in different formats, depending on the needs of the client</li>
+    <li>references to other resources (as for <i>preparation</i>, <i>setup</i> and <i>researchers</i>) take the form of a URL (relative to the host)</li>
+  </ul>
+  If a client wishes to modify this resource (and has the permission to do so) it sends an HTTP PUT (replace the entire resource with a new one) or PATCH (modify part of the resource) request to the same URL, containing a JSON document in the same format, e.g.<pre class="prettyprint"><code class="display">$ curl --dump-header - -H "Content-Type: application/json" \
+  -X GET https://www.dbunic.cnrs-gif.fr/visiondb/experiment/experiment/
+{
+  "id": 103,
+  "label": "CAT VISUAL INVIVO INTRA 2008 23"
+}</code></pre>
+  </p>
+  <p>To create a new resource in the database, the client sends an HTTP POST request, and return to the client the URL of the new resource. Finally, an HTTP DELETE request can be used to delete a resource.</p>
+
+<p>The amount of data stored can rapidly grow and be overwhelming, not only for humans but also for automatic treatment. Here we show how easy is to add some filtering criteria using the API. For example, here we ask for the subset of Drifting Grating stimuli that have contrast 10%:<pre class="prettyprint"><code class="display">>>> import requests
+>>> adds = {'contrast': '10.00 \%'}
+>>> heads = { 'Authorization': 'Basic ZG86ZG8=' }
+>>> r = requests.get('https://www.dbunic.cnrs-gif.fr/visiondb/stimulation/driftinggratingstimulus/', params=adds, headers=heads)
+>>> r.status_code
+200
+>>> r.text
+{"objects": [
+    {
+      "contrast": "10.00 \%",
+      "resource_uri": "/stimulation/driftinggratingstimulus/4/",
+    }, 
+    ... other objects
+  ]
+}</code></pre>
+
+  <p>Using the Python <b>requests</b> library, it is easy to interact with the API, but please note that we do not expect users to interact with the database at such a low level. Rather, tool developers will wrap the API interaction within a graphical interface or within a programming-language-specific high-level library.<br/>
+Using this API and AngularJS, a <b>ready-to-use electronic lab notebook</b> is under construction and it will be deployed together with the rest of Helmholtz code:
+  <figure class="floatleft">
+    <img src="figures/experiment_list.png" width="865" alt="api">
+    <figcaption>WebApp: Experiment list</figcaption>
+  </figure>
+  <figure class="floatleft">
+    <img src="figures/animal_edit.png" width="400" alt="api">
+    <figcaption>WebApp: Edit Animal details</figcaption>
+  </figure>
+  This will serve the purpose of fully detailed example application, enabling further customizations or other implementations.</p>
+</div>
+
+
+<div class="box thanks"><h3>Acknowledgments</h3>
+This work was supported by European Union projects FP7-269921 (BrainScaleS) and FP6-015879 (FACETS).
+</div>
+
+
+</div> <!-- rightcolumn -->
+
+
+<footer>Contact us at {name.surname}@unic.cnrs-gif.fr</footer>
+
+
+</body>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</html>

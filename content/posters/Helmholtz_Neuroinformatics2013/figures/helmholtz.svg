@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1938"
+   height="701.09375"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="helmholtz.svg"
+   inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+   inkscape:export-xdpi="30"
+   inkscape:export-ydpi="30">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mstart"
+       style="overflow:visible">
+      <path
+         id="path3881"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.4,0,0,0.4,4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible">
+      <path
+         id="path3875"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.472965"
+     inkscape:cx="1002.9553"
+     inkscape:cy="-290.8857"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="720"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(476.15625,-166.875)">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2985"
+       width="243.58243"
+       height="90.622116"
+       x="0.68151474"
+       y="180.00592"
+       ry="44.330757"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <text
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="53.124397"
+       y="238.09506"
+       id="text3755"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         sodipodi:role="line"
+         id="tspan3757"
+         x="53.124397"
+         y="238.09506">species</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3759"
+       y="432.65405"
+       x="-379.49008"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         y="432.65405"
+         x="-379.49008"
+         id="tspan3761"
+         sodipodi:role="line">people</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="-366.97449"
+       y="244.07066"
+       id="text3763"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         sodipodi:role="line"
+         id="tspan3765"
+         x="-366.97449"
+         y="244.07066">units</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3767"
+       y="823.00922"
+       x="844.87585"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         y="823.00922"
+         x="844.87585"
+         id="tspan3769"
+         sodipodi:role="line">storage</tspan></text>
+    <text
+       sodipodi:linespacing="81%"
+       id="text3775"
+       y="226.44504"
+       x="518.61963"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:81.00000024%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         y="226.44504"
+         x="518.61963"
+         sodipodi:role="line"
+         id="tspan3799">neural</tspan><tspan
+         y="257.8884"
+         x="518.61963"
+         sodipodi:role="line"
+         id="tspan3803">structures</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="840.19513"
+       y="246.26135"
+       id="text3779"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         sodipodi:role="line"
+         id="tspan3781"
+         x="840.19513"
+         y="246.26135">location</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="30.128563"
+       y="438.16611"
+       id="text3787"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         sodipodi:role="line"
+         id="tspan3789"
+         x="30.128563"
+         y="438.16611">chemistry</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3791"
+       y="633.23444"
+       x="61.015568"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         y="633.23444"
+         x="61.015568"
+         id="tspan3793"
+         sodipodi:role="line">device</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="424.09174"
+       y="433.82138"
+       id="text3805"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         sodipodi:role="line"
+         id="tspan3807"
+         x="424.09174"
+         y="433.82138">preparation</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3809"
+       y="629.70367"
+       x="423.27914"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         y="629.70367"
+         x="423.27914"
+         id="tspan3811"
+         sodipodi:role="line">experiment</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="428.15079"
+       y="822.586"
+       id="text3813"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         sodipodi:role="line"
+         id="tspan3815"
+         x="428.15079"
+         y="822.586">stimulation</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3817"
+       y="631.68988"
+       x="820.22192"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         y="631.68988"
+         x="820.22192"
+         id="tspan3819"
+         sodipodi:role="line">recording</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="1210.3546"
+       y="629.12714"
+       id="text3821"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         sodipodi:role="line"
+         id="tspan3823"
+         x="1210.3546"
+         y="629.12714">analysis</tspan></text>
+    <rect
+       ry="44.330757"
+       y="185.66423"
+       x="-441.71799"
+       height="90.622116"
+       width="243.58243"
+       id="rect3825"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3827"
+       width="243.58243"
+       height="90.622116"
+       x="-439.77649"
+       y="378.64966"
+       ry="44.330757"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       ry="44.330757"
+       y="764.89484"
+       x="791.92969"
+       height="90.622116"
+       width="243.58243"
+       id="rect3829"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3831"
+       width="243.58243"
+       height="90.622116"
+       x="-2.507946"
+       y="379.20511"
+       ry="44.330757"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       ry="44.330757"
+       y="573.62347"
+       x="-2.8247261"
+       height="90.622116"
+       width="243.58243"
+       id="rect3833"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3835"
+       width="243.58243"
+       height="90.622116"
+       x="398.49506"
+       y="185.54599"
+       ry="44.330757"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       ry="44.330757"
+       y="187.44611"
+       x="794.68677"
+       height="90.622116"
+       width="243.58243"
+       id="rect3837"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3839"
+       width="257.44583"
+       height="87.849609"
+       x="401.56577"
+       y="379.75354"
+       ry="36.992821"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3843"
+       width="243.58243"
+       height="90.622116"
+       x="408.67548"
+       y="764.91443"
+       ry="44.330757"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       ry="44.330757"
+       y="573.41595"
+       x="404.35825"
+       height="90.622116"
+       width="243.58243"
+       id="rect3845"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3847"
+       width="243.58243"
+       height="90.622116"
+       x="1165.3682"
+       y="571.73224"
+       ry="44.330757"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       ry="44.330757"
+       y="573.46246"
+       x="791.87323"
+       height="90.622116"
+       width="243.58243"
+       id="rect3849"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="M 250.19154,264.2834 407.28886,392.73526"
+       id="path3870"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 257.57955,619.45193 148.28348,-0.30451"
+       id="path4512"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4514"
+       d="M 246.4884,656.40359 409.01306,800.70223"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 665.52594,618.48477 125.47386,0.15965"
+       id="path4516"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4518"
+       d="M 656.54727,770.80238 798.29734,648.17852"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4522"
+       d="m -180.31319,422.51964 178.914329,-0.0611"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="M -190.82894,265.37606 4.878569,399.53177"
+       id="path4524"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 255.3233,423.62015 143.19245,-0.15627"
+       id="path4528"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4530"
+       d="M 245.06104,582.73586 411.56753,459.17371"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 526.81361,483.16655 -1.3793,90.92979"
+       id="path4532"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4534"
+       d="M -189.91806,457.87463 -0.220124,594.46692"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 262.66789,229.27997 135.86645,0"
+       id="path4549"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="M -192.94886,384.52368 5.670759,250.37291"
+       id="path4551"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4584"
+       d="m 658.89915,231.22096 135.86645,0"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4586"
+       d="m 915.39501,748.36999 0.0492,-83.35588"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <text
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="1157.7324"
+       y="370.00214"
+       id="text4588"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30"><tspan
+         sodipodi:role="line"
+         id="tspan4590"
+         x="1157.7324"
+         y="370.00214">measurement</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect4592"
+       width="296.26489"
+       height="90.622116"
+       x="1137.9384"
+       y="312.6575"
+       ry="44.330757"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4598"
+       d="m 1098.4778,617.0008 65.8022,-0.16809"
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 1114.124,674.46595 57.3283,-32.30429"
+       id="path4606"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4608"
+       d="m 1114.8175,559.45368 57.3282,32.30437"
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 1070.7488,357.74516 65.8048,-0.16815"
+       id="path4610"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4612"
+       d="m 1086.3952,415.21021 57.3279,-32.30424"
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       style="opacity:0.5;fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 1087.0883,300.19822 57.3276,32.30422"
+       id="path4614"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/helmholtz.png"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 914.96643,296.94142 0.0492,275.92983"
+       id="path3050"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       ry="44.330757"
+       y="993.29547"
+       x="4.7221251"
+       height="90.622116"
+       width="243.58243"
+       id="rect3051"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <text
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:linespacing="125%"
+       id="text3061"
+       y="1057.3602"
+       x="-292.93387"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"><tspan
+         y="1057.3602"
+         x="-292.93387"
+         id="tspan3063"
+         sodipodi:role="line">experiment</tspan></text>
+    <text
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:81.00000024%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="743.98004"
+       y="1249.6838"
+       id="text3065"
+       sodipodi:linespacing="81%"><tspan
+         id="tspan3069"
+         sodipodi:role="line"
+         x="743.98004"
+         y="1249.6838">segment</tspan></text>
+    <text
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:linespacing="88%"
+       id="text3071"
+       y="1233.5001"
+       x="1098.8333"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:87.99999952%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"><tspan
+         y="1233.5001"
+         x="1098.8333"
+         id="tspan3073"
+         sodipodi:role="line"
+         style="text-align:center;line-height:87.99999952%;text-anchor:middle">analog/discrete</tspan><tspan
+         y="1267.6608"
+         x="1098.8333"
+         sodipodi:role="line"
+         id="tspan3141"
+         style="text-align:center;line-height:87.99999952%;text-anchor:middle">signals</tspan></text>
+    <text
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:linespacing="125%"
+       id="text3075"
+       y="1251.4557"
+       x="70.169174"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"><tspan
+         y="1251.4557"
+         x="70.169174"
+         id="tspan3077"
+         sodipodi:role="line">block</tspan></text>
+    <text
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       xml:space="preserve"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="521.76697"
+       y="1470.5544"
+       id="text3079"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3081"
+         x="521.76697"
+         y="1470.5544">storage</tspan></text>
+    <text
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:linespacing="125%"
+       id="text3083"
+       y="1247.111"
+       x="354.13235"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"><tspan
+         y="1247.111"
+         x="354.13235"
+         id="tspan3085"
+         sodipodi:role="line">protocol</tspan></text>
+    <rect
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3095"
+       width="243.58243"
+       height="90.622116"
+       x="-309.67737"
+       y="998.9538"
+       ry="44.330757" />
+    <rect
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       ry="44.330757"
+       y="1192.4946"
+       x="1.5326642"
+       height="90.622116"
+       width="243.58243"
+       id="rect3099"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <rect
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3101"
+       width="243.58243"
+       height="90.622116"
+       x="469.92667"
+       y="1414.9435"
+       ry="44.330757" />
+    <rect
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       ry="44.330757"
+       y="1192.7848"
+       x="619.85547"
+       height="90.622116"
+       width="243.58243"
+       id="rect3103"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <rect
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       style="fill:none;stroke:#000000;stroke-width:4.852;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3105"
+       width="345.28635"
+       height="89.725822"
+       x="922.49371"
+       y="1195.1315"
+       ry="43.892338" />
+    <rect
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       ry="36.992821"
+       y="1193.0431"
+       x="303.60638"
+       height="87.849609"
+       width="257.44583"
+       id="rect3107"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3113"
+       d="M 188.77511,1098.7205 312.6404,1205.5213"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)" />
+    <path
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3121"
+       d="M -141.47192,1106.359 8.9191792,1212.8213"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)" />
+    <path
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3123"
+       d="m 259.36391,1236.9097 41.9858,-0.1563"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)" />
+    <path
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3127"
+       d="M 450.57217,1451.6309 123.27176,1280.7159"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="m 577.08229,1236.9097 41.9858,-0.1563"
+       id="path3143"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3145"
+       d="m 881.70927,1240.9097 41.9858,-0.1563"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Zapfino;-inkscape-font-specification:Zapfino Bold Italic"
+       x="1414.1884"
+       y="1256.5151"
+       id="text3927"
+       sodipodi:linespacing="125%"
+       transform="translate(-476.15625,166.875)"><tspan
+         sodipodi:role="line"
+         id="tspan3929"></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="M 548.27729,1398.5566 428.04144,1280.7159"
+       id="path3931"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <path
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3933"
+       d="M 625.51565,1397.8091 737.76022,1283.706"
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4.85236979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Mstart)"
+       d="M 733.66015,1453.126 1090.7193,1285.2011"
+       id="path3935"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:4.85200000000000031;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:0.35294119;stroke-dasharray:none"
+       id="rect3937"
+       width="1336.17"
+       height="150.82443"
+       x="-34.887211"
+       y="1162.3336"
+       ry="73.780617"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       inkscape:export-xdpi="30"
+       inkscape:export-ydpi="30" />
+    <text
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       xml:space="preserve"
+       style="font-size:38.81895827999999682px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.35294119;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       x="515.75964"
+       y="1141.2413"
+       id="text3939"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3941"
+         x="515.75964"
+         y="1141.2413">recording</tspan></text>
+    <text
+       inkscape:export-ydpi="30"
+       inkscape:export-xdpi="30"
+       inkscape:export-filename="/Users/do/Desktop/marseille/recording.png"
+       sodipodi:linespacing="125%"
+       id="text3943"
+       y="1050.9327"
+       x="20.086771"
+       style="font-size:38.81895828px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"><tspan
+         y="1050.9327"
+         x="20.086771"
+         id="tspan3945"
+         sodipodi:role="line">stimulation</tspan></text>
+  </g>
+</svg>

@@ -136,13 +136,12 @@
         "documentation": "https://model-validation-api.apps.ebrains.eu//docs/",
         "containerImage": "docker-registry.ebrains.eu/model-catalog/validation_service-v3beta:staging",
         "codeRepository": {
-          "primary": "https://github.com/HumanBrainProject/hbp-validation-framework",
-          "mirror": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework"
+          "primary": "https://gitlab.ebrains.eu/model-validation/api"
         },
         "ci": [
           {
-            "link": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework/-/pipelines",
-            "badge": "https://gitlab.ebrains.eu/model-validation/hbp-validation-framework/badges/master/pipeline.svg?ignore_skipped=true"
+            "link": "https://gitlab.ebrains.eu/model-validation/api/-/pipelines",
+            "badge": "https://gitlab.ebrains.eu/model-validation/api/badges/master/pipeline.svg?ignore_skipped=true"
           }
         ],
         "monitoring": {
