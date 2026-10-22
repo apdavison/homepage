@@ -191,6 +191,9 @@
     },
     "ebrains": {
       "link": "https://ebrains.eu/data-tools-services/tools/fairgraph"
+    },
+    "spack": {
+      "link": "https://gitlab.ebrains.eu/ri/tech-hub/platform/esd/ebrains-spack-builds/-/tree/master/packages/py-fairgraph"
     }
   },
   {

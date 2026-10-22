@@ -261,7 +261,8 @@
         "type": "REST API",
         "version": "20241216",
         "entrypoints": {
-          "prod": "https://prov-api.apps.ebrains.eu/"
+          "prod": "https://prov-api.apps.ebrains.eu/",
+          "dev": "https://prov-api.apps.dev-adacloud.ebrains.eu/"
         },
         "documentation": "https://prov-api.apps.ebrains.eu/docs",
         "containerImage": "docker-registry.ebrains.eu/prov-api/prov-api:latest",
@@ -358,14 +359,10 @@
         "documentation": "https://nmpi-v3.hbpneuromorphic.eu/docs",
         "containerImage": "docker-registry.ebrains.eu/neuromorphic/nmpi_queue_server_v3:prod",
         "codeRepository": {
-          "primary": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api",
-          "mirror": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api"
+          "primary": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api",
+          "archive": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api"
         },
         "ci": [
-          {
-            "link": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api/actions/workflows/test_simqueue.yml",
-            "badge": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api/actions/workflows/test_simqueue.yml/badge.svg"
-          },
           {
             "link": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api/-/pipelines",
             "badge": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api/badges/main/pipeline.svg?ignore_skipped=true"
@@ -376,7 +373,7 @@
           "users": null,
           "status": "https://status.ebrains.eu"
         },
-        "deploymentProtocol": "https://github.com/HumanBrainProject/ebrains-neuromorphic-job-queue-api/blob/master/api/deployment/docker-compose-template.yml"
+        "deploymentProtocol": "https://gitlab.ebrains.eu/neuromorphic/job-queue-api/-/blob/main/api/deployment/docker-compose-template.yml"
       },
       {
         "name": "Demo Neuromorphic Provider",
@@ -518,7 +515,7 @@
       {
         "name": "fairgraph MCP",
         "type": "MCP server",
-        "version": "2026-01-21",
+        "version": "none",
         "entrypoints": {
           "prod": null,
           "dev": "https://fairgraph-mcp.apps.dev-adacloud.ebrains.eu/"
